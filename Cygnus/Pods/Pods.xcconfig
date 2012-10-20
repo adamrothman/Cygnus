@@ -1,0 +1,8 @@
+HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS}
+PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/Parse" "${PODS_ROOT}/Headers/SBJson" "${PODS_ROOT}/Headers/SSToolkit"
+PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
+FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Parse"
+OTHER_LDFLAGS = -ObjC -lsqlite3 -lz -framework Accounts -framework AdSupport -framework AudioToolbox -framework CFNetwork -framework CoreGraphics -framework MobileCoreServices -framework Parse -framework QuartzCore -framework Security -framework Social -framework StoreKit -framework SystemConfiguration
+ALWAYS_SEARCH_USER_PATHS = YES
+PODS_ROOT = ${SRCROOT}/Pods
+PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/AFNetworking" "${PODS_ROOT}/BuildHeaders/Parse" "${PODS_ROOT}/BuildHeaders/SBJson" "${PODS_ROOT}/BuildHeaders/SSToolkit"

@@ -1,0 +1,6 @@
+platform :ios, '6.0'
+
+pod 'SSToolkit'
+pod 'AFNetworking'
+pod 'SBJson'
+pod 'Parse'
