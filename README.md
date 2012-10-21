@@ -18,19 +18,19 @@ Don't work in master. Seriously. Make a branch.
 
 This fetches the most recent changes and creates a new branch called my_feature_branch_name that tracks the <code>master</code> branch on GitHub. When you <code>git pull</code>, you will get the latest changes from <code>master</code>.
 
-Commit as you go. Keep messages descriptive but brief, and use present tense. Don't use <code>git commit -a</code>; always check what you're committing with <code>git status</code> before you commit.
+Commit as you go. Keep messages brief, descriptive, and in present tense. Don't use <code>git commit -a</code>; always check what you're committing with <code>git status</code> before you pull the trigger.
 
     $ git add file_i_changed.m another_file.h
     $ git commit -m "Add some silly files"
 
-If you know what you're doing, you can also use <code>git add -A</code>. When you're done working for the night, push your branch to GitHub for safe keeping. Check which branch you're on with <code>git branch</code> before pushing. Don't push to <code>master</code>.
+If you know what you're doing, you can also use <code>git add -A</code>. When you're done for the night, push your branch to GitHub for safe keeping. Check which branch you're on with <code>git branch</code> before pushing (it's the one with the asterisk). Don't push to <code>master</code>.
 
     $ git push origin HEAD
 
-You can switch back to <code>master</code> with <code>git checkout master</code>. You probably don't need to do this, but if you do, make sure your changes are committed first!
+You can switch between branches with <code>git checkout branch_name</code>. Make sure your changes are committed first!
 
 ### Getting changes back into master
-You want to create a pull request. It makes code review simple! Read https://help.github.com/articles/using-pull-requests and follow the instructions. We are using the "shared repository model." Ask Adam if you have questions.
+Create a pull request. Huzzah for code review! Read https://help.github.com/articles/using-pull-requests and follow the instructions. We are using the "shared repository model." Ask Adam if you have questions.
 
 ### Miscellaneous info
 Trello list IDs:  
