@@ -10,6 +10,8 @@ First, you'll need to set up SSH access with GitHub. See https://help.github.com
     $ git submodule update
     $ open Cygnus.xcodeproj
 
+Set Xcode to use spaces (this is the default), with 1 tab equal to 2 spaces (not the default).
+
 ### Working on stuff
 Don't work in master. Seriously. Make a branch.
 
