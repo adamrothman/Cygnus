@@ -8,6 +8,7 @@ First, you'll need to set up SSH access with GitHub. See https://help.github.com
     $ cd Cygnus
     $ git submodule init
     $ git submodule update
+    $ ./tools/install_git_hooks
 
 ### Style
 Set Xcode to use spaces (the default), with 1 tab equal to 2 spaces (not the default). Opening brackets don't get their own lines. Try to keep line lengths reasonable.

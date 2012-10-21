@@ -1,0 +1,37 @@
+#!/bin/sh
+
+if git rev-parse --verify HEAD >/dev/null 2>&1 ; then
+  AGAINST=HEAD
+else
+  # Initial commit: diff against an empty tree object
+  AGAINST=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+fi
+
+# This magically makes filenames with spaces work in loops
+IFS=$'\n'
+
+# Replace tabs with spaces in all edited .h and .m files
+# Do this before we check for trailing whitespace
+# That way we can also remove trailing whitespace from lines where we removed tabs
+for FILE in $(exec git diff --staged --name-only | grep '\.m$\|\.h$'); do
+  if [[ -e "$FILE" && ! -h "$FILE" ]]; then
+    # Check to see if this file has any tabs
+    TAB_LINES_COUNT=`grep -c $'\t' "$FILE"`
+    if [[ $TAB_LINES_COUNT -ge 1 ]]; then
+      echo "Found tabs on $TAB_LINES_COUNT lines in $FILE, fixing them automatically"
+      # On OS X you have to do this crazy \'$'\t'' thing to recognize tabs
+      # Alternately you can type Ctrl-V TAB.
+      sed -i "" 's/\'$'\t''/  /g' "$FILE"
+      # This should be safe, so go ahead and add the file
+      git add "$FILE"
+    fi
+  fi
+done
+
+# Find files with trailing whitespace and fix them
+for FILE in `exec git diff-index --check --cached $AGAINST -- | sed '/^[+-]/d' | sed -E 's/:[0-9]+:.*//' | uniq` ; do
+  # Fix them
+  echo "Found trailing whitespace in $FILE, fixing it automatically"
+  sed -i '' -E 's/[[:space:]]*$//' "$FILE"
+  git add "$FILE"
+done

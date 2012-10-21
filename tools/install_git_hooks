@@ -1,0 +1,10 @@
+#!/bin/sh
+
+SCRIPT_DIR=$(cd `dirname $0` && pwd)
+HOOK_DIR="$SCRIPT_DIR/hooks"
+REPO_DIR=$(git rev-parse --show-toplevel)
+INSTALL_DIR="$REPO_DIR/.git/hooks"
+
+ln -sf "$HOOK_DIR/pre-commit" "$INSTALL_DIR"/pre-commit
+
+echo "Installed hooks in $INSTALL_DIR"
