@@ -16,14 +16,14 @@ Don't work in master. Seriously. Make a branch.
     $ git fetch
     $ git checkout -b my_feature_branch_name origin/master
 
-This fetches the most recent changes and creates a new branch called my_feature_branch_name that tracks the <pre>master</pre> branch on GitHub. When you <pre>git pull</pre>, you will get the latest changes from <pre>master</pre>.
+This fetches the most recent changes and creates a new branch called my_feature_branch_name that tracks the <code>master</code> branch on GitHub. When you <code>git pull</code>, you will get the latest changes from <code>master</code>.
 
-Commit as you go. Keep messages descriptive but brief, and use present tense. Don't use <pre>git commit -a</pre>; always check what you're committing with <pre>git status</pre> before you commit.
+Commit as you go. Keep messages descriptive but brief, and use present tense. Don't use <code>git commit -a</code>; always check what you're committing with <code>git status</code> before you commit.
 
     $ git add file_i_changed.m another_file.h
     $ git commit -m "Add some silly files"
 
-If you know what you're doing, you can also use <pre>git add -A</pre>. When you're done working for the night, push your branch to GitHub for safe keeping. Check which branch you're on with <pre>git branch</pre> before pushing. Don't push to <pre>master</pre>.
+If you know what you're doing, you can also use <code>git add -A</code>. When you're done working for the night, push your branch to GitHub for safe keeping. Check which branch you're on with <code>git branch</code> before pushing. Don't push to <code>master</code>.
 
     $ git push
 
