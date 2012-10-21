@@ -1,8 +1,9 @@
 Cygnus
 ======
+JC, Adam, and Jesse's CS 147 repo. Make sure you open Cygnus.xcworkspace so that you get the installed pods (see http://cocoapods.org/).
 
-JC, Adam, and Jesse's CS 147 repo.
-
+Miscellaneous keys and things
+-----------------------------
 Parse application ID: dWDpSyitmM3EpaQh5CiLELD4IFzHfuVEkNBxTdcw
 
 Parse client key: mkWTpXNp8HcbZGpYpZTLe0N1iI7x57ZjRLpfCnA1
