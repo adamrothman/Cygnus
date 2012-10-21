@@ -1,0 +1,6 @@
+[submodule "Cygnus/Libraries/AFNetworking"]
+	path = Cygnus/Libraries/AFNetworking
+	url = git://github.com/AFNetworking/AFNetworking.git
+[submodule "Cygnus/Libraries/SSToolkit"]
+	path = Cygnus/Libraries/SSToolkit
+	url = git://github.com/soffes/sstoolkit.git

@@ -2,7 +2,7 @@
 //  CYViewController.m
 //  Cygnus
 //
-//  Created by Juan-Carlos Foust on 10/20/12.
+//  Created by Adam Rothman on 10/21/12.
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
@@ -16,14 +16,14 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -2,7 +2,7 @@
 //  CYViewController.h
 //  Cygnus
 //
-//  Created by Juan-Carlos Foust on 10/20/12.
+//  Created by Adam Rothman on 10/21/12.
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
