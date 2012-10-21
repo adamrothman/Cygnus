@@ -25,7 +25,7 @@ Commit as you go. Keep messages descriptive but brief, and use present tense. Do
 
 If you know what you're doing, you can also use <code>git add -A</code>. When you're done working for the night, push your branch to GitHub for safe keeping. Check which branch you're on with <code>git branch</code> before pushing. Don't push to <code>master</code>.
 
-    $ git push
+    $ git push origin HEAD
 
 You can switch back to <code>master</code> with <code>git checkout master</code>. You probably don't need to do this, but if you do, make sure your changes are committed first!
 
