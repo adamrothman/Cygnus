@@ -8,9 +8,9 @@ First, you'll need to set up SSH access with GitHub. See https://help.github.com
     $ cd Cygnus
     $ git submodule init
     $ git submodule update
-    $ open Cygnus.xcodeproj
 
-Set Xcode to use spaces (this is the default), with 1 tab equal to 2 spaces (not the default).
+### Style
+Set Xcode to use spaces (the default), with 1 tab equal to 2 spaces (not the default). Opening brackets don't get their own lines. Try to keep line lengths reasonable.
 
 ### Working on stuff
 Don't work in master. Seriously. Make a branch.
@@ -31,7 +31,7 @@ If you know what you're doing, you can also use <code>git add -A</code>. When yo
 
 You can switch between branches with <code>git checkout branch_name</code>. Make sure your changes are committed first!
 
-### Getting changes back into master
+### Getting changes into master
 Create a pull request. Huzzah for code review! Read https://help.github.com/articles/using-pull-requests and follow the instructions. We are using the "shared repository model." Ask Adam if you have questions.
 
 ### Miscellaneous info
