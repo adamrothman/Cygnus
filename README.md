@@ -27,6 +27,8 @@ If you know what you're doing, you can also use <code>git add -A</code>. When yo
 
     $ git push
 
+You can switch back to <code>master</code> with <code>git checkout master</code>. You probably don't need to do this, but if you do, make sure your changes are committed first!
+
 ### Getting changes back into master
 You want to create a pull request. It makes code review simple! Read https://help.github.com/articles/using-pull-requests and follow the instructions. We are using the "shared repository model." Ask Adam if you have questions.
 
