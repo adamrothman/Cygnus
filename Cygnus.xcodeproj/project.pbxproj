@@ -33,7 +33,56 @@
 		6627828A1633EF9200F1D0E7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6627827E1633EF9200F1D0E7 /* SystemConfiguration.framework */; };
 		662782901633F0F400F1D0E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6627828F1633F0F400F1D0E7 /* MapKit.framework */; };
 		662782921633F10100F1D0E7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 662782911633F10100F1D0E7 /* CoreLocation.framework */; };
+		66558AB116361EBC00C7BB8B /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558A9F16361EBC00C7BB8B /* AFHTTPClient.m */; };
+		66558AB216361EBC00C7BB8B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AA116361EBC00C7BB8B /* AFHTTPRequestOperation.m */; };
+		66558AB316361EBC00C7BB8B /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AA316361EBC00C7BB8B /* AFImageRequestOperation.m */; };
+		66558AB416361EBC00C7BB8B /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AA516361EBC00C7BB8B /* AFJSONRequestOperation.m */; };
+		66558AB516361EBC00C7BB8B /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AA716361EBC00C7BB8B /* AFNetworkActivityIndicatorManager.m */; };
+		66558AB616361EBC00C7BB8B /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AAA16361EBC00C7BB8B /* AFPropertyListRequestOperation.m */; };
+		66558AB716361EBC00C7BB8B /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AAC16361EBC00C7BB8B /* AFURLConnectionOperation.m */; };
+		66558AB816361EBC00C7BB8B /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AAE16361EBC00C7BB8B /* AFXMLRequestOperation.m */; };
+		66558AB916361EBC00C7BB8B /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AB016361EBC00C7BB8B /* UIImageView+AFNetworking.m */; };
+		66558ABE163634BE00C7BB8B /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66558A9816361D4700C7BB8B /* libSSToolkit.a */; };
+		66558ABF163634DA00C7BB8B /* SSToolkitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66558A9C16361D4700C7BB8B /* SSToolkitResources.bundle */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		66558A9716361D4700C7BB8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = SSToolkit;
+		};
+		66558A9916361D4700C7BB8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B239101D1357DC3E00ADE21B;
+			remoteInfo = SSToolkitTests;
+		};
+		66558A9B16361D4700C7BB8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B2C507EA151BA64400E94614;
+			remoteInfo = SSToolkitResources;
+		};
+		66558ABA163634AC00C7BB8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = SSToolkit;
+		};
+		66558ABC163634AC00C7BB8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B2C507E9151BA64400E94614;
+			remoteInfo = SSToolkitResources;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		662782451633EEC200F1D0E7 /* Cygnus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cygnus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +116,26 @@
 		6627827E1633EF9200F1D0E7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6627828F1633F0F400F1D0E7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		662782911633F10100F1D0E7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = Cygnus/Libraries/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
+		66558A9E16361EBC00C7BB8B /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		66558A9F16361EBC00C7BB8B /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		66558AA016361EBC00C7BB8B /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		66558AA116361EBC00C7BB8B /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		66558AA216361EBC00C7BB8B /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		66558AA316361EBC00C7BB8B /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		66558AA416361EBC00C7BB8B /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		66558AA516361EBC00C7BB8B /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		66558AA616361EBC00C7BB8B /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		66558AA716361EBC00C7BB8B /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		66558AA816361EBC00C7BB8B /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		66558AA916361EBC00C7BB8B /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		66558AAA16361EBC00C7BB8B /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		66558AAB16361EBC00C7BB8B /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		66558AAC16361EBC00C7BB8B /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		66558AAD16361EBC00C7BB8B /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		66558AAE16361EBC00C7BB8B /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		66558AAF16361EBC00C7BB8B /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		66558AB016361EBC00C7BB8B /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66558ABE163634BE00C7BB8B /* libSSToolkit.a in Frameworks */,
 				662782921633F10100F1D0E7 /* CoreLocation.framework in Frameworks */,
 				662782901633F0F400F1D0E7 /* MapKit.framework in Frameworks */,
 				6627827F1633EF9200F1D0E7 /* Accounts.framework in Frameworks */,
@@ -103,6 +173,7 @@
 			children = (
 				6627824F1633EEC200F1D0E7 /* Cygnus */,
 				662782481633EEC200F1D0E7 /* Frameworks */,
+				66558A8116361CE200C7BB8B /* Libraries */,
 				662782461633EEC200F1D0E7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -167,6 +238,52 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		66558A8116361CE200C7BB8B /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				66558A9D16361EBC00C7BB8B /* AFNetworking */,
+				66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		66558A8E16361D4700C7BB8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66558A9816361D4700C7BB8B /* libSSToolkit.a */,
+				66558A9A16361D4700C7BB8B /* SSToolkitTests.app */,
+				66558A9C16361D4700C7BB8B /* SSToolkitResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		66558A9D16361EBC00C7BB8B /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				66558A9E16361EBC00C7BB8B /* AFHTTPClient.h */,
+				66558A9F16361EBC00C7BB8B /* AFHTTPClient.m */,
+				66558AA016361EBC00C7BB8B /* AFHTTPRequestOperation.h */,
+				66558AA116361EBC00C7BB8B /* AFHTTPRequestOperation.m */,
+				66558AA216361EBC00C7BB8B /* AFImageRequestOperation.h */,
+				66558AA316361EBC00C7BB8B /* AFImageRequestOperation.m */,
+				66558AA416361EBC00C7BB8B /* AFJSONRequestOperation.h */,
+				66558AA516361EBC00C7BB8B /* AFJSONRequestOperation.m */,
+				66558AA616361EBC00C7BB8B /* AFNetworkActivityIndicatorManager.h */,
+				66558AA716361EBC00C7BB8B /* AFNetworkActivityIndicatorManager.m */,
+				66558AA816361EBC00C7BB8B /* AFNetworking.h */,
+				66558AA916361EBC00C7BB8B /* AFPropertyListRequestOperation.h */,
+				66558AAA16361EBC00C7BB8B /* AFPropertyListRequestOperation.m */,
+				66558AAB16361EBC00C7BB8B /* AFURLConnectionOperation.h */,
+				66558AAC16361EBC00C7BB8B /* AFURLConnectionOperation.m */,
+				66558AAD16361EBC00C7BB8B /* AFXMLRequestOperation.h */,
+				66558AAE16361EBC00C7BB8B /* AFXMLRequestOperation.m */,
+				66558AAF16361EBC00C7BB8B /* UIImageView+AFNetworking.h */,
+				66558AB016361EBC00C7BB8B /* UIImageView+AFNetworking.m */,
+			);
+			name = AFNetworking;
+			path = Cygnus/Libraries/AFNetworking/AFNetworking;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -181,6 +298,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				66558ABB163634AC00C7BB8B /* PBXTargetDependency */,
+				66558ABD163634AC00C7BB8B /* PBXTargetDependency */,
 			);
 			name = Cygnus;
 			productName = Cygnus;
@@ -207,12 +326,42 @@
 			mainGroup = 6627823A1633EEC200F1D0E7;
 			productRefGroup = 662782461633EEC200F1D0E7 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 66558A8E16361D4700C7BB8B /* Products */;
+					ProjectRef = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				662782441633EEC200F1D0E7 /* Cygnus */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		66558A9816361D4700C7BB8B /* libSSToolkit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSSToolkit.a;
+			remoteRef = 66558A9716361D4700C7BB8B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		66558A9A16361D4700C7BB8B /* SSToolkitTests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SSToolkitTests.app;
+			remoteRef = 66558A9916361D4700C7BB8B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		66558A9C16361D4700C7BB8B /* SSToolkitResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SSToolkitResources.bundle;
+			remoteRef = 66558A9B16361D4700C7BB8B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		662782431633EEC200F1D0E7 /* Resources */ = {
@@ -224,6 +373,7 @@
 				6627825E1633EEC200F1D0E7 /* Default@2x.png in Resources */,
 				662782601633EEC200F1D0E7 /* Default-568h@2x.png in Resources */,
 				662782631633EEC200F1D0E7 /* MainStoryboard.storyboard in Resources */,
+				66558ABF163634DA00C7BB8B /* SSToolkitResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,10 +387,32 @@
 				662782561633EEC200F1D0E7 /* main.m in Sources */,
 				6627825A1633EEC200F1D0E7 /* CYAppDelegate.m in Sources */,
 				662782661633EEC200F1D0E7 /* CYViewController.m in Sources */,
+				66558AB116361EBC00C7BB8B /* AFHTTPClient.m in Sources */,
+				66558AB216361EBC00C7BB8B /* AFHTTPRequestOperation.m in Sources */,
+				66558AB316361EBC00C7BB8B /* AFImageRequestOperation.m in Sources */,
+				66558AB416361EBC00C7BB8B /* AFJSONRequestOperation.m in Sources */,
+				66558AB516361EBC00C7BB8B /* AFNetworkActivityIndicatorManager.m in Sources */,
+				66558AB616361EBC00C7BB8B /* AFPropertyListRequestOperation.m in Sources */,
+				66558AB716361EBC00C7BB8B /* AFURLConnectionOperation.m in Sources */,
+				66558AB816361EBC00C7BB8B /* AFXMLRequestOperation.m in Sources */,
+				66558AB916361EBC00C7BB8B /* UIImageView+AFNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		66558ABB163634AC00C7BB8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SSToolkit;
+			targetProxy = 66558ABA163634AC00C7BB8B /* PBXContainerItemProxy */;
+		};
+		66558ABD163634AC00C7BB8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SSToolkitResources;
+			targetProxy = 66558ABC163634AC00C7BB8B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		662782521633EEC200F1D0E7 /* InfoPlist.strings */ = {
@@ -317,11 +489,16 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Cygnus/Frameworks\"",
+					"$(SRCROOT)/Cygnus/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cygnus/Cygnus-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Cygnus/Libraries/SSToolkit";
 				INFOPLIST_FILE = "Cygnus/Cygnus-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -332,11 +509,16 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Cygnus/Frameworks\"",
+					"$(SRCROOT)/Cygnus/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cygnus/Cygnus-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Cygnus/Libraries/SSToolkit";
 				INFOPLIST_FILE = "Cygnus/Cygnus-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
