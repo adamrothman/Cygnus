@@ -17,8 +17,6 @@
 		6627825E1633EEC200F1D0E7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6627825D1633EEC200F1D0E7 /* Default@2x.png */; };
 		662782601633EEC200F1D0E7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6627825F1633EEC200F1D0E7 /* Default-568h@2x.png */; };
 		662782631633EEC200F1D0E7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 662782611633EEC200F1D0E7 /* MainStoryboard.storyboard */; };
-		662782661633EEC200F1D0E7 /* CYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 662782651633EEC200F1D0E7 /* CYViewController.m */; };
-		662782711633EF5300F1D0E7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 662782701633EF5300F1D0E7 /* Parse.framework */; };
 		6627827F1633EF9200F1D0E7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 662782731633EF9200F1D0E7 /* Accounts.framework */; };
 		662782801633EF9200F1D0E7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 662782741633EF9200F1D0E7 /* AdSupport.framework */; };
 		662782811633EF9200F1D0E7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 662782751633EF9200F1D0E7 /* AudioToolbox.framework */; };
@@ -30,7 +28,6 @@
 		662782871633EF9200F1D0E7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6627827B1633EF9200F1D0E7 /* Security.framework */; };
 		662782881633EF9200F1D0E7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6627827C1633EF9200F1D0E7 /* Social.framework */; };
 		662782891633EF9200F1D0E7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6627827D1633EF9200F1D0E7 /* StoreKit.framework */; };
-		6627828A1633EF9200F1D0E7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6627827E1633EF9200F1D0E7 /* SystemConfiguration.framework */; };
 		662782901633F0F400F1D0E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6627828F1633F0F400F1D0E7 /* MapKit.framework */; };
 		662782921633F10100F1D0E7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 662782911633F10100F1D0E7 /* CoreLocation.framework */; };
 		66558AB116361EBC00C7BB8B /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558A9F16361EBC00C7BB8B /* AFHTTPClient.m */; };
@@ -44,6 +41,14 @@
 		66558AB916361EBC00C7BB8B /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AB016361EBC00C7BB8B /* UIImageView+AFNetworking.m */; };
 		66558ABE163634BE00C7BB8B /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66558A9816361D4700C7BB8B /* libSSToolkit.a */; };
 		66558ABF163634DA00C7BB8B /* SSToolkitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66558A9C16361D4700C7BB8B /* SSToolkitResources.bundle */; };
+		66A1B3281638862000B9DCEC /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B3261638862000B9DCEC /* 103-map.png */; };
+		66A1B3291638862000B9DCEC /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B3271638862000B9DCEC /* 103-map@2x.png */; };
+		66A1B32B1638865B00B9DCEC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A1B32A1638865B00B9DCEC /* Parse.framework */; };
+		66A1B331163888AC00B9DCEC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A1B330163888AC00B9DCEC /* SystemConfiguration.framework */; };
+		66A1B33816388A2700B9DCEC /* 20-gear-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B33616388A2700B9DCEC /* 20-gear-2.png */; };
+		66A1B33916388A2700B9DCEC /* 20-gear-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B33716388A2700B9DCEC /* 20-gear-2@2x.png */; };
+		66A1B33C16388C2900B9DCEC /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B33A16388C2900B9DCEC /* 06-magnify.png */; };
+		66A1B33D16388C2900B9DCEC /* 06-magnify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B33B16388C2900B9DCEC /* 06-magnify@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,9 +104,6 @@
 		6627825D1633EEC200F1D0E7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6627825F1633EEC200F1D0E7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		662782621633EEC200F1D0E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		662782641633EEC200F1D0E7 /* CYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYViewController.h; sourceTree = "<group>"; };
-		662782651633EEC200F1D0E7 /* CYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYViewController.m; sourceTree = "<group>"; };
-		662782701633EF5300F1D0E7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Cygnus/Frameworks/Parse.framework; sourceTree = "<group>"; };
 		662782731633EF9200F1D0E7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		662782741633EF9200F1D0E7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		662782751633EF9200F1D0E7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -113,7 +115,6 @@
 		6627827B1633EF9200F1D0E7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6627827C1633EF9200F1D0E7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6627827D1633EF9200F1D0E7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		6627827E1633EF9200F1D0E7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6627828F1633F0F400F1D0E7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		662782911633F10100F1D0E7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = Cygnus/Libraries/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
@@ -136,6 +137,14 @@
 		66558AAE16361EBC00C7BB8B /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		66558AAF16361EBC00C7BB8B /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		66558AB016361EBC00C7BB8B /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		66A1B3261638862000B9DCEC /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map.png"; path = "Cygnus/Resources/103-map.png"; sourceTree = "<group>"; };
+		66A1B3271638862000B9DCEC /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map@2x.png"; path = "Cygnus/Resources/103-map@2x.png"; sourceTree = "<group>"; };
+		66A1B32A1638865B00B9DCEC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Cygnus/Frameworks/Parse.framework; sourceTree = "<group>"; };
+		66A1B330163888AC00B9DCEC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		66A1B33616388A2700B9DCEC /* 20-gear-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "20-gear-2.png"; path = "Cygnus/Resources/20-gear-2.png"; sourceTree = "<group>"; };
+		66A1B33716388A2700B9DCEC /* 20-gear-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "20-gear-2@2x.png"; path = "Cygnus/Resources/20-gear-2@2x.png"; sourceTree = "<group>"; };
+		66A1B33A16388C2900B9DCEC /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "06-magnify.png"; path = "Cygnus/Resources/06-magnify.png"; sourceTree = "<group>"; };
+		66A1B33B16388C2900B9DCEC /* 06-magnify@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "06-magnify@2x.png"; path = "Cygnus/Resources/06-magnify@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66A1B331163888AC00B9DCEC /* SystemConfiguration.framework in Frameworks */,
 				66558ABE163634BE00C7BB8B /* libSSToolkit.a in Frameworks */,
 				662782921633F10100F1D0E7 /* CoreLocation.framework in Frameworks */,
 				662782901633F0F400F1D0E7 /* MapKit.framework in Frameworks */,
@@ -157,11 +167,10 @@
 				662782871633EF9200F1D0E7 /* Security.framework in Frameworks */,
 				662782881633EF9200F1D0E7 /* Social.framework in Frameworks */,
 				662782891633EF9200F1D0E7 /* StoreKit.framework in Frameworks */,
-				6627828A1633EF9200F1D0E7 /* SystemConfiguration.framework in Frameworks */,
 				6627824A1633EEC200F1D0E7 /* UIKit.framework in Frameworks */,
 				6627824C1633EEC200F1D0E7 /* Foundation.framework in Frameworks */,
 				6627824E1633EEC200F1D0E7 /* CoreGraphics.framework in Frameworks */,
-				662782711633EF5300F1D0E7 /* Parse.framework in Frameworks */,
+				66A1B32B1638865B00B9DCEC /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				6627824F1633EEC200F1D0E7 /* Cygnus */,
+				66A1B31F1638828A00B9DCEC /* Resources */,
 				662782481633EEC200F1D0E7 /* Frameworks */,
 				66558A8116361CE200C7BB8B /* Libraries */,
 				662782461633EEC200F1D0E7 /* Products */,
@@ -200,12 +210,12 @@
 				662782781633EF9200F1D0E7 /* libz.1.1.3.dylib */,
 				6627828F1633F0F400F1D0E7 /* MapKit.framework */,
 				662782791633EF9200F1D0E7 /* MobileCoreServices.framework */,
-				662782701633EF5300F1D0E7 /* Parse.framework */,
+				66A1B32A1638865B00B9DCEC /* Parse.framework */,
 				6627827A1633EF9200F1D0E7 /* QuartzCore.framework */,
 				6627827B1633EF9200F1D0E7 /* Security.framework */,
 				6627827C1633EF9200F1D0E7 /* Social.framework */,
 				6627827D1633EF9200F1D0E7 /* StoreKit.framework */,
-				6627827E1633EF9200F1D0E7 /* SystemConfiguration.framework */,
+				66A1B330163888AC00B9DCEC /* SystemConfiguration.framework */,
 				662782491633EEC200F1D0E7 /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -217,8 +227,7 @@
 				662782581633EEC200F1D0E7 /* CYAppDelegate.h */,
 				662782591633EEC200F1D0E7 /* CYAppDelegate.m */,
 				662782611633EEC200F1D0E7 /* MainStoryboard.storyboard */,
-				662782641633EEC200F1D0E7 /* CYViewController.h */,
-				662782651633EEC200F1D0E7 /* CYViewController.m */,
+				66A1B30C16387F7B00B9DCEC /* View Controllers */,
 				662782501633EEC200F1D0E7 /* Supporting Files */,
 			);
 			path = Cygnus;
@@ -282,6 +291,26 @@
 			);
 			name = AFNetworking;
 			path = Cygnus/Libraries/AFNetworking/AFNetworking;
+			sourceTree = "<group>";
+		};
+		66A1B30C16387F7B00B9DCEC /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		66A1B31F1638828A00B9DCEC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				66A1B33A16388C2900B9DCEC /* 06-magnify.png */,
+				66A1B33B16388C2900B9DCEC /* 06-magnify@2x.png */,
+				66A1B33616388A2700B9DCEC /* 20-gear-2.png */,
+				66A1B33716388A2700B9DCEC /* 20-gear-2@2x.png */,
+				66A1B3261638862000B9DCEC /* 103-map.png */,
+				66A1B3271638862000B9DCEC /* 103-map@2x.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,6 +403,12 @@
 				662782601633EEC200F1D0E7 /* Default-568h@2x.png in Resources */,
 				662782631633EEC200F1D0E7 /* MainStoryboard.storyboard in Resources */,
 				66558ABF163634DA00C7BB8B /* SSToolkitResources.bundle in Resources */,
+				66A1B3281638862000B9DCEC /* 103-map.png in Resources */,
+				66A1B3291638862000B9DCEC /* 103-map@2x.png in Resources */,
+				66A1B33816388A2700B9DCEC /* 20-gear-2.png in Resources */,
+				66A1B33916388A2700B9DCEC /* 20-gear-2@2x.png in Resources */,
+				66A1B33C16388C2900B9DCEC /* 06-magnify.png in Resources */,
+				66A1B33D16388C2900B9DCEC /* 06-magnify@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,7 +421,6 @@
 			files = (
 				662782561633EEC200F1D0E7 /* main.m in Sources */,
 				6627825A1633EEC200F1D0E7 /* CYAppDelegate.m in Sources */,
-				662782661633EEC200F1D0E7 /* CYViewController.m in Sources */,
 				66558AB116361EBC00C7BB8B /* AFHTTPClient.m in Sources */,
 				66558AB216361EBC00C7BB8B /* AFHTTPRequestOperation.m in Sources */,
 				66558AB316361EBC00C7BB8B /* AFImageRequestOperation.m in Sources */,
@@ -489,11 +523,12 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/Cygnus/Frameworks",
+					"\"$(SRCROOT)\"/Cygnus/Frameworks/**",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cygnus/Cygnus-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Cygnus/Libraries/SSToolkit";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/Cygnus/Libraries/**";
 				INFOPLIST_FILE = "Cygnus/Cygnus-Info.plist";
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -509,11 +544,12 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/Cygnus/Frameworks",
+					"\"$(SRCROOT)\"/Cygnus/Frameworks/**",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cygnus/Cygnus-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Cygnus/Libraries/SSToolkit";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/Cygnus/Libraries/**";
 				INFOPLIST_FILE = "Cygnus/Cygnus-Info.plist";
 				OTHER_LDFLAGS = (
 					"-all_load",

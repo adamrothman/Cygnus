@@ -7,7 +7,6 @@
 //
 
 #import "CYAppDelegate.h"
-#import <Parse/Parse.h>
 
 @implementation CYAppDelegate
 
