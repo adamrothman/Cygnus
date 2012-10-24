@@ -27,7 +27,7 @@
 }
 
 - (void)zoomToFitAnnotationsAnimated:(BOOL)animated {
-  if ([self.annotations count]) {
+  if (self.annotations.count) {
     CLLocationCoordinate2D topLeft = CLLocationCoordinate2DMake(-90, 180);
     CLLocationCoordinate2D bottomRight = CLLocationCoordinate2DMake(90, -180);
 
@@ -50,7 +50,7 @@
 }
 
 - (void)zoomToFitUserAnimated:(BOOL)animated {
-  if (self.showsUserLocation) {
+  if (self.userLocation) {
     MKCoordinateRegion region = MKCoordinateRegionMake(self.userLocation.location.coordinate,
                                                        MKCoordinateSpanMake(LATITUDE_PADDING, LONGITUDE_PADDING));
 
