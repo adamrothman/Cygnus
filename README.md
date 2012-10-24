@@ -11,7 +11,7 @@ First, you'll need to set up SSH access with GitHub. See https://help.github.com
     $ tools/install_git_hooks
 
 ### Style
-Set Xcode to use spaces (the default), with 1 tab equal to 2 spaces (not the default). Opening brackets don't get their own lines. Try to keep line lengths reasonable.
+Set Xcode to use spaces (the default), with 1 tab equal to 2 spaces (not the default). Keep a 1-1 correspondence between Xcode groups and folders in the filesystem. Opening brackets don't get their own lines. Try to keep line lengths reasonable.
 
 ### Working on stuff
 Don't work in master. Seriously. Make a branch.
