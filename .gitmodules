@@ -4,3 +4,6 @@
 [submodule "Cygnus/Libraries/SSToolkit"]
 	path = Cygnus/Libraries/SSToolkit
 	url = git://github.com/soffes/sstoolkit.git
+[submodule "Cygnus/Libraries/ARKit"]
+	path = Cygnus/Libraries/ARKit
+	url = git://github.com/adamrothman/ARKit.git

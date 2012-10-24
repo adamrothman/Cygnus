@@ -50,9 +50,11 @@
 		66A1B33C16388C2900B9DCEC /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B33A16388C2900B9DCEC /* 06-magnify.png */; };
 		66A1B33D16388C2900B9DCEC /* 06-magnify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B33B16388C2900B9DCEC /* 06-magnify@2x.png */; };
 		66A1B34316388E7200B9DCEC /* CYMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B34216388E7200B9DCEC /* CYMapViewController.m */; };
-		66A1B34F1638942B00B9DCEC /* MKMapView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B34E1638942B00B9DCEC /* MKMapView+Extensions.m */; };
-		66A1B35716389A8500B9DCEC /* ARTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B35616389A8500B9DCEC /* ARTextView.m */; };
-		66A1B35A16389F5400B9DCEC /* ARTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B35916389F5400B9DCEC /* ARTextField.m */; };
+		66A1B3711638AC8100B9DCEC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B3671638AC8100B9DCEC /* .gitignore */; };
+		66A1B3721638AC8100B9DCEC /* MKMapView+ARKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36A1638AC8100B9DCEC /* MKMapView+ARKit.m */; };
+		66A1B3731638AC8100B9DCEC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B36B1638AC8100B9DCEC /* README.md */; };
+		66A1B3741638AC8100B9DCEC /* ARTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36E1638AC8100B9DCEC /* ARTextField.m */; };
+		66A1B3751638AC8100B9DCEC /* ARTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B3701638AC8100B9DCEC /* ARTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,9 +106,9 @@
 		662782571633EEC200F1D0E7 /* Cygnus-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cygnus-Prefix.pch"; sourceTree = "<group>"; };
 		662782581633EEC200F1D0E7 /* CYAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYAppDelegate.h; sourceTree = "<group>"; };
 		662782591633EEC200F1D0E7 /* CYAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYAppDelegate.m; sourceTree = "<group>"; };
-		6627825B1633EEC200F1D0E7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		6627825D1633EEC200F1D0E7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		6627825F1633EEC200F1D0E7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6627825B1633EEC200F1D0E7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Cygnus/Resources/Default.png; sourceTree = "<group>"; };
+		6627825D1633EEC200F1D0E7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Cygnus/Resources/Default@2x.png"; sourceTree = "<group>"; };
+		6627825F1633EEC200F1D0E7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Cygnus/Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		662782621633EEC200F1D0E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		662782731633EF9200F1D0E7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		662782741633EF9200F1D0E7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -151,12 +153,14 @@
 		66A1B33B16388C2900B9DCEC /* 06-magnify@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "06-magnify@2x.png"; path = "Cygnus/Resources/06-magnify@2x.png"; sourceTree = "<group>"; };
 		66A1B34116388E7200B9DCEC /* CYMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYMapViewController.h; path = "View Controllers/CYMapViewController.h"; sourceTree = "<group>"; };
 		66A1B34216388E7200B9DCEC /* CYMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYMapViewController.m; path = "View Controllers/CYMapViewController.m"; sourceTree = "<group>"; };
-		66A1B34D1638942B00B9DCEC /* MKMapView+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MKMapView+Extensions.h"; path = "Categories/MKMapView+Extensions.h"; sourceTree = "<group>"; };
-		66A1B34E1638942B00B9DCEC /* MKMapView+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MKMapView+Extensions.m"; path = "Categories/MKMapView+Extensions.m"; sourceTree = "<group>"; };
-		66A1B35516389A8500B9DCEC /* ARTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARTextView.h; path = Views/ARTextView.h; sourceTree = "<group>"; };
-		66A1B35616389A8500B9DCEC /* ARTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARTextView.m; path = Views/ARTextView.m; sourceTree = "<group>"; };
-		66A1B35816389F5400B9DCEC /* ARTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARTextField.h; path = Views/ARTextField.h; sourceTree = "<group>"; };
-		66A1B35916389F5400B9DCEC /* ARTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARTextField.m; path = Views/ARTextField.m; sourceTree = "<group>"; };
+		66A1B3671638AC8100B9DCEC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		66A1B3691638AC8100B9DCEC /* MKMapView+ARKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ARKit.h"; sourceTree = "<group>"; };
+		66A1B36A1638AC8100B9DCEC /* MKMapView+ARKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ARKit.m"; sourceTree = "<group>"; };
+		66A1B36B1638AC8100B9DCEC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		66A1B36D1638AC8100B9DCEC /* ARTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTextField.h; sourceTree = "<group>"; };
+		66A1B36E1638AC8100B9DCEC /* ARTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTextField.m; sourceTree = "<group>"; };
+		66A1B36F1638AC8100B9DCEC /* ARTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTextView.h; sourceTree = "<group>"; };
+		66A1B3701638AC8100B9DCEC /* ARTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,9 +243,7 @@
 				662782581633EEC200F1D0E7 /* CYAppDelegate.h */,
 				662782591633EEC200F1D0E7 /* CYAppDelegate.m */,
 				662782611633EEC200F1D0E7 /* MainStoryboard.storyboard */,
-				66A1B34C1638935A00B9DCEC /* Categories */,
 				66A1B30C16387F7B00B9DCEC /* View Controllers */,
-				66A1B35416389A1800B9DCEC /* Views */,
 				662782501633EEC200F1D0E7 /* Supporting Files */,
 			);
 			path = Cygnus;
@@ -254,9 +256,6 @@
 				662782521633EEC200F1D0E7 /* InfoPlist.strings */,
 				662782551633EEC200F1D0E7 /* main.m */,
 				662782571633EEC200F1D0E7 /* Cygnus-Prefix.pch */,
-				6627825B1633EEC200F1D0E7 /* Default.png */,
-				6627825D1633EEC200F1D0E7 /* Default@2x.png */,
-				6627825F1633EEC200F1D0E7 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -265,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				66558A9D16361EBC00C7BB8B /* AFNetworking */,
+				66A1B3661638AC8100B9DCEC /* ARKit */,
 				66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */,
 			);
 			name = Libraries;
@@ -325,28 +325,43 @@
 				66A1B33716388A2700B9DCEC /* 20-gear-2@2x.png */,
 				66A1B3261638862000B9DCEC /* 103-map.png */,
 				66A1B3271638862000B9DCEC /* 103-map@2x.png */,
+				6627825B1633EEC200F1D0E7 /* Default.png */,
+				6627825D1633EEC200F1D0E7 /* Default@2x.png */,
+				6627825F1633EEC200F1D0E7 /* Default-568h@2x.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		66A1B34C1638935A00B9DCEC /* Categories */ = {
+		66A1B3661638AC8100B9DCEC /* ARKit */ = {
 			isa = PBXGroup;
 			children = (
-				66A1B34D1638942B00B9DCEC /* MKMapView+Extensions.h */,
-				66A1B34E1638942B00B9DCEC /* MKMapView+Extensions.m */,
+				66A1B3671638AC8100B9DCEC /* .gitignore */,
+				66A1B3681638AC8100B9DCEC /* Categories */,
+				66A1B36B1638AC8100B9DCEC /* README.md */,
+				66A1B36C1638AC8100B9DCEC /* Views */,
 			);
-			name = Categories;
+			name = ARKit;
+			path = Cygnus/Libraries/ARKit;
 			sourceTree = "<group>";
 		};
-		66A1B35416389A1800B9DCEC /* Views */ = {
+		66A1B3681638AC8100B9DCEC /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				66A1B35816389F5400B9DCEC /* ARTextField.h */,
-				66A1B35916389F5400B9DCEC /* ARTextField.m */,
-				66A1B35516389A8500B9DCEC /* ARTextView.h */,
-				66A1B35616389A8500B9DCEC /* ARTextView.m */,
+				66A1B3691638AC8100B9DCEC /* MKMapView+ARKit.h */,
+				66A1B36A1638AC8100B9DCEC /* MKMapView+ARKit.m */,
 			);
-			name = Views;
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		66A1B36C1638AC8100B9DCEC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				66A1B36D1638AC8100B9DCEC /* ARTextField.h */,
+				66A1B36E1638AC8100B9DCEC /* ARTextField.m */,
+				66A1B36F1638AC8100B9DCEC /* ARTextView.h */,
+				66A1B3701638AC8100B9DCEC /* ARTextView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,6 +460,8 @@
 				66A1B33916388A2700B9DCEC /* 20-gear-2@2x.png in Resources */,
 				66A1B33C16388C2900B9DCEC /* 06-magnify.png in Resources */,
 				66A1B33D16388C2900B9DCEC /* 06-magnify@2x.png in Resources */,
+				66A1B3711638AC8100B9DCEC /* .gitignore in Resources */,
+				66A1B3731638AC8100B9DCEC /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,9 +484,9 @@
 				66558AB816361EBC00C7BB8B /* AFXMLRequestOperation.m in Sources */,
 				66558AB916361EBC00C7BB8B /* UIImageView+AFNetworking.m in Sources */,
 				66A1B34316388E7200B9DCEC /* CYMapViewController.m in Sources */,
-				66A1B34F1638942B00B9DCEC /* MKMapView+Extensions.m in Sources */,
-				66A1B35716389A8500B9DCEC /* ARTextView.m in Sources */,
-				66A1B35A16389F5400B9DCEC /* ARTextField.m in Sources */,
+				66A1B3721638AC8100B9DCEC /* MKMapView+ARKit.m in Sources */,
+				66A1B3741638AC8100B9DCEC /* ARTextField.m in Sources */,
+				66A1B3751638AC8100B9DCEC /* ARTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
