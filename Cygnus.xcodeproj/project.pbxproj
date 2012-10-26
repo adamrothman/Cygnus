@@ -23,6 +23,10 @@
 		66108901163AADB0000D1DA2 /* icon-plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 661088F3163AADB0000D1DA2 /* icon-plus@2x.png */; };
 		66108902163AADB0000D1DA2 /* icon-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 661088F4163AADB0000D1DA2 /* icon-star.png */; };
 		66108903163AADB0000D1DA2 /* icon-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 661088F5163AADB0000D1DA2 /* icon-star@2x.png */; };
+		6610891D163AB4E2000D1DA2 /* 08-pin-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 6610891B163AB4E2000D1DA2 /* 08-pin-white.png */; };
+		6610891E163AB4E2000D1DA2 /* 08-pin-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6610891C163AB4E2000D1DA2 /* 08-pin-white@2x.png */; };
+		66108925163AB695000D1DA2 /* 04-eye-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 66108923163AB695000D1DA2 /* 04-eye-white.png */; };
+		66108926163AB695000D1DA2 /* 04-eye-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66108924163AB695000D1DA2 /* 04-eye-white@2x.png */; };
 		6627824A1633EEC200F1D0E7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 662782491633EEC200F1D0E7 /* UIKit.framework */; };
 		6627824C1633EEC200F1D0E7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6627824B1633EEC200F1D0E7 /* Foundation.framework */; };
 		6627824E1633EEC200F1D0E7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6627824D1633EEC200F1D0E7 /* CoreGraphics.framework */; };
@@ -130,6 +134,10 @@
 		661088F3163AADB0000D1DA2 /* icon-plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-plus@2x.png"; path = "Cygnus/Libraries/AwesomeMenu/AwesomeMenu/Images/icon-plus@2x.png"; sourceTree = "<group>"; };
 		661088F4163AADB0000D1DA2 /* icon-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-star.png"; path = "Cygnus/Libraries/AwesomeMenu/AwesomeMenu/Images/icon-star.png"; sourceTree = "<group>"; };
 		661088F5163AADB0000D1DA2 /* icon-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-star@2x.png"; path = "Cygnus/Libraries/AwesomeMenu/AwesomeMenu/Images/icon-star@2x.png"; sourceTree = "<group>"; };
+		6610891B163AB4E2000D1DA2 /* 08-pin-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "08-pin-white.png"; path = "Cygnus/Resources/08-pin-white.png"; sourceTree = "<group>"; };
+		6610891C163AB4E2000D1DA2 /* 08-pin-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "08-pin-white@2x.png"; path = "Cygnus/Resources/08-pin-white@2x.png"; sourceTree = "<group>"; };
+		66108923163AB695000D1DA2 /* 04-eye-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "04-eye-white.png"; path = "Cygnus/Resources/04-eye-white.png"; sourceTree = "<group>"; };
+		66108924163AB695000D1DA2 /* 04-eye-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "04-eye-white@2x.png"; path = "Cygnus/Resources/04-eye-white@2x.png"; sourceTree = "<group>"; };
 		662782451633EEC200F1D0E7 /* Cygnus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cygnus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		662782491633EEC200F1D0E7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6627824B1633EEC200F1D0E7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -387,8 +395,12 @@
 		66A1B31F1638828A00B9DCEC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				66108923163AB695000D1DA2 /* 04-eye-white.png */,
+				66108924163AB695000D1DA2 /* 04-eye-white@2x.png */,
 				66A1B33A16388C2900B9DCEC /* 06-magnify.png */,
 				66A1B33B16388C2900B9DCEC /* 06-magnify@2x.png */,
+				6610891B163AB4E2000D1DA2 /* 08-pin-white.png */,
+				6610891C163AB4E2000D1DA2 /* 08-pin-white@2x.png */,
 				66A1B33616388A2700B9DCEC /* 20-gear-2.png */,
 				66A1B33716388A2700B9DCEC /* 20-gear-2@2x.png */,
 				66A1B3261638862000B9DCEC /* 103-map.png */,
@@ -544,6 +556,10 @@
 				66108901163AADB0000D1DA2 /* icon-plus@2x.png in Resources */,
 				66108902163AADB0000D1DA2 /* icon-star.png in Resources */,
 				66108903163AADB0000D1DA2 /* icon-star@2x.png in Resources */,
+				6610891D163AB4E2000D1DA2 /* 08-pin-white.png in Resources */,
+				6610891E163AB4E2000D1DA2 /* 08-pin-white@2x.png in Resources */,
+				66108925163AB695000D1DA2 /* 04-eye-white.png in Resources */,
+				66108926163AB695000D1DA2 /* 04-eye-white@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

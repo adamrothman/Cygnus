@@ -31,10 +31,13 @@
 
   UIImage *background = [UIImage imageNamed:@"bg-menuitem.png"];
 	UIImage *backgroundHighlighted = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
-	UIImage *star = [UIImage imageNamed:@"icon-star.png"];
+  UIImage *eye = [UIImage imageNamed:@"04-eye-white.png"];
+  UIImage *pin = [UIImage imageNamed:@"08-pin-white.png"];
+  UIImage *star = [UIImage imageNamed:@"icon-star.png"];
 
   NSArray *menus = @[
-    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil],
+    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:eye highlightedContentImage:nil],
+    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:pin highlightedContentImage:nil],
     [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil],
     [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil],
     [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil]
@@ -61,7 +64,7 @@
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+  // Dispose of any resources that can be recreated
 }
 
 #pragma mark - MKMapViewDelegate
@@ -83,7 +86,7 @@
 #pragma mark - AwesomeMenuDelegate
 
 - (void)menu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx {
-  NSLog(@"Selected index %d", idx);
+//  NSLog(@"Selected index %d", idx);
   switch (idx) {
     case 0:
       [self.map zoomToFitUserAnimated:YES];
@@ -94,6 +97,8 @@
     case 2:
       break;
     case 3:
+      break;
+    case 4:
       break;
   }
 }
