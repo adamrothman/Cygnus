@@ -6,8 +6,11 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
-@interface CYMapViewController : UIViewController <MKMapViewDelegate>
+#import "AwesomeMenu.h"
+
+@interface CYMapViewController : UIViewController <MKMapViewDelegate, AwesomeMenuDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView *map;
+@property (nonatomic, strong) AwesomeMenu *menu;
 
 @end
