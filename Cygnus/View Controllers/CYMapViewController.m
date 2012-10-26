@@ -25,12 +25,16 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self.map zoomToFitUserAnimated:animated];
+
+  // this isn't useful until the user has actually been located, so
+  // do it after a second (this is highly scientific)
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    [self.map zoomToFitUserAnimated:animated];
+  });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,7 +45,7 @@
 #pragma mark - MKMapViewDelegate
 
 - (void)mapView:(MKMapView *)mapView didChangeUserTrackingMode:(MKUserTrackingMode)mode animated:(BOOL)animated {
-  // pass
+  // Pass
 }
 
 @end
