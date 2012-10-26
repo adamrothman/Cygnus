@@ -29,8 +29,6 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.map.userTrackingMode = MKUserTrackingModeFollow;
-
   UIImage *background = [UIImage imageNamed:@"bg-menuitem.png"];
 	UIImage *backgroundHighlighted = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
 	UIImage *star = [UIImage imageNamed:@"icon-star.png"];
@@ -86,6 +84,18 @@
 
 - (void)menu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx {
   NSLog(@"Selected index %d", idx);
+  switch (idx) {
+    case 0:
+      [self.map zoomToFitUserAnimated:YES];
+      break;
+    case 1:
+      NSLog(@"This one will add a new item to the map?");
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+  }
 }
 
 @end
