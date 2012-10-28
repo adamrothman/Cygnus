@@ -61,6 +61,9 @@
 		66558AB916361EBC00C7BB8B /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AB016361EBC00C7BB8B /* UIImageView+AFNetworking.m */; };
 		66558ABE163634BE00C7BB8B /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66558A9816361D4700C7BB8B /* libSSToolkit.a */; };
 		66558ABF163634DA00C7BB8B /* SSToolkitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66558A9C16361D4700C7BB8B /* SSToolkitResources.bundle */; };
+		669C1F91163DC75E001F1C18 /* CYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1F90163DC75E001F1C18 /* CYUser.m */; };
+		669C1F94163DC906001F1C18 /* CYMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1F93163DC906001F1C18 /* CYMap.m */; };
+		669C1F97163DC99C001F1C18 /* CYPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1F96163DC99C001F1C18 /* CYPoint.m */; };
 		66A1B3281638862000B9DCEC /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B3261638862000B9DCEC /* 103-map.png */; };
 		66A1B3291638862000B9DCEC /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B3271638862000B9DCEC /* 103-map@2x.png */; };
 		66A1B32B1638865B00B9DCEC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A1B32A1638865B00B9DCEC /* Parse.framework */; };
@@ -185,6 +188,12 @@
 		66558AAE16361EBC00C7BB8B /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		66558AAF16361EBC00C7BB8B /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		66558AB016361EBC00C7BB8B /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		669C1F8F163DC75E001F1C18 /* CYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYUser.h; path = Models/CYUser.h; sourceTree = "<group>"; };
+		669C1F90163DC75E001F1C18 /* CYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYUser.m; path = Models/CYUser.m; sourceTree = "<group>"; };
+		669C1F92163DC906001F1C18 /* CYMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYMap.h; path = Models/CYMap.h; sourceTree = "<group>"; };
+		669C1F93163DC906001F1C18 /* CYMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYMap.m; path = Models/CYMap.m; sourceTree = "<group>"; };
+		669C1F95163DC99C001F1C18 /* CYPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYPoint.h; path = Models/CYPoint.h; sourceTree = "<group>"; };
+		669C1F96163DC99C001F1C18 /* CYPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYPoint.m; path = Models/CYPoint.m; sourceTree = "<group>"; };
 		66A1B3261638862000B9DCEC /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map.png"; path = "Cygnus/Resources/103-map.png"; sourceTree = "<group>"; };
 		66A1B3271638862000B9DCEC /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map@2x.png"; path = "Cygnus/Resources/103-map@2x.png"; sourceTree = "<group>"; };
 		66A1B32A1638865B00B9DCEC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Cygnus/Frameworks/Parse.framework; sourceTree = "<group>"; };
@@ -318,6 +327,7 @@
 				662782581633EEC200F1D0E7 /* CYAppDelegate.h */,
 				662782591633EEC200F1D0E7 /* CYAppDelegate.m */,
 				662782611633EEC200F1D0E7 /* MainStoryboard.storyboard */,
+				669C1F8E163DC702001F1C18 /* Models */,
 				66A1B30C16387F7B00B9DCEC /* View Controllers */,
 				662782501633EEC200F1D0E7 /* Supporting Files */,
 			);
@@ -381,6 +391,19 @@
 			);
 			name = AFNetworking;
 			path = Cygnus/Libraries/AFNetworking/AFNetworking;
+			sourceTree = "<group>";
+		};
+		669C1F8E163DC702001F1C18 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				669C1F92163DC906001F1C18 /* CYMap.h */,
+				669C1F93163DC906001F1C18 /* CYMap.m */,
+				669C1F95163DC99C001F1C18 /* CYPoint.h */,
+				669C1F96163DC99C001F1C18 /* CYPoint.m */,
+				669C1F8F163DC75E001F1C18 /* CYUser.h */,
+				669C1F90163DC75E001F1C18 /* CYUser.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		66A1B30C16387F7B00B9DCEC /* View Controllers */ = {
@@ -587,6 +610,9 @@
 				66A1B3751638AC8100B9DCEC /* ARTextView.m in Sources */,
 				661088C8163AAD4D000D1DA2 /* AwesomeMenu.m in Sources */,
 				661088C9163AAD4D000D1DA2 /* AwesomeMenuItem.m in Sources */,
+				669C1F91163DC75E001F1C18 /* CYUser.m in Sources */,
+				669C1F94163DC906001F1C18 /* CYMap.m in Sources */,
+				669C1F97163DC99C001F1C18 /* CYPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
