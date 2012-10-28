@@ -13,6 +13,8 @@ typedef enum {
 
 @interface CYUser : NSObject
 
+@property (nonatomic, strong) PFUser *backingUser;
+
 @property (nonatomic, readonly) NSString *objectID;
 @property (nonatomic, readonly) NSDate *createdAt;
 @property (nonatomic, readonly) NSDate *updatedAt;
@@ -25,12 +27,16 @@ typedef enum {
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic) CYUserStatus status;
-@property (nonatomic, strong) NSNumber *range;
+@property (nonatomic) NSUInteger range;
+@property (nonatomic, strong) NSString *imageURLString;
 
-// relationships
+// relations
 @property (nonatomic, strong) NSArray *groups;
 @property (nonatomic, strong) NSArray *maps;
 
 - (id)initWithUser:(PFUser *)user;
+- (void)save;
+
+- (void)signUpInBackgroundWithBlock:(PFBooleanResultBlock)block;
 
 @end

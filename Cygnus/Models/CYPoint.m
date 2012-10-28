@@ -8,14 +8,14 @@
 
 #import "CYPoint.h"
 
+#define SAVE_DELAY    4.0
+
 #define LOCATION_KEY  @"location"
 #define NAME_KEY      @"name"
 #define SUMMARY_KEY   @"summary"
 #define IMAGE_URL_KEY @"image_url"
 
-@interface CYPoint ()
-@property (nonatomic, strong) PFObject *backingObject;
-@end
+#define MAP_KEY       @"map"
 
 @implementation CYPoint
 
@@ -42,7 +42,10 @@
 }
 
 - (void)save {
-  [self.backingObject saveInBackground];
+  // accumulate changes to save together, instead of saving every change all the time
+  // to cut down on API requests
+  [NSObject cancelPreviousPerformRequestsWithTarget:self.backingObject selector:@selector(saveInBackground) object:nil];
+  [self.backingObject performSelector:@selector(saveInBackground) withObject:nil afterDelay:SAVE_DELAY];
 }
 
 #pragma mark - Properties
@@ -93,6 +96,12 @@
 - (void)setImageURLString:(NSString *)imageURLString {
   [self.backingObject setObject:imageURLString forKey:IMAGE_URL_KEY];
   [self save];
+}
+
+#pragma mark - Relations
+
+- (CYMap *)map {
+  return [CYMap mapWithObject:[[self.backingObject objectForKey:MAP_KEY] fetchIfNeeded]];
 }
 
 @end

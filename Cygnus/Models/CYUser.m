@@ -8,14 +8,17 @@
 
 #import "CYUser.h"
 
+#define SAVE_DELAY      4.0
+
 #define FIRST_NAME_KEY  @"first_name"
 #define LAST_NAME_KEY   @"last_name"
 #define LOCATION_KEY    @"location"
 #define STATUS_KEY      @"status"
+#define RANGE_KEY       @"range"
+#define IMAGE_URL_KEY   @"image_url"
 
-@interface CYUser ()
-@property (nonatomic, strong) PFUser *backingUser;
-@end
+#define GROUPS_KEY      @"groups"
+#define MAPS_KEY        @"maps"
 
 @implementation CYUser
 
@@ -38,7 +41,16 @@
 }
 
 - (void)save {
-  [self.backingUser saveInBackground];
+  // accumulate changes to save together, instead of saving every change all the time
+  // to cut down on API requests
+  [NSObject cancelPreviousPerformRequestsWithTarget:self.backingUser selector:@selector(saveInBackground) object:nil];
+  [self.backingUser performSelector:@selector(saveInBackground) withObject:nil afterDelay:SAVE_DELAY];
+}
+
+#pragma mark - Sign up and log in
+
+- (void)signUpInBackgroundWithBlock:(PFBooleanResultBlock)block {
+  [self.backingUser signUpInBackgroundWithBlock:block];
 }
 
 #pragma mark - Properties
@@ -109,15 +121,34 @@
   [self save];
 }
 
-#pragma mark - Relationships
+- (NSUInteger)range {
+  NSNumber *rangeObject = [self.backingUser objectForKey:RANGE_KEY];
+  return rangeObject.unsignedIntegerValue;
+}
 
-// TODO(adam): these
+- (void)setRange:(NSUInteger)range {
+  [self.backingUser setObject:[NSNumber numberWithUnsignedInteger:range] forKey:RANGE_KEY];
+  [self save];
+}
+
+- (NSString *)imageURLString {
+  return [self.backingUser objectForKey:IMAGE_URL_KEY];
+}
+
+- (void)setImageURLString:(NSString *)imageURLString {
+  [self.backingUser setObject:imageURLString forKey:IMAGE_URL_KEY];
+  [self save];
+}
+
+#pragma mark - Relations
 
 - (NSArray *)groups {
+  PFRelation *groupsRelation = [self.backingUser relationforKey:GROUPS_KEY];
   return nil;
 }
 
 - (NSArray *)maps {
+  PFRelation *mapsRelation = [self.backingUser relationforKey:MAPS_KEY];
   return nil;
 }
 
