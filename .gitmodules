@@ -7,3 +7,6 @@
 [submodule "Cygnus/Libraries/ARKit"]
 	path = Cygnus/Libraries/ARKit
 	url = git://github.com/adamrothman/ARKit.git
+[submodule "Cygnus/Libraries/AwesomeMenu"]
+	path = Cygnus/Libraries/AwesomeMenu
+	url = git://github.com/adamrothman/AwesomeMenu.git
