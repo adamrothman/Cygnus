@@ -35,8 +35,8 @@ typedef enum {
 
 + (CYUser *)currentUser;
 
-- (id)initWithUser:(PFUser *)user;
 + (CYUser *)userWithUser:(PFUser *)user;
++ (CYUser *)userWithUsername:(NSString *)username password:(NSString *)password;
 
 - (void)signUpInBackgroundWithBlock:(PFBooleanResultBlock)block;
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFUserResultBlock)block;
