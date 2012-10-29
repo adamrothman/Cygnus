@@ -8,12 +8,15 @@
 
 #import "CYObject.h"
 
-#define CYNOTIFICATION_LOGOUT               @"logout"
-
 typedef enum {
   CYUserStatusBeaconOn,
   CYUserStatusBeaconOff
 } CYUserStatus;
+
+@class CYUser;
+
+typedef void(^CYBooleanResultBlock)(BOOL succeeded, NSError *error);
+typedef void(^CYUserResultBlock)(CYUser *user, NSError *error);
 
 @interface CYUser : CYObject
 
@@ -31,15 +34,17 @@ typedef enum {
 @property (nonatomic, strong) NSString *imageURLString;
 
 // relations
-@property (nonatomic, strong) NSArray *groups;
-@property (nonatomic, strong) NSArray *maps;
+@property (nonatomic, readonly) NSArray *groups;
+@property (nonatomic, readonly) NSArray *maps;
 
-- (void)signUpInBackgroundWithBlock:(void (^)(BOOL succeeded, NSError *error))block;
-
-+ (CYUser *)currentUser;
 + (CYUser *)userWithUser:(PFUser *)user;
 + (CYUser *)userWithUsername:(NSString *)username password:(NSString *)password;
-+ (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(void (^)(BOOL succeeded, NSError *error))block;
+
++ (CYUser *)currentUser;
+
+- (void)signUpInBackgroundWithBlock:(CYBooleanResultBlock)block;
+
++ (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(CYUserResultBlock)block;
 + (void)logOut;
 
 @end

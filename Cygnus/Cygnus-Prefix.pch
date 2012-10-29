@@ -26,3 +26,5 @@
   #import <SystemConfiguration/SystemConfiguration.h>
   #import <UIKit/UIKit.h>
 #endif
+
+#import "CYNotifications.h"

@@ -8,6 +8,7 @@
 
 #import "CYUser.h"
 #import "CYLogInViewController.h"
+#import "CYGroup.h"
 
 #define FIRST_NAME_KEY  @"first_name"
 #define LAST_NAME_KEY   @"last_name"
@@ -19,9 +20,17 @@
 #define GROUPS_KEY      @"groups"
 #define MAPS_KEY        @"maps"
 
+@interface CYUser ()
+
+@property PFQuery *groupsQuery;
+@property PFQuery *mapsQuery;
+
+@end
+
 @implementation CYUser
 
-@synthesize backingUser=_backingUser;
+@synthesize backingUser=_backingUser, groups=_groups, maps=_maps;
+@synthesize groupsQuery=_groupsQuery, mapsQuery=_mapsQuery;
 
 #pragma mark - Object creation and update
 
@@ -52,30 +61,27 @@
 
 #pragma mark - Sign up and log in
 
-- (void)signUpInBackgroundWithBlock:(void (^)(BOOL succeeded, NSError *error))block {
-  [self.backingUser signUpInBackgroundWithBlock:block];
-}
-
 + (CYUser *)currentUser {
   if (![PFUser currentUser]) return nil;
   return [CYUser userWithUser:[PFUser currentUser]];
 }
 
-+ (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(void (^)(BOOL succeeded, NSError *error))block {
+- (void)signUpInBackgroundWithBlock:(CYBooleanResultBlock)block {
+  [self.backingUser signUpInBackgroundWithBlock:block];
+}
+
++ (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(CYUserResultBlock)block {
   [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
-    BOOL success = YES;
-    if (!user) success = NO;
-    block(success, error);
+    block([CYUser userWithUser:user], error);
   }];
 }
 
-+ (void)logOut
-{
++ (void)logOut {
   [PFUser logOut];
   [CYLogInViewController present];
   [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CYNOTIFICATION_LOGOUT object:nil]];
-
 }
+
 #pragma mark - Properties
 
 - (NSString *)username {
@@ -153,14 +159,42 @@
 
 #pragma mark - Relations
 
+- (void)fetchGroups {
+  if (!self.groupsQuery) {
+    self.groupsQuery = [[self.backingUser relationforKey:GROUPS_KEY] query];
+    self.groupsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+  }
+  [self.groupsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    NSMutableArray *groups = [NSMutableArray arrayWithCapacity:objects.count];
+    for (PFObject *groupObject in objects) {
+      [groups addObject:[CYGroup groupWithObject:groupObject]];
+    }
+    _groups = groups;
+  }];
+}
+
 - (NSArray *)groups {
-  PFRelation *groupsRelation = [self.backingUser relationforKey:GROUPS_KEY];
-  return nil;
+  [self fetchGroups];
+  return _groups;
+}
+
+- (void)fetchMaps {
+  if (!self.mapsQuery) {
+    self.mapsQuery = [[self.backingUser relationforKey:MAPS_KEY] query];
+    self.mapsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+  }
+  [self.mapsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    NSMutableArray *maps = [NSMutableArray arrayWithCapacity:objects.count];
+    for (PFObject *mapObject in objects) {
+      [maps addObject:[CYMap mapWithObject:mapObject]];
+    }
+    _maps = maps;
+  }];
 }
 
 - (NSArray *)maps {
-  PFRelation *mapsRelation = [self.backingUser relationforKey:MAPS_KEY];
-  return nil;
+  [self fetchMaps];
+  return _maps;
 }
 
 @end
