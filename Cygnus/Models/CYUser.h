@@ -8,6 +8,8 @@
 
 #import "CYObject.h"
 
+#define CYNOTIFICATION_LOGOUT               @"logout"
+
 typedef enum {
   CYUserStatusBeaconOn,
   CYUserStatusBeaconOff
@@ -15,7 +17,6 @@ typedef enum {
 
 @interface CYUser : CYObject
 
-// use this, not backingObject
 @property (nonatomic, strong) PFUser *backingUser;
 
 @property (nonatomic, readonly) NSString *username;
@@ -33,12 +34,12 @@ typedef enum {
 @property (nonatomic, strong) NSArray *groups;
 @property (nonatomic, strong) NSArray *maps;
 
-+ (CYUser *)currentUser;
+- (void)signUpInBackgroundWithBlock:(void (^)(BOOL succeeded, NSError *error))block;
 
++ (CYUser *)currentUser;
 + (CYUser *)userWithUser:(PFUser *)user;
 + (CYUser *)userWithUsername:(NSString *)username password:(NSString *)password;
-
-- (void)signUpInBackgroundWithBlock:(PFBooleanResultBlock)block;
-+ (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFUserResultBlock)block;
++ (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(void (^)(BOOL succeeded, NSError *error))block;
++ (void)logOut;
 
 @end

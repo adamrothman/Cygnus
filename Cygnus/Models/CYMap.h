@@ -16,6 +16,8 @@ typedef enum {
   CYMapVisibilityPrivate
 } CYMapVisibility;
 
+@class CYPoint, CYGroup;
+
 @interface CYMap : CYObject
 
 @property (nonatomic, strong) NSString *name;
