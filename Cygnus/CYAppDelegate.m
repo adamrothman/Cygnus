@@ -7,12 +7,22 @@
 //
 
 #import "CYAppDelegate.h"
+#import "CYUser.h"
+#import "CYLogInViewController.h"
 
 @implementation CYAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  
   [Parse setApplicationId:@"dWDpSyitmM3EpaQh5CiLELD4IFzHfuVEkNBxTdcw"
                 clientKey:@"mkWTpXNp8HcbZGpYpZTLe0N1iI7x57ZjRLpfCnA1"];
+  
+  CYUser *currentUser = [CYUser currentUser];
+  if (currentUser) {
+    // do stuff
+  } else {
+    [CYLogInViewController present];
+  }
   return YES;
 }
 

@@ -121,4 +121,9 @@
   return nil;
 }
 
++ (CYUser *)currentUser
+{
+  return nil;
+}
+
 @end
