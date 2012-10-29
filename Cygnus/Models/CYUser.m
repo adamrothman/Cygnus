@@ -42,6 +42,13 @@
   return [[CYUser alloc] initWithUser:user];
 }
 
++ (CYUser *)userWithUsername:(NSString *)username password:(NSString *)password {
+  PFUser *user = [PFUser user];
+  user.username = username;
+  user.password = password;
+  return [CYUser userWithUser:user];
+}
+
 #pragma mark - Sign up and log in
 
 + (CYUser *)currentUser {
