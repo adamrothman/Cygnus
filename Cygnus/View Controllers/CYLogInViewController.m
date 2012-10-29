@@ -14,25 +14,21 @@
 
 typedef enum
 {
-  CYSignUpState_Login = 0,
-  CYSignUpState_CreateAccount = 1,
+  CYSignUpState_Login,
+  CYSignUpState_CreateAccount
 } CYSignUpState;
 
 
-UIWindow *_window = nil;
-
 @interface CYLogInViewController () <UITextFieldDelegate>
 
+@property (strong, nonatomic)        UIWindow *window;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *lastNameFieldField;
+@property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-
 @property (weak, nonatomic) IBOutlet UIButton *logInButton;
 @property (weak, nonatomic) IBOutlet UIButton *createAccountButton;
-
-
 @property (strong, nonatomic)        SSHUDView *HUDActivityView;
 @property (nonatomic)                CYSignUpState currentState;
 
@@ -41,12 +37,10 @@ UIWindow *_window = nil;
 
 @implementation CYLogInViewController
 
-
 - (IBAction)switchState {
-  
   if (self.currentState == CYSignUpState_Login) {
     [self.firstNameTextField fadeIn];
-    [self.lastNameFieldField fadeIn];
+    [self.lastNameTextField fadeIn];
     [self.emailTextField fadeIn];
     
     [self.logInButton setTitle:@"Sign Up" forState:UIControlStateNormal];
@@ -55,7 +49,7 @@ UIWindow *_window = nil;
     
   } else {
     [self.firstNameTextField fadeOut];
-    [self.lastNameFieldField fadeOut];
+    [self.lastNameTextField fadeOut];
     [self.emailTextField fadeOut];
     
     [self.logInButton setTitle:@"Log In" forState:UIControlStateNormal];
@@ -66,6 +60,7 @@ UIWindow *_window = nil;
 }
 
 #pragma mark - UITextFieldDelegate
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -79,6 +74,7 @@ UIWindow *_window = nil;
   } else if (textField == self.passwordTextField)  {
     if ([textField.text length]) {
       if (self.currentState == CYSignUpState_Login) {
+        [self releaseFirstResponders];
         [self userDidAttemptLogIn];
       } else {
         [self.firstNameTextField becomeFirstResponder];
@@ -89,12 +85,12 @@ UIWindow *_window = nil;
     }
   } else if (textField == self.firstNameTextField)  {
     if ([textField.text length]) {
-      [self.lastNameFieldField becomeFirstResponder];
+      [self.lastNameTextField becomeFirstResponder];
       return YES;
     } else {
       return NO;
     }
-  } else if (textField == self.lastNameFieldField)  {
+  } else if (textField == self.lastNameTextField)  {
     if ([textField.text length]) {
       [self.emailTextField becomeFirstResponder];
       return YES;
@@ -103,6 +99,7 @@ UIWindow *_window = nil;
     }
   } else if (textField == self.emailTextField)  {
     if ([textField.text length]) {
+      [self releaseFirstResponders];
       [self userDidAttemptLogIn];
       return YES;
     } else {
@@ -116,6 +113,7 @@ UIWindow *_window = nil;
 #pragma mark - Actions
 
 - (IBAction)userDidAttemptLogIn {
+  
   if (![self.usernameTextField.text length]) {
     [self.usernameTextField becomeFirstResponder];
     return;
@@ -128,8 +126,8 @@ UIWindow *_window = nil;
     if (![self.firstNameTextField.text length]) {
       [self.firstNameTextField becomeFirstResponder];
       return;
-    } else if (![self.lastNameFieldField.text length]) {
-      [self.lastNameFieldField becomeFirstResponder];
+    } else if (![self.lastNameTextField.text length]) {
+      [self.lastNameTextField becomeFirstResponder];
       return;
     } else if (![self.emailTextField.text length]) {
       [self.emailTextField becomeFirstResponder];
@@ -141,14 +139,31 @@ UIWindow *_window = nil;
   [self.HUDActivityView show];
   
   if (self.currentState == CYSignUpState_Login) {
-    //attempt login on CYUser
+    [CYUser logInWithUsernameInBackground:self.usernameTextField.text
+                                 password:self.passwordTextField.text
+                                    block:^(BOOL succeeded, NSError *error) {
+                                      if (succeeded) {
+                                        [self.HUDActivityView completeAndDismissWithTitle:nil];
+                                        [self dismiss];
+                                      } else {
+                                        [self.HUDActivityView failAndDismissWithTitle:nil];
+                                      }
+    }];
+    
   } else {
-    // atempt acount creation CYUser
-    
-    CYUser *newUser = [CYUser init];
-    
+    CYUser *newUser = [CYUser userWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
+    newUser.firstName = self.firstNameTextField.text;
+    newUser.lastName = self.lastNameTextField.text;
+    newUser.email = self.emailTextField.text;
+    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+      if (succeeded) {
+        [self.HUDActivityView completeAndDismissWithTitle:nil];
+        [self dismiss];
+      } else {
+        [self.HUDActivityView failAndDismissWithTitle:nil];
+      }
+    }];
   }
-
 }
 
 - (void)releaseFirstResponders
@@ -156,12 +171,23 @@ UIWindow *_window = nil;
   [self.usernameTextField resignFirstResponder];
   [self.passwordTextField resignFirstResponder];
   [self.firstNameTextField resignFirstResponder];
-  [self.lastNameFieldField resignFirstResponder];
+  [self.lastNameTextField resignFirstResponder];
   [self.emailTextField resignFirstResponder];
 }
 
 
 #pragma mark - VC Lifecycle
+
+- (void)dismiss
+{
+  __block UIWindow *window = _window;
+  [UIView animateWithDuration:0.3f delay:0.3f options:UIViewAnimationCurveEaseIn animations:^() {
+    window.alpha = 0.0;
+  } completion:^(BOOL finished) {
+    window.hidden = YES;
+    window = nil;
+  }];
+}
 
 - (void)viewDidLoad
 {
@@ -171,16 +197,22 @@ UIWindow *_window = nil;
   self.usernameTextField.delegate = self;
   self.passwordTextField.delegate = self;
   self.firstNameTextField.delegate = self;
-  self.lastNameFieldField.delegate = self;
+  self.lastNameTextField.delegate = self;
   self.emailTextField.delegate = self;
 
   [self.firstNameTextField hide];
-  [self.lastNameFieldField hide];
+  [self.lastNameTextField hide];
   [self.emailTextField hide];
   
   UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                         action:@selector(releaseFirstResponders)];
   [self.view addGestureRecognizer:tgr];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [self.window makeKeyWindow];
 }
 
 - (void)didReceiveMemoryWarning
@@ -192,12 +224,12 @@ UIWindow *_window = nil;
 + (void)present
 {
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-  UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CYLogInViewController"];
+  CYLogInViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CYLogInViewController"];
   
-  _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  _window.rootViewController = vc;
-  _window.windowLevel = UIWindowLevelAlert;
-  [_window makeKeyAndVisible];
+  vc.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  vc.window.rootViewController = vc;
+  vc.window.windowLevel = UIWindowLevelAlert;
+  [vc.window makeKeyAndVisible];
   
 }
 

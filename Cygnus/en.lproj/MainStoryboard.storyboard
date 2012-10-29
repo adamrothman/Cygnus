@@ -35,16 +35,38 @@
             </objects>
             <point key="canvasLocation" x="336" y="-345"/>
         </scene>
-        <!--View Controller - Settings-->
+        <!--Console View Controller - Console-->
         <scene sceneID="rqh-3Z-uaA">
             <objects>
-                <viewController id="Yqs-nq-tMY" sceneMemberID="viewController">
+                <viewController id="Yqs-nq-tMY" customClass="CYConsoleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OfW-v0-3r3">
                         <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPx-Uo-tk8">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="WfA-eX-5Pt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="userDidLogOut:" destination="Yqs-nq-tMY" eventType="touchUpInside" id="eHB-2z-a7I"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kPx-Uo-tk8" firstAttribute="centerX" secondItem="OfW-v0-3r3" secondAttribute="centerX" type="default" id="8co-xK-yRC"/>
+                            <constraint firstItem="kPx-Uo-tk8" firstAttribute="top" secondItem="OfW-v0-3r3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="B0K-Vb-wYJ"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="20-gear-2.png" id="yXK-Lu-e3j"/>
+                    <tabBarItem key="tabBarItem" title="Console" image="20-gear-2.png" id="yXK-Lu-e3j"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tW-Q0-xtV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -58,7 +80,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4CP-CZ-K0V">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4CP-CZ-K0V">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="366-3S-A8p"/>
                                     <constraint firstAttribute="width" constant="260" id="yoU-La-yEW"/>
@@ -66,9 +88,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bjn-3v-0VC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Bjn-3v-0VC">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="uHA-RA-mLH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="gZl-4V-NrI">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ls6-AH-VqP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zcz-2B-2VS">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="eJ0-hv-SQz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lXz-Mg-PVo">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="PVm-AC-5Eu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -85,6 +128,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="userDidAttemptLogIn" destination="JBL-Fv-tDR" eventType="touchUpInside" id="cDo-HU-3vp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRF-yv-KDj">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -99,27 +145,6 @@
                                     <action selector="switchState" destination="JBL-Fv-tDR" eventType="touchUpInside" id="JOS-wS-DKP"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gZl-4V-NrI">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="ls6-AH-VqP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zcz-2B-2VS">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="eJ0-hv-SQz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lXz-Mg-PVo">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="PVm-AC-5Eu"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -146,12 +171,12 @@
                     </view>
                     <connections>
                         <outlet property="createAccountButton" destination="rRF-yv-KDj" id="Z3F-m1-3p4"/>
-                        <outlet property="emailTextField" destination="lXz-Mg-PVo" id="eF7-tj-Ryr"/>
-                        <outlet property="firstNameTextField" destination="gZl-4V-NrI" id="BLo-hW-aFF"/>
-                        <outlet property="lastNameFieldField" destination="zcz-2B-2VS" id="7Sl-2g-OUF"/>
+                        <outlet property="emailTextField" destination="lXz-Mg-PVo" id="DWA-dB-8Kk"/>
+                        <outlet property="firstNameTextField" destination="gZl-4V-NrI" id="fhj-y0-0ON"/>
+                        <outlet property="lastNameTextField" destination="zcz-2B-2VS" id="lCX-zM-4Yc"/>
                         <outlet property="logInButton" destination="gny-jY-CuM" id="tOX-nB-11p"/>
-                        <outlet property="passwordTextField" destination="Bjn-3v-0VC" id="0eg-KM-MQb"/>
-                        <outlet property="usernameTextField" destination="4CP-CZ-K0V" id="UIz-lU-aLP"/>
+                        <outlet property="passwordTextField" destination="Bjn-3v-0VC" id="3xt-Dd-PIX"/>
+                        <outlet property="usernameTextField" destination="4CP-CZ-K0V" id="smP-Ws-fEp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hc5-b1-hEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -199,29 +224,6 @@
         <image name="103-map.png" width="26" height="21"/>
         <image name="20-gear-2.png" width="26" height="28"/>
     </resources>
-    <classes>
-        <class className="CYLogInViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYLogInViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="createAccountButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastNameFieldField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="logInButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="CYMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="map" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

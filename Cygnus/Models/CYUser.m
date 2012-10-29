@@ -7,6 +7,7 @@
 //
 
 #import "CYUser.h"
+#import "CYLogInViewController.h"
 
 #define FIRST_NAME_KEY  @"first_name"
 #define LAST_NAME_KEY   @"last_name"
@@ -51,19 +52,30 @@
 
 #pragma mark - Sign up and log in
 
+- (void)signUpInBackgroundWithBlock:(void (^)(BOOL succeeded, NSError *error))block {
+  [self.backingUser signUpInBackgroundWithBlock:block];
+}
+
 + (CYUser *)currentUser {
   if (![PFUser currentUser]) return nil;
   return [CYUser userWithUser:[PFUser currentUser]];
 }
 
-- (void)signUpInBackgroundWithBlock:(PFBooleanResultBlock)block {
-  [self.backingUser signUpInBackgroundWithBlock:block];
++ (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(void (^)(BOOL succeeded, NSError *error))block {
+  [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
+    BOOL success = YES;
+    if (!user) success = NO;
+    block(success, error);
+  }];
 }
 
-+ (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFUserResultBlock)block {
-  [PFUser logInWithUsernameInBackground:username password:password block:block];
-}
++ (void)logOut
+{
+  [PFUser logOut];
+  [CYLogInViewController present];
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CYNOTIFICATION_LOGOUT object:nil]];
 
+}
 #pragma mark - Properties
 
 - (NSString *)username {
@@ -148,11 +160,6 @@
 
 - (NSArray *)maps {
   PFRelation *mapsRelation = [self.backingUser relationforKey:MAPS_KEY];
-  return nil;
-}
-
-+ (CYUser *)currentUser
-{
   return nil;
 }
 
