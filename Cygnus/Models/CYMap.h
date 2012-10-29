@@ -6,9 +6,33 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
-@interface CYMap : PFObject
+#import "CYObject.h"
+#import "CYGroup.h"
+#import "CYPoint.h"
+#import "CYUser.h"
 
-@property (nonatomic, strong) NSArray *points; // of CYPoints
-@property (nonatomic, strong) NSString *description;
+typedef enum {
+  CYMapVisibilityPublic,
+  CYMapVisibilityPrivate
+} CYMapVisibility;
+
+@interface CYMap : CYObject
+
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *summary;
+@property (nonatomic) CYMapVisibility visibility;
+
+// relations
+@property (nonatomic, strong) NSArray *points;
+@property (nonatomic, strong) NSArray *owners;
+@property (nonatomic, strong) CYGroup *group;
+
++ (CYMap *)mapWithObject:(PFObject *)object;
+
+- (void)addPoint:(CYPoint *)point;
+- (void)removePoint:(CYPoint *)point;
+
+- (void)addOwner:(CYUser *)owner;
+- (void)removeOwner:(CYUser *)owner;
 
 @end

@@ -6,16 +6,18 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
-@interface CYPoint : NSObject
+#import "CYObject.h"
+#import "CYMap.h"
 
-@property (nonatomic, readonly) NSString *objectID;
-@property (nonatomic, readonly) NSDate *createdAt;
-@property (nonatomic, readonly) NSDate *updatedAt;
+@interface CYPoint : CYObject
 
 @property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *summary;
 @property (nonatomic, strong) NSString *imageURLString;
+
+// relations
+@property (nonatomic, strong) CYMap *map;
 
 + (CYPoint *)pointWithObject:(PFObject *)object;
 
