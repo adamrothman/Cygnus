@@ -9,6 +9,8 @@
 #import "CYObject.h"
 #import "CYMap.h"
 
+@class CYMap;
+
 @interface CYPoint : CYObject
 
 @property (nonatomic, strong) PFGeoPoint *location;
