@@ -13,9 +13,7 @@
 #define SUMMARY_KEY   @"summary"
 #define IMAGE_URL_KEY @"image_url"
 
-@interface CYPoint ()
-@property (nonatomic, strong) PFObject *backingObject;
-@end
+#define MAP_KEY       @"map"
 
 @implementation CYPoint
 
@@ -30,34 +28,11 @@
   return self;
 }
 
-- (id)initWithObject:(PFObject *)object {
-  if ((self = [super init])) {
-    self.backingObject = object;
-  }
-  return self;
-}
-
 + (CYPoint *)pointWithObject:(PFObject *)object {
   return [[CYPoint alloc] initWithObject:object];
 }
 
-- (void)save {
-  [self.backingObject saveInBackground];
-}
-
 #pragma mark - Properties
-
-- (NSString *)objectID {
-  return self.backingObject.objectId;
-}
-
-- (NSDate *)createdAt {
-  return self.backingObject.createdAt;
-}
-
-- (NSDate *)updatedAt {
-  return self.backingObject.updatedAt;
-}
 
 - (PFGeoPoint *)location {
   return [self.backingObject objectForKey:LOCATION_KEY];
@@ -93,6 +68,12 @@
 - (void)setImageURLString:(NSString *)imageURLString {
   [self.backingObject setObject:imageURLString forKey:IMAGE_URL_KEY];
   [self save];
+}
+
+#pragma mark - Relations
+
+- (CYMap *)map {
+  return [CYMap mapWithObject:[[self.backingObject objectForKey:MAP_KEY] fetchIfNeeded]];
 }
 
 @end

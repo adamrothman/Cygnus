@@ -12,10 +12,11 @@
 #define LAST_NAME_KEY   @"last_name"
 #define LOCATION_KEY    @"location"
 #define STATUS_KEY      @"status"
+#define RANGE_KEY       @"range"
+#define IMAGE_URL_KEY   @"image_url"
 
-@interface CYUser ()
-@property (nonatomic, strong) PFUser *backingUser;
-@end
+#define GROUPS_KEY      @"groups"
+#define MAPS_KEY        @"maps"
 
 @implementation CYUser
 
@@ -37,30 +38,40 @@
   return self;
 }
 
-- (void)save {
-  [self.backingUser saveInBackground];
++ (CYUser *)userWithUser:(PFUser *)user {
+  return [[CYUser alloc] initWithUser:user];
+}
+
++ (CYUser *)userWithUsername:(NSString *)username password:(NSString *)password {
+  PFUser *user = [PFUser user];
+  user.username = username;
+  user.password = password;
+  return [CYUser userWithUser:user];
+}
+
+#pragma mark - Sign up and log in
+
++ (CYUser *)currentUser {
+  if (![PFUser currentUser]) return nil;
+  return [CYUser userWithUser:[PFUser currentUser]];
+}
+
+- (void)signUpInBackgroundWithBlock:(PFBooleanResultBlock)block {
+  [self.backingUser signUpInBackgroundWithBlock:block];
+}
+
++ (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFUserResultBlock)block {
+  [PFUser logInWithUsernameInBackground:username password:password block:block];
 }
 
 #pragma mark - Properties
-
-- (NSString *)objectID {
-  return self.backingUser.objectId;
-}
-
-- (NSDate *)createdAt {
-  return self.backingUser.createdAt;
-}
-
-- (NSDate *)updatedAt {
-  return self.backingUser.updatedAt;
-}
 
 - (NSString *)username {
   return self.backingUser.username;
 }
 
 - (NSString *)password {
-  return @"Naughty naughty";
+  return @"Naughty naughty, password is set-only";
 }
 
 - (NSString *)email {
@@ -109,15 +120,34 @@
   [self save];
 }
 
-#pragma mark - Relationships
+- (NSUInteger)range {
+  NSNumber *rangeObject = [self.backingUser objectForKey:RANGE_KEY];
+  return rangeObject.unsignedIntegerValue;
+}
 
-// TODO(adam): these
+- (void)setRange:(NSUInteger)range {
+  [self.backingUser setObject:[NSNumber numberWithUnsignedInteger:range] forKey:RANGE_KEY];
+  [self save];
+}
+
+- (NSString *)imageURLString {
+  return [self.backingUser objectForKey:IMAGE_URL_KEY];
+}
+
+- (void)setImageURLString:(NSString *)imageURLString {
+  [self.backingUser setObject:imageURLString forKey:IMAGE_URL_KEY];
+  [self save];
+}
+
+#pragma mark - Relations
 
 - (NSArray *)groups {
+  PFRelation *groupsRelation = [self.backingUser relationforKey:GROUPS_KEY];
   return nil;
 }
 
 - (NSArray *)maps {
+  PFRelation *mapsRelation = [self.backingUser relationforKey:MAPS_KEY];
   return nil;
 }
 
