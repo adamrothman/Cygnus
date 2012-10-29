@@ -286,7 +286,8 @@
 				4EEB9624163DF84900D67785 /* UIView+Layout.h */,
 				4EEB9625163DF84900D67785 /* UIView+Layout.m */,
 			);
-			path = "Objective-C-Categories-and-Macros";
+			name = "Objective-C-Categories-and-Macros";
+			path = "Cygnus/Libraries/Objective-C-Categories-and-Macros";
 			sourceTree = "<group>";
 		};
 		661088C3163AAD0B000D1DA2 /* AwesomeMenu */ = {
@@ -393,6 +394,7 @@
 		66558A8116361CE200C7BB8B /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */,
 				66558A9D16361EBC00C7BB8B /* AFNetworking */,
 				66A1B3661638AC8100B9DCEC /* ARKit */,
 				661088C3163AAD0B000D1DA2 /* AwesomeMenu */,
@@ -465,7 +467,6 @@
 		66A1B31F1638828A00B9DCEC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */,
 				66108923163AB695000D1DA2 /* 04-eye-white.png */,
 				66108924163AB695000D1DA2 /* 04-eye-white@2x.png */,
 				66A1B33A16388C2900B9DCEC /* 06-magnify.png */,
