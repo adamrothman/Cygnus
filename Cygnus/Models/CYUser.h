@@ -6,31 +6,39 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
+#import "CYObject.h"
+
 typedef enum {
   CYUserStatusBeaconOn,
   CYUserStatusBeaconOff
 } CYUserStatus;
 
-@interface CYUser : NSObject
+@interface CYUser : CYObject
 
-@property (nonatomic, readonly) NSString *objectID;
-@property (nonatomic, readonly) NSDate *createdAt;
-@property (nonatomic, readonly) NSDate *updatedAt;
+// use this, not backingObject
+@property (nonatomic, strong) PFUser *backingUser;
 
 @property (nonatomic, readonly) NSString *username;
-@property (nonatomic, strong) NSString *password; // set-only
+@property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *email;
 
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic) CYUserStatus status;
-@property (nonatomic, strong) NSNumber *range;
+@property (nonatomic) NSUInteger range;
+@property (nonatomic, strong) NSString *imageURLString;
 
-// relationships
+// relations
 @property (nonatomic, strong) NSArray *groups;
 @property (nonatomic, strong) NSArray *maps;
 
++ (CYUser *)currentUser;
+
 - (id)initWithUser:(PFUser *)user;
++ (CYUser *)userWithUser:(PFUser *)user;
+
+- (void)signUpInBackgroundWithBlock:(PFBooleanResultBlock)block;
++ (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFUserResultBlock)block;
 
 @end

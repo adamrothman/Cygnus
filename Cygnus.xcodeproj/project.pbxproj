@@ -64,6 +64,8 @@
 		669C1F91163DC75E001F1C18 /* CYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1F90163DC75E001F1C18 /* CYUser.m */; };
 		669C1F94163DC906001F1C18 /* CYMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1F93163DC906001F1C18 /* CYMap.m */; };
 		669C1F97163DC99C001F1C18 /* CYPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1F96163DC99C001F1C18 /* CYPoint.m */; };
+		669C1FA1163DDDBF001F1C18 /* CYGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1FA0163DDDBF001F1C18 /* CYGroup.m */; };
+		669C1FA4163DF8FD001F1C18 /* CYObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1FA3163DF8FD001F1C18 /* CYObject.m */; };
 		66A1B3281638862000B9DCEC /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B3261638862000B9DCEC /* 103-map.png */; };
 		66A1B3291638862000B9DCEC /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B3271638862000B9DCEC /* 103-map@2x.png */; };
 		66A1B32B1638865B00B9DCEC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A1B32A1638865B00B9DCEC /* Parse.framework */; };
@@ -194,6 +196,10 @@
 		669C1F93163DC906001F1C18 /* CYMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYMap.m; path = Models/CYMap.m; sourceTree = "<group>"; };
 		669C1F95163DC99C001F1C18 /* CYPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYPoint.h; path = Models/CYPoint.h; sourceTree = "<group>"; };
 		669C1F96163DC99C001F1C18 /* CYPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYPoint.m; path = Models/CYPoint.m; sourceTree = "<group>"; };
+		669C1F9F163DDDBF001F1C18 /* CYGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYGroup.h; path = Models/CYGroup.h; sourceTree = "<group>"; };
+		669C1FA0163DDDBF001F1C18 /* CYGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYGroup.m; path = Models/CYGroup.m; sourceTree = "<group>"; };
+		669C1FA2163DF8FD001F1C18 /* CYObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYObject.h; path = Models/CYObject.h; sourceTree = "<group>"; };
+		669C1FA3163DF8FD001F1C18 /* CYObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYObject.m; path = Models/CYObject.m; sourceTree = "<group>"; };
 		66A1B3261638862000B9DCEC /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map.png"; path = "Cygnus/Resources/103-map.png"; sourceTree = "<group>"; };
 		66A1B3271638862000B9DCEC /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "103-map@2x.png"; path = "Cygnus/Resources/103-map@2x.png"; sourceTree = "<group>"; };
 		66A1B32A1638865B00B9DCEC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Cygnus/Frameworks/Parse.framework; sourceTree = "<group>"; };
@@ -396,8 +402,12 @@
 		669C1F8E163DC702001F1C18 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				669C1F9F163DDDBF001F1C18 /* CYGroup.h */,
+				669C1FA0163DDDBF001F1C18 /* CYGroup.m */,
 				669C1F92163DC906001F1C18 /* CYMap.h */,
 				669C1F93163DC906001F1C18 /* CYMap.m */,
+				669C1FA2163DF8FD001F1C18 /* CYObject.h */,
+				669C1FA3163DF8FD001F1C18 /* CYObject.m */,
 				669C1F95163DC99C001F1C18 /* CYPoint.h */,
 				669C1F96163DC99C001F1C18 /* CYPoint.m */,
 				669C1F8F163DC75E001F1C18 /* CYUser.h */,
@@ -613,6 +623,8 @@
 				669C1F91163DC75E001F1C18 /* CYUser.m in Sources */,
 				669C1F94163DC906001F1C18 /* CYMap.m in Sources */,
 				669C1F97163DC99C001F1C18 /* CYPoint.m in Sources */,
+				669C1FA1163DDDBF001F1C18 /* CYGroup.m in Sources */,
+				669C1FA4163DF8FD001F1C18 /* CYObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
