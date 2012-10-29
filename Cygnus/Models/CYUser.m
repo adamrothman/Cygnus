@@ -8,8 +8,6 @@
 
 #import "CYUser.h"
 
-#define SAVE_DELAY      4.0
-
 #define FIRST_NAME_KEY  @"first_name"
 #define LAST_NAME_KEY   @"last_name"
 #define LOCATION_KEY    @"location"
@@ -40,39 +38,33 @@
   return self;
 }
 
-- (void)save {
-  // accumulate changes to save together, instead of saving every change all the time
-  // to cut down on API requests
-  [NSObject cancelPreviousPerformRequestsWithTarget:self.backingUser selector:@selector(saveInBackground) object:nil];
-  [self.backingUser performSelector:@selector(saveInBackground) withObject:nil afterDelay:SAVE_DELAY];
++ (CYUser *)userWithUser:(PFUser *)user {
+  return [[CYUser alloc] initWithUser:user];
 }
 
 #pragma mark - Sign up and log in
+
++ (CYUser *)currentUser {
+  if (![PFUser currentUser]) return nil;
+  return [CYUser userWithUser:[PFUser currentUser]];
+}
 
 - (void)signUpInBackgroundWithBlock:(PFBooleanResultBlock)block {
   [self.backingUser signUpInBackgroundWithBlock:block];
 }
 
++ (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(PFUserResultBlock)block {
+  [PFUser logInWithUsernameInBackground:username password:password block:block];
+}
+
 #pragma mark - Properties
-
-- (NSString *)objectID {
-  return self.backingUser.objectId;
-}
-
-- (NSDate *)createdAt {
-  return self.backingUser.createdAt;
-}
-
-- (NSDate *)updatedAt {
-  return self.backingUser.updatedAt;
-}
 
 - (NSString *)username {
   return self.backingUser.username;
 }
 
 - (NSString *)password {
-  return @"Naughty naughty";
+  return @"Naughty naughty, password is set-only";
 }
 
 - (NSString *)email {

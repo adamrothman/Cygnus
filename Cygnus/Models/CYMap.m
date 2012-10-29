@@ -9,13 +9,13 @@
 #import "CYMap.h"
 #import "CYPoint.h"
 
-#define SAVE_DELAY  4.0
-
 #define NAME_KEY        @"name"
 #define SUMMARY_KEY     @"summary"
 #define VISIBILITY_KEY  @"visibility"
 
 #define POINTS_KEY      @"points"
+#define OWNERS_KEY      @"owners"
+#define GROUP_KEY       @"group"
 
 @implementation CYMap
 
@@ -30,37 +30,11 @@
   return self;
 }
 
-- (id)initWithObject:(PFObject *)object {
-  if ((self = [super init])) {
-    self.backingObject = object;
-  }
-  return self;
-}
-
 + (CYMap *)mapWithObject:(PFObject *)object {
   return [[CYMap alloc] initWithObject:object];
 }
 
-- (void)save {
-  // accumulate changes to save together, instead of saving every change all the time
-  // to cut down on API requests
-  [NSObject cancelPreviousPerformRequestsWithTarget:self.backingObject selector:@selector(saveInBackground) object:nil];
-  [self.backingObject performSelector:@selector(saveInBackground) withObject:nil afterDelay:SAVE_DELAY];
-}
-
 #pragma mark - Properties
-
-- (NSString *)objectID {
-  return self.backingObject.objectId;
-}
-
-- (NSDate *)createdAt {
-  return self.backingObject.createdAt;
-}
-
-- (NSDate *)updatedAt {
-  return self.backingObject.updatedAt;
-}
 
 - (NSString *)name {
   return [self.backingObject objectForKey:NAME_KEY];
@@ -100,6 +74,34 @@
 - (void)addPoint:(CYPoint *)point {
   PFRelation *pointsRelation = [self.backingObject relationforKey:POINTS_KEY];
   [pointsRelation addObject:point.backingObject];
+  [self save];
+}
+
+- (void)removePoint:(CYPoint *)point {
+  PFRelation *pointsRelation = [self.backingObject relationforKey:POINTS_KEY];
+  [pointsRelation removeObject:point.backingObject];
+  [self save];
+}
+
+- (NSArray *)owners {
+  PFRelation *ownersRelation = [self.backingObject relationforKey:OWNERS_KEY];
+  return nil;
+}
+
+- (void)addOwner:(CYUser *)owner {
+  PFRelation *ownersRelation = [self.backingObject relationforKey:OWNERS_KEY];
+  [ownersRelation addObject:owner.backingUser];
+  [self save];
+}
+
+- (void)removeOwner:(CYUser *)owner {
+  PFRelation *ownersRelation = [self.backingObject relationforKey:OWNERS_KEY];
+  [ownersRelation removeObject:owner.backingUser];
+  [self save];
+}
+
+- (CYGroup *)group {
+  return [CYGroup groupWithObject:[[self.backingObject objectForKey:GROUP_KEY] fetchIfNeeded]];
 }
 
 @end

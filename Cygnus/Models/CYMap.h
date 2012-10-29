@@ -6,18 +6,17 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
+#import "CYObject.h"
+#import "CYGroup.h"
+#import "CYPoint.h"
+#import "CYUser.h"
+
 typedef enum {
   CYMapVisibilityPublic,
   CYMapVisibilityPrivate
 } CYMapVisibility;
 
-@interface CYMap : NSObject
-
-@property (nonatomic, strong) PFObject *backingObject;
-
-@property (nonatomic, readonly) NSString *objectID;
-@property (nonatomic, readonly) NSDate *createdAt;
-@property (nonatomic, readonly) NSDate *updatedAt;
+@interface CYMap : CYObject
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *summary;
@@ -25,8 +24,15 @@ typedef enum {
 
 // relations
 @property (nonatomic, strong) NSArray *points;
+@property (nonatomic, strong) NSArray *owners;
+@property (nonatomic, strong) CYGroup *group;
 
 + (CYMap *)mapWithObject:(PFObject *)object;
-- (void)save;
+
+- (void)addPoint:(CYPoint *)point;
+- (void)removePoint:(CYPoint *)point;
+
+- (void)addOwner:(CYUser *)owner;
+- (void)removeOwner:(CYUser *)owner;
 
 @end
