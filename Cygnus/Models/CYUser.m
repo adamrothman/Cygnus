@@ -10,15 +10,15 @@
 #import "CYLogInViewController.h"
 #import "CYGroup.h"
 
-#define FIRST_NAME_KEY  @"first_name"
-#define LAST_NAME_KEY   @"last_name"
-#define LOCATION_KEY    @"location"
-#define STATUS_KEY      @"status"
-#define RANGE_KEY       @"range"
-#define IMAGE_URL_KEY   @"image_url"
+static NSString *const CYUserFirstNameKey = @"first_name";
+static NSString *const CYUserLastNameKey  = @"last_name";
+static NSString *const CYUserLocationKey  = @"location";
+static NSString *const CYUserStatusKey    = @"status";
+static NSString *const CYUserRangeKey     = @"range";
+static NSString *const CYUserImageURLKey  = @"image_url";
 
-#define GROUPS_KEY      @"groups"
-#define MAPS_KEY        @"maps"
+static NSString *const CYUserGroupsKey    = @"groups";
+static NSString *const CYUserMapsKey      = @"maps";
 
 @interface CYUser ()
 
@@ -62,8 +62,7 @@
 #pragma mark - Sign up and log in
 
 + (CYUser *)currentUser {
-  if (![PFUser currentUser]) return nil;
-  return [CYUser userWithUser:[PFUser currentUser]];
+  return [PFUser currentUser] ? [CYUser userWithUser:[PFUser currentUser]] : nil;
 }
 
 - (void)signUpInBackgroundWithBlock:(CYBooleanResultBlock)block {
@@ -79,10 +78,15 @@
 + (void)logOut {
   [PFUser logOut];
   [CYLogInViewController present];
-  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CYNOTIFICATION_LOGOUT object:nil]];
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CYUserDidLogOutNotification object:nil]];
 }
 
 #pragma mark - Properties
+
+// make inherited CYObject methods work
+- (PFObject *)backingObject {
+  return self.backingUser;
+}
 
 - (NSString *)username {
   return self.backingUser.username;
@@ -102,58 +106,58 @@
 }
 
 - (NSString *)firstName {
-  return [self.backingUser objectForKey:FIRST_NAME_KEY];
+  return [self.backingUser objectForKey:CYUserFirstNameKey];
 }
 
 - (void)setFirstName:(NSString *)firstName {
-  [self.backingUser setObject:firstName forKey:FIRST_NAME_KEY];
+  [self.backingUser setObject:firstName forKey:CYUserFirstNameKey];
   [self save];
 }
 
 - (NSString *)lastName {
-  return [self.backingUser objectForKey:LAST_NAME_KEY];
+  return [self.backingUser objectForKey:CYUserLastNameKey];
 }
 
 - (void)setLastName:(NSString *)lastName {
-  [self.backingUser setObject:lastName forKey:LAST_NAME_KEY];
+  [self.backingUser setObject:lastName forKey:CYUserLastNameKey];
   [self save];
 }
 
 - (PFGeoPoint *)location {
-  return [self.backingUser objectForKey:LOCATION_KEY];
+  return [self.backingUser objectForKey:CYUserLocationKey];
 }
 
 - (void)setLocation:(PFGeoPoint *)location {
-  [self.backingUser setObject:location forKey:LOCATION_KEY];
+  [self.backingUser setObject:location forKey:CYUserLocationKey];
   [self save];
 }
 
 - (CYUserStatus)status {
-  NSNumber *statusObject = [self.backingUser objectForKey:STATUS_KEY];
+  NSNumber *statusObject = [self.backingUser objectForKey:CYUserStatusKey];
   return statusObject.unsignedIntegerValue;
 }
 
 - (void)setStatus:(CYUserStatus)status {
-  [self.backingUser setObject:[NSNumber numberWithUnsignedInteger:status] forKey:STATUS_KEY];
+  [self.backingUser setObject:[NSNumber numberWithUnsignedInteger:status] forKey:CYUserStatusKey];
   [self save];
 }
 
 - (NSUInteger)range {
-  NSNumber *rangeObject = [self.backingUser objectForKey:RANGE_KEY];
+  NSNumber *rangeObject = [self.backingUser objectForKey:CYUserRangeKey];
   return rangeObject.unsignedIntegerValue;
 }
 
 - (void)setRange:(NSUInteger)range {
-  [self.backingUser setObject:[NSNumber numberWithUnsignedInteger:range] forKey:RANGE_KEY];
+  [self.backingUser setObject:[NSNumber numberWithUnsignedInteger:range] forKey:CYUserRangeKey];
   [self save];
 }
 
 - (NSString *)imageURLString {
-  return [self.backingUser objectForKey:IMAGE_URL_KEY];
+  return [self.backingUser objectForKey:CYUserImageURLKey];
 }
 
 - (void)setImageURLString:(NSString *)imageURLString {
-  [self.backingUser setObject:imageURLString forKey:IMAGE_URL_KEY];
+  [self.backingUser setObject:imageURLString forKey:CYUserImageURLKey];
   [self save];
 }
 
@@ -161,7 +165,7 @@
 
 - (void)fetchGroups {
   if (!self.groupsQuery) {
-    self.groupsQuery = [[self.backingUser relationforKey:GROUPS_KEY] query];
+    self.groupsQuery = [[self.backingUser relationforKey:CYUserGroupsKey] query];
     self.groupsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
   }
   [self.groupsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -180,7 +184,7 @@
 
 - (void)fetchMaps {
   if (!self.mapsQuery) {
-    self.mapsQuery = [[self.backingUser relationforKey:MAPS_KEY] query];
+    self.mapsQuery = [[self.backingUser relationforKey:CYUserMapsKey] query];
     self.mapsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
   }
   [self.mapsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
