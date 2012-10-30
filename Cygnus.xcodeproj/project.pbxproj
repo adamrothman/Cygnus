@@ -11,7 +11,6 @@
 		4EEB9626163DF84900D67785 /* NSArray+Accessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB961A163DF84900D67785 /* NSArray+Accessing.m */; };
 		4EEB9627163DF84900D67785 /* NSObject+PerformBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB961C163DF84900D67785 /* NSObject+PerformBlock.m */; };
 		4EEB9628163DF84900D67785 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB961E163DF84900D67785 /* NSString+UUID.m */; };
-		4EEB9629163DF84900D67785 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4EEB961F163DF84900D67785 /* README.md */; };
 		4EEB962A163DF84900D67785 /* UIImage+ImageFromDiskNamed.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB9621163DF84900D67785 /* UIImage+ImageFromDiskNamed.m */; };
 		4EEB962B163DF84900D67785 /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB9623163DF84900D67785 /* UIView+Animations.m */; };
 		4EEB962C163DF84900D67785 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB9625163DF84900D67785 /* UIView+Layout.m */; };
@@ -85,9 +84,7 @@
 		66A1B33C16388C2900B9DCEC /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B33A16388C2900B9DCEC /* 06-magnify.png */; };
 		66A1B33D16388C2900B9DCEC /* 06-magnify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B33B16388C2900B9DCEC /* 06-magnify@2x.png */; };
 		66A1B34316388E7200B9DCEC /* CYMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B34216388E7200B9DCEC /* CYMapViewController.m */; };
-		66A1B3711638AC8100B9DCEC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B3671638AC8100B9DCEC /* .gitignore */; };
 		66A1B3721638AC8100B9DCEC /* MKMapView+ARKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36A1638AC8100B9DCEC /* MKMapView+ARKit.m */; };
-		66A1B3731638AC8100B9DCEC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 66A1B36B1638AC8100B9DCEC /* README.md */; };
 		66A1B3741638AC8100B9DCEC /* ARTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36E1638AC8100B9DCEC /* ARTextField.m */; };
 		66A1B3751638AC8100B9DCEC /* ARTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B3701638AC8100B9DCEC /* ARTextView.m */; };
 /* End PBXBuildFile section */
@@ -634,8 +631,6 @@
 				66A1B33916388A2700B9DCEC /* 20-gear-2@2x.png in Resources */,
 				66A1B33C16388C2900B9DCEC /* 06-magnify.png in Resources */,
 				66A1B33D16388C2900B9DCEC /* 06-magnify@2x.png in Resources */,
-				66A1B3711638AC8100B9DCEC /* .gitignore in Resources */,
-				66A1B3731638AC8100B9DCEC /* README.md in Resources */,
 				661088F6163AADB0000D1DA2 /* bg-addbutton-highlighted.png in Resources */,
 				661088F7163AADB0000D1DA2 /* bg-addbutton-highlighted@2x.png in Resources */,
 				661088F8163AADB0000D1DA2 /* bg-addbutton.png in Resources */,
@@ -654,7 +649,6 @@
 				6610891E163AB4E2000D1DA2 /* 08-pin-white@2x.png in Resources */,
 				66108925163AB695000D1DA2 /* 04-eye-white.png in Resources */,
 				66108926163AB695000D1DA2 /* 04-eye-white@2x.png in Resources */,
-				4EEB9629163DF84900D67785 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
