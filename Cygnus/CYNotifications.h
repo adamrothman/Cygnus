@@ -9,6 +9,9 @@
 #ifndef Cygnus_CYNotifications_h
 #define Cygnus_CYNotifications_h
 
-#define CYNOTIFICATION_LOGOUT @"logout"
+// CYUser notifications
+NSString *const CYUserDidLogOutNotification = @"cy_user_did_log_out";
+NSString *const CYUserGroupsDidUpdateNotification = @"cy_user_groups_did_update";
+NSString *const CYUserMapsDidUpdateNotification = @"cy_user_maps_did_update";
 
 #endif
