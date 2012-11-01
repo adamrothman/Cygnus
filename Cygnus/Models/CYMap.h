@@ -25,9 +25,9 @@ typedef enum {
 @property (nonatomic) CYMapVisibility visibility;
 
 // relations
+@property (nonatomic, strong) CYGroup *group;
 @property (nonatomic, strong) NSArray *points;
 @property (nonatomic, strong) NSArray *owners;
-@property (nonatomic, strong) CYGroup *group;
 
 + (CYMap *)mapWithObject:(PFObject *)object;
 
