@@ -163,11 +163,15 @@ static NSString *const CYUserMapsKey      = @"maps";
 
 #pragma mark - Relations
 
+// these things get fetched in the background when requested
+// consumers should use KVO to be notified when they update
+
 - (void)fetchGroups {
   if (!self.groupsQuery) {
     self.groupsQuery = [[self.backingUser relationforKey:CYUserGroupsKey] query];
     self.groupsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
   }
+
   [self.groupsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
     NSMutableArray *groups = [NSMutableArray arrayWithCapacity:objects.count];
     for (PFObject *groupObject in objects) {
@@ -187,6 +191,7 @@ static NSString *const CYUserMapsKey      = @"maps";
     self.mapsQuery = [[self.backingUser relationforKey:CYUserMapsKey] query];
     self.mapsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
   }
+
   [self.mapsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
     NSMutableArray *maps = [NSMutableArray arrayWithCapacity:objects.count];
     for (PFObject *mapObject in objects) {
