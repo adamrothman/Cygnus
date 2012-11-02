@@ -13,6 +13,12 @@ typedef enum {
   CYUserStatusBeaconOff
 } CYUserStatus;
 
+typedef enum {
+  CYBeaconRangeLocal = 5,
+  CYBeaconRangeCity = 10,
+  CYBeaconRangeMetro = 50,
+} CYBeaconRange;
+
 @class CYUser;
 
 typedef void(^CYBooleanResultBlock)(BOOL succeeded, NSError *error);
@@ -30,7 +36,7 @@ typedef void(^CYUserResultBlock)(CYUser *user, NSError *error);
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic) CYUserStatus status;
-@property (nonatomic) NSUInteger range;
+@property (nonatomic) CYBeaconRange range;
 @property (nonatomic, strong) NSString *imageURLString;
 
 // relations
