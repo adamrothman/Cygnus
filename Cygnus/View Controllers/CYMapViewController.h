@@ -13,4 +13,7 @@
 @property (nonatomic, weak) IBOutlet MKMapView *map;
 @property (nonatomic, strong) AwesomeMenu *menu;
 
+- (void)toggleBeaconHUD;
++ (CYMapViewController *)currentVC;
+
 @end

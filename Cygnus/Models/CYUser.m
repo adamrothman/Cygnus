@@ -20,6 +20,8 @@ static NSString *const CYUserImageURLKey  = @"image_url";
 static NSString *const CYUserGroupsKey    = @"groups";
 static NSString *const CYUserMapsKey      = @"maps";
 
+static CYUser *_currentUser = nil;
+
 @interface CYUser ()
 
 @property PFQuery *groupsQuery;
@@ -37,6 +39,8 @@ static NSString *const CYUserMapsKey      = @"maps";
 - (id)init {
   if ((self = [super init])) {
     self.backingUser = [PFUser user];
+    self.range = CYBeaconRangeLocal;
+    self.status = CYBeaconStatusActive;
   }
   return self;
 }
@@ -44,6 +48,8 @@ static NSString *const CYUserMapsKey      = @"maps";
 - (id)initWithUser:(PFUser *)user {
   if ((self = [super init])) {
     self.backingUser = user;
+    self.range = CYBeaconRangeLocal;
+    self.status = CYBeaconStatusActive;
   }
   return self;
 }
@@ -62,7 +68,14 @@ static NSString *const CYUserMapsKey      = @"maps";
 #pragma mark - Sign up and log in
 
 + (CYUser *)currentUser {
-  return [PFUser currentUser] ? [CYUser userWithUser:[PFUser currentUser]] : nil;
+  if ([PFUser currentUser]) {
+    if (!_currentUser) {
+      _currentUser = [CYUser userWithUser:[PFUser currentUser]];
+    }
+  return _currentUser;
+  } else {
+    return nil;
+  }
 }
 
 - (void)signUpInBackgroundWithBlock:(CYBooleanResultBlock)block {
@@ -70,8 +83,9 @@ static NSString *const CYUserMapsKey      = @"maps";
 }
 
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(CYUserResultBlock)block {
-  [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error) {
-    block([CYUser userWithUser:user], error);
+  [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *pfUser, NSError *error) {
+    CYUser *user = (pfUser) ? [CYUser userWithUser:pfUser] : nil;
+    block(user, error);
   }];
 }
 
@@ -132,22 +146,12 @@ static NSString *const CYUserMapsKey      = @"maps";
   [self save];
 }
 
-- (CYUserStatus)status {
-  NSNumber *statusObject = [self.backingUser objectForKey:CYUserStatusKey];
-  return statusObject.unsignedIntegerValue;
-}
-
-- (void)setStatus:(CYUserStatus)status {
-  [self.backingUser setObject:[NSNumber numberWithUnsignedInteger:status] forKey:CYUserStatusKey];
-  [self save];
-}
-
-- (NSUInteger)range {
+- (CYBeaconRange)range {
   NSNumber *rangeObject = [self.backingUser objectForKey:CYUserRangeKey];
   return rangeObject.unsignedIntegerValue;
 }
 
-- (void)setRange:(NSUInteger)range {
+- (void)setRange:(CYBeaconRange)range {
   [self.backingUser setObject:[NSNumber numberWithUnsignedInteger:range] forKey:CYUserRangeKey];
   [self save];
 }

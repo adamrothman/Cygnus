@@ -1,5 +1,5 @@
 //
-//  CYConsoleViewController.h
+//  CYTabBarViewController.h
 //  Cygnus
 //
 //  Created by Juan-Carlos Foust on 11/2/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CYConsoleViewController : UIViewController
+@interface CYTabBarViewController : UITabBarController
 
 @end

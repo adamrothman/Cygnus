@@ -8,9 +8,10 @@
 
 #import "CYLogInViewController.h"
 #import "CYUser.h"
+#import "CYUI.h"
 #import <SSToolkit/SSHUDView.h>
-#import <SSToolkit/SSCategories.h>
-#import "UIView+Layout.h"
+
+
 
 typedef enum {
   CYSignUpStateLogIn,

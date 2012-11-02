@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E6DFF7D1643EA5F00AB180C /* CYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */; };
+		4E6DFF901643F2F600AB180C /* CYUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF8F1643F2F600AB180C /* CYUI.m */; };
+		4E6DFF9B1643F3A600AB180C /* NSAttributedString+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E6DFF9E1643F4DF00AB180C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6DFF9D1643F4DF00AB180C /* CoreText.framework */; };
+		4E6DFFA11643FC1100AB180C /* CYConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */; };
+		4E6DFFA316440B0B00AB180C /* CYBeaconHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E6DFFA216440B0A00AB180C /* CYBeaconHUD.xib */; };
+		4E6DFFA616440B3300AB180C /* CYBeaconHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFFA516440B3300AB180C /* CYBeaconHUD.m */; };
 		4EEB960B163DDE3500D67785 /* CYLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB960A163DDE3500D67785 /* CYLogInViewController.m */; };
 		4EEB9626163DF84900D67785 /* NSArray+Accessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB961A163DF84900D67785 /* NSArray+Accessing.m */; };
 		4EEB9627163DF84900D67785 /* NSObject+PerformBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB961C163DF84900D67785 /* NSObject+PerformBlock.m */; };
@@ -14,7 +21,6 @@
 		4EEB962A163DF84900D67785 /* UIImage+ImageFromDiskNamed.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB9621163DF84900D67785 /* UIImage+ImageFromDiskNamed.m */; };
 		4EEB962B163DF84900D67785 /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB9623163DF84900D67785 /* UIView+Animations.m */; };
 		4EEB962C163DF84900D67785 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB9625163DF84900D67785 /* UIView+Layout.m */; };
-		4EEB9650163E295000D67785 /* CYConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB964F163E294F00D67785 /* CYConsoleViewController.m */; };
 		4EEB9656163E298F00D67785 /* CYSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB9655163E298F00D67785 /* CYSearchViewController.m */; };
 		661088C8163AAD4D000D1DA2 /* AwesomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 661088C5163AAD4D000D1DA2 /* AwesomeMenu.m */; };
 		661088C9163AAD4D000D1DA2 /* AwesomeMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 661088C7163AAD4D000D1DA2 /* AwesomeMenuItem.m */; };
@@ -128,6 +134,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E6DFF7B1643EA5F00AB180C /* CYTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYTabBarViewController.h; path = "View Controllers/CYTabBarViewController.h"; sourceTree = "<group>"; };
+		4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYTabBarViewController.m; path = "View Controllers/CYTabBarViewController.m"; sourceTree = "<group>"; };
+		4E6DFF8E1643F2F600AB180C /* CYUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYUI.h; path = Cygnus/Resources/CYUI.h; sourceTree = "<group>"; };
+		4E6DFF8F1643F2F600AB180C /* CYUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYUI.m; path = Cygnus/Resources/CYUI.m; sourceTree = "<group>"; };
+		4E6DFF991643F3A600AB180C /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
+		4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Attributes.m"; sourceTree = "<group>"; };
+		4E6DFF9D1643F4DF00AB180C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		4E6DFF9F1643FC1000AB180C /* CYConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYConsoleViewController.h; path = "View Controllers/CYConsoleViewController.h"; sourceTree = "<group>"; };
+		4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYConsoleViewController.m; path = "View Controllers/CYConsoleViewController.m"; sourceTree = "<group>"; };
+		4E6DFFA216440B0A00AB180C /* CYBeaconHUD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CYBeaconHUD.xib; sourceTree = "<group>"; };
+		4E6DFFA416440B3300AB180C /* CYBeaconHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYBeaconHUD.h; path = Cygnus/Resources/CYBeaconHUD.h; sourceTree = "<group>"; };
+		4E6DFFA516440B3300AB180C /* CYBeaconHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYBeaconHUD.m; path = Cygnus/Resources/CYBeaconHUD.m; sourceTree = "<group>"; };
 		4EEB9609163DDE3500D67785 /* CYLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYLogInViewController.h; path = "View Controllers/CYLogInViewController.h"; sourceTree = "<group>"; };
 		4EEB960A163DDE3500D67785 /* CYLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYLogInViewController.m; path = "View Controllers/CYLogInViewController.m"; sourceTree = "<group>"; };
 		4EEB9618163DF84900D67785 /* FDNullOrEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDNullOrEmpty.h; sourceTree = "<group>"; };
@@ -144,8 +162,6 @@
 		4EEB9623163DF84900D67785 /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		4EEB9624163DF84900D67785 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
 		4EEB9625163DF84900D67785 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
-		4EEB964E163E294F00D67785 /* CYConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYConsoleViewController.h; path = "View Controllers/CYConsoleViewController.h"; sourceTree = "<group>"; };
-		4EEB964F163E294F00D67785 /* CYConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYConsoleViewController.m; path = "View Controllers/CYConsoleViewController.m"; sourceTree = "<group>"; };
 		4EEB9654163E298E00D67785 /* CYSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYSearchViewController.h; path = "View Controllers/CYSearchViewController.h"; sourceTree = "<group>"; };
 		4EEB9655163E298F00D67785 /* CYSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYSearchViewController.m; path = "View Controllers/CYSearchViewController.m"; sourceTree = "<group>"; };
 		661088C4163AAD4D000D1DA2 /* AwesomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AwesomeMenu.h; path = Cygnus/Libraries/AwesomeMenu/AwesomeMenu/AwesomeMenu/AwesomeMenu.h; sourceTree = "<group>"; };
@@ -253,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E6DFF9E1643F4DF00AB180C /* CoreText.framework in Frameworks */,
 				66A1B331163888AC00B9DCEC /* SystemConfiguration.framework in Frameworks */,
 				66558ABE163634BE00C7BB8B /* libSSToolkit.a in Frameworks */,
 				662782921633F10100F1D0E7 /* CoreLocation.framework in Frameworks */,
@@ -281,6 +298,8 @@
 		4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */ = {
 			isa = PBXGroup;
 			children = (
+				4E6DFF991643F3A600AB180C /* NSAttributedString+Attributes.h */,
+				4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */,
 				4EEB9618163DF84900D67785 /* FDNullOrEmpty.h */,
 				4EEB9619163DF84900D67785 /* NSArray+Accessing.h */,
 				4EEB961A163DF84900D67785 /* NSArray+Accessing.m */,
@@ -336,6 +355,7 @@
 		6627823A1633EEC200F1D0E7 = {
 			isa = PBXGroup;
 			children = (
+				4E6DFF9D1643F4DF00AB180C /* CoreText.framework */,
 				6627824F1633EEC200F1D0E7 /* Cygnus */,
 				66A1B31F1638828A00B9DCEC /* Resources */,
 				662782481633EEC200F1D0E7 /* Frameworks */,
@@ -471,10 +491,12 @@
 		66A1B30C16387F7B00B9DCEC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4E6DFF9F1643FC1000AB180C /* CYConsoleViewController.h */,
+				4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */,
+				4E6DFF7B1643EA5F00AB180C /* CYTabBarViewController.h */,
+				4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */,
 				66A1B34116388E7200B9DCEC /* CYMapViewController.h */,
 				66A1B34216388E7200B9DCEC /* CYMapViewController.m */,
-				4EEB964E163E294F00D67785 /* CYConsoleViewController.h */,
-				4EEB964F163E294F00D67785 /* CYConsoleViewController.m */,
 				4EEB9609163DDE3500D67785 /* CYLogInViewController.h */,
 				4EEB960A163DDE3500D67785 /* CYLogInViewController.m */,
 				4EEB9654163E298E00D67785 /* CYSearchViewController.h */,
@@ -486,6 +508,11 @@
 		66A1B31F1638828A00B9DCEC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4E6DFFA216440B0A00AB180C /* CYBeaconHUD.xib */,
+				4E6DFFA416440B3300AB180C /* CYBeaconHUD.h */,
+				4E6DFFA516440B3300AB180C /* CYBeaconHUD.m */,
+				4E6DFF8E1643F2F600AB180C /* CYUI.h */,
+				4E6DFF8F1643F2F600AB180C /* CYUI.m */,
 				66108923163AB695000D1DA2 /* 04-eye-white.png */,
 				66108924163AB695000D1DA2 /* 04-eye-white@2x.png */,
 				66A1B33A16388C2900B9DCEC /* 06-magnify.png */,
@@ -649,6 +676,7 @@
 				6610891E163AB4E2000D1DA2 /* 08-pin-white@2x.png in Resources */,
 				66108925163AB695000D1DA2 /* 04-eye-white.png in Resources */,
 				66108926163AB695000D1DA2 /* 04-eye-white@2x.png in Resources */,
+				4E6DFFA316440B0B00AB180C /* CYBeaconHUD.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,8 +716,12 @@
 				4EEB962A163DF84900D67785 /* UIImage+ImageFromDiskNamed.m in Sources */,
 				4EEB962B163DF84900D67785 /* UIView+Animations.m in Sources */,
 				4EEB962C163DF84900D67785 /* UIView+Layout.m in Sources */,
-				4EEB9650163E295000D67785 /* CYConsoleViewController.m in Sources */,
 				4EEB9656163E298F00D67785 /* CYSearchViewController.m in Sources */,
+				4E6DFF7D1643EA5F00AB180C /* CYTabBarViewController.m in Sources */,
+				4E6DFF901643F2F600AB180C /* CYUI.m in Sources */,
+				4E6DFF9B1643F3A600AB180C /* NSAttributedString+Attributes.m in Sources */,
+				4E6DFFA11643FC1100AB180C /* CYConsoleViewController.m in Sources */,
+				4E6DFFA616440B3300AB180C /* CYBeaconHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

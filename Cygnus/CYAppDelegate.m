@@ -21,6 +21,8 @@
   } else {
     [CYLogInViewController present];
   }
+  
+  self.window.frame = [UIScreen mainScreen].bounds;
   return YES;
 }
 

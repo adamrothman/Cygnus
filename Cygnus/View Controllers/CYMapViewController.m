@@ -9,8 +9,16 @@
 #import "CYMapViewController.h"
 #import "MKMapView+ARKit.h"
 #import "AwesomeMenuItem.h"
+#import "CYBeaconHUD.h"
+#import "CYMap.h"
+#import "CYUI.h"
+
+CYMapViewController *_currentVC;
+
 
 @interface CYMapViewController ()
+
+@property (strong, nonatomic)   CYBeaconHUD *beaconHUD;
 
 @end
 
@@ -18,16 +26,15 @@
 
 @synthesize map, menu;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-    // Custom initialization
-  }
-  return self;
-}
+
+
+
+#pragma mark - VC Lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  _currentVC = self;
+  
   UIImage *background = [UIImage imageNamed:@"bg-menuitem.png"];
 	UIImage *backgroundHighlighted = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
   UIImage *eye = [UIImage imageNamed:@"04-eye-white.png"];
@@ -46,6 +53,26 @@
   self.menu.menuWholeAngle = M_PI_2;
   self.menu.rotateAngle = -M_PI_2;
   [self.map addSubview:self.menu];
+  
+  self.beaconHUD = [[CYBeaconHUD alloc] init];
+  [self.view addSubview:self.beaconHUD];
+  
+//  CYMap *libMap = [[CYMap alloc] init];
+//  libMap.name = @"Campus Libraries";
+//  libMap.name = @"Collection of libraries big and small accross the Farm.";
+//  libMap.visibility = CYMapVisibilityPublic;
+  
+  PFQuery *query = [PFQuery queryWithClassName:@"Point"];
+  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    if (!error) {
+      NSLog(@"Successfully retrieved points - %@", objects);
+    } else {
+      // Log details of the failure
+      NSLog(@"Error: %@ %@", error, [error userInfo]);
+    }
+  }];
+  
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -63,6 +90,12 @@
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated
+}
+
+- (void)viewDidUnload
+{
+  [super viewDidUnload];
+  _currentVC = nil;
 }
 
 #pragma mark - MKMapViewDelegate
@@ -90,13 +123,30 @@
       [self.map zoomToFitUserAnimated:YES];
       break;
     case 1:
-      NSLog(@"This one will add a new item to the map?");
+      NSLog(@"Option2");
       break;
     case 2:
+      NSLog(@"Option3");
+
       break;
     case 3:
       break;
   }
+}
+
+#pragma mark - CYTabBar
+
+- (void)toggleBeaconHUD {
+  if (self.beaconHUD.yOrigin < self.view.height) {
+    [self.beaconHUD hide];
+  } else {
+    [self.beaconHUD showPartial];
+  }
+}
+
++ (CYMapViewController *)currentVC
+{
+  return _currentVC;
 }
 
 @end

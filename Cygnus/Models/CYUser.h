@@ -9,11 +9,12 @@
 #import "CYObject.h"
 
 typedef enum {
-  CYUserStatusBeaconOn,
-  CYUserStatusBeaconOff
-} CYUserStatus;
+  CYBeaconStatusManual = 0,
+  CYBeaconStatusActive = 1
+} CYBeaconStatus;
 
 typedef enum {
+  CYBeaconRangeOff = 0,
   CYBeaconRangeLocal = 5,
   CYBeaconRangeCity = 10,
   CYBeaconRangeMetro = 50,
@@ -34,10 +35,12 @@ typedef void(^CYUserResultBlock)(CYUser *user, NSError *error);
 
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
-@property (nonatomic, strong) PFGeoPoint *location;
-@property (nonatomic) CYUserStatus status;
-@property (nonatomic) CYBeaconRange range;
 @property (nonatomic, strong) NSString *imageURLString;
+
+// beacon
+@property (nonatomic, strong) PFGeoPoint *location;
+@property (nonatomic) CYBeaconRange range;
+@property (nonatomic) CYBeaconStatus status;
 
 // relations
 @property (nonatomic, readonly) NSArray *groups;
