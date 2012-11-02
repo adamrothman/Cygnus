@@ -8,16 +8,16 @@
 
 #import "CYPoint.h"
 
-#define LOCATION_KEY  @"location"
-#define NAME_KEY      @"name"
-#define SUMMARY_KEY   @"summary"
-#define IMAGE_URL_KEY @"image_url"
+static NSString *const CYPointLocationKey = @"location";
+static NSString *const CYPointNameKey = @"name";
+static NSString *const CYPointSummaryKey = @"summary";
+static NSString *const CYPointImageURLKey = @"image_url";
 
-#define MAP_KEY       @"map"
+static NSString *const CYPointMapKey = @"map";
 
 @implementation CYPoint
 
-@synthesize backingObject=_backingObject;
+@synthesize map=_map;
 
 #pragma mark - Object creation and update
 
@@ -35,45 +35,47 @@
 #pragma mark - Properties
 
 - (PFGeoPoint *)location {
-  return [self.backingObject objectForKey:LOCATION_KEY];
+  return [self.backingObject objectForKey:CYPointLocationKey];
 }
 
 - (void)setLocation:(PFGeoPoint *)location {
-  [self.backingObject setObject:location forKey:LOCATION_KEY];
+  [self.backingObject setObject:location forKey:CYPointLocationKey];
   [self save];
 }
 
 - (NSString *)name {
-  return [self.backingObject objectForKey:NAME_KEY];
+  return [self.backingObject objectForKey:CYPointNameKey];
 }
 
 - (void)setName:(NSString *)name {
-  [self.backingObject setObject:name forKey:NAME_KEY];
+  [self.backingObject setObject:name forKey:CYPointNameKey];
   [self save];
 }
 
 - (NSString *)summary {
-  return [self.backingObject objectForKey:SUMMARY_KEY];
+  return [self.backingObject objectForKey:CYPointSummaryKey];
 }
 
 - (void)setSummary:(NSString *)summary {
-  [self.backingObject setObject:summary forKey:SUMMARY_KEY];
+  [self.backingObject setObject:summary forKey:CYPointSummaryKey];
   [self save];
 }
 
 - (NSString *)imageURLString {
-  return [self.backingObject objectForKey:IMAGE_URL_KEY];
+  return [self.backingObject objectForKey:CYPointImageURLKey];
 }
 
 - (void)setImageURLString:(NSString *)imageURLString {
-  [self.backingObject setObject:imageURLString forKey:IMAGE_URL_KEY];
+  [self.backingObject setObject:imageURLString forKey:CYPointImageURLKey];
   [self save];
 }
 
 #pragma mark - Relations
 
 - (CYMap *)map {
-  return [CYMap mapWithObject:[[self.backingObject objectForKey:MAP_KEY] fetchIfNeeded]];
+  if (!_map) _map = [CYMap mapWithObject:[self.backingObject objectForKey:CYPointMapKey]];
+  [_map.backingObject fetchIfNeeded];
+  return _map;
 }
 
 @end

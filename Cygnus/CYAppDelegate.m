@@ -13,19 +13,16 @@
 @implementation CYAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [Parse setApplicationId:@"eZV1a910JvXmP1UrTsMy4cH4QZhLpjLoElLL1GIz"
+                clientKey:@"e3fP5YlVRNIqev4CoH53d22JAeXEqiCWJBSpygJk"];
   
-  [Parse setApplicationId:@"dWDpSyitmM3EpaQh5CiLELD4IFzHfuVEkNBxTdcw"
-                clientKey:@"mkWTpXNp8HcbZGpYpZTLe0N1iI7x57ZjRLpfCnA1"];
-  
-  CYUser *currentUser = [CYUser currentUser];
-  if (currentUser) {
+  if ([CYUser currentUser]) {
     // do stuff
   } else {
     [CYLogInViewController present];
   }
   return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
   // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

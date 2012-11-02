@@ -10,8 +10,8 @@
 #define Cygnus_CYNotifications_h
 
 // CYUser notifications
-NSString *const CYUserDidLogOutNotification = @"cy_user_did_log_out";
-NSString *const CYUserGroupsDidUpdateNotification = @"cy_user_groups_did_update";
-NSString *const CYUserMapsDidUpdateNotification = @"cy_user_maps_did_update";
+static NSString *const CYUserDidLogOutNotification = @"cy_user_did_log_out";
+static NSString *const CYUserGroupsDidUpdateNotification = @"cy_user_groups_did_update";
+static NSString *const CYUserMapsDidUpdateNotification = @"cy_user_maps_did_update";
 
 #endif
