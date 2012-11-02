@@ -20,10 +20,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8R1-H2-JWV" firstAttribute="bottom" secondItem="7dQ-YI-8bK" secondAttribute="bottom" type="default" id="0Ue-9Y-df0"/>
-                            <constraint firstItem="8R1-H2-JWV" firstAttribute="leading" secondItem="7dQ-YI-8bK" secondAttribute="leading" type="default" id="7od-jx-7s9"/>
-                            <constraint firstItem="8R1-H2-JWV" firstAttribute="trailing" secondItem="7dQ-YI-8bK" secondAttribute="trailing" type="default" id="FwL-xK-bqY"/>
-                            <constraint firstItem="8R1-H2-JWV" firstAttribute="top" secondItem="7dQ-YI-8bK" secondAttribute="top" type="default" id="kW8-pY-Tp5"/>
+                            <constraint firstItem="8R1-H2-JWV" firstAttribute="top" secondItem="7dQ-YI-8bK" secondAttribute="top" type="default" id="PXJ-8J-Ogo"/>
+                            <constraint firstItem="8R1-H2-JWV" firstAttribute="trailing" secondItem="7dQ-YI-8bK" secondAttribute="trailing" type="default" id="SGi-Hv-Qs2"/>
+                            <constraint firstItem="8R1-H2-JWV" firstAttribute="leading" secondItem="7dQ-YI-8bK" secondAttribute="leading" type="default" id="oHa-us-L5U"/>
+                            <constraint firstItem="8R1-H2-JWV" firstAttribute="bottom" secondItem="7dQ-YI-8bK" secondAttribute="bottom" type="default" id="rzu-we-yPC"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="103-map.png" id="NBo-zk-Ebf"/>
@@ -45,7 +45,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPx-Uo-tk8">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="73" id="WfA-eX-5Pt"/>
+                                    <constraint firstAttribute="width" constant="73" id="123-nW-WfJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Log Out">
@@ -62,8 +62,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kPx-Uo-tk8" firstAttribute="centerX" secondItem="OfW-v0-3r3" secondAttribute="centerX" type="default" id="8co-xK-yRC"/>
-                            <constraint firstItem="kPx-Uo-tk8" firstAttribute="top" secondItem="OfW-v0-3r3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="B0K-Vb-wYJ"/>
+                            <constraint firstItem="kPx-Uo-tk8" firstAttribute="top" secondItem="OfW-v0-3r3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="BWN-4I-p2c"/>
+                            <constraint firstItem="kPx-Uo-tk8" firstAttribute="centerX" secondItem="OfW-v0-3r3" secondAttribute="centerX" type="default" id="uka-Lq-OkN"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Console" image="20-gear-2.png" id="yXK-Lu-e3j"/>
@@ -82,43 +82,43 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4CP-CZ-K0V">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="366-3S-A8p"/>
-                                    <constraint firstAttribute="width" constant="260" id="yoU-La-yEW"/>
+                                    <constraint firstAttribute="width" constant="260" id="fkB-hp-EgG"/>
+                                    <constraint firstAttribute="height" constant="44" id="yF2-m2-jhG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Bjn-3v-0VC">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="uHA-RA-mLH"/>
+                                    <constraint firstAttribute="height" constant="44" id="ot2-oZ-KEJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="gZl-4V-NrI">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="ls6-AH-VqP"/>
+                                    <constraint firstAttribute="height" constant="44" id="ev0-Ex-mQg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zcz-2B-2VS">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="eJ0-hv-SQz"/>
+                                    <constraint firstAttribute="height" constant="44" id="RbQ-Ss-zg7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lXz-Mg-PVo">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="PVm-AC-5Eu"/>
+                                    <constraint firstAttribute="height" constant="44" id="hZY-KQ-ZyQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gny-jY-CuM">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="152" id="EAo-AV-j4b"/>
+                                    <constraint firstAttribute="width" constant="152" id="E7r-fP-xhP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Log In">
@@ -148,25 +148,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zcz-2B-2VS" firstAttribute="leading" secondItem="gZl-4V-NrI" secondAttribute="leading" type="default" id="07V-J6-bVW"/>
-                            <constraint firstItem="rRF-yv-KDj" firstAttribute="leading" secondItem="gny-jY-CuM" secondAttribute="leading" type="default" id="1XZ-7r-vfk"/>
-                            <constraint firstItem="zcz-2B-2VS" firstAttribute="leading" secondItem="lXz-Mg-PVo" secondAttribute="leading" type="default" id="C8P-qF-HZr"/>
-                            <constraint firstAttribute="bottom" secondItem="rRF-yv-KDj" secondAttribute="bottom" constant="109" id="L6E-bO-Rdy"/>
-                            <constraint firstAttribute="bottom" secondItem="gny-jY-CuM" secondAttribute="bottom" constant="165" id="N8A-Dj-Tjb"/>
-                            <constraint firstItem="gZl-4V-NrI" firstAttribute="top" secondItem="Bjn-3v-0VC" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="OXb-KZ-VfV"/>
-                            <constraint firstItem="Bjn-3v-0VC" firstAttribute="trailing" secondItem="4CP-CZ-K0V" secondAttribute="trailing" type="default" id="P9g-1u-36L"/>
-                            <constraint firstItem="rRF-yv-KDj" firstAttribute="trailing" secondItem="gny-jY-CuM" secondAttribute="trailing" type="default" id="PSC-dl-vI1"/>
-                            <constraint firstItem="lXz-Mg-PVo" firstAttribute="centerX" secondItem="d3S-cZ-dUF" secondAttribute="centerX" type="default" id="TgO-N2-NJt"/>
-                            <constraint firstItem="lXz-Mg-PVo" firstAttribute="top" secondItem="zcz-2B-2VS" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Vex-LU-dC4"/>
-                            <constraint firstItem="Bjn-3v-0VC" firstAttribute="leading" secondItem="4CP-CZ-K0V" secondAttribute="leading" type="default" id="aVY-9c-xgn"/>
-                            <constraint firstItem="Bjn-3v-0VC" firstAttribute="trailing" secondItem="gZl-4V-NrI" secondAttribute="trailing" type="default" id="cq8-gW-gEV"/>
-                            <constraint firstItem="zcz-2B-2VS" firstAttribute="trailing" secondItem="gZl-4V-NrI" secondAttribute="trailing" type="default" id="h8k-xK-Tzy"/>
-                            <constraint firstItem="lXz-Mg-PVo" firstAttribute="trailing" secondItem="zcz-2B-2VS" secondAttribute="trailing" type="default" id="j20-jY-516"/>
-                            <constraint firstItem="lXz-Mg-PVo" firstAttribute="centerX" secondItem="gny-jY-CuM" secondAttribute="centerX" type="default" id="k3P-Ld-ocY"/>
-                            <constraint firstItem="Bjn-3v-0VC" firstAttribute="leading" secondItem="gZl-4V-NrI" secondAttribute="leading" type="default" id="lkO-yN-UYX"/>
-                            <constraint firstItem="Bjn-3v-0VC" firstAttribute="top" secondItem="4CP-CZ-K0V" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="sR2-TK-hkY"/>
-                            <constraint firstItem="zcz-2B-2VS" firstAttribute="top" secondItem="gZl-4V-NrI" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vvg-uR-l9J"/>
-                            <constraint firstItem="4CP-CZ-K0V" firstAttribute="top" secondItem="d3S-cZ-dUF" secondAttribute="top" constant="71" id="yj6-GK-dGu"/>
+                            <constraint firstItem="gZl-4V-NrI" firstAttribute="trailing" secondItem="zcz-2B-2VS" secondAttribute="trailing" type="default" id="6Fr-ax-svf"/>
+                            <constraint firstItem="rRF-yv-KDj" firstAttribute="leading" secondItem="gny-jY-CuM" secondAttribute="leading" type="default" id="A1B-bf-BCV"/>
+                            <constraint firstItem="Bjn-3v-0VC" firstAttribute="top" secondItem="4CP-CZ-K0V" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="M4i-ho-czG"/>
+                            <constraint firstItem="zcz-2B-2VS" firstAttribute="leading" secondItem="gZl-4V-NrI" secondAttribute="leading" type="default" id="MnE-9X-ozD"/>
+                            <constraint firstItem="4CP-CZ-K0V" firstAttribute="top" secondItem="d3S-cZ-dUF" secondAttribute="top" constant="71" id="TzN-Md-hch"/>
+                            <constraint firstItem="rRF-yv-KDj" firstAttribute="trailing" secondItem="gny-jY-CuM" secondAttribute="trailing" type="default" id="ZXQ-GC-mpY"/>
+                            <constraint firstItem="Bjn-3v-0VC" firstAttribute="trailing" secondItem="4CP-CZ-K0V" secondAttribute="trailing" type="default" id="Zcl-mM-qna"/>
+                            <constraint firstItem="lXz-Mg-PVo" firstAttribute="top" secondItem="zcz-2B-2VS" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="c9a-Zo-KVV"/>
+                            <constraint firstItem="gZl-4V-NrI" firstAttribute="trailing" secondItem="Bjn-3v-0VC" secondAttribute="trailing" type="default" id="cLX-xu-qxR"/>
+                            <constraint firstItem="zcz-2B-2VS" firstAttribute="centerX" secondItem="d3S-cZ-dUF" secondAttribute="centerX" type="default" id="eWb-rz-3g4"/>
+                            <constraint firstItem="Bjn-3v-0VC" firstAttribute="leading" secondItem="gZl-4V-NrI" secondAttribute="leading" type="default" id="g4E-5S-udR"/>
+                            <constraint firstItem="Bjn-3v-0VC" firstAttribute="leading" secondItem="4CP-CZ-K0V" secondAttribute="leading" type="default" id="lRG-Ze-csN"/>
+                            <constraint firstItem="lXz-Mg-PVo" firstAttribute="leading" secondItem="zcz-2B-2VS" secondAttribute="leading" type="default" id="mao-3Y-z6r"/>
+                            <constraint firstItem="lXz-Mg-PVo" firstAttribute="centerX" secondItem="gny-jY-CuM" secondAttribute="centerX" type="default" id="tip-d1-4ML"/>
+                            <constraint firstItem="gZl-4V-NrI" firstAttribute="top" secondItem="Bjn-3v-0VC" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="tyC-Bf-nVS"/>
+                            <constraint firstItem="lXz-Mg-PVo" firstAttribute="trailing" secondItem="zcz-2B-2VS" secondAttribute="trailing" type="default" id="vzV-Na-K27"/>
+                            <constraint firstAttribute="bottom" secondItem="gny-jY-CuM" secondAttribute="bottom" constant="165" id="w8z-kR-0UV"/>
+                            <constraint firstAttribute="bottom" secondItem="rRF-yv-KDj" secondAttribute="bottom" constant="109" id="wvN-qY-9VU"/>
+                            <constraint firstItem="zcz-2B-2VS" firstAttribute="top" secondItem="gZl-4V-NrI" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="yeA-c3-msz"/>
                         </constraints>
                     </view>
                     <connections>
@@ -224,6 +224,35 @@
         <image name="103-map.png" width="26" height="21"/>
         <image name="20-gear-2.png" width="26" height="28"/>
     </resources>
+    <classes>
+        <class className="CYConsoleViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYConsoleViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="userDidLogOut:"/>
+            </relationships>
+        </class>
+        <class className="CYLogInViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYLogInViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="createAccountButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="logInButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="CYMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="map" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

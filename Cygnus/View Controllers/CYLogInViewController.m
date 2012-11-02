@@ -9,6 +9,7 @@
 #import "CYLogInViewController.h"
 #import <SSToolkit/SSHUDView.h>
 #import <SSToolkit/SSCategories.h>
+#import "UIView+Layout.h"
 
 #import "CYUser.h"
 
@@ -37,15 +38,20 @@ typedef enum
 
 @implementation CYLogInViewController
 
-- (IBAction)switchState {
+- (IBAction)switchState
+{
   if (self.currentState == CYSignUpState_Login) {
     [self.firstNameTextField fadeIn];
     [self.lastNameTextField fadeIn];
     [self.emailTextField fadeIn];
-    
     [self.logInButton setTitle:@"Sign Up" forState:UIControlStateNormal];
     [self.createAccountButton setTitle:@"Go Back" forState:UIControlStateNormal];
     self.currentState = CYSignUpState_CreateAccount;
+    [UIView animateWithDuration:0.33 delay:0.0 options:UIViewAnimationCurveEaseInOut animations:^{
+        self.logInButton.center = CGPointMake(0, 0);
+    } completion:NULL];
+      
+
     
   } else {
     [self.firstNameTextField fadeOut];
@@ -55,6 +61,7 @@ typedef enum
     [self.logInButton setTitle:@"Log In" forState:UIControlStateNormal];
     [self.createAccountButton setTitle:@"Create Account" forState:UIControlStateNormal];
     self.currentState = CYSignUpState_Login;
+
   }
 
 }
@@ -141,14 +148,14 @@ typedef enum
   if (self.currentState == CYSignUpState_Login) {
     [CYUser logInWithUsernameInBackground:self.usernameTextField.text
                                  password:self.passwordTextField.text
-                                    block:^(BOOL succeeded, NSError *error) {
-                                      if (succeeded) {
-                                        [self.HUDActivityView completeAndDismissWithTitle:nil];
-                                        [self dismiss];
-                                      } else {
-                                        [self.HUDActivityView failAndDismissWithTitle:nil];
-                                      }
-    }];
+                                    block:^(CYUser *user, NSError *error) {
+                                       if (user) {
+                                           [self.HUDActivityView completeAndDismissWithTitle:nil];
+                                           [self dismiss];
+                                       } else {
+                                           [self.HUDActivityView failAndDismissWithTitle:nil];
+                                       }
+                                   }];
     
   } else {
     CYUser *newUser = [CYUser userWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
