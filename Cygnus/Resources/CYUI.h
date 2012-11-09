@@ -13,8 +13,9 @@
 
 @interface CYUI : NSObject
 
-
++ (NSString *)ordinalSuffixFromNumber:(NSUInteger)n;
 + (BOOL)isiPhone5;
 + (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSize:(CGSize)newSize;
++ (UIBezierPath*)bezierPathWithCurvedShadowForRect:(CGRect)rect;
 
 @end

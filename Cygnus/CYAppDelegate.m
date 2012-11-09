@@ -17,12 +17,12 @@
                 clientKey:@"e3fP5YlVRNIqev4CoH53d22JAeXEqiCWJBSpygJk"];
   
   if ([CYUser currentUser]) {
-    // do stuff
+      [[CYUser currentUser] maps];
+      [[CYUser currentUser] groups];
   } else {
     [CYLogInViewController present];
   }
   
-  self.window.frame = [UIScreen mainScreen].bounds;
   return YES;
 }
 

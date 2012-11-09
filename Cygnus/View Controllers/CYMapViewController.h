@@ -7,11 +7,13 @@
 //
 
 #import "AwesomeMenu.h"
+//@property (nonatomic, strong) AwesomeMenu *menu;
+
+@class CYMapView;
 
 @interface CYMapViewController : UIViewController <MKMapViewDelegate, AwesomeMenuDelegate>
 
-@property (nonatomic, weak) IBOutlet MKMapView *map;
-@property (nonatomic, strong) AwesomeMenu *menu;
+@property (nonatomic, weak) IBOutlet CYMapView *mapView;
 
 - (void)toggleBeaconHUD;
 + (CYMapViewController *)currentVC;

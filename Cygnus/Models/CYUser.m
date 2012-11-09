@@ -40,7 +40,7 @@ static CYUser *_currentUser = nil;
   if ((self = [super init])) {
     self.backingUser = [PFUser user];
     self.range = CYBeaconRangeLocal;
-    self.status = CYBeaconStatusActive;
+    self.status = CYBeaconStatusActive;    
   }
   return self;
 }
@@ -62,7 +62,13 @@ static CYUser *_currentUser = nil;
   PFUser *user = [PFUser user];
   user.username = username;
   user.password = password;
-  return [CYUser userWithUser:user];
+  CYUser *newUser = [CYUser userWithUser:user];
+
+  PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+  PFObject *defaultGroup = [query getObjectWithId:@"RKXicgkfyG"];
+  [[CYGroup groupWithObject:defaultGroup] addMember:newUser];
+  
+  return newUser;
 }
 
 #pragma mark - Sign up and log in
