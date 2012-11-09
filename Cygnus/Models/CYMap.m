@@ -128,23 +128,27 @@ static NSString *const CYMapGroupKey      = @"group";
 - (void)addPoint:(CYPoint *)point {
   if ([self._points containsObject:point]) return;
 
-  PFRelation *pointsRelation = [self.backingObject relationforKey:CYMapPointsKey];
-  [pointsRelation addObject:point.backingObject];
+  [[self.backingObject relationforKey:CYMapPointsKey] addObject:point.backingObject];
   [self save];
 
   point.map = self;
+
   [self._points addObject:point];
 }
 
 - (void)removePoint:(CYPoint *)point {
   if (![self._points containsObject:point]) return;
 
-  PFRelation *pointsRelation = [self.backingObject relationforKey:CYMapPointsKey];
-  [pointsRelation removeObject:point.backingObject];
+  [[self.backingObject relationforKey:CYMapPointsKey] removeObject:point.backingObject];
   [self save];
 
   point.map = nil;
+
   [self._points removeObject:point];
+}
+
+- (NSSet *)owners {
+  return self._owners;
 }
 
 - (NSSet *)ownersWithUpdateBlock:(CYUsersResultBlock)block {
@@ -172,8 +176,7 @@ static NSString *const CYMapGroupKey      = @"group";
 - (void)addOwner:(CYUser *)owner {
   if ([self._owners containsObject:owner]) return;
 
-  PFRelation *ownersRelation = [self.backingObject relationforKey:CYMapOwnersKey];
-  [ownersRelation addObject:owner.backingUser];
+  [[self.backingObject relationforKey:CYMapOwnersKey] addObject:owner.backingUser];
   [self save];
 
   [self._owners addObject:owner];
@@ -182,8 +185,7 @@ static NSString *const CYMapGroupKey      = @"group";
 - (void)removeOwner:(CYUser *)owner {
   if (![self._owners containsObject:owner]) return;
 
-  PFRelation *ownersRelation = [self.backingObject relationforKey:CYMapOwnersKey];
-  [ownersRelation removeObject:owner.backingUser];
+  [[self.backingObject relationforKey:CYMapOwnersKey] removeObject:owner.backingUser];
   [self save];
 
   [self._owners removeObject:owner];
