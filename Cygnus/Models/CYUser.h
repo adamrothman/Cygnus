@@ -42,9 +42,6 @@ static NSString *const CYUserMapsKey      = @"maps";
 @property (nonatomic) CYBeaconRange range;
 @property (nonatomic) CYBeaconStatus status;
 
-@property (nonatomic, readonly) NSSet *groups;
-@property (nonatomic, readonly) NSSet *maps;
-
 + (CYUser *)userWithUser:(PFUser *)user;
 + (CYUser *)userWithUsername:(NSString *)username password:(NSString *)password;
 + (CYUser *)currentUser;
@@ -57,7 +54,10 @@ static NSString *const CYUserMapsKey      = @"maps";
 + (void)logOut;
 
 // relations
+- (NSSet *)groups;
 - (NSSet *)groupsWithUpdateBlock:(CYGroupsResultBlock)block;
+
+- (NSSet *)maps;
 - (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block;
 
 @end
