@@ -36,6 +36,7 @@ typedef enum {
 - (void)addMember:(CYUser *)member;
 - (void)removeMember:(CYUser *)member;
 
+
 - (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block;
 - (void)addMap:(CYMap *)map;
 - (void)removeMap:(CYMap *)map;

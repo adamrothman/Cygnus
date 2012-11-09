@@ -19,5 +19,6 @@
 @property (nonatomic)   BOOL canEdit;
 
 - (void)updateBeacon:(CLLocationCoordinate2D)beaconCoordinate;
+- (void)addPoint:(CYPoint *)point;
 
 @end

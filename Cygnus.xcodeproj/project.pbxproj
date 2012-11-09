@@ -409,8 +409,8 @@
 				66C29A57164CDEBF00DC8DBA /* CYBlocks.h */,
 				6644E246163F312700537778 /* CYNotifications.h */,
 				662782611633EEC200F1D0E7 /* MainStoryboard.storyboard */,
-				669C1F8E163DC702001F1C18 /* Models */,
 				66A1B30C16387F7B00B9DCEC /* View Controllers */,
+				669C1F8E163DC702001F1C18 /* Models */,
 				662782501633EEC200F1D0E7 /* Supporting Files */,
 			);
 			path = Cygnus;

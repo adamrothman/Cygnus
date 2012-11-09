@@ -48,17 +48,26 @@
     pinView.canShowCallout = YES;
     pinView.animatesDrop = YES;
   }
-  
   return pinView;
 }
 
 
+- (void)updateBeacon:(CLLocationCoordinate2D)beaconCoordinate
+{
+  MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
+  annot.coordinate = beaconCoordinate;
+  if (self.beaconAnnotation) [self removeAnnotation:self.beaconAnnotation];
+  self.beaconAnnotation = annot;
+  [self addAnnotation:annot];
+  //assumes that the beacon is being stored on User.
+}
 
-
-
-
-
-
+- (void)addPoint:(CYPoint *)point
+{
+  MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
+  annot.coordinate = CLLocationCoordinate2DMake(point.location.latitude, point.location.longitude);
+  [self addAnnotation:annot];
+}
 
 
 - (void)setUp

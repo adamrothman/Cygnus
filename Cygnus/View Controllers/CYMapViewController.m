@@ -46,7 +46,30 @@ CYMapViewController *_currentVC;
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-    
+  
+  CYGroup __block *defaultGroup = nil;
+  PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    if (!error) {
+      PFObject *group = [objects lastObject];
+      defaultGroup = [CYGroup groupWithObject:group];
+      [defaultGroup addMember:[CYUser currentUser]];
+      [[CYUser currentUser] save];
+      
+      PFQuery *mapQuery = [PFQuery queryWithClassName:@"Map"];
+      [mapQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+          for (PFObject *object in objects) {
+            [defaultGroup addMap:[CYMap mapWithObject:object]];
+          }
+        } else {
+          NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+      }];      
+    } else {
+      NSLog(@"Error: %@ %@", error, [error userInfo]);
+    }
+  }];
 }
 
 - (void)didReceiveMemoryWarning {
