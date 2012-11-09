@@ -19,6 +19,9 @@ static NSString *const CYMapGroupKey      = @"group";
 
 @interface CYMap ()
 
+@property (nonatomic, strong) NSMutableSet *points;
+@property (nonatomic, strong) NSMutableSet *owners;
+
 @property (nonatomic, strong) PFQuery *pointsQuery;
 @property (nonatomic, strong) PFQuery *ownersQuery;
 
@@ -40,6 +43,17 @@ static NSString *const CYMapGroupKey      = @"group";
 
 + (CYMap *)mapWithObject:(PFObject *)object {
   return [[CYMap alloc] initWithObject:object];
+}
+
+- (void)refreshWithBlock:(CYMapResultBlock)block {
+  [self.backingObject refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      if (block) block([CYMap mapWithObject:object], nil);
+    }
+  }];
 }
 
 #pragma mark - Properties
@@ -80,24 +94,31 @@ static NSString *const CYMapGroupKey      = @"group";
   return _group;
 }
 
-- (void)fetchPoints {
+- (void)setGroup:(CYGroup *)group {
+  _group = group;
+  [self.backingObject setObject:_group.backingObject forKey:CYMapGroupKey];
+  [self save];
+}
+
+- (NSSet *)pointsWithUpdateBlock:(CYPointsResultBlock)block {
   if (!self.pointsQuery) {
     self.pointsQuery = [[self.backingObject relationforKey:CYMapPointsKey] query];
-    self.pointsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
   }
 
   [self.pointsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    NSMutableArray *points = [NSMutableArray arrayWithCapacity:objects.count];
-    for (PFObject *pointObject in objects) {
-      [points addObject:[CYPoint pointWithObject:pointObject]];
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      self.points = [NSMutableSet setWithCapacity:objects.count];
+      for (PFObject *pointObject in objects) {
+        [self.points addObject:[CYPoint pointWithObject:pointObject]];
+      }
+      if (block) block(self.points, nil);
     }
-    _points = points;
   }];
-}
 
-- (NSArray *)points {
-  [self fetchPoints];
-  return _points;
+  return self.points;
 }
 
 - (void)addPoint:(CYPoint *)point {
@@ -107,9 +128,8 @@ static NSString *const CYMapGroupKey      = @"group";
   [pointsRelation addObject:point.backingObject];
   [self save];
 
-  NSMutableArray *points = [NSMutableArray arrayWithArray:_points];
-  [points addObject:point];
-  _points = points;
+  point.map = self;
+  [self.points addObject:point];
 }
 
 - (void)removePoint:(CYPoint *)point {
@@ -119,29 +139,30 @@ static NSString *const CYMapGroupKey      = @"group";
   [pointsRelation removeObject:point.backingObject];
   [self save];
 
-  NSMutableArray *points = [NSMutableArray arrayWithArray:_points];
-  [points removeObject:point];
-  _points = points;
+  point.map = nil;
+  [self.points removeObject:point];
 }
 
-- (void)fetchOwners {
+- (NSSet *)ownersWithUpdateBlock:(CYUsersResultBlock)block {
   if (!self.ownersQuery) {
     self.ownersQuery = [[self.backingObject relationforKey:CYMapOwnersKey] query];
     self.ownersQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
   }
 
   [self.ownersQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    NSMutableArray *owners = [NSMutableArray arrayWithCapacity:objects.count];
-    for (PFUser *userObject in objects) {
-      [owners addObject:[CYUser userWithUser:userObject]];
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      self.owners = [NSMutableSet setWithCapacity:objects.count];
+      for (PFUser *userObject in objects) {
+        [self.owners addObject:[CYUser userWithUser:userObject]];
+      }
+      if (block) block(self.owners, nil);
     }
-    _owners = owners;
   }];
-}
 
-- (NSArray *)owners {
-  [self fetchOwners];
-  return _owners;
+  return self.owners;
 }
 
 - (void)addOwner:(CYUser *)owner {
@@ -151,9 +172,7 @@ static NSString *const CYMapGroupKey      = @"group";
   [ownersRelation addObject:owner.backingUser];
   [self save];
 
-  NSMutableArray *owners = [NSMutableArray arrayWithArray:_owners];
-  [owners addObject:owner];
-  _owners = owners;
+  [self.owners addObject:owner];
 }
 
 - (void)removeOwner:(CYUser *)owner {
@@ -163,9 +182,7 @@ static NSString *const CYMapGroupKey      = @"group";
   [ownersRelation removeObject:owner.backingUser];
   [self save];
 
-  NSMutableArray *owners = [NSMutableArray arrayWithArray:_owners];
-  [owners removeObject:owner];
-  _owners = owners;
+  [self.owners removeObject:owner];
 }
 
 @end

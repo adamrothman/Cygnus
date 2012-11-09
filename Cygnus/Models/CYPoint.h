@@ -18,9 +18,10 @@
 @property (nonatomic, strong) NSString *summary;
 @property (nonatomic, strong) NSString *imageURLString;
 
-// relations
 @property (nonatomic, strong) CYMap *map;
 
 + (CYPoint *)pointWithObject:(PFObject *)object;
+
+- (void)refreshWithBlock:(CYPointResultBlock)block;
 
 @end
