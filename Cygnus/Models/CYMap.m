@@ -42,7 +42,9 @@ static NSString *const CYMapGroupKey      = @"group";
 }
 
 + (CYMap *)mapWithObject:(PFObject *)object {
-  return [[CYMap alloc] initWithObject:object];
+  CYMap *map = [[CYMap alloc] initWithObject:object];
+  [map pointsWithUpdateBlock:nil]; // load the points ASAP
+  return map;
 }
 
 - (void)refreshWithBlock:(CYMapResultBlock)block {
