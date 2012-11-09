@@ -18,9 +18,9 @@ static NSString *const CYGroupMapsKey       = @"maps";
 
 @interface CYGroup ()
 
-@property (nonatomic, strong) NSMutableSet *owners;
-@property (nonatomic, strong) NSMutableSet *members;
-@property (nonatomic, strong) NSMutableSet *maps;
+@property (nonatomic, strong) NSMutableSet *_owners;
+@property (nonatomic, strong) NSMutableSet *_members;
+@property (nonatomic, strong) NSMutableSet *_maps;
 
 @property (nonatomic, strong) PFQuery *ownersQuery;
 @property (nonatomic, strong) PFQuery *membersQuery;
@@ -30,8 +30,8 @@ static NSString *const CYGroupMapsKey       = @"maps";
 
 @implementation CYGroup
 
-@synthesize owners=_owners, members=_members, maps=_maps;
-@synthesize ownersQuery=_ownersQuery, membersQuery=_membersQuery, mapsQuery=_mapsQuery;
+@synthesize _owners, _members, _maps;
+@synthesize ownersQuery, membersQuery, mapsQuery;
 
 #pragma mark - Object creation and update
 
@@ -89,6 +89,10 @@ static NSString *const CYGroupMapsKey       = @"maps";
 
 #pragma mark - Relations
 
+- (NSSet *)owners {
+  return self._owners;
+}
+
 - (NSSet *)ownersWithUpdateBlock:(CYUsersResultBlock)block {
   if (!self.ownersQuery) {
     self.ownersQuery = [[self.backingObject relationforKey:CYGroupOwnersKey] query];
@@ -99,36 +103,33 @@ static NSString *const CYGroupMapsKey       = @"maps";
       NSLog(@"%@\n", error);
       if (block) block(nil, error);
     } else {
-      self.owners = [NSMutableSet setWithCapacity:objects.count];
+      self._owners = [NSMutableSet setWithCapacity:objects.count];
       for (PFUser *ownerObject in objects) {
-        [self.owners addObject:[CYUser userWithUser:ownerObject]];
+        [self._owners addObject:[CYUser userWithUser:ownerObject]];
       }
-      if (block) block(self.owners, nil);
+      if (block) block(self._owners, nil);
     }
   }];
 
-  return self.owners;
+  return self._owners;
 }
 
 - (void)addOwner:(CYUser *)owner {
-  if ([_owners containsObject:owner]) return;
+  if ([self._owners containsObject:owner]) return;
 
-  PFRelation *ownersRelation = [self.backingObject relationforKey:CYGroupOwnersKey];
-  [ownersRelation addObject:owner.backingUser];
+  [[self.backingObject relationforKey:CYGroupOwnersKey] addObject:owner.backingUser];
   [self save];
 
-  // keep local copy up to date
-  [self.owners addObject:owner];
+  [self._owners addObject:owner];
 }
 
 - (void)removeOwner:(CYUser *)owner {
-  if (![_owners containsObject:owner]) return;
+  if (![self._owners containsObject:owner]) return;
 
-  PFRelation *ownersRelation = [self.backingObject relationforKey:CYGroupOwnersKey];
-  [ownersRelation removeObject:owner.backingUser];
+  [[self.backingObject relationforKey:CYGroupOwnersKey] removeObject:owner.backingUser];
   [self save];
 
-  [self.owners removeObject:owner];
+  [self._owners removeObject:owner];
 }
 
 - (NSSet *)membersWithUpdateBlock:(CYUsersResultBlock)block {
@@ -141,35 +142,39 @@ static NSString *const CYGroupMapsKey       = @"maps";
       NSLog(@"%@\n", error);
       if (block) block(nil, error);
     } else {
-      self.members = [NSMutableSet setWithCapacity:objects.count];
+      self._members = [NSMutableSet setWithCapacity:objects.count];
       for (PFUser *memberObject in objects) {
-        [self.members addObject:[CYUser userWithUser:memberObject]];
+        [self._members addObject:[CYUser userWithUser:memberObject]];
       }
-      if (block) block(self.members, nil);
+      if (block) block(self._members, nil);
     }
   }];
 
-  return self.members;
+  return self._members;
 }
 
 - (void)addMember:(CYUser *)member {
-  if ([_members containsObject:member]) return;
+  if ([self._members containsObject:member]) return;
 
-  PFRelation *membersRelation = [self.backingObject relationforKey:CYGroupMembersKey];
-  [membersRelation addObject:member.backingUser];
+  [[self.backingObject relationforKey:CYGroupMembersKey] addObject:member.backingUser];
   [self save];
 
-  [self.members addObject:member];
+  [[member.backingUser relationforKey:CYUserGroupsKey] addObject:self.backingObject];
+  [member save];
+
+  [self._members addObject:member];
 }
 
 - (void)removeMember:(CYUser *)member {
-  if (![_members containsObject:member]) return;
+  if (![self._members containsObject:member]) return;
 
-  PFRelation *membersRelation = [self.backingObject relationforKey:CYGroupMembersKey];
-  [membersRelation removeObject:member.backingUser];
+  [[self.backingObject relationforKey:CYGroupMembersKey] removeObject:member.backingUser];
   [self save];
 
-  [self.members removeObject:member];
+  [[member.backingUser relationforKey:CYUserGroupsKey] removeObject:self.backingObject];
+  [member save];
+
+  [self._members removeObject:member];
 }
 
 - (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block {
@@ -182,37 +187,37 @@ static NSString *const CYGroupMapsKey       = @"maps";
       NSLog(@"%@\n", error);
       if (block) block(nil, error);
     } else {
-      self.maps = [NSMutableSet setWithCapacity:objects.count];
+      self._maps = [NSMutableSet setWithCapacity:objects.count];
       for (PFObject *mapObject in objects) {
-        [self.maps addObject:[CYMap mapWithObject:mapObject]];
+        [self._maps addObject:[CYMap mapWithObject:mapObject]];
       }
-      if (block) block(self.maps, nil);
+      if (block) block(self._maps, nil);
     }
   }];
 
-  return self.maps;
+  return self._maps;
 }
 
 - (void)addMap:(CYMap *)map {
-  if ([_maps containsObject:map]) return;
+  if ([self._maps containsObject:map]) return;
 
-  PFRelation *mapsRelation = [self.backingObject relationforKey:CYGroupMapsKey];
-  [mapsRelation addObject:map.backingObject];
+  [[self.backingObject relationforKey:CYGroupMapsKey] addObject:map.backingObject];
   [self save];
 
   map.group = self;
-  [self.maps addObject:map];
+
+  [self._maps addObject:map];
 }
 
 - (void)removeMap:(CYMap *)map {
-  if (![_maps containsObject:map]) return;
+  if (![self._maps containsObject:map]) return;
 
-  PFRelation *mapsRelation = [self.backingObject relationforKey:CYGroupMapsKey];
-  [mapsRelation removeObject:map.backingObject];
+  [[self.backingObject relationforKey:CYGroupMapsKey] removeObject:map.backingObject];
   [self save];
 
   map.group = nil;
-  [self.maps removeObject:map];
+
+  [self._maps removeObject:map];
 }
 
 @end

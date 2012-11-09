@@ -23,6 +23,10 @@ typedef enum {
 @property (nonatomic, strong) NSString *summary;
 @property (nonatomic) CYGroupVisibility visibility;
 
+@property (nonatomic, readonly) NSSet *owners;
+@property (nonatomic, readonly) NSSet *members;
+@property (nonatomic, readonly) NSSet *maps;
+
 + (CYGroup *)groupWithObject:(PFObject *)object;
 
 - (void)refreshWithBlock:(CYGroupResultBlock)block;
