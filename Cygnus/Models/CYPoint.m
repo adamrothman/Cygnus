@@ -32,6 +32,17 @@ static NSString *const CYPointMapKey = @"map";
   return [[CYPoint alloc] initWithObject:object];
 }
 
+- (void)refreshWithBlock:(CYPointResultBlock)block {
+  [self.backingObject refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      if (block) block([CYPoint pointWithObject:object], nil);
+    }
+  }];
+}
+
 #pragma mark - Properties
 
 - (PFGeoPoint *)location {
@@ -76,6 +87,12 @@ static NSString *const CYPointMapKey = @"map";
   if (!_map) _map = [CYMap mapWithObject:[self.backingObject objectForKey:CYPointMapKey]];
   [_map.backingObject fetchIfNeeded];
   return _map;
+}
+
+- (void)setMap:(CYMap *)map {
+  _map = map;
+  [self.backingObject setObject:_map.backingObject forKey:CYPointMapKey];
+  [self save];
 }
 
 @end

@@ -24,8 +24,11 @@ static CYUser *_currentUser = nil;
 
 @interface CYUser ()
 
-@property PFQuery *groupsQuery;
-@property PFQuery *mapsQuery;
+@property (nonatomic, retain) NSMutableSet *groups;
+@property (nonatomic, retain) NSMutableSet *maps;
+
+@property (nonatomic, retain) PFQuery *groupsQuery;
+@property (nonatomic, retain) PFQuery *mapsQuery;
 
 @end
 
@@ -65,18 +68,29 @@ static CYUser *_currentUser = nil;
   return [CYUser userWithUser:user];
 }
 
-#pragma mark - Sign up and log in
-
 + (CYUser *)currentUser {
   if ([PFUser currentUser]) {
     if (!_currentUser) {
       _currentUser = [CYUser userWithUser:[PFUser currentUser]];
     }
-  return _currentUser;
+    return _currentUser;
   } else {
     return nil;
   }
 }
+
+- (void)refreshWithBlock:(CYUserResultBlock)block {
+  [self.backingUser refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      if (block) block([CYUser userWithUser:(PFUser *)object], nil);
+    }
+  }];
+}
+
+#pragma mark - Sign up and log in
 
 - (void)signUpInBackgroundWithBlock:(CYBooleanResultBlock)block {
   [self.backingUser signUpInBackgroundWithBlock:block];
@@ -167,47 +181,47 @@ static CYUser *_currentUser = nil;
 
 #pragma mark - Relations
 
-// these things get fetched in the background when requested
-// consumers should use KVO to be notified when they update
-
-- (void)fetchGroups {
+// return cached groups data right away, then call block if provided on network results
+- (NSSet *)groupsWithUpdateBlock:(CYGroupsResultBlock)block {
   if (!self.groupsQuery) {
     self.groupsQuery = [[self.backingUser relationforKey:CYUserGroupsKey] query];
-    self.groupsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
   }
 
   [self.groupsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    NSMutableArray *groups = [NSMutableArray arrayWithCapacity:objects.count];
-    for (PFObject *groupObject in objects) {
-      [groups addObject:[CYGroup groupWithObject:groupObject]];
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      self.groups = [NSMutableSet setWithCapacity:objects.count];
+      for (PFObject *groupObject in objects) {
+        [self.groups addObject:[CYGroup groupWithObject:groupObject]];
+      }
+      if (block) block(self.groups, nil);
     }
-    _groups = groups;
   }];
+
+  return self.groups;
 }
 
-- (NSArray *)groups {
-  [self fetchGroups];
-  return _groups;
-}
-
-- (void)fetchMaps {
+- (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block {
   if (!self.mapsQuery) {
     self.mapsQuery = [[self.backingUser relationforKey:CYUserMapsKey] query];
-    self.mapsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
   }
 
   [self.mapsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    NSMutableArray *maps = [NSMutableArray arrayWithCapacity:objects.count];
-    for (PFObject *mapObject in objects) {
-      [maps addObject:[CYMap mapWithObject:mapObject]];
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      self.maps = [NSMutableSet setWithCapacity:objects.count];
+      for (PFObject *mapObject in objects) {
+        [self.maps addObject:[CYMap mapWithObject:mapObject]];
+      }
+      if (block) block(self.maps, nil);
     }
-    _maps = maps;
   }];
-}
 
-- (NSArray *)maps {
-  [self fetchMaps];
-  return _maps;
+  return self.maps;
 }
 
 @end

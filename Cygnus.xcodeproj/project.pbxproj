@@ -262,6 +262,7 @@
 		66A1B36E1638AC8100B9DCEC /* ARTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTextField.m; sourceTree = "<group>"; };
 		66A1B36F1638AC8100B9DCEC /* ARTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTextView.h; sourceTree = "<group>"; };
 		66A1B3701638AC8100B9DCEC /* ARTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTextView.m; sourceTree = "<group>"; };
+		66C29A57164CDEBF00DC8DBA /* CYBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYBlocks.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +403,7 @@
 			children = (
 				662782581633EEC200F1D0E7 /* CYAppDelegate.h */,
 				662782591633EEC200F1D0E7 /* CYAppDelegate.m */,
+				66C29A57164CDEBF00DC8DBA /* CYBlocks.h */,
 				6644E246163F312700537778 /* CYNotifications.h */,
 				662782611633EEC200F1D0E7 /* MainStoryboard.storyboard */,
 				669C1F8E163DC702001F1C18 /* Models */,
@@ -476,14 +478,14 @@
 			children = (
 				669C1FA2163DF8FD001F1C18 /* CYObject.h */,
 				669C1FA3163DF8FD001F1C18 /* CYObject.m */,
-				669C1F8F163DC75E001F1C18 /* CYUser.h */,
-				669C1F90163DC75E001F1C18 /* CYUser.m */,
 				669C1F9F163DDDBF001F1C18 /* CYGroup.h */,
 				669C1FA0163DDDBF001F1C18 /* CYGroup.m */,
 				669C1F92163DC906001F1C18 /* CYMap.h */,
 				669C1F93163DC906001F1C18 /* CYMap.m */,
 				669C1F95163DC99C001F1C18 /* CYPoint.h */,
 				669C1F96163DC99C001F1C18 /* CYPoint.m */,
+				669C1F8F163DC75E001F1C18 /* CYUser.h */,
+				669C1F90163DC75E001F1C18 /* CYUser.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
