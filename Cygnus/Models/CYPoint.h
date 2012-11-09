@@ -11,7 +11,7 @@
 
 @class CYMap;
 
-@interface CYPoint : CYObject
+@interface CYPoint : CYObject <MKAnnotation>
 
 @property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic, strong) NSString *name;
@@ -19,6 +19,11 @@
 @property (nonatomic, strong) NSString *imageURLString;
 
 @property (nonatomic, strong) CYMap *map;
+
+// MKAnnotation
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) NSString *subtitle;
 
 + (CYPoint *)pointWithObject:(PFObject *)object;
 
