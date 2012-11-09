@@ -43,7 +43,7 @@ static NSString *const CYUserMapsKey      = @"maps";
 @property (nonatomic) CYBeaconStatus status;
 
 + (CYUser *)userWithUser:(PFUser *)user;
-+ (CYUser *)userWithUsername:(NSString *)username password:(NSString *)password;
++ (CYUser *)newUserWithUsername:(NSString *)username password:(NSString *)password;
 + (CYUser *)currentUser;
 
 - (void)refreshWithBlock:(CYUserResultBlock)block;

@@ -42,6 +42,7 @@ static NSString *const CYGroupMapsKey       = @"maps";
   return self;
 }
 
+
 + (CYGroup *)groupWithObject:(PFObject *)object {
   CYGroup *group = [[CYGroup alloc] initWithObject:object];
   return group;

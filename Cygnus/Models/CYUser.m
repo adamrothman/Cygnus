@@ -58,18 +58,24 @@ static CYUser *_currentUser = nil;
   return [[CYUser alloc] initWithUser:user];
 }
 
-+ (CYUser *)userWithUsername:(NSString *)username password:(NSString *)password {
++ (CYUser *)newUserWithUsername:(NSString *)username password:(NSString *)password
+{
   PFUser *user = [PFUser user];
   user.username = username;
   user.password = password;
-  CYUser *newUser = [CYUser userWithUser:user];
-
-  PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-  PFObject *defaultGroup = [query getObjectWithId:@"RKXicgkfyG"];
-  [[CYGroup groupWithObject:defaultGroup] addMember:newUser];
+  NSError *error;
+  [user signUp:&error];
+  if (error) return nil;
   
+  CYUser *newUser = [CYUser userWithUser:user];
+  PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+  CYGroup *publicGroup = [CYGroup groupWithObject:[query getObjectWithId:@"RKXicgkfyG"]];
+  [publicGroup addMember:newUser];
   return newUser;
 }
+
+  
+
 
 + (CYUser *)currentUser {
   if ([PFUser currentUser]) {

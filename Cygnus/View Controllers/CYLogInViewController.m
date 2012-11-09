@@ -105,18 +105,16 @@ typedef enum {
       }
     }];
   } else {
-    CYUser *newUser = [CYUser userWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
-    newUser.firstName = self.firstNameTextField.text;
-    newUser.lastName = self.lastNameTextField.text;
-    newUser.email = self.emailTextField.text;
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-      if (succeeded) {
+    CYUser *newUser = [CYUser newUserWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
+    if (newUser) {
+        newUser.firstName = self.firstNameTextField.text;
+        newUser.lastName = self.lastNameTextField.text;
+        newUser.email = self.emailTextField.text;
         [self.HUDActivityView completeAndDismissWithTitle:nil];
         [self dismiss];
-      } else {
+    } else {
         [self.HUDActivityView failAndDismissWithTitle:nil];
-      }
-    }];
+    }
   }
 }
 
