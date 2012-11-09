@@ -7,6 +7,8 @@
 //
 
 #import "CYObject.h"
+#import "CYGroup.h"
+#import "CYMap.h"
 
 typedef enum {
   CYBeaconStatusManual = 0,
@@ -19,11 +21,6 @@ typedef enum {
   CYBeaconRangeCity = 10,
   CYBeaconRangeMetro = 50,
 } CYBeaconRange;
-
-@class CYUser;
-
-typedef void(^CYBooleanResultBlock)(BOOL succeeded, NSError *error);
-typedef void(^CYUserResultBlock)(CYUser *user, NSError *error);
 
 @interface CYUser : CYObject
 
@@ -42,18 +39,19 @@ typedef void(^CYUserResultBlock)(CYUser *user, NSError *error);
 @property (nonatomic) CYBeaconRange range;
 @property (nonatomic) CYBeaconStatus status;
 
-// relations
-@property (nonatomic, readonly) NSArray *groups;
-@property (nonatomic, readonly) NSArray *maps;
-
 + (CYUser *)userWithUser:(PFUser *)user;
 + (CYUser *)userWithUsername:(NSString *)username password:(NSString *)password;
-
 + (CYUser *)currentUser;
+
+- (void)refreshWithBlock:(CYUserResultBlock)block;
 
 - (void)signUpInBackgroundWithBlock:(CYBooleanResultBlock)block;
 
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(CYUserResultBlock)block;
 + (void)logOut;
+
+// relations
+- (NSSet *)groupsWithUpdateBlock:(CYGroupsResultBlock)block;
+- (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block;
 
 @end
