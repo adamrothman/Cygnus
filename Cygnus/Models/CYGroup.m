@@ -132,6 +132,10 @@ static NSString *const CYGroupMapsKey       = @"maps";
   [self._owners removeObject:owner];
 }
 
+- (NSSet *)members {
+  return self._members;
+}
+
 - (NSSet *)membersWithUpdateBlock:(CYUsersResultBlock)block {
   if (!self.membersQuery) {
     self.membersQuery = [[self.backingObject relationforKey:CYGroupMembersKey] query];
@@ -175,6 +179,10 @@ static NSString *const CYGroupMapsKey       = @"maps";
   [member save];
 
   [self._members removeObject:member];
+}
+
+- (NSSet *)maps {
+  return self._maps;
 }
 
 - (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block {
