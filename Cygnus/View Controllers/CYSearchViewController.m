@@ -129,7 +129,9 @@
   self.tableView.dataSource = self;
   
   UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(releaseFirstResponders)];
+  tgr.cancelsTouchesInView = NO;
   [self.view addGestureRecognizer:tgr];
+
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(keyboardWillShow:)
