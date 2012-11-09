@@ -25,6 +25,8 @@ typedef enum {
 @property (nonatomic) CYMapVisibility visibility;
 
 @property (nonatomic, strong) CYGroup *group;
+@property (nonatomic, readonly) NSSet *points;
+@property (nonatomic, readonly) NSSet *owners;
 
 + (CYMap *)mapWithObject:(PFObject *)object;
 
