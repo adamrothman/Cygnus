@@ -12,7 +12,7 @@
 
 @implementation CYObject
 
-@synthesize backingObject=_backingObject;
+@synthesize backingObject=_backingObject, cachePolicy;
 
 #pragma mark - Object creation and update
 

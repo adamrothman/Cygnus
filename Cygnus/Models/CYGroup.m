@@ -18,6 +18,10 @@ static NSString *const CYGroupMapsKey       = @"maps";
 
 @interface CYGroup ()
 
+@property (nonatomic, strong) NSMutableSet *owners;
+@property (nonatomic, strong) NSMutableSet *members;
+@property (nonatomic, strong) NSMutableSet *maps;
+
 @property (nonatomic, strong) PFQuery *ownersQuery;
 @property (nonatomic, strong) PFQuery *membersQuery;
 @property (nonatomic, strong) PFQuery *mapsQuery;
@@ -40,6 +44,17 @@ static NSString *const CYGroupMapsKey       = @"maps";
 
 + (CYGroup *)groupWithObject:(PFObject *)object {
   return [[CYGroup alloc] initWithObject:object];
+}
+
+- (void)refreshWithBlock:(CYGroupResultBlock)block {
+  [self.backingObject refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      if (block) block([CYGroup groupWithObject:object], nil);
+    }
+  }];
 }
 
 #pragma mark - Properties
@@ -74,24 +89,25 @@ static NSString *const CYGroupMapsKey       = @"maps";
 
 #pragma mark - Relations
 
-- (void)fetchOwners {
+- (NSSet *)ownersWithUpdateBlock:(CYUsersResultBlock)block {
   if (!self.ownersQuery) {
     self.ownersQuery = [[self.backingObject relationforKey:CYGroupOwnersKey] query];
-    self.ownersQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
   }
 
   [self.ownersQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    NSMutableArray *owners = [NSMutableArray arrayWithCapacity:objects.count];
-    for (PFUser *ownerObject in objects) {
-      [owners addObject:[CYUser userWithUser:ownerObject]];
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      self.owners = [NSMutableSet setWithCapacity:objects.count];
+      for (PFUser *ownerObject in objects) {
+        [self.owners addObject:[CYUser userWithUser:ownerObject]];
+      }
+      if (block) block(self.owners, nil);
     }
-    _owners = owners;
   }];
-}
 
-- (NSArray *)owners {
-  [self fetchOwners];
-  return _owners;
+  return self.owners;
 }
 
 - (void)addOwner:(CYUser *)owner {
@@ -102,9 +118,7 @@ static NSString *const CYGroupMapsKey       = @"maps";
   [self save];
 
   // keep local copy up to date
-  NSMutableArray *owners = [NSMutableArray arrayWithArray:_owners];
-  [owners addObject:owner];
-  _owners = owners;
+  [self.owners addObject:owner];
 }
 
 - (void)removeOwner:(CYUser *)owner {
@@ -114,29 +128,28 @@ static NSString *const CYGroupMapsKey       = @"maps";
   [ownersRelation removeObject:owner.backingUser];
   [self save];
 
-  NSMutableArray *owners = [NSMutableArray arrayWithArray:_owners];
-  [owners removeObject:owner];
-  _owners = owners;
+  [self.owners removeObject:owner];
 }
 
-- (void)fetchMembers {
+- (NSSet *)membersWithUpdateBlock:(CYUsersResultBlock)block {
   if (!self.membersQuery) {
     self.membersQuery = [[self.backingObject relationforKey:CYGroupMembersKey] query];
-    self.membersQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
   }
 
   [self.membersQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    NSMutableArray *members = [NSMutableArray arrayWithCapacity:objects.count];
-    for (PFUser *memberObject in objects) {
-      [members addObject:[CYUser userWithUser:memberObject]];
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      self.members = [NSMutableSet setWithCapacity:objects.count];
+      for (PFUser *memberObject in objects) {
+        [self.members addObject:[CYUser userWithUser:memberObject]];
+      }
+      if (block) block(self.members, nil);
     }
-    _members = members;
   }];
-}
 
-- (NSArray *)members {
-  [self fetchMembers];
-  return _members;
+  return self.members;
 }
 
 - (void)addMember:(CYUser *)member {
@@ -146,9 +159,7 @@ static NSString *const CYGroupMapsKey       = @"maps";
   [membersRelation addObject:member.backingUser];
   [self save];
 
-  NSMutableArray *members = [NSMutableArray arrayWithArray:_members];
-  [members addObject:member];
-  _members = members;
+  [self.members addObject:member];
 }
 
 - (void)removeMember:(CYUser *)member {
@@ -158,29 +169,28 @@ static NSString *const CYGroupMapsKey       = @"maps";
   [membersRelation removeObject:member.backingUser];
   [self save];
 
-  NSMutableArray *members = [NSMutableArray arrayWithArray:_members];
-  [members removeObject:member];
-  _members = members;
+  [self.members removeObject:member];
 }
 
-- (void)fetchMaps {
+- (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block {
   if (!self.mapsQuery) {
     self.mapsQuery = [[self.backingObject relationforKey:CYGroupMapsKey] query];
-    self.mapsQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
   }
 
   [self.mapsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    NSMutableArray *maps = [NSMutableArray arrayWithCapacity:objects.count];
-    for (PFObject *mapObject in objects) {
-      [maps addObject:[CYMap mapWithObject:mapObject]];
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      self.maps = [NSMutableSet setWithCapacity:objects.count];
+      for (PFObject *mapObject in objects) {
+        [self.maps addObject:[CYMap mapWithObject:mapObject]];
+      }
+      if (block) block(self.maps, nil);
     }
-   _maps = maps;
   }];
-}
 
-- (NSArray *)maps {
-  [self fetchMaps];
-  return _maps;
+  return self.maps;
 }
 
 - (void)addMap:(CYMap *)map {
@@ -190,9 +200,8 @@ static NSString *const CYGroupMapsKey       = @"maps";
   [mapsRelation addObject:map.backingObject];
   [self save];
 
-  NSMutableArray *maps = [NSMutableArray arrayWithArray:_maps];
-  [maps addObject:map];
-  _maps = maps;
+  map.group = self;
+  [self.maps addObject:map];
 }
 
 - (void)removeMap:(CYMap *)map {
@@ -202,9 +211,8 @@ static NSString *const CYGroupMapsKey       = @"maps";
   [mapsRelation removeObject:map.backingObject];
   [self save];
 
-  NSMutableArray *maps = [NSMutableArray arrayWithArray:_maps];
-  [maps removeObject:map];
-  _maps = maps;
+  map.group = nil;
+  [self.maps removeObject:map];
 }
 
 @end

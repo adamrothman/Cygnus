@@ -10,12 +10,12 @@
 #import "CYUser.h"
 #import "CYMap.h"
 
+@class CYMap, CYUser;
+
 typedef enum {
   CYGroupVisibilityPublic,
   CYGroupVisibilityPrivate
 } CYGroupVisibility;
-
-@class CYMap;
 
 @interface CYGroup : CYObject
 
@@ -23,19 +23,20 @@ typedef enum {
 @property (nonatomic, strong) NSString *summary;
 @property (nonatomic) CYGroupVisibility visibility;
 
-// relations
-@property (nonatomic, strong) NSArray *owners;
-@property (nonatomic, strong) NSArray *members;
-@property (nonatomic, strong) NSArray *maps;
-
 + (CYGroup *)groupWithObject:(PFObject *)object;
 
+- (void)refreshWithBlock:(CYGroupResultBlock)block;
+
+// relations
+- (NSSet *)ownersWithUpdateBlock:(CYUsersResultBlock)block;
 - (void)addOwner:(CYUser *)owner;
 - (void)removeOwner:(CYUser *)owner;
 
+- (NSSet *)membersWithUpdateBlock:(CYUsersResultBlock)block;
 - (void)addMember:(CYUser *)member;
 - (void)removeMember:(CYUser *)member;
 
+- (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block;
 - (void)addMap:(CYMap *)map;
 - (void)removeMap:(CYMap *)map;
 
