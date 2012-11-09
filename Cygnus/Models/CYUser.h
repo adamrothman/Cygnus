@@ -22,6 +22,9 @@ typedef enum {
   CYBeaconRangeMetro = 50,
 } CYBeaconRange;
 
+static NSString *const CYUserGroupsKey    = @"groups";
+static NSString *const CYUserMapsKey      = @"maps";
+
 @interface CYUser : CYObject
 
 @property (nonatomic, strong) PFUser *backingUser;
@@ -51,7 +54,10 @@ typedef enum {
 + (void)logOut;
 
 // relations
+- (NSSet *)groups;
 - (NSSet *)groupsWithUpdateBlock:(CYGroupsResultBlock)block;
+
+- (NSSet *)maps;
 - (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block;
 
 @end

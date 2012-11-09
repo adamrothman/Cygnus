@@ -17,15 +17,12 @@ static NSString *const CYUserStatusKey    = @"status";
 static NSString *const CYUserRangeKey     = @"range";
 static NSString *const CYUserImageURLKey  = @"image_url";
 
-static NSString *const CYUserGroupsKey    = @"groups";
-static NSString *const CYUserMapsKey      = @"maps";
-
 static CYUser *_currentUser = nil;
 
 @interface CYUser ()
 
-@property (nonatomic, retain) NSMutableSet *groups;
-@property (nonatomic, retain) NSMutableSet *maps;
+@property (nonatomic, retain) NSMutableSet *_groups;
+@property (nonatomic, retain) NSMutableSet *_maps;
 
 @property (nonatomic, retain) PFQuery *groupsQuery;
 @property (nonatomic, retain) PFQuery *mapsQuery;
@@ -34,7 +31,7 @@ static CYUser *_currentUser = nil;
 
 @implementation CYUser
 
-@synthesize backingUser=_backingUser, groups=_groups, maps=_maps;
+@synthesize backingUser=_backingUser, _groups, _maps;
 @synthesize groupsQuery=_groupsQuery, mapsQuery=_mapsQuery;
 
 #pragma mark - Object creation and update
@@ -187,6 +184,10 @@ static CYUser *_currentUser = nil;
 
 #pragma mark - Relations
 
+- (NSSet *)groups {
+  return self._groups;
+}
+
 // return cached groups data right away, then call block if provided on network results
 - (NSSet *)groupsWithUpdateBlock:(CYGroupsResultBlock)block {
   if (!self.groupsQuery) {
@@ -198,15 +199,19 @@ static CYUser *_currentUser = nil;
       NSLog(@"%@\n", error);
       if (block) block(nil, error);
     } else {
-      self.groups = [NSMutableSet setWithCapacity:objects.count];
+      self._groups = [NSMutableSet setWithCapacity:objects.count];
       for (PFObject *groupObject in objects) {
-        [self.groups addObject:[CYGroup groupWithObject:groupObject]];
+        [self._groups addObject:[CYGroup groupWithObject:groupObject]];
       }
-      if (block) block(self.groups, nil);
+      if (block) block(self._groups, nil);
     }
   }];
 
-  return self.groups;
+  return self._groups;
+}
+
+- (NSSet *)maps {
+  return self._maps;
 }
 
 - (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block {
@@ -219,15 +224,15 @@ static CYUser *_currentUser = nil;
       NSLog(@"%@\n", error);
       if (block) block(nil, error);
     } else {
-      self.maps = [NSMutableSet setWithCapacity:objects.count];
+      self._maps = [NSMutableSet setWithCapacity:objects.count];
       for (PFObject *mapObject in objects) {
-        [self.maps addObject:[CYMap mapWithObject:mapObject]];
+        [self._maps addObject:[CYMap mapWithObject:mapObject]];
       }
-      if (block) block(self.maps, nil);
+      if (block) block(self._maps, nil);
     }
   }];
 
-  return self.maps;
+  return self._maps;
 }
 
 @end

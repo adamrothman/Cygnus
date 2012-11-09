@@ -31,10 +31,12 @@ typedef enum {
 - (void)refreshWithBlock:(CYMapResultBlock)block;
 
 // relations
+- (NSSet *)points;
 - (NSSet *)pointsWithUpdateBlock:(CYPointsResultBlock)block;
 - (void)addPoint:(CYPoint *)point;
 - (void)removePoint:(CYPoint *)point;
 
+- (NSSet *)owners;
 - (NSSet *)ownersWithUpdateBlock:(CYUsersResultBlock)block;
 - (void)addOwner:(CYUser *)owner;
 - (void)removeOwner:(CYUser *)owner;

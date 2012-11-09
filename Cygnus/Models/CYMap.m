@@ -19,8 +19,8 @@ static NSString *const CYMapGroupKey      = @"group";
 
 @interface CYMap ()
 
-@property (nonatomic, strong) NSMutableSet *points;
-@property (nonatomic, strong) NSMutableSet *owners;
+@property (nonatomic, strong) NSMutableSet *_points;
+@property (nonatomic, strong) NSMutableSet *_owners;
 
 @property (nonatomic, strong) PFQuery *pointsQuery;
 @property (nonatomic, strong) PFQuery *ownersQuery;
@@ -29,7 +29,7 @@ static NSString *const CYMapGroupKey      = @"group";
 
 @implementation CYMap
 
-@synthesize group=_group, points=_points, owners=_owners;
+@synthesize group=_group, _points, _owners;
 @synthesize pointsQuery=_pointsQuery, ownersQuery=_ownersQuery;
 
 #pragma mark - Object creation and update
@@ -100,6 +100,10 @@ static NSString *const CYMapGroupKey      = @"group";
   [self save];
 }
 
+- (NSSet *)points {
+  return self._points;
+}
+
 - (NSSet *)pointsWithUpdateBlock:(CYPointsResultBlock)block {
   if (!self.pointsQuery) {
     self.pointsQuery = [[self.backingObject relationforKey:CYMapPointsKey] query];
@@ -110,37 +114,41 @@ static NSString *const CYMapGroupKey      = @"group";
       NSLog(@"%@\n", error);
       if (block) block(nil, error);
     } else {
-      self.points = [NSMutableSet setWithCapacity:objects.count];
+      self._points = [NSMutableSet setWithCapacity:objects.count];
       for (PFObject *pointObject in objects) {
-        [self.points addObject:[CYPoint pointWithObject:pointObject]];
+        [self._points addObject:[CYPoint pointWithObject:pointObject]];
       }
-      if (block) block(self.points, nil);
+      if (block) block(self._points, nil);
     }
   }];
 
-  return self.points;
+  return self._points;
 }
 
 - (void)addPoint:(CYPoint *)point {
-  if ([_points containsObject:point]) return;
+  if ([self._points containsObject:point]) return;
 
-  PFRelation *pointsRelation = [self.backingObject relationforKey:CYMapPointsKey];
-  [pointsRelation addObject:point.backingObject];
+  [[self.backingObject relationforKey:CYMapPointsKey] addObject:point.backingObject];
   [self save];
 
   point.map = self;
-  [self.points addObject:point];
+
+  [self._points addObject:point];
 }
 
 - (void)removePoint:(CYPoint *)point {
-  if (![_points containsObject:point]) return;
+  if (![self._points containsObject:point]) return;
 
-  PFRelation *pointsRelation = [self.backingObject relationforKey:CYMapPointsKey];
-  [pointsRelation removeObject:point.backingObject];
+  [[self.backingObject relationforKey:CYMapPointsKey] removeObject:point.backingObject];
   [self save];
 
   point.map = nil;
-  [self.points removeObject:point];
+
+  [self._points removeObject:point];
+}
+
+- (NSSet *)owners {
+  return self._owners;
 }
 
 - (NSSet *)ownersWithUpdateBlock:(CYUsersResultBlock)block {
@@ -154,35 +162,33 @@ static NSString *const CYMapGroupKey      = @"group";
       NSLog(@"%@\n", error);
       if (block) block(nil, error);
     } else {
-      self.owners = [NSMutableSet setWithCapacity:objects.count];
+      self._owners = [NSMutableSet setWithCapacity:objects.count];
       for (PFUser *userObject in objects) {
-        [self.owners addObject:[CYUser userWithUser:userObject]];
+        [self._owners addObject:[CYUser userWithUser:userObject]];
       }
-      if (block) block(self.owners, nil);
+      if (block) block(self._owners, nil);
     }
   }];
 
-  return self.owners;
+  return self._owners;
 }
 
 - (void)addOwner:(CYUser *)owner {
-  if ([_owners containsObject:owner]) return;
+  if ([self._owners containsObject:owner]) return;
 
-  PFRelation *ownersRelation = [self.backingObject relationforKey:CYMapOwnersKey];
-  [ownersRelation addObject:owner.backingUser];
+  [[self.backingObject relationforKey:CYMapOwnersKey] addObject:owner.backingUser];
   [self save];
 
-  [self.owners addObject:owner];
+  [self._owners addObject:owner];
 }
 
 - (void)removeOwner:(CYUser *)owner {
-  if (![_owners containsObject:owner]) return;
+  if (![self._owners containsObject:owner]) return;
 
-  PFRelation *ownersRelation = [self.backingObject relationforKey:CYMapOwnersKey];
-  [ownersRelation removeObject:owner.backingUser];
+  [[self.backingObject relationforKey:CYMapOwnersKey] removeObject:owner.backingUser];
   [self save];
 
-  [self.owners removeObject:owner];
+  [self._owners removeObject:owner];
 }
 
 @end

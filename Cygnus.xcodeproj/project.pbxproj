@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4E6DFF7D1643EA5F00AB180C /* CYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */; };
 		4E6DFF9B1643F3A600AB180C /* NSAttributedString+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4E6DFF9E1643F4DF00AB180C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6DFF9D1643F4DF00AB180C /* CoreText.framework */; };
 		4E6DFFA11643FC1100AB180C /* CYConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */; };
 		4EEB960B163DDE3500D67785 /* CYLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB960A163DDE3500D67785 /* CYLogInViewController.m */; };
 		4EEB9626163DF84900D67785 /* NSArray+Accessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB961A163DF84900D67785 /* NSArray+Accessing.m */; };
@@ -94,6 +93,7 @@
 		66A1B3721638AC8100B9DCEC /* MKMapView+ARKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36A1638AC8100B9DCEC /* MKMapView+ARKit.m */; };
 		66A1B3741638AC8100B9DCEC /* ARTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36E1638AC8100B9DCEC /* ARTextField.m */; };
 		66A1B3751638AC8100B9DCEC /* ARTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B3701638AC8100B9DCEC /* ARTextView.m */; };
+		66C29A59164CEA9400DC8DBA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C29A58164CEA9400DC8DBA /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,7 +139,6 @@
 		4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYTabBarViewController.m; path = "View Controllers/CYTabBarViewController.m"; sourceTree = "<group>"; };
 		4E6DFF991643F3A600AB180C /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
 		4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Attributes.m"; sourceTree = "<group>"; };
-		4E6DFF9D1643F4DF00AB180C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		4E6DFF9F1643FC1000AB180C /* CYConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYConsoleViewController.h; path = "View Controllers/CYConsoleViewController.h"; sourceTree = "<group>"; };
 		4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYConsoleViewController.m; path = "View Controllers/CYConsoleViewController.m"; sourceTree = "<group>"; };
 		4EEB9609163DDE3500D67785 /* CYLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYLogInViewController.h; path = "View Controllers/CYLogInViewController.h"; sourceTree = "<group>"; };
@@ -266,6 +265,7 @@
 		66A1B36F1638AC8100B9DCEC /* ARTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTextView.h; sourceTree = "<group>"; };
 		66A1B3701638AC8100B9DCEC /* ARTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTextView.m; sourceTree = "<group>"; };
 		66C29A57164CDEBF00DC8DBA /* CYBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYBlocks.h; sourceTree = "<group>"; };
+		66C29A58164CEA9400DC8DBA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,7 +273,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E6DFF9E1643F4DF00AB180C /* CoreText.framework in Frameworks */,
+				66C29A59164CEA9400DC8DBA /* CoreText.framework in Frameworks */,
 				66A1B331163888AC00B9DCEC /* SystemConfiguration.framework in Frameworks */,
 				66558ABE163634BE00C7BB8B /* libSSToolkit.a in Frameworks */,
 				662782921633F10100F1D0E7 /* CoreLocation.framework in Frameworks */,
@@ -359,7 +359,6 @@
 		6627823A1633EEC200F1D0E7 = {
 			isa = PBXGroup;
 			children = (
-				4E6DFF9D1643F4DF00AB180C /* CoreText.framework */,
 				6627824F1633EEC200F1D0E7 /* Cygnus */,
 				66A1B31F1638828A00B9DCEC /* Resources */,
 				662782481633EEC200F1D0E7 /* Frameworks */,
@@ -385,6 +384,7 @@
 				662782761633EF9200F1D0E7 /* CFNetwork.framework */,
 				6627824D1633EEC200F1D0E7 /* CoreGraphics.framework */,
 				662782911633F10100F1D0E7 /* CoreLocation.framework */,
+				66C29A58164CEA9400DC8DBA /* CoreText.framework */,
 				6627824B1633EEC200F1D0E7 /* Foundation.framework */,
 				662782771633EF9200F1D0E7 /* libsqlite3.dylib */,
 				662782781633EF9200F1D0E7 /* libz.1.1.3.dylib */,
