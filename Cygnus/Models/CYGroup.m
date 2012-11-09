@@ -10,6 +10,7 @@
 
 static NSString *const CYGroupNameKey       = @"name";
 static NSString *const CYGroupSummaryKey    = @"summary";
+static NSString *const CYGroupSizeKey       = @"size";
 static NSString *const CYGroupVisibilityKey = @"visibility";
 
 static NSString *const CYGroupOwnersKey     = @"owners";
@@ -48,6 +49,23 @@ static NSString *const CYGroupMapsKey       = @"maps";
   return group;
 }
 
++ (void)fetchAllGroups:(CYGroupsResultBlock)block
+{
+  PFQuery *groupQuery = [PFQuery queryWithClassName:@"Group"];
+  [groupQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      NSMutableSet *allGroups = [NSMutableSet setWithCapacity:[objects count]];
+      for (PFObject *groupObject in objects) {
+        [allGroups addObject:[CYGroup groupWithObject:groupObject]];
+      }
+      block(allGroups, nil);
+    }
+  }];
+}
+
 - (void)refreshWithBlock:(CYGroupResultBlock)block {
   [self.backingObject refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
     if (error) {
@@ -78,6 +96,16 @@ static NSString *const CYGroupMapsKey       = @"maps";
   [self.backingObject setObject:summary forKey:CYGroupSummaryKey];
   [self save];
 }
+
+- (NSNumber *)size {
+  return [self.backingObject objectForKey:CYGroupSizeKey];
+}
+
+- (void)setSize:(NSNumber*)size {
+  [self.backingObject setObject:size forKey:CYGroupSizeKey];
+  [self save];
+}
+
 
 - (CYGroupVisibility)visibility {
   NSNumber *visibilityObject = [self.backingObject objectForKey:CYGroupVisibilityKey];
@@ -167,6 +195,8 @@ static NSString *const CYGroupMapsKey       = @"maps";
 
   [[member.backingUser relationforKey:CYUserGroupsKey] addObject:self.backingObject];
   [member save];
+  
+  self.size = @([self.size integerValue] + 1);
 
   [self._members addObject:member];
 }
@@ -176,6 +206,9 @@ static NSString *const CYGroupMapsKey       = @"maps";
 
   [[self.backingObject relationforKey:CYGroupMembersKey] removeObject:member.backingUser];
   [self save];
+  
+  self.size = @([self.size integerValue] - 1);
+
 
   [[member.backingUser relationforKey:CYUserGroupsKey] removeObject:self.backingObject];
   [member save];
@@ -199,7 +232,8 @@ static NSString *const CYGroupMapsKey       = @"maps";
     } else {
       self._maps = [NSMutableSet setWithCapacity:objects.count];
       for (PFObject *mapObject in objects) {
-        [self._maps addObject:[CYMap mapWithObject:mapObject]];
+        CYMap *map = [CYMap mapWithObject:mapObject];
+        [self._maps addObject:map];
       }
       if (block) block(self._maps, nil);
     }

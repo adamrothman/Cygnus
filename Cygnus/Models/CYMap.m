@@ -11,6 +11,7 @@
 
 static NSString *const CYMapNameKey       = @"name";
 static NSString *const CYMapSummaryKey    = @"summary";
+static NSString *const CYMapSizeKey       = @"size";
 static NSString *const CYMapVisibilityKey = @"visibility";
 
 static NSString *const CYMapPointsKey     = @"points";
@@ -46,6 +47,23 @@ static NSString *const CYMapGroupKey      = @"group";
   return map;
 }
 
++ (void)fetchAllMaps:(CYMapsResultBlock)block
+{
+  PFQuery *mapQuery = [PFQuery queryWithClassName:@"Map"];
+  [mapQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    if (error) {
+      NSLog(@"%@\n", error);
+      if (block) block(nil, error);
+    } else {
+      NSMutableSet *maps = [NSMutableSet setWithCapacity:[objects count]];
+      for (PFObject *mapObject in objects) {
+        [maps addObject:[CYMap mapWithObject:mapObject]];
+      }
+      block(maps, nil);
+    }
+  }];
+}
+
 - (void)refreshWithBlock:(CYMapResultBlock)block {
   [self.backingObject refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
     if (error) {
@@ -76,6 +94,17 @@ static NSString *const CYMapGroupKey      = @"group";
   [self.backingObject setObject:summary forKey:CYMapSummaryKey];
   [self save];
 }
+
+
+- (NSNumber *)size {
+  return [self.backingObject objectForKey:CYMapSizeKey];
+}
+
+- (void)setSize:(NSNumber*)size {
+  [self.backingObject setObject:size forKey:CYMapSizeKey];
+  [self save];
+}
+
 
 - (CYMapVisibility)visibility {
   NSNumber *visibilityObject = [self.backingObject objectForKey:CYMapVisibilityKey];
@@ -132,6 +161,8 @@ static NSString *const CYMapGroupKey      = @"group";
   [[self.backingObject relationforKey:CYMapPointsKey] addObject:point.backingObject];
   [self save];
 
+  self.size = @([self.size integerValue] + 1);
+
   point.map = self;
 
   [self._points addObject:point];
@@ -142,6 +173,8 @@ static NSString *const CYMapGroupKey      = @"group";
 
   [[self.backingObject relationforKey:CYMapPointsKey] removeObject:point.backingObject];
   [self save];
+
+  self.size = @([self.size integerValue] - 1);
 
   point.map = nil;
 

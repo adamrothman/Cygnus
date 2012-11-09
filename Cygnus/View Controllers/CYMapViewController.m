@@ -16,12 +16,19 @@
 
 CYMapViewController *_currentVC;
 
+#define THRESHOLD_DISTANCE               70
+#define ONE_MILE_IN_METERS              1609.34
+#define SIGNIFICANT_LOCATION_CHANGE     ONE_MILE_IN_METERS/4
+#define HALF_HOUR_IN_SECONDS            60*30
+#define UPDATE_FREQUENCY                3*60
 
-@interface CYMapViewController ()
+@interface CYMapViewController () <CLLocationManagerDelegate>
 
+@property (strong, nonatomic)   CLLocationManager *locationManager;
+@property (strong, nonatomic)   NSTimer *locationTimer;
 @property (strong, nonatomic)   CYBeaconHUD *beaconHUD;
-@property (nonatomic, strong)  CYMapView *mapView;
-
+@property (weak, nonatomic) IBOutlet CYMapView *mapView;
+@property (nonatomic, copy)     CYMapsResultBlock updateBlock;
 
 @end
 
@@ -29,57 +36,107 @@ CYMapViewController *_currentVC;
 
 @synthesize mapView;//, menu;
 
+#pragma mark - CLLocationManagerDelegation
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+  CLLocation *currentLocation = [CYUser currentUser].location;
+  [CYUser currentUser].location = newLocation;
+  [self.mapView updateBeacon:newLocation.coordinate];
+  [self.locationManager stopUpdatingLocation];
+
+  BOOL significantLocationChange = (!currentLocation || [newLocation distanceFromLocation:currentLocation] > (SIGNIFICANT_LOCATION_CHANGE + newLocation.horizontalAccuracy));
+  if (significantLocationChange) [[NSNotificationCenter defaultCenter] postNotificationName:CYNotificationSignificantLocationChange object:nil];
+}
+
+- (void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager
+{}
+- (void)locationManagerDidResumeLocationUpdates:(CLLocationManager *)manager
+{}
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{}
+
+- (CLLocationManager *)locationManager
+{
+  if (!_locationManager)
+  {
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    _locationManager.distanceFilter = THRESHOLD_DISTANCE;
+  }
+  return _locationManager;
+}
+
+- (void)startLocationUpdates
+{
+  [self.locationTimer invalidate];
+  [self setLocationTimer:nil];
+  [self.locationManager stopUpdatingLocation];
+  [self.locationManager startUpdatingLocation];
+  [self setLocationTimer:[NSTimer timerWithTimeInterval:UPDATE_FREQUENCY target:self.locationManager selector:@selector(startUpdatingLocation) userInfo:nil repeats:YES]];
+}
+
+- (void)stopLocationUpdatese
+{
+  [self.locationTimer invalidate];
+  [self setLocationTimer:nil];
+  [self.locationManager stopUpdatingLocation];
+}
+
+#pragma mark - Actions, Gestures, Notification Handlers
+
+- (void)userUnfollowedMap:(NSNotification *)notification
+{
+  CYMap *map = [notification.userInfo objectForKey:@"map"];
+  [self.mapView removePointsForMap:map];
+}
 
 #pragma mark - VC Lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
-  self.mapView = [[CYMapView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  [self.view addSubview:self.mapView];
   _currentVC = self;
-//  self.beaconHUD = [[CYBeaconHUD alloc] init];
-//  [self.view addSubview:self.beaconHUD];
+  
+  self.beaconHUD = [[CYBeaconHUD alloc] init];
+  [self.view addSubview:self.beaconHUD];
+  
+  [[NSNotificationCenter defaultCenter]
+   addObserver:self
+   selector:@selector(userUnfollowedMap:)
+   name:CYNotificationUserUnfollowedMap
+   object:nil];
+  
+  
+  if ([CYUser currentUser].status == CYBeaconStatusActive) [self startLocationUpdates];
+  
+  
+  self.updateBlock = ^(NSSet *maps, NSError *error)
+  {
+    for (CYMap *map in maps) {
+      [map pointsWithUpdateBlock:^(NSSet *points, NSError *error) {
+        [self.mapView updatePointsForMap:map animated:YES];
+      }];
+    }
+  };
   
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-//  [self.beaconHUD hide];
+  self.updateBlock([[CYUser currentUser] maps], nil);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  
-//  PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-//  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//    if (!error) {
-//      PFObject *group = [objects lastObject];
-//      defaultGroup = [CYGroup groupWithObject:group];
-//      [defaultGroup addMember:[CYUser currentUser]];      
-//       
-//    } else {
-//      NSLog(@"Error: %@ %@", error, [error userInfo]);
-//    }
-//  }];
-  
-//  CYGroup __block *defaultGroup = [[[CYUser currentUser].maps allObjects] lastObject];
-//  PFQuery *mapQuery = [PFQuery queryWithClassName:@"Map"];
-//  [mapQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//    if (!error) {
-//      for (PFObject *object in objects) {
-//        [defaultGroup addMap:[CYMap mapWithObject:object]];
-//      }
-//    } else {
-//      NSLog(@"Error: %@ %@", error, [error userInfo]);
-//    }
-//  }];
- 
-  
-  
 }
-          
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+  [super viewDidDisappear:animated];
+  [self.beaconHUD hide];
+}
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
@@ -88,6 +145,8 @@ CYMapViewController *_currentVC;
 - (void)viewDidUnload
 {
   [super viewDidUnload];
+  [self setBeaconHUD:nil];
+  [self setMapView:nil];
   _currentVC = nil;
 }
 
@@ -143,25 +202,18 @@ CYMapViewController *_currentVC;
 }
 
 @end
-
-//CYGroup __block *defaultGroup = [[CYGroup alloc] init];
-//defaultGroup.name = @"Stanford Public";
-//defaultGroup.summary = @"Public group for Stanford area: students, faculty, staff.";
-//defaultGroup.visibility = CYGroupVisibilityPublic;
-//[defaultGroup addOwner:[CYUser currentUser]];
-//[defaultGroup addMember:[CYUser currentUser]];
 //
-//PFQuery *query = [PFQuery queryWithClassName:@"Map"];
-//[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//  if (!error) {
-//    PFObject *libMap = [objects lastObject];
-//    [defaultGroup addMap:[CYMap mapWithObject:libMap]];
-//    [defaultGroup save];
-//  } else {
-//    // Log details of the failure
-//    NSLog(@"Error: %@ %@", error, [error userInfo]);
+//PFQuery *mapQuery = [PFQuery queryWithClassName:@"Map"];
+//[mapQuery whereKey:@"objectId" equalTo:@"Y5gEmr6b3d"];
+//CYMap __block *map = [CYMap mapWithObject:[mapQuery getObjectWithId:@"Y5gEmr6b3d"]];
+//PFQuery *pointQuery = [PFQuery queryWithClassName:@"Point"];
+//[pointQuery whereKey:@"map" matchesQuery:mapQuery];
+//[pointQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//  for (PFObject *object in objects) {
+//    [map addPoint:[CYPoint pointWithObject:object]];
 //  }
 //}];
+
 
 
 //  UIImage *background = [UIImage imageNamed:@"bg-menuitem.png"];

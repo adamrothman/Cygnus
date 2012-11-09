@@ -32,15 +32,22 @@ static CYUser *_currentUser = nil;
 @implementation CYUser
 
 @synthesize backingUser=_backingUser, _groups, _maps;
-@synthesize groupsQuery=_groupsQuery, mapsQuery=_mapsQuery;
+@synthesize groupsQuery=_groupsQuery, mapsQuery=_mapsQuery, location = _location;
 
 #pragma mark - Object creation and update
+
+- (void)setup
+{
+  self.range = CYBeaconRangeLocal;
+  self.status = CYBeaconStatusActive;
+  PFGeoPoint *geoPoint = [self.backingUser objectForKey:CYUserLocationKey];
+  self.location = [[CLLocation alloc] initWithLatitude:geoPoint.latitude longitude:geoPoint.longitude];
+}
 
 - (id)init {
   if ((self = [super init])) {
     self.backingUser = [PFUser user];
-    self.range = CYBeaconRangeLocal;
-    self.status = CYBeaconStatusActive;    
+    [self setup];
   }
   return self;
 }
@@ -48,8 +55,7 @@ static CYUser *_currentUser = nil;
 - (id)initWithUser:(PFUser *)user {
   if ((self = [super init])) {
     self.backingUser = user;
-    self.range = CYBeaconRangeLocal;
-    self.status = CYBeaconStatusActive;
+    [self setup];
   }
   return self;
 }
@@ -67,14 +73,17 @@ static CYUser *_currentUser = nil;
   [user signUp:&error];
   if (error) return nil;
   
-  CYUser *newUser = [CYUser userWithUser:user];
-  PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-  CYGroup *publicGroup = [CYGroup groupWithObject:[query getObjectWithId:@"RKXicgkfyG"]];
+  CYUser *newUser = [CYUser currentUser];
+  PFQuery *groupQuery = [PFQuery queryWithClassName:@"Group"];
+  CYGroup *publicGroup = [CYGroup groupWithObject:[groupQuery getObjectWithId:@"RKXicgkfyG"]];
+  PFQuery *mapQuery = [PFQuery queryWithClassName:@"Map"];
+  CYMap *publicMap = [CYMap mapWithObject:[mapQuery getObjectWithId:@"ngcIS3azVV"]];
   [publicGroup addMember:newUser];
+  [newUser addMap:publicMap];
+  newUser._maps = [NSMutableSet setWithObject:publicMap];
+  newUser._groups = [NSMutableSet setWithObject:publicGroup];
   return newUser;
 }
-
-  
 
 
 + (CYUser *)currentUser {
@@ -101,13 +110,11 @@ static CYUser *_currentUser = nil;
 
 #pragma mark - Sign up and log in
 
-- (void)signUpInBackgroundWithBlock:(CYBooleanResultBlock)block {
-  [self.backingUser signUpInBackgroundWithBlock:block];
-}
-
 + (void)logInWithUsernameInBackground:(NSString *)username password:(NSString *)password block:(CYUserResultBlock)block {
   [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *pfUser, NSError *error) {
     CYUser *user = (pfUser) ? [CYUser userWithUser:pfUser] : nil;
+    [user fetchGroups];
+    [user fetchMaps];
     block(user, error);
   }];
 }
@@ -115,7 +122,7 @@ static CYUser *_currentUser = nil;
 + (void)logOut {
   [PFUser logOut];
   [CYLogInViewController present];
-  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CYUserDidLogOutNotification object:nil]];
+  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CYNotificationUserDidLogOut object:nil]];
 }
 
 #pragma mark - Properties
@@ -160,13 +167,14 @@ static CYUser *_currentUser = nil;
   [self save];
 }
 
-- (PFGeoPoint *)location {
-  return [self.backingUser objectForKey:CYUserLocationKey];
+- (CLLocation *)location {
+  return _location;
 }
 
-- (void)setLocation:(PFGeoPoint *)location {
-  [self.backingUser setObject:location forKey:CYUserLocationKey];
+- (void)setLocation:(CLLocation *)location {
+  [self.backingObject setObject:[PFGeoPoint geoPointWithLocation:location] forKey:CYUserLocationKey];
   [self save];
+  _location = location;
 }
 
 - (CYBeaconRange)range {
@@ -216,13 +224,25 @@ static CYUser *_currentUser = nil;
   return self._groups;
 }
 
+- (void)fetchGroups
+{
+  if (!self.groupsQuery) {
+    self.groupsQuery = [[self.backingUser relationforKey:CYUserGroupsKey] query];
+  }
+  NSArray *fetchResult = [self.groupsQuery findObjects];
+  self._groups = [NSMutableSet setWithCapacity:fetchResult.count];
+  for (PFObject *groupObject in fetchResult) {
+    [self._groups addObject:[CYGroup groupWithObject:groupObject]];
+  }  
+}
+
 - (NSSet *)maps { 
   return self._maps;
 }
 
 - (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block {
   if (!self.mapsQuery) {
-    self.mapsQuery = [[self.backingUser relationforKey:CYUserMapsKey] query];
+    self.mapsQuery = [[self.backingUser relationforKey:@"maps"] query];
   }
 
   [self.mapsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -240,5 +260,34 @@ static CYUser *_currentUser = nil;
 
   return self._maps;
 }
+
+- (void)fetchMaps
+{
+  if (!self.mapsQuery) {
+    self.mapsQuery = [[self.backingUser relationforKey:CYUserMapsKey] query];
+  }
+  NSArray *fetchResult = [self.mapsQuery findObjects];
+  self._maps = [NSMutableSet setWithCapacity:fetchResult.count];
+  for (PFObject *groupObject in fetchResult) {
+    [self._maps addObject:[CYMap mapWithObject:groupObject]];
+  }
+}
+
+
+- (void)addMap:(CYMap *)map {
+  if ([self._maps containsObject:map]) return;
+  [[self.backingObject relationforKey:CYUserMapsKey] addObject:map.backingObject];
+  [self save];
+  [self._maps addObject:map];
+}
+
+- (void)removeMap:(CYMap *)map {
+  if (![self._maps containsObject:map]) return;
+  [[self.backingObject relationforKey:CYUserMapsKey] removeObject:map.backingObject];
+  [self save];
+  [self._maps removeObject:map];
+  [[NSNotificationCenter defaultCenter] postNotificationName:CYNotificationUserUnfollowedMap object:self userInfo:@{@"map": map}];
+}
+
 
 @end

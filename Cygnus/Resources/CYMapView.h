@@ -19,6 +19,7 @@
 @property (nonatomic)   BOOL canEdit;
 
 - (void)updateBeacon:(CLLocationCoordinate2D)beaconCoordinate;
-- (void)updatePointsForMap:(CYMap *)map;
+- (void)updatePointsForMap:(CYMap *)map animated:(BOOL)animated;
+- (void)removePointsForMap:(CYMap *)map;
 
 @end

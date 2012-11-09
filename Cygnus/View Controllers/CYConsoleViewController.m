@@ -7,6 +7,8 @@
 //
 
 #import "CYConsoleViewController.h"
+#import "CYMapDetailViewController.h"
+
 #import "CYUser.h"
 #import "CYMap.h"
 #import "CYGroup.h"
@@ -77,8 +79,15 @@
   return 1;
 }
 
-#define MAP_CELL                @"mapsTableViewCell"
-#define GROUP_CELL              @"groupsTableViewCell"
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  if (tableView == self.mapsTableView) return [self.maps count];
+  if (tableView == self.groupsTableView) return [self.groups count];
+  return 0;
+}
+
+#define MAP_CELL                @"CYMapTableViewCell"
+#define GROUP_CELL              @"CYGroupTableViewCell"
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,20 +102,30 @@
   if (tableView == self.mapsTableView) {
     CYMap *map = (CYMap*)self.maps[indexPath.row];
     cell.textLabel.text = map.name;
-    float hoursSinceEdit = ([map.updatedAt timeIntervalSinceNow] / (60.0*60));
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%2f hr", hoursSinceEdit];
+    float hoursSinceEdit = - ([map.updatedAt timeIntervalSinceNow] / (60.0*60));
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f hr", hoursSinceEdit];
+  
   } else {
     CYGroup *group = (CYGroup *)self.groups[indexPath.row];
     cell.textLabel.text = group.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [group.members count]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [group.size integerValue]];
   }
   return cell;
 }
 
-
 #pragma mark - UITableViewDelegate
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  //
+}
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+  if (tableView == self.mapsTableView) {
+    [self performSegueWithIdentifier:@"CYMapDetailViewController_Segue" sender:self.maps[indexPath.row]];
+  }
+}
 
 
 #pragma mark - VC Lifecycle
@@ -114,13 +133,26 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.mapsTableView.dataSource = self;
+  self.groupsTableView.dataSource = self;
+  self.mapsTableView.delegate = self;
+  self.groupsTableView.delegate = self;
+  self.mapActionSheet = [[UIActionSheet alloc] initWithTitle:@"Maps" delegate:self cancelButtonTitle:CANCEL destructiveButtonTitle:nil otherButtonTitles:CREATE_NEW, SEARCH, nil];
+  self.groupActionSheet = [[UIActionSheet alloc] initWithTitle:@"Groups" delegate:self cancelButtonTitle:CANCEL destructiveButtonTitle:nil otherButtonTitles:CREATE_NEW, SEARCH, nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
   self.groups = [[[CYUser currentUser] groups] allObjects];
   self.maps = [[[CYUser currentUser] maps] allObjects];
   [self.mapsTableView reloadData];
   [self.groupsTableView reloadData];
-    
-  self.mapActionSheet = [[UIActionSheet alloc] initWithTitle:@"Add New Map" delegate:self cancelButtonTitle:CANCEL destructiveButtonTitle:nil otherButtonTitles:CREATE_NEW, SEARCH, nil];
-  self.groupActionSheet = [[UIActionSheet alloc] initWithTitle:@"Add New Group" delegate:self cancelButtonTitle:CANCEL destructiveButtonTitle:nil otherButtonTitles:CREATE_NEW, SEARCH, nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -133,5 +165,13 @@
     [super viewDidUnload];
     [self setGroupActionSheet:nil];
     [self setMapActionSheet:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  if ([segue.identifier isEqualToString:@"CYMapDetailViewController_Segue"]) {
+    CYMapDetailViewController *vc = (CYMapDetailViewController *)segue.destinationViewController;
+    vc.map = (CYMap*)sender;
+  }
 }
 @end

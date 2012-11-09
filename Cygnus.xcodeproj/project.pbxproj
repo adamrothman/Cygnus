@@ -10,6 +10,7 @@
 		4E6DFF7D1643EA5F00AB180C /* CYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */; };
 		4E6DFF9B1643F3A600AB180C /* NSAttributedString+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E6DFFA11643FC1100AB180C /* CYConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */; };
+		4E9B9C02164D3ADE00A6A010 /* CYMapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B9C01164D3ADE00A6A010 /* CYMapDetailViewController.m */; };
 		4EEB960B163DDE3500D67785 /* CYLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB960A163DDE3500D67785 /* CYLogInViewController.m */; };
 		4EEB9626163DF84900D67785 /* NSArray+Accessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB961A163DF84900D67785 /* NSArray+Accessing.m */; };
 		4EEB9627163DF84900D67785 /* NSObject+PerformBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB961C163DF84900D67785 /* NSObject+PerformBlock.m */; };
@@ -141,6 +142,8 @@
 		4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Attributes.m"; sourceTree = "<group>"; };
 		4E6DFF9F1643FC1000AB180C /* CYConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYConsoleViewController.h; path = "View Controllers/CYConsoleViewController.h"; sourceTree = "<group>"; };
 		4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYConsoleViewController.m; path = "View Controllers/CYConsoleViewController.m"; sourceTree = "<group>"; };
+		4E9B9C00164D3ADD00A6A010 /* CYMapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYMapDetailViewController.h; path = "View Controllers/CYMapDetailViewController.h"; sourceTree = "<group>"; };
+		4E9B9C01164D3ADE00A6A010 /* CYMapDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYMapDetailViewController.m; path = "View Controllers/CYMapDetailViewController.m"; sourceTree = "<group>"; };
 		4EEB9609163DDE3500D67785 /* CYLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYLogInViewController.h; path = "View Controllers/CYLogInViewController.h"; sourceTree = "<group>"; };
 		4EEB960A163DDE3500D67785 /* CYLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYLogInViewController.m; path = "View Controllers/CYLogInViewController.m"; sourceTree = "<group>"; };
 		4EEB9618163DF84900D67785 /* FDNullOrEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDNullOrEmpty.h; sourceTree = "<group>"; };
@@ -485,10 +488,10 @@
 				669C1FA0163DDDBF001F1C18 /* CYGroup.m */,
 				669C1F92163DC906001F1C18 /* CYMap.h */,
 				669C1F93163DC906001F1C18 /* CYMap.m */,
-				669C1F95163DC99C001F1C18 /* CYPoint.h */,
-				669C1F96163DC99C001F1C18 /* CYPoint.m */,
 				669C1F8F163DC75E001F1C18 /* CYUser.h */,
 				669C1F90163DC75E001F1C18 /* CYUser.m */,
+				669C1F95163DC99C001F1C18 /* CYPoint.h */,
+				669C1F96163DC99C001F1C18 /* CYPoint.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -496,6 +499,8 @@
 		66A1B30C16387F7B00B9DCEC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4E9B9C00164D3ADD00A6A010 /* CYMapDetailViewController.h */,
+				4E9B9C01164D3ADE00A6A010 /* CYMapDetailViewController.m */,
 				4E6DFF9F1643FC1000AB180C /* CYConsoleViewController.h */,
 				4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */,
 				4E6DFF7B1643EA5F00AB180C /* CYTabBarViewController.h */,
@@ -731,6 +736,7 @@
 				4EEEE473164CDCB300D3357B /* CYBeaconHUD.m in Sources */,
 				4EEEE475164CDCB300D3357B /* CYMapView.m in Sources */,
 				4EEEE476164CDCB300D3357B /* CYUI.m in Sources */,
+				4E9B9C02164D3ADE00A6A010 /* CYMapDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,9 +21,12 @@ typedef enum {
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *summary;
+@property (nonatomic, strong) NSNumber *size;
+
 @property (nonatomic) CYGroupVisibility visibility;
 
 + (CYGroup *)groupWithObject:(PFObject *)object;
++ (void)fetchAllGroups:(CYGroupsResultBlock)block;
 
 - (void)refreshWithBlock:(CYGroupResultBlock)block;
 

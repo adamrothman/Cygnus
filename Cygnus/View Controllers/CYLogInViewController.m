@@ -9,6 +9,7 @@
 #import "CYLogInViewController.h"
 #import "CYUser.h"
 #import "CYUI.h"
+#import "CYTabBarViewController.h"
 #import <SSToolkit/SSHUDView.h>
 
 
@@ -98,6 +99,7 @@ typedef enum {
   if (self.currentState == CYSignUpStateLogIn) {
     [CYUser logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTextField.text block:^(CYUser *user, NSError *error) {
       if (user) {
+        [[CYTabBarViewController currentVC] setSelectedIndex:1];
         [self.HUDActivityView completeAndDismissWithTitle:nil];
         [self dismiss];
       } else {
@@ -107,13 +109,14 @@ typedef enum {
   } else {
     CYUser *newUser = [CYUser newUserWithUsername:self.usernameTextField.text password:self.passwordTextField.text];
     if (newUser) {
-        newUser.firstName = self.firstNameTextField.text;
-        newUser.lastName = self.lastNameTextField.text;
-        newUser.email = self.emailTextField.text;
-        [self.HUDActivityView completeAndDismissWithTitle:nil];
-        [self dismiss];
+      newUser.firstName = self.firstNameTextField.text;
+      newUser.lastName = self.lastNameTextField.text;
+      newUser.email = self.emailTextField.text;
+      [[CYTabBarViewController currentVC] setSelectedIndex:1];
+      [self.HUDActivityView completeAndDismissWithTitle:nil];
+      [self dismiss];
     } else {
-        [self.HUDActivityView failAndDismissWithTitle:nil];
+      [self.HUDActivityView failAndDismissWithTitle:nil];
     }
   }
 }

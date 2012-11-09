@@ -22,12 +22,14 @@ typedef enum {
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *summary;
+@property (nonatomic, strong) NSNumber *size;
+
 @property (nonatomic) CYMapVisibility visibility;
 
 @property (nonatomic, strong) CYGroup *group;
 
 + (CYMap *)mapWithObject:(PFObject *)object;
-
++ (void)fetchAllMaps:(CYMapsResultBlock)block;
 - (void)refreshWithBlock:(CYMapResultBlock)block;
 
 // relations

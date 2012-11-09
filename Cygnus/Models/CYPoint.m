@@ -17,19 +17,24 @@ static NSString *const CYPointMapKey = @"map";
 
 @implementation CYPoint
 
-@synthesize map=_map;
+@synthesize map=_map, location = _location;
 
 #pragma mark - Object creation and update
 
 - (id)init {
   if ((self = [super init])) {
     self.backingObject = [PFObject objectWithClassName:@"Point"];
+    PFGeoPoint *geoPoint = [self.backingObject objectForKey:CYPointLocationKey];
+    self.location = [[CLLocation alloc] initWithLatitude:geoPoint.latitude longitude:geoPoint.longitude];
   }
   return self;
 }
 
 + (CYPoint *)pointWithObject:(PFObject *)object {
-  return [[CYPoint alloc] initWithObject:object];
+  CYPoint *point = [[CYPoint alloc] initWithObject:object];
+  PFGeoPoint *geoPoint = [object objectForKey:CYPointLocationKey];
+  point.location = [[CLLocation alloc] initWithLatitude:geoPoint.latitude longitude:geoPoint.longitude];
+  return point;
 }
 
 - (void)refreshWithBlock:(CYPointResultBlock)block {
@@ -45,13 +50,14 @@ static NSString *const CYPointMapKey = @"map";
 
 #pragma mark - Properties
 
-- (PFGeoPoint *)location {
-  return [self.backingObject objectForKey:CYPointLocationKey];
+- (CLLocation *)location {
+  return _location;
 }
 
-- (void)setLocation:(PFGeoPoint *)location {
-  [self.backingObject setObject:location forKey:CYPointLocationKey];
+- (void)setLocation:(CLLocation *)location {
+  [self.backingObject setObject:[PFGeoPoint geoPointWithLocation:location] forKey:CYPointLocationKey];
   [self save];
+  _location = location;
 }
 
 - (NSString *)name {
@@ -84,7 +90,7 @@ static NSString *const CYPointMapKey = @"map";
 #pragma mark - MKAnnotation
 
 - (CLLocationCoordinate2D)coordinate {
-  return CLLocationCoordinate2DMake(self.location.latitude, self.location.longitude);
+  return self.location.coordinate;
 }
 
 - (NSString *)title {

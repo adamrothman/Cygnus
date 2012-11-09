@@ -13,7 +13,7 @@
 
 @interface CYPoint : CYObject <MKAnnotation>
 
-@property (nonatomic, strong) PFGeoPoint *location;
+@property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *summary;
 @property (nonatomic, strong) NSString *imageURLString;

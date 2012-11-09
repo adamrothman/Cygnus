@@ -28,9 +28,7 @@
     [mapView setRegion:region animated:NO];
   }
   
-  [CYUser currentUser].location.longitude = self.userLocation.location.coordinate.longitude;
-  [CYUser currentUser].location.latitude = self.userLocation.location.coordinate.latitude;
-  
+  [CYUser currentUser].location = userLocation.location;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -73,12 +71,21 @@
   //assumes that the beacon is being stored on User.
 }
 
-- (void)updatePointsForMap:(CYMap *)map
+- (void)updatePointsForMap:(CYMap *)map animated:(BOOL)animated
 {
   NSArray *mapPoints = [map.points allObjects];
+  if (!mapPoints) return;
   [self addAnnotations:mapPoints];
   [self removeAnnotations:self.mapAnnotations[map.objectID]];
   [self.mapAnnotations setObject:mapPoints forKey:map.objectID];
+  [self zoomToFitAnnotationsAnimated:animated];
+}
+
+- (void)removePointsForMap:(CYMap *)map
+{
+  [self removeAnnotations:self.mapAnnotations[map.objectID]];
+  [self.mapAnnotations removeObjectForKey:map.objectID];
+  [self zoomToFitAnnotationsAnimated:NO];  
 }
 
 - (void)setUp
@@ -96,6 +103,12 @@
   [self addGestureRecognizer:lpr];
 }
 
+
+- (void)awakeFromNib
+{
+  [super awakeFromNib];
+  [self setUp];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
