@@ -20,6 +20,8 @@ CYMapViewController *_currentVC;
 @interface CYMapViewController ()
 
 @property (strong, nonatomic)   CYBeaconHUD *beaconHUD;
+@property (nonatomic, strong)  CYMapView *mapView;
+
 
 @end
 
@@ -32,42 +34,60 @@ CYMapViewController *_currentVC;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  self.mapView = [[CYMapView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  [self.view addSubview:self.mapView];
   _currentVC = self;
-  self.beaconHUD = [[CYBeaconHUD alloc] init];
-  [self.view addSubview:self.beaconHUD];
+//  self.beaconHUD = [[CYBeaconHUD alloc] init];
+//  [self.view addSubview:self.beaconHUD];
   
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  [self.beaconHUD hide];
+//  [self.beaconHUD hide];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   
-  CYGroup __block *defaultGroup = nil;
-  PFQuery *query = [PFQuery queryWithClassName:@"Group"];
-  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    if (!error) {
-      PFObject *group = [objects lastObject];
-      defaultGroup = [CYGroup groupWithObject:group];
-      [defaultGroup addMember:[CYUser currentUser]];
-      [[CYUser currentUser] save];
-      
-      PFQuery *mapQuery = [PFQuery queryWithClassName:@"Map"];
-      [mapQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-          for (PFObject *object in objects) {
-            [defaultGroup addMap:[CYMap mapWithObject:object]];
-          }
-        } else {
-          NSLog(@"Error: %@ %@", error, [error userInfo]);
+//  PFQuery *query = [PFQuery queryWithClassName:@"Group"];
+//  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//    if (!error) {
+//      PFObject *group = [objects lastObject];
+//      defaultGroup = [CYGroup groupWithObject:group];
+//      [defaultGroup addMember:[CYUser currentUser]];      
+//       
+//    } else {
+//      NSLog(@"Error: %@ %@", error, [error userInfo]);
+//    }
+//  }];
+  
+//  CYGroup __block *defaultGroup = [[[CYUser currentUser].maps allObjects] lastObject];
+//  PFQuery *mapQuery = [PFQuery queryWithClassName:@"Map"];
+//  [mapQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//    if (!error) {
+//      for (PFObject *object in objects) {
+//        [defaultGroup addMap:[CYMap mapWithObject:object]];
+//      }
+//    } else {
+//      NSLog(@"Error: %@ %@", error, [error userInfo]);
+//    }
+//  }];
+  
+  [[CYUser currentUser] groupsWithUpdateBlock:^(NSSet *groups, NSError *error) {
+    for (CYGroup *group in groups) {
+      [group mapsWithUpdateBlock:^(NSSet *maps, NSError *error) {
+        for (CYMap *map in maps) {
+          [map pointsWithUpdateBlock:^(NSSet *points, NSError *error) {
+            for (CYPoint *point in points) {
+              [self.mapView addPoint:point];
+              [self.mapView zoomToFitAnnotationsAnimated:YES];
+            }
+          }];
         }
-      }];      
-    } else {
-      NSLog(@"Error: %@ %@", error, [error userInfo]);
+      }];
     }
   }];
 }

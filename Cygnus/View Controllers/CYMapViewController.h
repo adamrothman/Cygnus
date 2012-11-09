@@ -13,8 +13,6 @@
 
 @interface CYMapViewController : UIViewController <MKMapViewDelegate, AwesomeMenuDelegate>
 
-@property (nonatomic, weak) IBOutlet CYMapView *mapView;
-
 - (void)toggleBeaconHUD;
 + (CYMapViewController *)currentVC;
 

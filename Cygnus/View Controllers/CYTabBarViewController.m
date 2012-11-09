@@ -16,25 +16,25 @@
 @implementation CYTabBarViewController
 
 
-- (void)setSelectedViewController:(UIViewController *)selectedViewController
-{
-  if (self.selectedViewController == selectedViewController && selectedViewController == [CYMapViewController currentVC]) {
-    [[CYMapViewController currentVC] toggleBeaconHUD];
-  }
-  [super setSelectedViewController:selectedViewController];
-}
-
-- (void)setSelectedIndex:(NSUInteger)selectedIndex
-{
-  if (self.selectedIndex == 1 && selectedIndex == 1) [[CYMapViewController currentVC] toggleBeaconHUD];
-  [super setSelectedIndex:selectedIndex];
-}
-
+//- (void)setSelectedViewController:(UIViewController *)selectedViewController
+//{
+////  if (self.selectedViewController == selectedViewController && selectedViewController == [CYMapViewController currentVC]) {
+////    [[CYMapViewController currentVC] toggleBeaconHUD];
+////  }
+//  [super setSelectedViewController:selectedViewController];
+//}
+//
+//- (void)setSelectedIndex:(NSUInteger)selectedIndex
+//{
+//  if (self.selectedIndex == 1 && selectedIndex == 1) [[CYMapViewController currentVC] toggleBeaconHUD];
+//  [super setSelectedIndex:selectedIndex];
+//}
+//
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setSelectedIndex:1];
+//    [self setSelectedIndex:1];
 	// Do any additional setup after loading the view.
 }
 

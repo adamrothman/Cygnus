@@ -114,8 +114,8 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  self.groups = [[CYUser currentUser] groups];
-  self.maps = [[CYUser currentUser] maps];
+  self.groups = [[[CYUser currentUser] groups] allObjects];
+  self.maps = [[[CYUser currentUser] maps] allObjects];
   [self.mapsTableView reloadData];
   [self.groupsTableView reloadData];
     

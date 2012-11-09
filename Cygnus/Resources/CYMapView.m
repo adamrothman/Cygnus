@@ -47,6 +47,16 @@
     pinView.pinColor = MKPinAnnotationColorRed;
     pinView.canShowCallout = YES;
     pinView.animatesDrop = YES;
+    
+//    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//    [rightButton addTarget:self
+//                    action:@selector(showDetails:)
+//          forControlEvents:UIControlEventTouchUpInside];
+//    pinView.rightCalloutAccessoryView = rightButton;
+    
+//    UIImageView *sfIconView = [[UIImageView alloc] init];
+//    pinView.leftCalloutAccessoryView = sfIconView;
+
   }
   return pinView;
 }
@@ -69,10 +79,9 @@
   [self addAnnotation:annot];
 }
 
-
 - (void)setUp
 {
-  self.showsUserLocation = YES;
+//  self.showsUserLocation = YES;
   _userDidInteract = NO;
   _canEdit = NO;
   self.delegate = self;
@@ -83,11 +92,6 @@
   [self addGestureRecognizer:lpr];
 }
 
-- (void)awakeFromNib
-{
-  [super awakeFromNib];
-  [self setUp];
-}
 
 - (id)initWithFrame:(CGRect)frame
 {
