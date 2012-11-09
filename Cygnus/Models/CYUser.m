@@ -72,7 +72,8 @@ static CYUser *_currentUser = nil;
   NSError *error;
   [user signUp:&error];
   if (error) return nil;
-  
+  user = [PFUser logInWithUsername:username password:password error:&error];
+  if (error) return nil;
   CYUser *newUser = [CYUser currentUser];
   PFQuery *groupQuery = [PFQuery queryWithClassName:@"Group"];
   CYGroup *publicGroup = [CYGroup groupWithObject:[groupQuery getObjectWithId:@"RKXicgkfyG"]];
@@ -80,8 +81,8 @@ static CYUser *_currentUser = nil;
   CYMap *publicMap = [CYMap mapWithObject:[mapQuery getObjectWithId:@"ngcIS3azVV"]];
   [publicGroup addMember:newUser];
   [newUser addMap:publicMap];
-  newUser._maps = [NSMutableSet setWithObject:publicMap];
   newUser._groups = [NSMutableSet setWithObject:publicGroup];
+  newUser._maps = [NSMutableSet setWithObject:publicMap];
   return newUser;
 }
 
@@ -242,7 +243,7 @@ static CYUser *_currentUser = nil;
 
 - (NSSet *)mapsWithUpdateBlock:(CYMapsResultBlock)block {
   if (!self.mapsQuery) {
-    self.mapsQuery = [[self.backingUser relationforKey:@"maps"] query];
+    self.mapsQuery = [[self.backingUser relationforKey:CYUserMapsKey] query];
   }
 
   [self.mapsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
