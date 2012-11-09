@@ -216,7 +216,7 @@ static CYUser *_currentUser = nil;
   return self._groups;
 }
 
-- (NSSet *)maps {
+- (NSSet *)maps { 
   return self._maps;
 }
 

@@ -12,6 +12,7 @@
 @interface CYMapView () <MKMapViewDelegate>
 
 @property (strong, nonatomic)        id<MKAnnotation> beaconAnnotation;
+@property (strong, nonatomic)        NSMutableDictionary *mapAnnotations;
 
 @end
 
@@ -46,7 +47,7 @@
   } else { //Map point annotation
     pinView.pinColor = MKPinAnnotationColorRed;
     pinView.canShowCallout = YES;
-    pinView.animatesDrop = YES;
+    pinView.animatesDrop = NO;
     
 //    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //    [rightButton addTarget:self
@@ -72,11 +73,12 @@
   //assumes that the beacon is being stored on User.
 }
 
-- (void)addPoint:(CYPoint *)point
+- (void)updatePointsForMap:(CYMap *)map
 {
-//  MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
-//  annot.coordinate = CLLocationCoordinate2DMake(point.location.latitude, point.location.longitude);
-  [self addAnnotation:point];
+  NSArray *mapPoints = [map.points allObjects];
+  [self addAnnotations:mapPoints];
+  [self removeAnnotations:self.mapAnnotations[map.objectID]];
+  [self.mapAnnotations setObject:mapPoints forKey:map.objectID];
 }
 
 - (void)setUp
@@ -85,6 +87,8 @@
   _userDidInteract = NO;
   _canEdit = NO;
   self.delegate = self;
+  
+  self.mapAnnotations = [NSMutableDictionary dictionaryWithCapacity:5];
   UILongPressGestureRecognizer *lpr = [[UILongPressGestureRecognizer alloc]
                                        initWithTarget:self action:@selector(handleLongPress:)];
   [lpr setMinimumPressDuration:0.15f];

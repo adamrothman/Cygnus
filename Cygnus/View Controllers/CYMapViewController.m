@@ -75,22 +75,11 @@ CYMapViewController *_currentVC;
 //      NSLog(@"Error: %@ %@", error, [error userInfo]);
 //    }
 //  }];
+ 
   
-  [[CYUser currentUser] groupsWithUpdateBlock:^(NSSet *groups, NSError *error) {
-    for (CYGroup *group in groups) {
-      [group mapsWithUpdateBlock:^(NSSet *maps, NSError *error) {
-        for (CYMap *map in maps) {
-          [map pointsWithUpdateBlock:^(NSSet *points, NSError *error) {
-            for (CYPoint *point in points) {
-              [self.mapView addPoint:point];
-              [self.mapView zoomToFitAnnotationsAnimated:YES];
-            }
-          }];
-        }
-      }];
-    }
-  }];
+  
 }
+          
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
