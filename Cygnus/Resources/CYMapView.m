@@ -74,9 +74,9 @@
 
 - (void)addPoint:(CYPoint *)point
 {
-  MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
-  annot.coordinate = CLLocationCoordinate2DMake(point.location.latitude, point.location.longitude);
-  [self addAnnotation:annot];
+//  MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
+//  annot.coordinate = CLLocationCoordinate2DMake(point.location.latitude, point.location.longitude);
+  [self addAnnotation:point];
 }
 
 - (void)setUp

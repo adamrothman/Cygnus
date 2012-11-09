@@ -17,8 +17,8 @@
                 clientKey:@"e3fP5YlVRNIqev4CoH53d22JAeXEqiCWJBSpygJk"];
   
   if ([CYUser currentUser]) {
-      [[CYUser currentUser] mapsWithUpdateBlock:NULL];
-      [[CYUser currentUser] groupsWithUpdateBlock:NULL];
+//      [[CYUser currentUser] mapsWithUpdateBlock:NULL];
+//      [[CYUser currentUser] groupsWithUpdateBlock:NULL];
   } else {
     [CYLogInViewController present];
   }
