@@ -81,6 +81,20 @@ static NSString *const CYPointMapKey = @"map";
   [self save];
 }
 
+#pragma mark - MKAnnotation
+
+- (CLLocationCoordinate2D)coordinate {
+  return CLLocationCoordinate2DMake(self.location.latitude, self.location.longitude);
+}
+
+- (NSString *)title {
+  return self.name;
+}
+
+- (NSString *)subtitle {
+  return self.summary;
+}
+
 #pragma mark - Relations
 
 - (CYMap *)map {
