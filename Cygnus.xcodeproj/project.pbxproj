@@ -31,8 +31,6 @@
 		4EEEE470164CDCB300D3357B /* 20-gear-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEEE45C164CDCB300D3357B /* 20-gear-2@2x.png */; };
 		4EEEE471164CDCB300D3357B /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEEE45D164CDCB300D3357B /* 103-map.png */; };
 		4EEEE472164CDCB300D3357B /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEEE45E164CDCB300D3357B /* 103-map@2x.png */; };
-		4EEEE473164CDCB300D3357B /* CYBeaconHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEEE460164CDCB300D3357B /* CYBeaconHUD.m */; };
-		4EEEE474164CDCB300D3357B /* CYBeaconHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEEE461164CDCB300D3357B /* CYBeaconHUD.xib */; };
 		4EEEE475164CDCB300D3357B /* CYMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEEE463164CDCB300D3357B /* CYMapView.m */; };
 		4EEEE476164CDCB300D3357B /* CYUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEEE465164CDCB300D3357B /* CYUI.m */; };
 		4EEEE477164CDCB300D3357B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EEEE466164CDCB300D3357B /* Default-568h@2x.png */; };
@@ -87,9 +85,6 @@
 		66558ABE163634BE00C7BB8B /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66558A9816361D4700C7BB8B /* libSSToolkit.a */; };
 		66558ABF163634DA00C7BB8B /* SSToolkitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66558A9C16361D4700C7BB8B /* SSToolkitResources.bundle */; };
 		669C1F91163DC75E001F1C18 /* CYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1F90163DC75E001F1C18 /* CYUser.m */; };
-		669C1F94163DC906001F1C18 /* CYMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1F93163DC906001F1C18 /* CYMap.m */; };
-		669C1F97163DC99C001F1C18 /* CYPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1F96163DC99C001F1C18 /* CYPoint.m */; };
-		669C1FA1163DDDBF001F1C18 /* CYGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1FA0163DDDBF001F1C18 /* CYGroup.m */; };
 		669C1FA4163DF8FD001F1C18 /* CYObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1FA3163DF8FD001F1C18 /* CYObject.m */; };
 		66A1B331163888AC00B9DCEC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A1B330163888AC00B9DCEC /* SystemConfiguration.framework */; };
 		66A1B34316388E7200B9DCEC /* CYMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B34216388E7200B9DCEC /* CYMapViewController.m */; };
@@ -97,6 +92,15 @@
 		66A1B3741638AC8100B9DCEC /* ARTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36E1638AC8100B9DCEC /* ARTextField.m */; };
 		66A1B3751638AC8100B9DCEC /* ARTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B3701638AC8100B9DCEC /* ARTextView.m */; };
 		66C29A59164CEA9400DC8DBA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C29A58164CEA9400DC8DBA /* CoreText.framework */; };
+		66F2B2491654A8550043DD15 /* Cygnus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2471654A8550043DD15 /* Cygnus.xcdatamodeld */; };
+		66F2B2991654AD770043DD15 /* CYClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2981654AD770043DD15 /* CYClient.m */; };
+		66F2B29B1654B1B30043DD15 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F2B29A1654B1B30043DD15 /* CoreData.framework */; };
+		66F2B2CF1654D3490043DD15 /* NSManagedObjectContext+SimpleSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2CE1654D3490043DD15 /* NSManagedObjectContext+SimpleSave.m */; };
+		66F2B2D61654D7DA0043DD15 /* CYConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2D51654D7D90043DD15 /* CYConstants.m */; };
+		66F2B2E21654DA520043DD15 /* CYMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2E11654DA510043DD15 /* CYMap.m */; };
+		66F2B2E51654DA5E0043DD15 /* CYPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2E41654DA5E0043DD15 /* CYPoint.m */; };
+		66F2B2E81654DA8B0043DD15 /* CYMap+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2E71654DA8B0043DD15 /* CYMap+Additions.m */; };
+		66F2B2EB1654DAD20043DD15 /* CYPoint+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2EA1654DAD20043DD15 /* CYPoint+Additions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,9 +182,6 @@
 		4EEEE45C164CDCB300D3357B /* 20-gear-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear-2@2x.png"; sourceTree = "<group>"; };
 		4EEEE45D164CDCB300D3357B /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
 		4EEEE45E164CDCB300D3357B /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map@2x.png"; sourceTree = "<group>"; };
-		4EEEE45F164CDCB300D3357B /* CYBeaconHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYBeaconHUD.h; sourceTree = "<group>"; };
-		4EEEE460164CDCB300D3357B /* CYBeaconHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYBeaconHUD.m; sourceTree = "<group>"; };
-		4EEEE461164CDCB300D3357B /* CYBeaconHUD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CYBeaconHUD.xib; sourceTree = "<group>"; };
 		4EEEE462164CDCB300D3357B /* CYMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMapView.h; sourceTree = "<group>"; };
 		4EEEE463164CDCB300D3357B /* CYMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMapView.m; sourceTree = "<group>"; };
 		4EEEE464164CDCB300D3357B /* CYUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYUI.h; sourceTree = "<group>"; };
@@ -230,7 +231,6 @@
 		6627827D1633EF9200F1D0E7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6627828F1633F0F400F1D0E7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		662782911633F10100F1D0E7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		6644E246163F312700537778 /* CYNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYNotifications.h; sourceTree = "<group>"; };
 		6644E252163F338000537778 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Cygnus/Frameworks/Parse.framework; sourceTree = "<group>"; };
 		66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = Cygnus/Libraries/SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
 		66558A9E16361EBC00C7BB8B /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -254,12 +254,6 @@
 		66558AB016361EBC00C7BB8B /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		669C1F8F163DC75E001F1C18 /* CYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYUser.h; path = Models/CYUser.h; sourceTree = "<group>"; };
 		669C1F90163DC75E001F1C18 /* CYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYUser.m; path = Models/CYUser.m; sourceTree = "<group>"; };
-		669C1F92163DC906001F1C18 /* CYMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYMap.h; path = Models/CYMap.h; sourceTree = "<group>"; };
-		669C1F93163DC906001F1C18 /* CYMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYMap.m; path = Models/CYMap.m; sourceTree = "<group>"; };
-		669C1F95163DC99C001F1C18 /* CYPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYPoint.h; path = Models/CYPoint.h; sourceTree = "<group>"; };
-		669C1F96163DC99C001F1C18 /* CYPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYPoint.m; path = Models/CYPoint.m; sourceTree = "<group>"; };
-		669C1F9F163DDDBF001F1C18 /* CYGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYGroup.h; path = Models/CYGroup.h; sourceTree = "<group>"; };
-		669C1FA0163DDDBF001F1C18 /* CYGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYGroup.m; path = Models/CYGroup.m; sourceTree = "<group>"; };
 		669C1FA2163DF8FD001F1C18 /* CYObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYObject.h; path = Models/CYObject.h; sourceTree = "<group>"; };
 		669C1FA3163DF8FD001F1C18 /* CYObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYObject.m; path = Models/CYObject.m; sourceTree = "<group>"; };
 		66A1B330163888AC00B9DCEC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -273,8 +267,23 @@
 		66A1B36E1638AC8100B9DCEC /* ARTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTextField.m; sourceTree = "<group>"; };
 		66A1B36F1638AC8100B9DCEC /* ARTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTextView.h; sourceTree = "<group>"; };
 		66A1B3701638AC8100B9DCEC /* ARTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTextView.m; sourceTree = "<group>"; };
-		66C29A57164CDEBF00DC8DBA /* CYBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYBlocks.h; sourceTree = "<group>"; };
 		66C29A58164CEA9400DC8DBA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		66F2B2481654A8550043DD15 /* Cygnus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cygnus.xcdatamodel; sourceTree = "<group>"; };
+		66F2B2971654AD770043DD15 /* CYClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYClient.h; sourceTree = "<group>"; };
+		66F2B2981654AD770043DD15 /* CYClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYClient.m; sourceTree = "<group>"; };
+		66F2B29A1654B1B30043DD15 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		66F2B2CD1654D3490043DD15 /* NSManagedObjectContext+SimpleSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+SimpleSave.h"; sourceTree = "<group>"; };
+		66F2B2CE1654D3490043DD15 /* NSManagedObjectContext+SimpleSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+SimpleSave.m"; sourceTree = "<group>"; };
+		66F2B2D41654D7D90043DD15 /* CYConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYConstants.h; sourceTree = "<group>"; };
+		66F2B2D51654D7D90043DD15 /* CYConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYConstants.m; sourceTree = "<group>"; };
+		66F2B2E01654DA510043DD15 /* CYMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMap.h; sourceTree = "<group>"; };
+		66F2B2E11654DA510043DD15 /* CYMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMap.m; sourceTree = "<group>"; };
+		66F2B2E31654DA5E0043DD15 /* CYPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPoint.h; sourceTree = "<group>"; };
+		66F2B2E41654DA5E0043DD15 /* CYPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPoint.m; sourceTree = "<group>"; };
+		66F2B2E61654DA8B0043DD15 /* CYMap+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CYMap+Additions.h"; sourceTree = "<group>"; };
+		66F2B2E71654DA8B0043DD15 /* CYMap+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CYMap+Additions.m"; sourceTree = "<group>"; };
+		66F2B2E91654DAD20043DD15 /* CYPoint+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CYPoint+Additions.h"; sourceTree = "<group>"; };
+		66F2B2EA1654DAD20043DD15 /* CYPoint+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CYPoint+Additions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +291,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66F2B29B1654B1B30043DD15 /* CoreData.framework in Frameworks */,
 				66C29A59164CEA9400DC8DBA /* CoreText.framework in Frameworks */,
 				66A1B331163888AC00B9DCEC /* SystemConfiguration.framework in Frameworks */,
 				66558ABE163634BE00C7BB8B /* libSSToolkit.a in Frameworks */,
@@ -391,6 +401,7 @@
 				662782741633EF9200F1D0E7 /* AdSupport.framework */,
 				662782751633EF9200F1D0E7 /* AudioToolbox.framework */,
 				662782761633EF9200F1D0E7 /* CFNetwork.framework */,
+				66F2B29A1654B1B30043DD15 /* CoreData.framework */,
 				6627824D1633EEC200F1D0E7 /* CoreGraphics.framework */,
 				662782911633F10100F1D0E7 /* CoreLocation.framework */,
 				66C29A58164CEA9400DC8DBA /* CoreText.framework */,
@@ -415,9 +426,16 @@
 			children = (
 				662782581633EEC200F1D0E7 /* CYAppDelegate.h */,
 				662782591633EEC200F1D0E7 /* CYAppDelegate.m */,
-				66C29A57164CDEBF00DC8DBA /* CYBlocks.h */,
-				6644E246163F312700537778 /* CYNotifications.h */,
+				66F2B2971654AD770043DD15 /* CYClient.h */,
+				66F2B2981654AD770043DD15 /* CYClient.m */,
+				66F2B2D41654D7D90043DD15 /* CYConstants.h */,
+				66F2B2D51654D7D90043DD15 /* CYConstants.m */,
+				4EEEE464164CDCB300D3357B /* CYUI.h */,
+				4EEEE465164CDCB300D3357B /* CYUI.m */,
 				662782611633EEC200F1D0E7 /* MainStoryboard.storyboard */,
+				66F2B2C91654D3040043DD15 /* Categories */,
+				66F2B24A1654A8620043DD15 /* Core Data */,
+				66F2B2A21654B4FB0043DD15 /* Views */,
 				66A1B30C16387F7B00B9DCEC /* View Controllers */,
 				669C1F8E163DC702001F1C18 /* Models */,
 				662782501633EEC200F1D0E7 /* Supporting Files */,
@@ -490,14 +508,8 @@
 			children = (
 				669C1FA2163DF8FD001F1C18 /* CYObject.h */,
 				669C1FA3163DF8FD001F1C18 /* CYObject.m */,
-				669C1F9F163DDDBF001F1C18 /* CYGroup.h */,
-				669C1FA0163DDDBF001F1C18 /* CYGroup.m */,
-				669C1F92163DC906001F1C18 /* CYMap.h */,
-				669C1F93163DC906001F1C18 /* CYMap.m */,
 				669C1F8F163DC75E001F1C18 /* CYUser.h */,
 				669C1F90163DC75E001F1C18 /* CYUser.m */,
-				669C1F95163DC99C001F1C18 /* CYPoint.h */,
-				669C1F96163DC99C001F1C18 /* CYPoint.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -528,13 +540,6 @@
 		66A1B31F1638828A00B9DCEC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4EEEE464164CDCB300D3357B /* CYUI.h */,
-				4EEEE465164CDCB300D3357B /* CYUI.m */,
-				4EEEE45F164CDCB300D3357B /* CYBeaconHUD.h */,
-				4EEEE460164CDCB300D3357B /* CYBeaconHUD.m */,
-				4EEEE461164CDCB300D3357B /* CYBeaconHUD.xib */,
-				4EEEE462164CDCB300D3357B /* CYMapView.h */,
-				4EEEE463164CDCB300D3357B /* CYMapView.m */,
 				4EEEE455164CDCB300D3357B /* 04-eye-white.png */,
 				4EEEE456164CDCB300D3357B /* 04-eye-white@2x.png */,
 				4EEEE457164CDCB300D3357B /* 06-magnify.png */,
@@ -583,6 +588,40 @@
 				66A1B3701638AC8100B9DCEC /* ARTextView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		66F2B24A1654A8620043DD15 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				66F2B2471654A8550043DD15 /* Cygnus.xcdatamodeld */,
+				66F2B2E01654DA510043DD15 /* CYMap.h */,
+				66F2B2E11654DA510043DD15 /* CYMap.m */,
+				66F2B2E61654DA8B0043DD15 /* CYMap+Additions.h */,
+				66F2B2E71654DA8B0043DD15 /* CYMap+Additions.m */,
+				66F2B2E31654DA5E0043DD15 /* CYPoint.h */,
+				66F2B2E41654DA5E0043DD15 /* CYPoint.m */,
+				66F2B2E91654DAD20043DD15 /* CYPoint+Additions.h */,
+				66F2B2EA1654DAD20043DD15 /* CYPoint+Additions.m */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		66F2B2A21654B4FB0043DD15 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4EEEE462164CDCB300D3357B /* CYMapView.h */,
+				4EEEE463164CDCB300D3357B /* CYMapView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		66F2B2C91654D3040043DD15 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				66F2B2CD1654D3490043DD15 /* NSManagedObjectContext+SimpleSave.h */,
+				66F2B2CE1654D3490043DD15 /* NSManagedObjectContext+SimpleSave.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -696,7 +735,6 @@
 				4EEEE470164CDCB300D3357B /* 20-gear-2@2x.png in Resources */,
 				4EEEE471164CDCB300D3357B /* 103-map.png in Resources */,
 				4EEEE472164CDCB300D3357B /* 103-map@2x.png in Resources */,
-				4EEEE474164CDCB300D3357B /* CYBeaconHUD.xib in Resources */,
 				4EEEE477164CDCB300D3357B /* Default-568h@2x.png in Resources */,
 				4EEEE478164CDCB300D3357B /* Default.png in Resources */,
 				4EEEE479164CDCB300D3357B /* Default@2x.png in Resources */,
@@ -729,9 +767,6 @@
 				661088C9163AAD4D000D1DA2 /* AwesomeMenuItem.m in Sources */,
 				669C1FA4163DF8FD001F1C18 /* CYObject.m in Sources */,
 				669C1F91163DC75E001F1C18 /* CYUser.m in Sources */,
-				669C1FA1163DDDBF001F1C18 /* CYGroup.m in Sources */,
-				669C1F94163DC906001F1C18 /* CYMap.m in Sources */,
-				669C1F97163DC99C001F1C18 /* CYPoint.m in Sources */,
 				4EEB960B163DDE3500D67785 /* CYLogInViewController.m in Sources */,
 				4EEB9626163DF84900D67785 /* NSArray+Accessing.m in Sources */,
 				4EEB9627163DF84900D67785 /* NSObject+PerformBlock.m in Sources */,
@@ -743,12 +778,19 @@
 				4E6DFF7D1643EA5F00AB180C /* CYTabBarViewController.m in Sources */,
 				4E6DFF9B1643F3A600AB180C /* NSAttributedString+Attributes.m in Sources */,
 				4E6DFFA11643FC1100AB180C /* CYConsoleViewController.m in Sources */,
-				4EEEE473164CDCB300D3357B /* CYBeaconHUD.m in Sources */,
 				4EEEE475164CDCB300D3357B /* CYMapView.m in Sources */,
 				4EEEE476164CDCB300D3357B /* CYUI.m in Sources */,
 				4E9B9C02164D3ADE00A6A010 /* CYMapDetailViewController.m in Sources */,
 				4E5419531654BAF300E495D1 /* CYPointDetailViewController.m in Sources */,
 				4E54195E1654C4A600E495D1 /* CYMapCreationViewController.m in Sources */,
+				66F2B2491654A8550043DD15 /* Cygnus.xcdatamodeld in Sources */,
+				66F2B2991654AD770043DD15 /* CYClient.m in Sources */,
+				66F2B2CF1654D3490043DD15 /* NSManagedObjectContext+SimpleSave.m in Sources */,
+				66F2B2D61654D7DA0043DD15 /* CYConstants.m in Sources */,
+				66F2B2E21654DA520043DD15 /* CYMap.m in Sources */,
+				66F2B2E51654DA5E0043DD15 /* CYPoint.m in Sources */,
+				66F2B2E81654DA8B0043DD15 /* CYMap+Additions.m in Sources */,
+				66F2B2EB1654DAD20043DD15 /* CYPoint+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -903,6 +945,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		66F2B2471654A8550043DD15 /* Cygnus.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				66F2B2481654A8550043DD15 /* Cygnus.xcdatamodel */,
+			);
+			currentVersion = 66F2B2481654A8550043DD15 /* Cygnus.xcdatamodel */;
+			path = Cygnus.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6627823C1633EEC200F1D0E7 /* Project object */;
 }
