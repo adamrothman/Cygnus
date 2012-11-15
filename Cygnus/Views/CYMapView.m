@@ -44,7 +44,6 @@
     if (isnan(region.center.latitude) || !CLLocationCoordinate2DIsValid(userLocation.coordinate)) return;
     [mapView setRegion:region animated:NO];
   }
-  [CYUser currentUser].location = userLocation.location;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -60,13 +59,13 @@
     pinView.pinColor = MKPinAnnotationColorRed;
     pinView.canShowCallout = YES;
     pinView.animatesDrop = NO;
-    
+
 //    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //    [rightButton addTarget:self
 //                    action:@selector(showDetails:)
 //          forControlEvents:UIControlEventTouchUpInside];
 //    pinView.rightCalloutAccessoryView = rightButton;
-    
+
 //    UIImageView *sfIconView = [[UIImageView alloc] init];
 //    pinView.leftCalloutAccessoryView = sfIconView;
 
@@ -87,7 +86,7 @@
 
 - (void)updatePointsForMap:(CYMap *)map animated:(BOOL)animated
 {
-  NSArray *mapPoints = [map.points allObjects];
+  NSArray *mapPoints = map.points.array;
   if (!mapPoints) return;
   [self addAnnotations:mapPoints];
   [self removeAnnotations:self.mapAnnotations[map.objectID]];
@@ -98,7 +97,7 @@
 {
   [self removeAnnotations:self.mapAnnotations[map.objectID]];
   [self.mapAnnotations removeObjectForKey:map.objectID];
-  [self zoomToFitAnnotationsAnimated:NO];  
+  [self zoomToFitAnnotationsAnimated:NO];
 }
 
 - (void)setUp
@@ -107,7 +106,7 @@
   _userDidInteract = NO;
   _canEdit = YES;
   self.delegate = self;
-  
+
   self.mapAnnotations = [NSMutableDictionary dictionaryWithCapacity:5];
   UILongPressGestureRecognizer *lpr = [[UILongPressGestureRecognizer alloc]
                                        initWithTarget:self action:@selector(handleLongPress:)];

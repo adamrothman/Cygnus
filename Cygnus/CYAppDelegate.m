@@ -7,21 +7,26 @@
 //
 
 #import "CYAppDelegate.h"
-#import "CYUser.h"
-#import "CYLogInViewController.h"
 
 @implementation CYAppDelegate
 
+@synthesize managedObjectContext=_managedObjectContext;
+@synthesize managedObjectModel=_managedObjectModel;
+@synthesize persistentStoreCoordinator=_persistentStoreCoordinator;
+
++ (CYAppDelegate *)appDelegate {
+  return [UIApplication sharedApplication].delegate;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contextDidSave:) name:NSManagedObjectContextDidSaveNotification object:nil];
+
+  // load Core Data if it isn't already
+  [self managedObjectContext];
+
   [Parse setApplicationId:@"eZV1a910JvXmP1UrTsMy4cH4QZhLpjLoElLL1GIz"
                 clientKey:@"e3fP5YlVRNIqev4CoH53d22JAeXEqiCWJBSpygJk"];
-  
-  if ([CYUser currentUser]) {
-    [[CYUser currentUser] fetchMaps];
-  } else {
-    [CYLogInViewController present];
-  }
-  
+
   return YES;
 }
 
@@ -44,7 +49,73 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-  // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+  // Saves changes in the application's managed object context before the application terminates.
+  [self.managedObjectContext saveWithSuccess:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)contextDidSave:(NSNotification *)notification {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+  });
+}
+
+#pragma mark - Core Data stack
+
+// Returns the managed object context for the application.
+// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+- (NSManagedObjectContext *)managedObjectContext {
+  if (_managedObjectContext) {
+    return _managedObjectContext;
+  }
+  if (self.persistentStoreCoordinator) {
+    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    _managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator;
+  }
+  return _managedObjectContext;
+}
+
+// Returns the managed object model for the application.
+// If the model doesn't already exist, it is created from the application's model.
+- (NSManagedObjectModel *)managedObjectModel {
+  if (_managedObjectModel) {
+    return _managedObjectModel;
+  }
+  NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Cygnus" withExtension:@"momd"];
+  _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+  return _managedObjectModel;
+}
+
+// Returns the persistent store coordinator for the application.
+// If the coordinator doesn't already exist, it is created and the application's store added to it.
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+  if (_persistentStoreCoordinator) {
+    return _persistentStoreCoordinator;
+  }
+
+  NSURL *storeURL = [self.applicationDocumentsDirectory URLByAppendingPathComponent:@"Cygnus.sqlite"];
+
+  NSError *error = nil;
+  _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
+  // perform automatic lightweight migration
+  // only works for limited set of schema changes
+  //consult "Core Data Model Versioning and Data Migration Programming Guide" for details
+  NSDictionary *options = @{
+    NSMigratePersistentStoresAutomaticallyOption : @YES,
+    NSInferMappingModelAutomaticallyOption : @YES
+  };
+  if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
+    NSDictionary *userInfo = @{NSUnderlyingErrorKey : error};
+    NSString *reason = @"Could not create persistent store.";
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:userInfo];
+  }
+
+  return _persistentStoreCoordinator;
+}
+
+// Returns the URL to the application's Documents directory.
+- (NSURL *)applicationDocumentsDirectory {
+  return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

@@ -35,14 +35,14 @@
 #pragma mark - Actions, Gestures, Notification Handlers
 
 - (IBAction)followButtonSelected:(id)sender {
-  if ([[CYUser currentUser].maps containsObject:self.map]) {
-    [[CYUser currentUser] removeMap:self.map];  
-    self.followLabel.text = @"Follow";
-
-  } else {
-    [[CYUser currentUser] addMap:self.map];
-    self.followLabel.text = @"Following";
-  }
+//  if ([[CYUser user].maps containsObject:self.map]) {
+//    [[CYUser user] removeMap:self.map];
+//    self.followLabel.text = @"Follow";
+//
+//  } else {
+//    [[CYUser user] addMap:self.map];
+//    self.followLabel.text = @"Following";
+//  }
 }
 
 #pragma mark - UITableViewDataSource
@@ -54,7 +54,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return [self.map.size integerValue];
+  return self.map.points.count;
 }
 
 #define MAP_CELL                @"CYMapTableViewCell"
@@ -68,7 +68,8 @@
   
   CYPoint *point = (CYPoint *)self.map.points[indexPath.row];
   cell.textLabel.text = point.name;
-  float distance = [[CYUser currentUser].location distanceFromLocation:point.location];
+#warning FIX THIS
+  float distance = 0.f;
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f km", distance/1000];
   return cell;
 }
@@ -92,7 +93,7 @@
   self.mapView.zoomEnabled = NO;  
   
   self.headerContainer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
-  self.nameLabel.text = [NSString stringWithFormat:@"%@ (%d)", self.map.name, [self.map.size integerValue]];
+  self.nameLabel.text = [NSString stringWithFormat:@"%@ (%d)", self.map.name, self.map.points.count];
   self.lastUpdatedValueLabel.text = [NSString stringWithFormat:@"%.2f hr", -([self.map.updatedAt timeIntervalSinceNow] / (60.0*60))];
   
 }
@@ -100,7 +101,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  self.followLabel.text = ([[CYUser currentUser].maps containsObject:self.map]) ? @"Following" : @"Follow";
+//  self.followLabel.text = ([[CYUser user].maps containsObject:self.map]) ? @"Following" : @"Follow";
   [self.mapView updatePointsForMap:self.map animated:NO];
   [self.tableView reloadData];
 }

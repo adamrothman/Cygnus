@@ -9,10 +9,9 @@
 #import "CYMapViewController.h"
 #import "CYPointCreationViewController.h"
 #import "UIViewController+KNSemiModal.h"
-
-#import "CYMap.h"
+#import "CYMap+Additions.h"
+#import "CYUser+Additions.h"
 #import "CYUI.h"
-#import "CYBeaconHUD.h"
 #import "CYMapView.h"
 #import "AwesomeMenuItem.h"
 
@@ -28,7 +27,6 @@ CYMapViewController *_currentVC;
 
 @property (weak, nonatomic)       IBOutlet CYMapView *mapView;
 @property (strong, nonatomic)     CYPointCreationViewController *pointCreationVC;
-
 @end
 
 @implementation CYMapViewController
@@ -73,7 +71,7 @@ CYMapViewController *_currentVC;
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  [self.mapView updatePointsForMap:[CYUser currentUser].activeMap animated:NO];
+  [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
   if (!self.mapView.userDidInteract) [self.mapView zoomToFitAnnotationsAnimated:YES]; // basically on first load zoom otherwise leave map alone.
 }
 

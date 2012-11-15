@@ -113,12 +113,12 @@ static const uint kDismissButtonTag = 12;
 -(void)presentSemiView:(UIView*)view withOptions:(NSDictionary*)options {
   // Determine target
   UIView * target = [self parentTarget];
-	
+
   if (![target.subviews containsObject:view]) {
 		// Remember transition options for symmetrical dismiss transition
 		objc_setAssociatedObject(self, kSemiModalTransitionOptions, options, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 		[self kn_registerTransitionDefaults];
-		
+
     // Calulate all frames
     CGRect sf = view.frame;
     CGRect vf = target.bounds;
@@ -128,7 +128,7 @@ static const uint kDismissButtonTag = 12;
     // Add semi overlay
     UIView * overlay = [[UIView alloc] initWithFrame:target.bounds];
     overlay.backgroundColor = [UIColor blackColor];
-    
+
     // Take screenshot and scale
     UIGraphicsBeginImageContextWithOptions(target.bounds.size, YES, [[UIScreen mainScreen] scale]);
     [target.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -238,7 +238,7 @@ static const uint kDismissButtonTag = 12;
 
 @end
 
-#pragma mark - 
+#pragma mark -
 
 // Convenient category method to find actual ViewController that contains a view
 // Adapted from: http://stackoverflow.com/questions/1340434/get-to-uiviewcontroller-from-uiview-on-iphone

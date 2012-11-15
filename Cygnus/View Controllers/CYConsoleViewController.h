@@ -6,7 +6,5 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface CYConsoleViewController : UIViewController
 @end
