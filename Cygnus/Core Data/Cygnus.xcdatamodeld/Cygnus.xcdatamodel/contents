@@ -19,8 +19,12 @@
         <attribute name="updatedAt" attributeType="Date" syncable="YES"/>
         <relationship name="map" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CYMap" inverseName="points" inverseEntity="CYMap" syncable="YES"/>
     </entity>
+    <entity name="CYUser" representedClassName="CYUser" syncable="YES">
+        <relationship name="activeMap" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CYMap" syncable="YES"/>
+    </entity>
     <elements>
         <element name="CYMap" positionX="160" positionY="192" width="128" height="135"/>
         <element name="CYPoint" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="CYUser" positionX="160" positionY="192" width="128" height="60"/>
     </elements>
 </model>

@@ -7,12 +7,33 @@
 //
 
 #import "CYMap+Additions.h"
+#import "CYAppDelegate.h"
 
 @implementation CYMap (Additions)
 
-+ (CYMap *)mapWithObject:(PFObject *)object inContext:(NSManagedObjectContext *)context save:(BOOL)save {
-  CYMap *map = nil;
++ (void)fetchMaps {
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    PFQuery *query = [PFQuery queryWithClassName:MapClassName];
+    NSError *error = nil;
+    NSArray *maps = [query findObjects:&error];
+    if (error) {
+      NSLog(@"Error fetching maps: %@ %@", error, error.userInfo);
+      return;
+    }
 
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+    context.persistentStoreCoordinator = [CYAppDelegate appDelegate].persistentStoreCoordinator;
+    for (PFObject *map in maps) {
+      [CYMap mapWithObject:map inContext:context save:NO];
+    }
+
+    [context saveWithSuccess:^{
+      NSLog(@"finished fetching maps");
+    }];
+  });
+}
+
++ (CYMap *)mapWithObject:(PFObject *)object inContext:(NSManagedObjectContext *)context save:(BOOL)save {
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
   request.entity = [NSEntityDescription entityForName:NSStringFromClass(self.class) inManagedObjectContext:context];
   request.predicate = [NSPredicate predicateWithFormat:@"unique = %@", object.objectId];
@@ -25,7 +46,7 @@
     abort();
   }
 
-  map = fetchedObjects.lastObject;
+  CYMap *map = fetchedObjects.lastObject;
   if (!map) {
     // no CD object for this PFObject yet
     map = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self.class) inManagedObjectContext:context];
@@ -46,15 +67,41 @@
   return map;
 }
 
-- (void)saveToParse {
-  PFObject *map = [PFObject objectWithoutDataWithClassName:MapClassName objectId:self.unique];
++ (CYMap *)mapInContext:(NSManagedObjectContext *)context save:(BOOL)save {
+  CYMap *map = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self.class) inManagedObjectContext:context];
+  [map saveToParseWithSuccess:^{
+    if (save) [context saveWithSuccess:nil];
+  }];
+  return map;
+}
+
+- (void)saveToParseWithSuccess:(void (^)())block {
+  PFObject *map = nil;
+  if (self.unique) { // existing
+    map = [PFObject objectWithoutDataWithClassName:MapClassName objectId:self.unique];
+  } else { // new
+    map = [PFObject objectWithClassName:MapClassName];
+  }
+
   [map setObject:self.name forKey:MapNameKey];
   [map setObject:self.summary forKey:MapSummaryKey];
   [map saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-    if (!succeeded) {
+    if (succeeded) {
+      if (!self.unique) self.unique = map.objectId;
+      if (block) block();
+    } else {
       NSLog(@"Error saving map %@ to Parse: %@ %@", self.unique, error.localizedDescription, error.userInfo);
     }
   }];
+}
+
+- (void)destroyWithSave:(BOOL)save {
+  if (self.unique) {
+    PFObject *map = [PFObject objectWithoutDataWithClassName:MapClassName objectId:self.unique];
+    [map deleteInBackground];
+  }
+  [self.managedObjectContext deleteObject:self];
+  if (save) [self.managedObjectContext saveWithSuccess:nil];
 }
 
 @end

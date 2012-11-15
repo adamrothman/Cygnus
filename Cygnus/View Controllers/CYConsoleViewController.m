@@ -10,9 +10,8 @@
 #import "CYMapDetailViewController.h"
 #import "CYTabBarViewController.h"
 
-#import "CYUser.h"
-#import "CYMap.h"
-#import "CYGroup.h"
+#import "CYUser+Additions.h"
+#import "CYMap+Additions.h"
 #import "CYUI.h"
 
 
@@ -96,7 +95,7 @@
 
   CYMap *map;
   if (!indexPath.section) {
-    map = [CYUser currentUser].activeMap;
+    map = [CYUser user].activeMap;
   } else {
     map = (CYMap*)self.maps[indexPath.row];
   }
@@ -111,12 +110,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (!indexPath.section) {
-    [self.maps addObject:[CYUser currentUser].activeMap]; // add active map to "following" maps list
-    [CYUser currentUser].activeMap = nil;
+    [self.maps addObject:[CYUser user].activeMap]; // add active map to "following" maps list
+    [CYUser user].activeMap = nil;
   } else {
     CYMap *newActiveMap = self.maps[indexPath.row];
     [self.maps removeObject:newActiveMap];
-    [CYUser currentUser].activeMap = newActiveMap;
+    [CYUser user].activeMap = newActiveMap;
   }
   
   [self.mapsTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -140,13 +139,13 @@
 
 //implemented in dumbest way possible. for simplification.
 
-- (void)viewWillAppear:(BOOL)animated
-{
-  [super viewWillAppear:animated];
-  [self setMaps:[[CYUser currentUser].maps mutableCopy]]; //these are all user following maps (- activeMap)
-  [self.maps removeObject:[CYUser currentUser].activeMap];
-  [self.mapsTableView reloadData];
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//  [super viewWillAppear:animated];
+//  [self setMaps:[[CYUser user].maps mutableCopy]]; //these are all user following maps (- activeMap)
+//  [self.maps removeObject:[CYUser user].activeMap];
+//  [self.mapsTableView reloadData];
+//}
 
 - (void)viewDidAppear:(BOOL)animated
 {
