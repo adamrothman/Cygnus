@@ -9,6 +9,7 @@
 #import "CYConsoleViewController.h"
 #import "CYMapDetailViewController.h"
 #import "CYTabBarViewController.h"
+#import "CYMapCreationViewController.h"
 
 #import "CYUser+Additions.h"
 #import "CYMap+Additions.h"
@@ -42,11 +43,10 @@
         } else if ([choice isEqualToString:SEARCH]) {
           [[CYTabBarViewController currentVC] setSelectedIndex:2];
         } else if ([choice isEqualToString:CREATE_NEW]) {
-          
-        } else if ([choice isEqualToString:CANCEL]) {
-//
-        } else if ([choice isEqualToString:CANCEL]) {
-//
+          QRootElement *root = [CYMapCreationViewController rootElement];
+          CYMapCreationViewController *myDialogController = (CYMapCreationViewController *)[QuickDialogController controllerForRoot:root];
+          myDialogController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+          [self presentViewController:myDialogController animated:YES completion:NULL];
         }
     }
 }
@@ -89,7 +89,7 @@
 {
   NSString *identifier;
   if (tableView == self.mapsTableView)    identifier = MAP_CELL;
-  
+
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
   if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
 
@@ -117,7 +117,7 @@
     [self.maps removeObject:newActiveMap];
     [CYUser user].activeMap = newActiveMap;
   }
-  
+
   [self.mapsTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
