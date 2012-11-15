@@ -610,28 +610,21 @@
         <class className="CYConsoleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CYConsoleViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addMapSelected:"/>
                 <relationship kind="outlet" name="mapsAddButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="mapsTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
-        <class className="CYLogInViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYLogInViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="createAccountButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="logInButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="CYMapCreationViewController" superclassName="UIViewController">
+        <class className="CYMapCreationViewController" superclassName="QuickDialogController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapCreationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:"/>
+            </relationships>
         </class>
         <class className="CYMapDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="followButtonSelected:"/>
                 <relationship kind="outlet" name="followButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="followLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="headerContainer" candidateClass="UIView"/>
@@ -659,15 +652,11 @@
                 <relationship kind="outlet" name="pointNameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="CYSearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYSearchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
         <class className="CYTabBarViewController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CYTabBarViewController.h"/>
+        </class>
+        <class className="QuickDialogController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/QuickDialogController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
