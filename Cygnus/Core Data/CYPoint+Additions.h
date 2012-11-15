@@ -7,6 +7,7 @@
 //
 
 #import "CYPoint.h"
+#import "CYMap+Additions.h"
 
 @interface CYPoint (Additions) <MKAnnotation>
 
@@ -14,8 +15,12 @@
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
 
-+ (CYPoint *)pointWithObject:(PFObject *)object inContext:(NSManagedObjectContext *)context save:(BOOL)save;
++ (void)fetchPointsForMap:(CYMap *)map;
 
-- (void)saveToParse;
++ (CYPoint *)pointWithObject:(PFObject *)object inContext:(NSManagedObjectContext *)context save:(BOOL)save;
++ (CYPoint *)pointInContext:(NSManagedObjectContext *)context save:(BOOL)save;
+
+- (void)saveToParseWithSuccess:(void (^)())block;
+- (void)destroyWithSave:(BOOL)save;
 
 @end

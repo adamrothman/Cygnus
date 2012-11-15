@@ -10,8 +10,12 @@
 
 @interface CYMap (Additions)
 
-+ (CYMap *)mapWithObject:(PFObject *)object inContext:(NSManagedObjectContext *)context save:(BOOL)save;
++ (void)fetchMaps;
 
-- (void)saveToParse;
++ (CYMap *)mapWithObject:(PFObject *)object inContext:(NSManagedObjectContext *)context save:(BOOL)save;
++ (CYMap *)mapInContext:(NSManagedObjectContext *)context save:(BOOL)save;
+
+- (void)saveToParseWithSuccess:(void(^)())block;
+- (void)destroyWithSave:(BOOL)save;
 
 @end

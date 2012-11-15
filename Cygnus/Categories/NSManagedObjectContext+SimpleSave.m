@@ -10,12 +10,12 @@
 
 @implementation NSManagedObjectContext (SimpleSave)
 
-- (void)saveWithSuccess:(void(^)())success {
+- (void)saveWithSuccess:(void(^)())block {
   if (!self.hasChanges) return;
 
   NSError *error = nil;
   if ([self save:&error]) {
-    if (success) success();
+    if (block) block();
   } else {
     NSLog(@"Error saving context %@: %@ %@", self, error, error.userInfo);
     abort();

@@ -7,10 +7,10 @@
 //
 
 #import "CYMapViewController.h"
-#import "CYMap.h"
+#import "CYMap+Additions.h"
+#import "CYUser+Additions.h"
 
 #import "CYUI.h"
-#import "CYBeaconHUD.h"
 #import "CYMapView.h"
 #import "AwesomeMenuItem.h"
 
@@ -23,9 +23,6 @@ CYMapViewController *_currentVC;
 #define UPDATE_FREQUENCY                3*60
 
 @interface CYMapViewController ()
-
-@property (weak, nonatomic) IBOutlet CYMapView *mapView;
-@property (nonatomic, copy)     CYMapsResultBlock updateBlock;
 
 @end
 
@@ -51,7 +48,7 @@ CYMapViewController *_currentVC;
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  [self.mapView updatePointsForMap:[CYUser currentUser].activeMap animated:NO];
+  [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
   if (!self.mapView.userDidInteract) [self.mapView zoomToFitAnnotationsAnimated:YES]; // basically on first load zoom otherwise leave map alone.
 }
 

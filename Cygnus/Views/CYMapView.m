@@ -76,7 +76,7 @@
 
 - (void)updatePointsForMap:(CYMap *)map animated:(BOOL)animated
 {
-  NSArray *mapPoints = [map.points allObjects];
+  NSArray *mapPoints = map.points.array;
   if (!mapPoints) return;
   [self addAnnotations:mapPoints];
   [self removeAnnotations:self.mapAnnotations[map.objectID]];

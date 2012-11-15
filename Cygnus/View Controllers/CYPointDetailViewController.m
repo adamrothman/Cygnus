@@ -7,6 +7,7 @@
 //
 
 #import "CYPointDetailViewController.h"
+#import "CYUser+Additions.h"
 
 @interface CYPointDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *pointImageView;
@@ -34,7 +35,8 @@
   } failure:NULL];
   
   self.pointNameLabel.text = _point.name;
-  float distance = [[CYUser currentUser].location distanceFromLocation:point.location];
+#warning FIX THIS
+  float distance = 0.f;
   self.distanceValueLabel.text = [NSString stringWithFormat:@"%.2f km", distance/1000];
 }
 

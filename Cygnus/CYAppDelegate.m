@@ -7,14 +7,12 @@
 //
 
 #import "CYAppDelegate.h"
-#import "CYUser.h"
-#import "CYLogInViewController.h"
 
 @implementation CYAppDelegate
 
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel,
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize managedObjectContext=_managedObjectContext;
+@synthesize managedObjectModel=_managedObjectModel;
+@synthesize persistentStoreCoordinator=_persistentStoreCoordinator;
 
 + (CYAppDelegate *)appDelegate {
   return [UIApplication sharedApplication].delegate;
@@ -29,12 +27,6 @@
   [Parse setApplicationId:@"eZV1a910JvXmP1UrTsMy4cH4QZhLpjLoElLL1GIz"
                 clientKey:@"e3fP5YlVRNIqev4CoH53d22JAeXEqiCWJBSpygJk"];
 
-//  if ([CYUser currentUser]) {
-//    [[CYUser currentUser] fetchGroups];
-//    [[CYUser currentUser] fetchMaps];
-//  } else {
-//    [CYLogInViewController present];
-//  }
   return YES;
 }
 
@@ -73,7 +65,7 @@
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
 - (NSManagedObjectContext *)managedObjectContext {
-  if (_managedObjectContext != nil) {
+  if (_managedObjectContext) {
     return _managedObjectContext;
   }
   if (self.persistentStoreCoordinator) {
@@ -86,7 +78,7 @@
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created from the application's model.
 - (NSManagedObjectModel *)managedObjectModel {
-  if (_managedObjectModel != nil) {
+  if (_managedObjectModel) {
     return _managedObjectModel;
   }
   NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Cygnus" withExtension:@"momd"];
@@ -97,7 +89,7 @@
 // Returns the persistent store coordinator for the application.
 // If the coordinator doesn't already exist, it is created and the application's store added to it.
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-  if (_persistentStoreCoordinator != nil) {
+  if (_persistentStoreCoordinator) {
     return _persistentStoreCoordinator;
   }
 

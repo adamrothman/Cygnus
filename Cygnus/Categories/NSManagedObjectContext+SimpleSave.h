@@ -8,6 +8,6 @@
 
 @interface NSManagedObjectContext (SimpleSave)
 
-- (void)saveWithSuccess:(void(^)())success;
+- (void)saveWithSuccess:(void(^)())block;
 
 @end
