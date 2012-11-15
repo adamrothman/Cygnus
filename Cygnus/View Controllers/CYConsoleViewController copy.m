@@ -8,7 +8,6 @@
 
 #import "CYConsoleViewController.h"
 #import "CYMapDetailViewController.h"
-#import "CYTabBarViewController.h"
 
 #import "CYUser.h"
 #import "CYMap.h"
@@ -24,9 +23,19 @@
 @interface CYConsoleViewController () <UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *mapsAddButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *groupsAddButton;
+
 @property (weak, nonatomic) IBOutlet UITableView *mapsTableView;
+
+@property (weak, nonatomic) IBOutlet UITableView *groupsTableView;
+
 @property (strong, nonatomic)        UIActionSheet *mapActionSheet;
-@property (strong, nonatomic)        NSMutableOrderedSet *maps;
+
+@property (strong, nonatomic)        UIActionSheet *groupActionSheet;
+
+@property (strong, nonatomic)        NSArray *groups;
+@property (strong, nonatomic)        NSArray *maps;
 
 @end
 
@@ -40,10 +49,10 @@
         NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
         if (buttonIndex == [actionSheet destructiveButtonIndex]) {
             // do horrible things
-        } else if ([choice isEqualToString:SEARCH]) {
-          [[CYTabBarViewController currentVC] setSelectedIndex:2];
-        } else if ([choice isEqualToString:CREATE_NEW]) {
-          
+        } else if ([choice isEqualToString:CANCEL]) {
+//
+        } else if ([choice isEqualToString:CANCEL]) {
+//
         } else if ([choice isEqualToString:CANCEL]) {
 //
         } else if ([choice isEqualToString:CANCEL]) {
@@ -58,51 +67,49 @@
     [self.mapActionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
+- (IBAction)addGroupSelected:(id)sender {
+    [self.groupActionSheet showFromTabBar:self.tabBarController.tabBar];
+}
+
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-  return 2;
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  if (!section) {
-    return 1;
-  } else {
-    return [self.maps count];
-  }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-  if (!section) {
-    return @"Active";
-  } else {
-    return @"Following";
-  }
+  if (tableView == self.mapsTableView) return [self.maps count];
+  if (tableView == self.groupsTableView) return [self.groups count];
+  return 0;
 }
 
 #define MAP_CELL                @"CYMapTableViewCell"
+#define GROUP_CELL              @"CYGroupTableViewCell"
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   NSString *identifier;
   if (tableView == self.mapsTableView)    identifier = MAP_CELL;
+  if (tableView == self.groupsTableView)  identifier = GROUP_CELL;
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
   if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-
-  CYMap *map;
-  if (!indexPath.section) {
-    map = [CYUser currentUser].activeMap;
+  
+  if (tableView == self.mapsTableView) {
+    CYMap *map = (CYMap*)self.maps[indexPath.row];
+    cell.textLabel.text = map.name;
+    float hoursSinceEdit = - ([map.updatedAt timeIntervalSinceNow] / (60.0*60));
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f hr", hoursSinceEdit];
+  
   } else {
-    map = (CYMap*)self.maps[indexPath.row];
+    CYGroup *group = (CYGroup *)self.groups[indexPath.row];
+    cell.textLabel.text = group.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [group.size integerValue]];
   }
-  cell.textLabel.text = map.name;
-  float hoursSinceEdit = - ([map.updatedAt timeIntervalSinceNow] / (60.0*60));
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f hr", hoursSinceEdit];
   return cell;
 }
 
@@ -110,21 +117,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if (!indexPath.section) {
-    [self.maps addObject:[CYUser currentUser].activeMap]; // add active map to "following" maps list
-    [CYUser currentUser].activeMap = nil;
-  } else {
-    CYMap *newActiveMap = self.maps[indexPath.row];
-    [self.maps removeObject:newActiveMap];
-    [CYUser currentUser].activeMap = newActiveMap;
-  }
-  
-  [self.mapsTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
+  //
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-  [self performSegueWithIdentifier:@"CYMapDetailViewController_Segue" sender:self.maps[indexPath.row]];
+  if (tableView == self.mapsTableView) {
+    [self performSegueWithIdentifier:@"CYMapDetailViewController_Segue" sender:self.maps[indexPath.row]];
+  }
 }
 
 
@@ -134,24 +134,25 @@
 {
   [super viewDidLoad];
   self.mapsTableView.dataSource = self;
+  self.groupsTableView.dataSource = self;
   self.mapsTableView.delegate = self;
+  self.groupsTableView.delegate = self;
   self.mapActionSheet = [[UIActionSheet alloc] initWithTitle:@"Maps" delegate:self cancelButtonTitle:CANCEL destructiveButtonTitle:nil otherButtonTitles:CREATE_NEW, SEARCH, nil];
+  self.groupActionSheet = [[UIActionSheet alloc] initWithTitle:@"Groups" delegate:self cancelButtonTitle:CANCEL destructiveButtonTitle:nil otherButtonTitles:CREATE_NEW, SEARCH, nil];
 }
-
-//implemented in dumbest way possible. for simplification.
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  [self setMaps:[[CYUser currentUser].maps mutableCopy]]; //these are all user following maps (- activeMap)
-  [self.maps removeObject:[CYUser currentUser].activeMap];
-  [self.mapsTableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
-
+  self.groups = [[[CYUser currentUser] groups] allObjects];
+  self.maps = [[[CYUser currentUser] maps] allObjects];
+  [self.mapsTableView reloadData];
+  [self.groupsTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -162,6 +163,7 @@
 
 - (void)viewDidUnload{
     [super viewDidUnload];
+    [self setGroupActionSheet:nil];
     [self setMapActionSheet:nil];
 }
 

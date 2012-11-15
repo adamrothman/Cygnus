@@ -7,6 +7,7 @@
 //
 
 #import "CYMapDetailViewController.h"
+#import "CYPointDetailViewController.h"
 #import "CYMap.h"
 #import "CYPoint.h"
 
@@ -26,9 +27,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedValueLabel;
-
-@property (strong, nonatomic)        NSOrderedSet *mapPoints;
-
 @end
 
 @implementation CYMapDetailViewController
@@ -70,10 +68,10 @@
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
   if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
   
-  CYPoint *point = (CYPoint *)self.mapPoints[indexPath.row];
+  CYPoint *point = (CYPoint *)self.map.points[indexPath.row];
   cell.textLabel.text = point.name;
   float distance = [[CYUser currentUser].location distanceFromLocation:point.location];
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f m", distance];
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f km", distance/1000];
   return cell;
 }
 
@@ -81,19 +79,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  //
+  [self performSegueWithIdentifier:@"CYPointDetailViewController_Segue" sender:self.map.points[indexPath.row]];
 }
 
 #pragma mark - VC Lifecycle
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
 	// Do any additional setup after loading the view.
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
-  self.mapView.scrollEnabled = YES;
-  self.mapView.zoomEnabled = NO;
+  self.mapView.scrollEnabled = NO;
+  self.mapView.zoomEnabled = NO;  
   
   self.headerContainer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
   self.nameLabel.text = [NSString stringWithFormat:@"%@ (%d)", self.map.name, [self.map.size integerValue]];
@@ -104,19 +102,23 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  
   self.followLabel.text = ([[CYUser currentUser].maps containsObject:self.map]) ? @"Following" : @"Follow";
-  [self.map pointsWithUpdateBlock:^(NSSet *points, NSError *error) {
-    [self.mapView updatePointsForMap:self.map animated:NO];
-    self.mapPoints = [NSOrderedSet orderedSetWithSet:points];
-    [self.tableView reloadData];
-  }];
+  [self.mapView updatePointsForMap:self.map animated:NO];
+  [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  if ([segue.identifier isEqualToString:@"CYPointDetailViewController_Segue"]) {
+    CYPointDetailViewController *vc = (CYPointDetailViewController *)segue.destinationViewController;
+    vc.point = (CYPoint*)sender;
+  }
 }
 
 @end

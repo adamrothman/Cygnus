@@ -20,15 +20,13 @@ CYTabBarViewController *_currentVC = nil;
 
 - (void)setSelectedViewController:(UIViewController *)selectedViewController
 {
-  if (self.selectedViewController == selectedViewController && self.viewControllers[1] == selectedViewController) {
-    [[CYMapViewController currentVC] toggleBeaconHUD];
-  }
+//  if (self.selectedViewController == selectedViewController && self.viewControllers[1] == selectedViewController) //do something cool on double tap on mapVC
   [super setSelectedViewController:selectedViewController];
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex
 {
-  if (self.selectedIndex == 1 && selectedIndex == 1) [[CYMapViewController currentVC] toggleBeaconHUD];
+//  if (self.selectedIndex == 1 && selectedIndex == 1) //do something cool on double tap on mapVC
   [super setSelectedIndex:selectedIndex];
 }
 
