@@ -10,4 +10,6 @@
 
 @interface CYPointCreationViewController : QuickDialogController
 
++ (QRootElement *)rootElement;
+
 @end

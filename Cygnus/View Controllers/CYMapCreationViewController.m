@@ -30,7 +30,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 + (QRootElement *)rootElement
 {
   QRootElement *root = [[QRootElement alloc] init];
@@ -65,7 +64,6 @@
   QSection *demoPinSection = [[QSection alloc] initWithTitle:@"Example field specification"];
   [demoPinSection addElement:[[QEntryElement alloc] initWithTitle:nil Value:nil Placeholder:@"Field name"]];
   [demoPinSection addElement:[[QRadioElement alloc] initWithDict:[NSDictionary dictionaryWithObjectsAndKeys:@"QElementClass", @"Text", @"QElementClass", @"YES/NO", @"QElementClass", @"Paragraph", @"QElementClass", @"Number", @"QElementClass", @"Date",@"QElementClass", @"URL",@"QElementClass", @"Number",@"QElementClass", @"Radio with options", nil] selected:0 title:@"With Dict"]];
-  
   
   QSection *createSection = [[QSection alloc] init];
   QButtonElement *createButton = [[QButtonElement alloc] initWithTitle:@"Create Map"];

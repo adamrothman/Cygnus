@@ -27,4 +27,9 @@
     // Dispose of any resources that can be recreated.
 }
 
++ (QRootElement *)rootElement
+{
+  return nil;
+}
+
 @end

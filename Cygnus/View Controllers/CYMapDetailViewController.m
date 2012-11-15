@@ -36,13 +36,12 @@
 
 - (IBAction)followButtonSelected:(id)sender {
   if ([[CYUser currentUser].maps containsObject:self.map]) {
-    [[CYUser currentUser] removeMap:self.map];
+    [[CYUser currentUser] removeMap:self.map];  
     self.followLabel.text = @"Follow";
 
   } else {
     [[CYUser currentUser] addMap:self.map];
     self.followLabel.text = @"Following";
-
   }
 }
 
@@ -60,7 +59,6 @@
 
 #define MAP_CELL                @"CYMapTableViewCell"
 #define GROUP_CELL              @"CYGroupTableViewCell"
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
