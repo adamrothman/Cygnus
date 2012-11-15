@@ -9,7 +9,8 @@
 #import "CYMapDetailViewController.h"
 #import "CYPointDetailViewController.h"
 #import "CYMap.h"
-#import "CYPoint.h"
+#import "CYPoint+Additions.h"
+#import "CYUser+Additions.h"
 
 #import "CYUI.h"
 #import "CYMapView.h"
@@ -35,14 +36,24 @@
 #pragma mark - Actions, Gestures, Notification Handlers
 
 - (IBAction)followButtonSelected:(id)sender {
-//  if ([[CYUser user].maps containsObject:self.map]) {
-//    [[CYUser user] removeMap:self.map];
-//    self.followLabel.text = @"Follow";
-//
-//  } else {
-//    [[CYUser user] addMap:self.map];
-//    self.followLabel.text = @"Following";
-//  }
+  if ([[CYUser user].maps containsObject:self.map]) {
+    [[CYUser user] removeMapsObject:self.map];
+    if ([CYUser user].activeMap == self.map) [CYUser user].activeMap = nil;
+    self.followLabel.text = @"Follow";
+    [UIView animateWithDuration:0.22 animations:^{
+      self.followButton.transform = CGAffineTransformIdentity;
+    }];
+
+  } else {
+    [[CYUser user] addMapsObject:self.map];
+    if ([CYUser user].activeMap == nil) [CYUser user].activeMap = self.map;
+
+    self.followLabel.text = @"Following";
+    [UIView animateWithDuration:0.22 animations:^{
+      self.followButton.transform = CGAffineTransformMakeRotation(M_PI/4);
+    }];
+
+  }
 }
 
 #pragma mark - UITableViewDataSource
@@ -68,9 +79,12 @@
   
   CYPoint *point = (CYPoint *)self.map.points[indexPath.row];
   cell.textLabel.text = point.name;
-#warning FIX THIS
-  float distance = 0.f;
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f km", distance/1000];
+  
+  CLLocation *temp = [[CLLocation alloc] initWithCoordinate:point.coordinate altitude:0 horizontalAccuracy:0 verticalAccuracy:0 timestamp:nil];
+  float distance = [temp distanceFromLocation:self.mapView.userLocation.location];
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f", distance/1000];
+  [cell.textLabel setFont:[UIFont fontWithName:@"CODE Light" size:17]];
+  [cell.detailTextLabel setFont:[UIFont fontWithName:@"accent" size:9]];
   return cell;
 }
 
@@ -78,7 +92,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  [self performSegueWithIdentifier:@"CYPointDetailViewController_Segue" sender:self.map.points[indexPath.row]];
+//  [self performSegueWithIdentifier:@"CYPointDetailViewController_Segue" sender:indexPath];
 }
 
 #pragma mark - VC Lifecycle
@@ -90,20 +104,45 @@
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   self.mapView.scrollEnabled = NO;
-  self.mapView.zoomEnabled = NO;  
+  self.mapView.zoomEnabled = NO;
+  [self.mapView updatePointsForMap:self.map animated:NO];
+  [self.mapView zoomToFitAnnotationsWithoutUserAnimated:NO];
   
   self.headerContainer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
   self.nameLabel.text = [NSString stringWithFormat:@"%@ (%d)", self.map.name, self.map.points.count];
-  self.lastUpdatedValueLabel.text = [NSString stringWithFormat:@"%.2f hr", -([self.map.updatedAt timeIntervalSinceNow] / (60.0*60))];
+  NSDateFormatter *df = [[NSDateFormatter alloc] init];
+  [df setDateFormat:@"MM.dd.YY"];
+  self.lastUpdatedValueLabel.text = [df stringFromDate:self.map.updatedAt];
+  [self.lastUpdatedLabel setFont:[UIFont fontWithName:@"CODE Light" size:9]];
+  [self.lastUpdatedValueLabel setFont:[UIFont fontWithName:@"accent" size:9]];
+  [self.lastUpdatedLabel sizeToFit];
+  [self.lastUpdatedValueLabel sizeToFit];
+
   
+  [self.nameLabel setFont:[UIFont fontWithName:@"CODE Bold" size:17]];
+  [self.nameLabel sizeToFit];
+  self.followButton.transform = CGAffineTransformIdentity;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-//  self.followLabel.text = ([[CYUser user].maps containsObject:self.map]) ? @"Following" : @"Follow";
-  [self.mapView updatePointsForMap:self.map animated:NO];
+  if ([[CYUser user].maps containsObject:self.map]) {
+    self.followLabel.text = @"Following";
+    self.followButton.transform = CGAffineTransformMakeRotation(M_PI/4);
+  } else {
+    self.followLabel.text = @"Follow";
+    self.followButton.transform = CGAffineTransformIdentity;
+  }
+  
   [self.tableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -115,8 +154,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
   if ([segue.identifier isEqualToString:@"CYPointDetailViewController_Segue"]) {
+    NSIndexPath *indexPath = (NSIndexPath *)sender;
+    CYPoint *point = self.map.points[indexPath.row];
+    UITableViewCell *cell = [self tableView:self.tableView cellForRowAtIndexPath:indexPath];
     CYPointDetailViewController *vc = (CYPointDetailViewController *)segue.destinationViewController;
-    vc.point = (CYPoint*)sender;
+    vc.point = point;
+    vc.distanceString = cell.detailTextLabel.text;
   }
 }
 

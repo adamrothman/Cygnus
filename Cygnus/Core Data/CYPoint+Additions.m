@@ -13,8 +13,11 @@
 
 + (void)fetchPointsForMap:(CYMap *)map {
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    PFQuery *mapQuery = [PFQuery queryWithClassName:MapClassName];
+    [mapQuery whereKey:@"objectId" equalTo:map.unique];
     PFQuery *query = [PFQuery queryWithClassName:PointClassName];
-    [query whereKey:@"objectId" equalTo:map.unique];
+    [query whereKey:@"map" matchesQuery:mapQuery];
+
     NSError *error = nil;
     NSArray *points = [query findObjects:&error];
     if (error) {
@@ -134,5 +137,7 @@
 - (NSString *)subtitle {
   return self.summary;
 }
+
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import "CYTabBarViewController.h"
 #import "CYMapViewController.h"
+#import "CYUI.h"
 
 CYTabBarViewController *_currentVC = nil;
 
@@ -34,6 +35,16 @@ CYTabBarViewController *_currentVC = nil;
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self setSelectedIndex:1];
+  
+  [[UINavigationBar appearance] setBackgroundImage:[UIImage imageFromDiskNamed:@"tab-bar-background.png"] forBarMetrics:UIBarMetricsDefault];
+  [[UITabBar appearance] setBackgroundImage:[UIImage imageFromDiskNamed:@"tab-bar-background.png"]];
+  [[UITabBar appearance] setSelectionIndicatorImage:[[UIImage alloc] init]];
+  [[UITableViewCell appearance] setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.8]];
+  
+  
+  //
+
   _currentVC = self;
 }
 

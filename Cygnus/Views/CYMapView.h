@@ -14,9 +14,9 @@
 #define ONE_MILE_RADIUS 0.0144927536
 
 @protocol CYMapEditorDelegate <NSObject>
-- (void)userDidDropPoint:(id<MKAnnotation>)newPointAnnotation;
+- (void)userDidDropPin:(id<MKAnnotation>)newPointAnnotation;
+- (void)userDidAddPoint:(CYPoint *)point;
 @end
-
 
 @interface CYMapView : MKMapView
 

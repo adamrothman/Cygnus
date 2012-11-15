@@ -18,7 +18,6 @@
     if (block) block();
   } else {
     NSLog(@"Error saving context %@: %@ %@", self, error, error.userInfo);
-    abort();
   }
 }
 

@@ -26,7 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *mapsAddButton;
 @property (weak, nonatomic) IBOutlet UITableView *mapsTableView;
 @property (strong, nonatomic)        UIActionSheet *mapActionSheet;
-@property (strong, nonatomic)        NSMutableOrderedSet *maps;
+@property (strong, nonatomic)        NSOrderedSet *maps;
+@property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 
 @end
 
@@ -41,12 +42,12 @@
         if (buttonIndex == [actionSheet destructiveButtonIndex]) {
             // do horrible things
         } else if ([choice isEqualToString:SEARCH]) {
-          [[CYTabBarViewController currentVC] setSelectedIndex:2];
+          [self.tabBarController setSelectedIndex:2];
         } else if ([choice isEqualToString:CREATE_NEW]) {
           QRootElement *root = [CYMapCreationViewController rootElement];
           CYMapCreationViewController *myDialogController = (CYMapCreationViewController *)[QuickDialogController controllerForRoot:root];
           myDialogController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-          [self presentViewController:myDialogController animated:YES completion:NULL];
+          [self.navigationController pushViewController:myDialogController animated:YES];
         }
     }
 }
@@ -68,7 +69,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
   if (!section) {
-    return 1;
+    return ([CYUser user].activeMap)? 1 : 0;
   } else {
     return [self.maps count];
   }
@@ -100,8 +101,9 @@
     map = (CYMap*)self.maps[indexPath.row];
   }
   cell.textLabel.text = map.name;
-  float hoursSinceEdit = - ([map.updatedAt timeIntervalSinceNow] / (60.0*60));
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f hr", hoursSinceEdit];
+  [cell.textLabel setFont:[UIFont fontWithName:@"CODE Light" size:17]];
+//  float hoursSinceEdit = - ([map.updatedAt timeIntervalSinceNow] / (60.0*60));
+//  cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f hr", hoursSinceEdit];
   return cell;
 }
 
@@ -110,12 +112,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (!indexPath.section) {
-    [self.maps addObject:[CYUser user].activeMap]; // add active map to "following" maps list
     [CYUser user].activeMap = nil;
+//    int index = [self.maps indexOfObject:[CYUser user].activeMap];
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:1]];
+//    cell.accessoryType = UITableViewCellAccessoryNone;
   } else {
     CYMap *newActiveMap = self.maps[indexPath.row];
-    [self.maps removeObject:newActiveMap];
     [CYUser user].activeMap = newActiveMap;
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
   }
 
   [self.mapsTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -135,6 +140,9 @@
   self.mapsTableView.dataSource = self;
   self.mapsTableView.delegate = self;
   self.mapActionSheet = [[UIActionSheet alloc] initWithTitle:@"Maps" delegate:self cancelButtonTitle:CANCEL destructiveButtonTitle:nil otherButtonTitles:CREATE_NEW, SEARCH, nil];
+  
+  [self.headerLabel setFont:[UIFont fontWithName:@"CODE Bold" size:22]];
+
 }
 
 //implemented in dumbest way possible. for simplification.
@@ -147,10 +155,18 @@
 //  [self.mapsTableView reloadData];
 //}
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-  [super viewDidAppear:animated];
+  [self.navigationController setNavigationBarHidden:YES animated:animated];
+  [super viewWillAppear:animated];
+  self.maps = [CYUser user].maps;
+  [self.mapsTableView reloadData];
+}
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [self.navigationController setNavigationBarHidden:NO animated:animated];
+  [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning

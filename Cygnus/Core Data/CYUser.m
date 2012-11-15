@@ -2,7 +2,7 @@
 //  CYUser.m
 //  Cygnus
 //
-//  Created by Adam Rothman on 11/15/12.
+//  Created by Juan-Carlos Foust on 11/15/12.
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
@@ -13,5 +13,6 @@
 @implementation CYUser
 
 @dynamic activeMap;
+@dynamic maps;
 
 @end

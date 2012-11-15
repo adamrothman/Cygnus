@@ -22,5 +22,4 @@
 
 - (void)saveToParseWithSuccess:(void (^)())block;
 - (void)destroyWithSave:(BOOL)save;
-
 @end

@@ -8,8 +8,35 @@
 
 #import "CYMap+Additions.h"
 #import "CYAppDelegate.h"
+#import "CYPoint+Additions.h"
 
 @implementation CYMap (Additions)
+
++ (void)fetchPointsForMap:(CYMap *)map inContext:(NSManagedObjectContext *)context
+{
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    PFQuery *mapQuery = [PFQuery queryWithClassName:MapClassName];
+    [mapQuery whereKey:@"objectId" equalTo:map.unique];
+    PFQuery *query = [PFQuery queryWithClassName:PointClassName];
+    [query whereKey:@"map" matchesQuery:mapQuery];
+    
+    NSError *error = nil;
+    NSArray *points = [query findObjects:&error];
+    if (error) {
+      NSLog(@"Error fetching points: %@ %@", error, error.userInfo);
+      return;
+    }
+    for (PFObject *point in points) {
+      CYPoint *localPoint = [CYPoint pointWithObject:point inContext:context save:NO];
+      localPoint.map = map;
+    }
+    
+    [context saveWithSuccess:^{
+      // update UI, stop spinner, whatever (probably on the main thread)
+    }];
+  });
+}
+
 
 + (void)fetchMaps {
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -23,8 +50,23 @@
 
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
     context.persistentStoreCoordinator = [CYAppDelegate appDelegate].persistentStoreCoordinator;
-    for (PFObject *map in maps) {
-      [CYMap mapWithObject:map inContext:context save:NO];
+    for (PFObject *map in maps) {      
+      CYMap *localMap = [CYMap mapWithObject:map inContext:context save:NO];
+      PFQuery *mapQuery = [PFQuery queryWithClassName:MapClassName];
+      [mapQuery whereKey:@"objectId" equalTo:localMap.unique];
+      PFQuery *query = [PFQuery queryWithClassName:PointClassName];
+      [query whereKey:@"map" matchesQuery:mapQuery];
+      
+      NSError *error = nil;
+      NSArray *points = [query findObjects:&error];
+      if (error) {
+        NSLog(@"Error fetching points: %@ %@", error, error.userInfo);
+        return;
+      }
+      for (PFObject *point in points) {
+        CYPoint *localPoint = [CYPoint pointWithObject:point inContext:context save:NO];
+        localPoint.map = localMap;
+      }
     }
 
     [context saveWithSuccess:^{
@@ -83,11 +125,12 @@
     map = [PFObject objectWithClassName:MapClassName];
   }
 
-  [map setObject:self.name forKey:MapNameKey];
-  [map setObject:self.summary forKey:MapSummaryKey];
+  if (self.name) [map setObject:self.name forKey:MapNameKey];
+  if (self.summary) [map setObject:self.summary forKey:MapSummaryKey];
+
   [map saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
     if (succeeded) {
-      if (!self.unique) self.unique = map.objectId;
+      self.unique = map.objectId;
       if (block) block();
     } else {
       NSLog(@"Error saving map %@ to Parse: %@ %@", self.unique, error.localizedDescription, error.userInfo);
@@ -102,6 +145,12 @@
   }
   [self.managedObjectContext deleteObject:self];
   if (save) [self.managedObjectContext saveWithSuccess:nil];
+}
+
+- (void)addPointsObject:(CYPoint *)point {
+  NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.points];
+  [tempSet addObject:point];
+  self.points = tempSet;
 }
 
 @end

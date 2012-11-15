@@ -18,4 +18,6 @@
 - (void)saveToParseWithSuccess:(void(^)())block;
 - (void)destroyWithSave:(BOOL)save;
 
+- (void)addPointsObject:(CYPoint *)point;
+
 @end

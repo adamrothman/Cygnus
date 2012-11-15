@@ -187,7 +187,7 @@ static const uint kDismissButtonTag = 12;
   UIView * target = [self parentTarget];
   UIView * modal = [target.subviews objectAtIndex:target.subviews.count-1];
   UIView * overlay = [target.subviews objectAtIndex:target.subviews.count-2];
-	NSTimeInterval duration = [[self kn_optionsOrDefaultForKey:KNSemiModalOptionKeys.animationDuration] doubleValue];
+	NSTimeInterval duration = 0.22;
 	[UIView animateWithDuration:duration animations:^{
     modal.frame = CGRectMake(0, target.frame.size.height, modal.frame.size.width, modal.frame.size.height);
   } completion:^(BOOL finished) {
@@ -197,9 +197,9 @@ static const uint kDismissButtonTag = 12;
 
   // Begin overlay animation
   UIImageView * ss = (UIImageView*)[overlay viewWithTag:kScreenshotTag];
-	if ([[self kn_optionsOrDefaultForKey:KNSemiModalOptionKeys.pushParentBack] boolValue]) {
-		[ss.layer addAnimation:[self animationGroupForward:NO] forKey:@"bringForwardAnimation"];
-	}
+//	if ([[self kn_optionsOrDefaultForKey:KNSemiModalOptionKeys.pushParentBack] boolValue]) {
+//		[ss.layer addAnimation:[self animationGroupForward:NO] forKey:@"bringForwardAnimation"];
+//	}
   [UIView animateWithDuration:duration animations:^{
     ss.alpha = 1;
   } completion:^(BOOL finished) {

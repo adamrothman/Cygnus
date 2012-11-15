@@ -7,6 +7,11 @@
 //
 
 #import "CYMapCreationViewController.h"
+#import "CYTabBarViewController.h"
+#import "CYMap+Additions.h"
+#import "CYUser+Additions.h"
+
+CYMapCreationViewController *_currentVC;
 
 @interface CYMapCreationViewController ()
 
@@ -21,7 +26,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  _currentVC = self;
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  _currentVC = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,25 +63,21 @@
   QSection *descriptionSection = [[QSection alloc] init];
   [descriptionSection addElement:mapSummary];
 
-  QSection *schemaSection = [[QSection alloc] initWithTitle:@"Map item requirements (demo)"];
-  [schemaSection addElement:[[QLabelElement alloc] initWithTitle:@"Name" Value:@"Text"]];
-  [schemaSection addElement:[[QLabelElement alloc] initWithTitle:@"Description" Value:@"Text"]];
-  QPickerElement *requiredFieldCount = [[QPickerElement alloc]
-                                        initWithTitle:@"Number of fields"
-                                        items:@[[@"1 2 3 4 5" componentsSeparatedByString:@" "]]
-                                        value:@"1"];
-  [schemaSection addElement:requiredFieldCount];
-
-  QSection *demoPinSection = [[QSection alloc] initWithTitle:@"Example field specification"];
-  [demoPinSection addElement:[[QEntryElement alloc] initWithTitle:nil Value:nil Placeholder:@"Field name"]];
-  [demoPinSection addElement:[[QRadioElement alloc] initWithDict:[NSDictionary dictionaryWithObjectsAndKeys:@"QElementClass", @"Text", @"QElementClass", @"YES/NO", @"QElementClass", @"Paragraph", @"QElementClass", @"Number", @"QElementClass", @"Date",@"QElementClass", @"URL",@"QElementClass", @"Number",@"QElementClass", @"Radio with options", nil] selected:0 title:@"With Dict"]];
-
   QSection *createSection = [[QSection alloc] init];
   QButtonElement *createButton = [[QButtonElement alloc] initWithTitle:@"Create Map"];
   createButton.onSelected = ^{
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [root fetchValueIntoObject:dict];
-
+    
+    CYMap *newMap = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([CYMap class]) inManagedObjectContext:[CYAppDelegate appDelegate].managedObjectContext];
+    newMap.name = dict[@"title"];
+    newMap.summary = dict[@"summary"];
+    [newMap saveToParseWithSuccess:^{
+      [[CYAppDelegate appDelegate].managedObjectContext saveWithSuccess:nil];
+    }];
+    [[CYUser user] addMapsObject:newMap];
+    [_currentVC.navigationController popToRootViewControllerAnimated:YES];
+    
     //Create new CYMap object from values
     //  (store item requirements in nstring property
     //   which can be read to JSON and parsed by the JSON dialogue builder)
@@ -81,22 +88,31 @@
     //Add new CYMap object to current user's maps (ie auto follow it)
 
     //dismiss CYMapCreationViewController
-
-    //For now read out values
-    NSString *msg = @"Values:";
-    for (NSString *aKey in dict){
-      msg = [msg stringByAppendingFormat:@"\n- %@: %@", aKey, [dict valueForKey:aKey]];
-    }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hello"
-                                                    message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+    
   };
+  [createSection addElement:createButton];
 
   [root addSection:titleSection];
   [root addSection:descriptionSection];
-  [root addSection:schemaSection];
+//  [root addSection:schemaSection];
+//  [root addSection:demoPinSection];
   [root addSection:createSection];
+  
   return root;
 
 }
 @end
+
+//  QSection *schemaSection = [[QSection alloc] initWithTitle:@"Map item requirements (demo)"];
+//  [schemaSection addElement:[[QLabelElement alloc] initWithTitle:@"Name" Value:@"Text"]];
+//  [schemaSection addElement:[[QLabelElement alloc] initWithTitle:@"Description" Value:@"Text"]];
+//  QPickerElement *requiredFieldCount = [[QPickerElement alloc]
+//                                        initWithTitle:@"Number of fields"
+//                                        items:@[[@"1 2 3 4 5" componentsSeparatedByString:@" "]]
+//                                        value:@"1"];
+//  [schemaSection addElement:requiredFieldCount];
+//
+//  QSection *demoPinSection = [[QSection alloc] initWithTitle:@"Example field specification"];
+//  [demoPinSection addElement:[[QEntryElement alloc] initWithTitle:nil Value:nil Placeholder:@"Field name"]];
+//  [demoPinSection addElement:[[QRadioElement alloc] initWithDict:[NSDictionary dictionaryWithObjectsAndKeys:@"QElementClass", @"Text", @"QElementClass", @"YES/NO", @"QElementClass", @"Paragraph", @"QElementClass", @"Number", @"QElementClass", @"Date",@"QElementClass", @"URL",@"QElementClass", @"Number",@"QElementClass", @"Radio with options", nil] selected:0 title:@"With Dict"]];
+

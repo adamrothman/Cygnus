@@ -25,23 +25,35 @@ CYMapViewController *_currentVC;
 
 @interface CYMapViewController () <CYMapEditorDelegate>
 @property (strong, nonatomic)     CYPointCreationViewController *pointCreationVC;
+@property (strong, nonatomic)     id<MKAnnotation> userPointAnnotation;
 @end
 
 @implementation CYMapViewController
 
 #pragma mark - CYMapEditorDelegate
 
-- (void)userDidDropPoint:(id<MKAnnotation>)newPointAnnotation
+- (void)userDidAddPoint:(CYPoint *)point
+{
+  [self dismissSemiModalView];
+  [self.mapView addAnnotation:point];
+
+}
+
+- (void)userDidDropPin:(id<MKAnnotation>)userPointAnnotation
 {
   //get schema from map
-  QRootElement *root = [CYPointCreationViewController rootElement];
-  self.pointCreationVC = (CYPointCreationViewController *)[QuickDialogController controllerForRoot:root];
-  
+//  QRootElement *root = [CYPointCreationViewController rootElement];
+  self.userPointAnnotation = userPointAnnotation;
+  self.pointCreationVC = [[CYPointCreationViewController alloc] initWithNibName:@"CYPointCreationViewController" bundle:nil];
+  self.pointCreationVC.userPointAnnotation = self.userPointAnnotation;
+  self.pointCreationVC.delegate = self;
   [self presentSemiViewController:self.pointCreationVC withOptions:@{
-  KNSemiModalOptionKeys.pushParentBack    : @(YES),
-  KNSemiModalOptionKeys.animationDuration : @(0.3),
-  KNSemiModalOptionKeys.shadowOpacity     : @(0.3),
-  }];
+   KNSemiModalOptionKeys.pushParentBack    : @(NO),
+   KNSemiModalOptionKeys.animationDuration : @(0.3),
+   }];
+  
+
+ 
 }
 
 #pragma mark - Actions, Gestures, Notification Handlers
@@ -52,6 +64,7 @@ CYMapViewController *_currentVC;
   [super viewDidLoad];
   _currentVC = self;
   self.mapView.editorDelegate = self;
+  self.mapView.canEdit = YES;
   
   // You can optionally listen to notifications
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -71,8 +84,9 @@ CYMapViewController *_currentVC;
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  [self.mapView removeAnnotations:self.mapView.annotations];
   [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
-  if (!self.mapView.userDidInteract) [self.mapView zoomToFitAnnotationsAnimated:YES]; // basically on first load zoom otherwise leave map alone.
+  [self.mapView zoomToFitAnnotationsWithoutUserAnimated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -111,7 +125,8 @@ CYMapViewController *_currentVC;
 }
 - (void)semiModalDismissed:(NSNotification *) notification {
   if (notification.object == self) {
-    NSLog(@"A view controller was dismissed with semi modal annimation");
+    [self.mapView removeAnnotation:self.userPointAnnotation];
+    self.userPointAnnotation = nil;
   }
 }
 

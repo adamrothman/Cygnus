@@ -7,7 +7,7 @@
 //
 
 #import "CYMapView.h"
-#import "CYUser.h"
+#import "CYUser+Additions.h"
 #import "CYPoint.h"
 
 @interface CYMapView () <MKMapViewDelegate>
@@ -24,13 +24,13 @@
 
 - (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
 {
-  if (gestureRecognizer.state != UIGestureRecognizerStateBegan || !self.canEdit) return;
+  if (gestureRecognizer.state != UIGestureRecognizerStateBegan || !self.canEdit || ![CYUser user].activeMap) return;
   CGPoint touchPoint = [gestureRecognizer locationInView:self];
   CLLocationCoordinate2D touchMapCoordinate = [self convertPoint:touchPoint toCoordinateFromView:self];
   self.userPointAnnotation = [[MKPointAnnotation alloc] init];
   self.userPointAnnotation.coordinate = touchMapCoordinate;
   [self addAnnotation:self.userPointAnnotation];
-  [self.editorDelegate userDidDropPoint:self.userPointAnnotation];
+  [self.editorDelegate userDidDropPin:self.userPointAnnotation];
   [self zoomToFitAnnotation:self.userPointAnnotation animated:YES];
 }
 
@@ -40,7 +40,7 @@
 {
   MKCoordinateSpan span = MKCoordinateSpanMake(ONE_MILE_RADIUS, ONE_MILE_RADIUS);
   MKCoordinateRegion region = MKCoordinateRegionMake(userLocation.coordinate, span);
-  if (!self.userDidInteract) {
+  if (![CYUser user].activeMap) {
     if (isnan(region.center.latitude) || !CLLocationCoordinate2DIsValid(userLocation.coordinate)) return;
     [mapView setRegion:region animated:NO];
   }
@@ -52,7 +52,7 @@
   MKPinAnnotationView *pinView = nil;
   static NSString*defaultPin=@"default-pin";
   pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:defaultPin];
-  if (annotation == self.beaconAnnotation || self.userPointAnnotation) {
+  if (annotation == self.beaconAnnotation || annotation == self.userPointAnnotation) {
     pinView.pinColor = MKPinAnnotationColorGreen;
     pinView.canShowCallout = NO;
   } else { //Map point annotation
@@ -86,11 +86,11 @@
 
 - (void)updatePointsForMap:(CYMap *)map animated:(BOOL)animated
 {
-  NSArray *mapPoints = map.points.array;
-  if (!mapPoints) return;
-  [self addAnnotations:mapPoints];
   [self removeAnnotations:self.mapAnnotations[map.objectID]];
-  [self.mapAnnotations setObject:mapPoints forKey:map.objectID];
+  if (!map.points) return;
+  self.mapAnnotations[map.objectID] = map.points.array;
+  [self addAnnotations:map.points.array];
+
 }
 
 - (void)removePointsForMap:(CYMap *)map
@@ -103,8 +103,8 @@
 - (void)setUp
 {
   self.showsUserLocation = YES;
-  _userDidInteract = NO;
-  _canEdit = YES;
+  _userDidInteract = YES;
+  _canEdit = NO;
   self.delegate = self;
 
   self.mapAnnotations = [NSMutableDictionary dictionaryWithCapacity:5];

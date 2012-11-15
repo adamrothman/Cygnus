@@ -10,9 +10,8 @@
 #import "CYUser+Additions.h"
 
 @interface CYPointDetailViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *pointImageView;
-@property (weak, nonatomic) IBOutlet UILabel *pointNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *distanceValueLabel;
+@property (weak, nonatomic) IBOutlet UIView *headerContainer;
+
 @end
 
 @implementation CYPointDetailViewController
@@ -24,6 +23,16 @@
 {
   _point = point;
 
+
+  
+
+}
+
+#pragma mark - VC Life cycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
   [self.pointImageView cancelImageRequestOperation];
   [self.pointImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.point.imageURLString]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
     [UIView transitionWithView:self.pointImageView
@@ -35,16 +44,11 @@
   } failure:NULL];
   
   self.pointNameLabel.text = _point.name;
-#warning FIX THIS
-  float distance = 0.f;
-  self.distanceValueLabel.text = [NSString stringWithFormat:@"%.2f km", distance/1000];
-}
+  self.distanceValueLabel.text = self.distanceString;
+  self.summaryLabel.text = self.point.summary;
+  [self.summaryLabel sizeToFit];
+  self.headerContainer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
 
-#pragma mark - VC Life cycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning

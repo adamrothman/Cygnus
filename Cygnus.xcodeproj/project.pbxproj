@@ -11,12 +11,30 @@
 		4E54195E1654C4A600E495D1 /* CYMapCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E54195D1654C4A500E495D1 /* CYMapCreationViewController.m */; };
 		4E541AA31654CBFA00E495D1 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E541AA01654CBCF00E495D1 /* libQuickDialog.a */; };
 		4E541AAB1654EB0400E495D1 /* CYPointCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E541AAA1654EB0300E495D1 /* CYPointCreationViewController.m */; };
-		4E541ADC16550F7D00E495D1 /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E541ADB16550F7D00E495D1 /* UIViewController+KNSemiModal.m */; };
 		4E541ADE16550F9F00E495D1 /* pointCreationDefaultScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E541ADD16550F9F00E495D1 /* pointCreationDefaultScheme.json */; };
+		4E541B0516551DE300E495D1 /* CYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E541B0416551DE200E495D1 /* CYUser.m */; };
+		4E541B071655466100E495D1 /* CYPointCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B061655466100E495D1 /* CYPointCreationViewController.xib */; };
+		4E541B18165548EE00E495D1 /* hud-check.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B13165548EE00E495D1 /* hud-check.png */; };
+		4E541B19165548EE00E495D1 /* hud-check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B14165548EE00E495D1 /* hud-check@2x.png */; };
+		4E541B1A165548EE00E495D1 /* polaroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B15165548EE00E495D1 /* polaroid.png */; };
+		4E541B1B165548EE00E495D1 /* polaroid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B16165548EE00E495D1 /* polaroid@2x.png */; };
+		4E541B1C165548EE00E495D1 /* tap_to_add_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B17165548EE00E495D1 /* tap_to_add_photo.png */; };
+		4E541B3416554E7100E495D1 /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E541B3316554E7100E495D1 /* UIViewController+KNSemiModal.m */; };
+		4E541B471655507B00E495D1 /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B461655507B00E495D1 /* 86-camera.png */; };
+		4E541B5916557ADD00E495D1 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B5816557ADC00E495D1 /* app_icon.png */; };
+		4E541B5B16557AE000E495D1 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B5A16557ADF00E495D1 /* app_icon@2x.png */; };
+		4E541B5E16557ED200E495D1 /* tab-bar-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B5C16557ED200E495D1 /* tab-bar-background.png */; };
+		4E541B5F16557ED200E495D1 /* tab-bar-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B5D16557ED200E495D1 /* tab-bar-background@2x.png */; };
+		4E541B6216557F0600E495D1 /* tab-selection-indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B6016557F0600E495D1 /* tab-selection-indicator.png */; };
+		4E541B6316557F0600E495D1 /* tab-selection-indicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B6116557F0600E495D1 /* tab-selection-indicator@2x.png */; };
 		4E6DFF7D1643EA5F00AB180C /* CYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */; };
 		4E6DFF9B1643F3A600AB180C /* NSAttributedString+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E6DFFA11643FC1100AB180C /* CYConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */; };
 		4E9B9C02164D3ADE00A6A010 /* CYMapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B9C01164D3ADE00A6A010 /* CYMapDetailViewController.m */; };
+		4EC259AD165581B500825436 /* accent.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EC259A9165581B500825436 /* accent.ttf */; };
+		4EC259AE165581B500825436 /* Adamas-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EC259AA165581B500825436 /* Adamas-Regular.otf */; };
+		4EC259AF165581B500825436 /* CODE Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EC259AB165581B500825436 /* CODE Bold.otf */; };
+		4EC259B0165581B500825436 /* CODE Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EC259AC165581B500825436 /* CODE Light.otf */; };
 		4EEB9626163DF84900D67785 /* NSArray+Accessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB961A163DF84900D67785 /* NSArray+Accessing.m */; };
 		4EEB9627163DF84900D67785 /* NSObject+PerformBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB961C163DF84900D67785 /* NSObject+PerformBlock.m */; };
 		4EEB9628163DF84900D67785 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB961E163DF84900D67785 /* NSString+UUID.m */; };
@@ -102,7 +120,6 @@
 		66F2B2E81654DA8B0043DD15 /* CYMap+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2E71654DA8B0043DD15 /* CYMap+Additions.m */; };
 		66F2B2EB1654DAD20043DD15 /* CYPoint+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2EA1654DAD20043DD15 /* CYPoint+Additions.m */; };
 		66F2B2F91654E2230043DD15 /* CYMapsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2F81654E2230043DD15 /* CYMapsTableViewController.m */; };
-		66F2B2FC1654F0320043DD15 /* CYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2FB1654F0320043DD15 /* CYUser.m */; };
 		66F2B2FF1654F0660043DD15 /* CYUser+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2FE1654F0660043DD15 /* CYUser+Additions.m */; };
 /* End PBXBuildFile section */
 
@@ -173,9 +190,24 @@
 		4E541A941654CBCE00E495D1 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = Cygnus/Libraries/QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		4E541AA91654EB0300E495D1 /* CYPointCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYPointCreationViewController.h; path = "View Controllers/CYPointCreationViewController.h"; sourceTree = "<group>"; };
 		4E541AAA1654EB0300E495D1 /* CYPointCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYPointCreationViewController.m; path = "View Controllers/CYPointCreationViewController.m"; sourceTree = "<group>"; };
-		4E541ADA16550F7D00E495D1 /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
-		4E541ADB16550F7D00E495D1 /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
 		4E541ADD16550F9F00E495D1 /* pointCreationDefaultScheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = pointCreationDefaultScheme.json; path = Models/pointCreationDefaultScheme.json; sourceTree = "<group>"; };
+		4E541B0316551DE200E495D1 /* CYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYUser.h; sourceTree = "<group>"; };
+		4E541B0416551DE200E495D1 /* CYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYUser.m; sourceTree = "<group>"; };
+		4E541B061655466100E495D1 /* CYPointCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CYPointCreationViewController.xib; path = "View Controllers/CYPointCreationViewController.xib"; sourceTree = "<group>"; };
+		4E541B13165548EE00E495D1 /* hud-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud-check.png"; sourceTree = "<group>"; };
+		4E541B14165548EE00E495D1 /* hud-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud-check@2x.png"; sourceTree = "<group>"; };
+		4E541B15165548EE00E495D1 /* polaroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = polaroid.png; sourceTree = "<group>"; };
+		4E541B16165548EE00E495D1 /* polaroid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "polaroid@2x.png"; sourceTree = "<group>"; };
+		4E541B17165548EE00E495D1 /* tap_to_add_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tap_to_add_photo.png; sourceTree = "<group>"; };
+		4E541B3216554E7100E495D1 /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
+		4E541B3316554E7100E495D1 /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
+		4E541B461655507B00E495D1 /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
+		4E541B5816557ADC00E495D1 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
+		4E541B5A16557ADF00E495D1 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@2x.png"; sourceTree = "<group>"; };
+		4E541B5C16557ED200E495D1 /* tab-bar-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-bar-background.png"; sourceTree = "<group>"; };
+		4E541B5D16557ED200E495D1 /* tab-bar-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-bar-background@2x.png"; sourceTree = "<group>"; };
+		4E541B6016557F0600E495D1 /* tab-selection-indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-selection-indicator.png"; sourceTree = "<group>"; };
+		4E541B6116557F0600E495D1 /* tab-selection-indicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-selection-indicator@2x.png"; sourceTree = "<group>"; };
 		4E6DFF7B1643EA5F00AB180C /* CYTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYTabBarViewController.h; path = "View Controllers/CYTabBarViewController.h"; sourceTree = "<group>"; };
 		4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYTabBarViewController.m; path = "View Controllers/CYTabBarViewController.m"; sourceTree = "<group>"; };
 		4E6DFF991643F3A600AB180C /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
@@ -184,6 +216,10 @@
 		4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYConsoleViewController.m; path = "View Controllers/CYConsoleViewController.m"; sourceTree = "<group>"; };
 		4E9B9C00164D3ADD00A6A010 /* CYMapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYMapDetailViewController.h; path = "View Controllers/CYMapDetailViewController.h"; sourceTree = "<group>"; };
 		4E9B9C01164D3ADE00A6A010 /* CYMapDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = CYMapDetailViewController.m; path = "View Controllers/CYMapDetailViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4EC259A9165581B500825436 /* accent.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = accent.ttf; sourceTree = "<group>"; };
+		4EC259AA165581B500825436 /* Adamas-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adamas-Regular.otf"; sourceTree = "<group>"; };
+		4EC259AB165581B500825436 /* CODE Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CODE Bold.otf"; sourceTree = "<group>"; };
+		4EC259AC165581B500825436 /* CODE Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CODE Light.otf"; sourceTree = "<group>"; };
 		4EEB9618163DF84900D67785 /* FDNullOrEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDNullOrEmpty.h; sourceTree = "<group>"; };
 		4EEB9619163DF84900D67785 /* NSArray+Accessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Accessing.h"; sourceTree = "<group>"; };
 		4EEB961A163DF84900D67785 /* NSArray+Accessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Accessing.m"; sourceTree = "<group>"; };
@@ -308,8 +344,6 @@
 		66F2B2EA1654DAD20043DD15 /* CYPoint+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CYPoint+Additions.m"; sourceTree = "<group>"; };
 		66F2B2F71654E2230043DD15 /* CYMapsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYMapsTableViewController.h; path = "View Controllers/CYMapsTableViewController.h"; sourceTree = "<group>"; };
 		66F2B2F81654E2230043DD15 /* CYMapsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYMapsTableViewController.m; path = "View Controllers/CYMapsTableViewController.m"; sourceTree = "<group>"; };
-		66F2B2FA1654F0320043DD15 /* CYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYUser.h; sourceTree = "<group>"; };
-		66F2B2FB1654F0320043DD15 /* CYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYUser.m; sourceTree = "<group>"; };
 		66F2B2FD1654F0660043DD15 /* CYUser+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CYUser+Additions.h"; sourceTree = "<group>"; };
 		66F2B2FE1654F0660043DD15 /* CYUser+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CYUser+Additions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -356,14 +390,25 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4E541AD916550F7D00E495D1 /* KNSemiModalViewController */ = {
+		4E541B3116554E7100E495D1 /* KNSemiModalViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4E541ADA16550F7D00E495D1 /* UIViewController+KNSemiModal.h */,
-				4E541ADB16550F7D00E495D1 /* UIViewController+KNSemiModal.m */,
+				4E541B3216554E7100E495D1 /* UIViewController+KNSemiModal.h */,
+				4E541B3316554E7100E495D1 /* UIViewController+KNSemiModal.m */,
 			);
 			name = KNSemiModalViewController;
 			path = Cygnus/Libraries/KNSemiModalViewController;
+			sourceTree = "<group>";
+		};
+		4EC259A8165581B500825436 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4EC259A9165581B500825436 /* accent.ttf */,
+				4EC259AA165581B500825436 /* Adamas-Regular.otf */,
+				4EC259AB165581B500825436 /* CODE Bold.otf */,
+				4EC259AC165581B500825436 /* CODE Light.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */ = {
@@ -426,6 +471,8 @@
 		6627823A1633EEC200F1D0E7 = {
 			isa = PBXGroup;
 			children = (
+				4E541B5A16557ADF00E495D1 /* app_icon@2x.png */,
+				4E541B5816557ADC00E495D1 /* app_icon.png */,
 				6627824F1633EEC200F1D0E7 /* Cygnus */,
 				66A1B31F1638828A00B9DCEC /* Resources */,
 				662782481633EEC200F1D0E7 /* Frameworks */,
@@ -503,7 +550,7 @@
 		66558A8116361CE200C7BB8B /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				4E541AD916550F7D00E495D1 /* KNSemiModalViewController */,
+				4E541B3116554E7100E495D1 /* KNSemiModalViewController */,
 				4E541A941654CBCE00E495D1 /* QuickDialog.xcodeproj */,
 				4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */,
 				66558A9D16361EBC00C7BB8B /* AFNetworking */,
@@ -576,6 +623,7 @@
 				4E54195D1654C4A500E495D1 /* CYMapCreationViewController.m */,
 				4E541AA91654EB0300E495D1 /* CYPointCreationViewController.h */,
 				4E541AAA1654EB0300E495D1 /* CYPointCreationViewController.m */,
+				4E541B061655466100E495D1 /* CYPointCreationViewController.xib */,
 				4E5419511654BAF300E495D1 /* CYPointDetailViewController.h */,
 				4E5419521654BAF300E495D1 /* CYPointDetailViewController.m */,
 				4E9B9C00164D3ADD00A6A010 /* CYMapDetailViewController.h */,
@@ -587,6 +635,11 @@
 		66A1B31F1638828A00B9DCEC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4EC259A8165581B500825436 /* Fonts */,
+				4E541B6016557F0600E495D1 /* tab-selection-indicator.png */,
+				4E541B6116557F0600E495D1 /* tab-selection-indicator@2x.png */,
+				4E541B5C16557ED200E495D1 /* tab-bar-background.png */,
+				4E541B5D16557ED200E495D1 /* tab-bar-background@2x.png */,
 				4EEEE455164CDCB300D3357B /* 04-eye-white.png */,
 				4EEEE456164CDCB300D3357B /* 04-eye-white@2x.png */,
 				4EEEE457164CDCB300D3357B /* 06-magnify.png */,
@@ -600,6 +653,12 @@
 				4EEEE466164CDCB300D3357B /* Default-568h@2x.png */,
 				4EEEE467164CDCB300D3357B /* Default.png */,
 				4EEEE468164CDCB300D3357B /* Default@2x.png */,
+				4E541B13165548EE00E495D1 /* hud-check.png */,
+				4E541B14165548EE00E495D1 /* hud-check@2x.png */,
+				4E541B15165548EE00E495D1 /* polaroid.png */,
+				4E541B16165548EE00E495D1 /* polaroid@2x.png */,
+				4E541B17165548EE00E495D1 /* tap_to_add_photo.png */,
+				4E541B461655507B00E495D1 /* 86-camera.png */,
 			);
 			name = Resources;
 			path = Cygnus/Resources;
@@ -649,8 +708,8 @@
 				66F2B2E41654DA5E0043DD15 /* CYPoint.m */,
 				66F2B2E91654DAD20043DD15 /* CYPoint+Additions.h */,
 				66F2B2EA1654DAD20043DD15 /* CYPoint+Additions.m */,
-				66F2B2FA1654F0320043DD15 /* CYUser.h */,
-				66F2B2FB1654F0320043DD15 /* CYUser.m */,
+				4E541B0316551DE200E495D1 /* CYUser.h */,
+				4E541B0416551DE200E495D1 /* CYUser.m */,
 				66F2B2FD1654F0660043DD15 /* CYUser+Additions.h */,
 				66F2B2FE1654F0660043DD15 /* CYUser+Additions.m */,
 			);
@@ -809,6 +868,23 @@
 				4EEEE478164CDCB300D3357B /* Default.png in Resources */,
 				4EEEE479164CDCB300D3357B /* Default@2x.png in Resources */,
 				4E541ADE16550F9F00E495D1 /* pointCreationDefaultScheme.json in Resources */,
+				4E541B071655466100E495D1 /* CYPointCreationViewController.xib in Resources */,
+				4E541B18165548EE00E495D1 /* hud-check.png in Resources */,
+				4E541B19165548EE00E495D1 /* hud-check@2x.png in Resources */,
+				4E541B1A165548EE00E495D1 /* polaroid.png in Resources */,
+				4E541B1B165548EE00E495D1 /* polaroid@2x.png in Resources */,
+				4E541B1C165548EE00E495D1 /* tap_to_add_photo.png in Resources */,
+				4E541B471655507B00E495D1 /* 86-camera.png in Resources */,
+				4E541B5916557ADD00E495D1 /* app_icon.png in Resources */,
+				4E541B5B16557AE000E495D1 /* app_icon@2x.png in Resources */,
+				4E541B5E16557ED200E495D1 /* tab-bar-background.png in Resources */,
+				4E541B5F16557ED200E495D1 /* tab-bar-background@2x.png in Resources */,
+				4E541B6216557F0600E495D1 /* tab-selection-indicator.png in Resources */,
+				4E541B6316557F0600E495D1 /* tab-selection-indicator@2x.png in Resources */,
+				4EC259AD165581B500825436 /* accent.ttf in Resources */,
+				4EC259AE165581B500825436 /* Adamas-Regular.otf in Resources */,
+				4EC259AF165581B500825436 /* CODE Bold.otf in Resources */,
+				4EC259B0165581B500825436 /* CODE Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,10 +935,10 @@
 				66F2B2E81654DA8B0043DD15 /* CYMap+Additions.m in Sources */,
 				66F2B2EB1654DAD20043DD15 /* CYPoint+Additions.m in Sources */,
 				66F2B2F91654E2230043DD15 /* CYMapsTableViewController.m in Sources */,
-				66F2B2FC1654F0320043DD15 /* CYUser.m in Sources */,
 				66F2B2FF1654F0660043DD15 /* CYUser+Additions.m in Sources */,
 				4E541AAB1654EB0400E495D1 /* CYPointCreationViewController.m in Sources */,
-				4E541ADC16550F7D00E495D1 /* UIViewController+KNSemiModal.m in Sources */,
+				4E541B0516551DE300E495D1 /* CYUser.m in Sources */,
+				4E541B3416554E7100E495D1 /* UIViewController+KNSemiModal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,6 +1036,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Quantified Labs, Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Quantified Labs, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/Cygnus/Frameworks/**",
@@ -975,6 +1053,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0E86C8E7-449A-4EB8-904F-DABF9C84E72A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E86C8E7-449A-4EB8-904F-DABF9C84E72A";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}\"/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -984,6 +1064,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Quantified Labs, Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Quantified Labs, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/Cygnus/Frameworks/**",
@@ -999,6 +1081,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0E86C8E7-449A-4EB8-904F-DABF9C84E72A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E86C8E7-449A-4EB8-904F-DABF9C84E72A";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}\"/**";
 				WRAPPER_EXTENSION = app;
 			};

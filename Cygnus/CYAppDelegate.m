@@ -7,6 +7,7 @@
 //
 
 #import "CYAppDelegate.h"
+#import "CYMap+Additions.h"
 
 @implementation CYAppDelegate
 
@@ -23,6 +24,7 @@
 
   // load Core Data if it isn't already
   [self managedObjectContext];
+  [CYMap fetchMaps];
   [Parse setApplicationId:@"eZV1a910JvXmP1UrTsMy4cH4QZhLpjLoElLL1GIz"
                 clientKey:@"e3fP5YlVRNIqev4CoH53d22JAeXEqiCWJBSpygJk"];
 

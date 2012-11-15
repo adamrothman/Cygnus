@@ -10,6 +10,10 @@
 #import "CYPoint.h"
 
 @interface CYPointDetailViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UIImageView *pointImageView;
+@property (weak, nonatomic) IBOutlet UILabel *pointNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceValueLabel;
+@property (strong, nonatomic)       NSString *distanceString;
+@property (weak, nonatomic) IBOutlet UILabel *summaryLabel;
 @property (strong, nonatomic)       CYPoint *point;
 @end
