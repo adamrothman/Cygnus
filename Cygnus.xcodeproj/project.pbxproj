@@ -12,6 +12,7 @@
 		4E541AA31654CBFA00E495D1 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E541AA01654CBCF00E495D1 /* libQuickDialog.a */; };
 		4E541AA71654EA9400E495D1 /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E541AA61654EA9400E495D1 /* UIViewController+KNSemiModal.m */; };
 		4E541AA81654EABA00E495D1 /* UIViewController+KNSemiModal.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E541AA51654EA9400E495D1 /* UIViewController+KNSemiModal.h */; };
+		4E541AAB1654EB0400E495D1 /* CYPointCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E541AAA1654EB0300E495D1 /* CYPointCreationViewController.m */; };
 		4E6DFF7D1643EA5F00AB180C /* CYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */; };
 		4E6DFF9B1643F3A600AB180C /* NSAttributedString+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E6DFFA11643FC1100AB180C /* CYConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */; };
@@ -169,6 +170,8 @@
 		4E541A941654CBCE00E495D1 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = Cygnus/Libraries/QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		4E541AA51654EA9400E495D1 /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
 		4E541AA61654EA9400E495D1 /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
+		4E541AA91654EB0300E495D1 /* CYPointCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYPointCreationViewController.h; path = "View Controllers/CYPointCreationViewController.h"; sourceTree = "<group>"; };
+		4E541AAA1654EB0300E495D1 /* CYPointCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYPointCreationViewController.m; path = "View Controllers/CYPointCreationViewController.m"; sourceTree = "<group>"; };
 		4E6DFF7B1643EA5F00AB180C /* CYTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYTabBarViewController.h; path = "View Controllers/CYTabBarViewController.h"; sourceTree = "<group>"; };
 		4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYTabBarViewController.m; path = "View Controllers/CYTabBarViewController.m"; sourceTree = "<group>"; };
 		4E6DFF991643F3A600AB180C /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
@@ -566,6 +569,8 @@
 				4EEB9655163E298F00D67785 /* CYSearchViewController.m */,
 				4E54195C1654C4A500E495D1 /* CYMapCreationViewController.h */,
 				4E54195D1654C4A500E495D1 /* CYMapCreationViewController.m */,
+				4E541AA91654EB0300E495D1 /* CYPointCreationViewController.h */,
+				4E541AAA1654EB0300E495D1 /* CYPointCreationViewController.m */,
 				4E5419511654BAF300E495D1 /* CYPointDetailViewController.h */,
 				4E5419521654BAF300E495D1 /* CYPointDetailViewController.m */,
 				4E9B9C00164D3ADD00A6A010 /* CYMapDetailViewController.h */,
@@ -819,6 +824,7 @@
 				4E5419531654BAF300E495D1 /* CYPointDetailViewController.m in Sources */,
 				4E54195E1654C4A600E495D1 /* CYMapCreationViewController.m in Sources */,
 				4E541AA71654EA9400E495D1 /* UIViewController+KNSemiModal.m in Sources */,
+				4E541AAB1654EB0400E495D1 /* CYPointCreationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

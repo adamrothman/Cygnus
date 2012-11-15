@@ -10,4 +10,6 @@
 
 @interface CYMapCreationViewController : QuickDialogController
 
++ (QRootElement *)rootElement;
+
 @end
