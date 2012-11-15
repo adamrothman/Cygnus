@@ -28,7 +28,7 @@
   #import <UIKit/UIKit.h>
 
   #import "NSObject+PerformBlock.h"
-
+  #import "AFNetworking.h" //for imageview category
   #import "CYBlocks.h"
   #import "CYNotifications.h"
 #endif

@@ -17,7 +17,6 @@
                 clientKey:@"e3fP5YlVRNIqev4CoH53d22JAeXEqiCWJBSpygJk"];
   
   if ([CYUser currentUser]) {
-    [[CYUser currentUser] fetchGroups];
     [[CYUser currentUser] fetchMaps];
   } else {
     [CYLogInViewController present];

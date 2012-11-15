@@ -22,11 +22,8 @@ CYMapViewController *_currentVC;
 #define HALF_HOUR_IN_SECONDS            60*30
 #define UPDATE_FREQUENCY                3*60
 
-@interface CYMapViewController () <CLLocationManagerDelegate>
+@interface CYMapViewController ()
 
-@property (strong, nonatomic)   CLLocationManager *locationManager;
-@property (strong, nonatomic)   NSTimer *locationTimer;
-@property (strong, nonatomic)   CYBeaconHUD *beaconHUD;
 @property (weak, nonatomic) IBOutlet CYMapView *mapView;
 @property (nonatomic, copy)     CYMapsResultBlock updateBlock;
 
@@ -35,54 +32,6 @@ CYMapViewController *_currentVC;
 @implementation CYMapViewController
 
 @synthesize mapView;//, menu;
-
-#pragma mark - CLLocationManagerDelegation
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-  CLLocation *currentLocation = [CYUser currentUser].location;
-  [CYUser currentUser].location = newLocation;
-  [self.mapView updateBeacon:newLocation.coordinate];
-  [self.locationManager stopUpdatingLocation];
-
-  BOOL significantLocationChange = (!currentLocation || [newLocation distanceFromLocation:currentLocation] > (SIGNIFICANT_LOCATION_CHANGE + newLocation.horizontalAccuracy));
-  if (significantLocationChange) [[NSNotificationCenter defaultCenter] postNotificationName:CYNotificationSignificantLocationChange object:nil];
-}
-
-- (void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager
-{}
-- (void)locationManagerDidResumeLocationUpdates:(CLLocationManager *)manager
-{}
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
-{}
-
-- (CLLocationManager *)locationManager
-{
-  if (!_locationManager)
-  {
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    _locationManager.distanceFilter = THRESHOLD_DISTANCE;
-  }
-  return _locationManager;
-}
-
-- (void)startLocationUpdates
-{
-  [self.locationTimer invalidate];
-  [self setLocationTimer:nil];
-  [self.locationManager stopUpdatingLocation];
-  [self.locationManager startUpdatingLocation];
-  [self setLocationTimer:[NSTimer timerWithTimeInterval:UPDATE_FREQUENCY target:self.locationManager selector:@selector(startUpdatingLocation) userInfo:nil repeats:YES]];
-}
-
-- (void)stopLocationUpdatese
-{
-  [self.locationTimer invalidate];
-  [self setLocationTimer:nil];
-  [self.locationManager stopUpdatingLocation];
-}
 
 #pragma mark - Actions, Gestures, Notification Handlers
 
@@ -97,35 +46,13 @@ CYMapViewController *_currentVC;
 - (void)viewDidLoad {
   [super viewDidLoad];
   _currentVC = self;
-  
-  self.beaconHUD = [[CYBeaconHUD alloc] init];
-  [self.view addSubview:self.beaconHUD];
-  
-  [[NSNotificationCenter defaultCenter]
-   addObserver:self
-   selector:@selector(userUnfollowedMap:)
-   name:CYNotificationUserUnfollowedMap
-   object:nil];
-  
-  
-  if ([CYUser currentUser].status == CYBeaconStatusActive) [self startLocationUpdates];
-  
-  
-  self.updateBlock = ^(NSSet *maps, NSError *error)
-  {
-    for (CYMap *map in maps) {
-      [map pointsWithUpdateBlock:^(NSSet *points, NSError *error) {
-        [self.mapView updatePointsForMap:map animated:YES];
-      }];
-    }
-  };
-  
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  self.updateBlock([[CYUser currentUser] maps], nil);
+  [self.mapView updatePointsForMap:[CYUser currentUser].activeMap animated:NO];
+  if (!self.mapView.userDidInteract) [self.mapView zoomToFitAnnotationsAnimated:YES]; // basically on first load zoom otherwise leave map alone.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -135,7 +62,6 @@ CYMapViewController *_currentVC;
 - (void)viewDidDisappear:(BOOL)animated
 {
   [super viewDidDisappear:animated];
-  [self.beaconHUD hide];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -145,7 +71,6 @@ CYMapViewController *_currentVC;
 - (void)viewDidUnload
 {
   [super viewDidUnload];
-  [self setBeaconHUD:nil];
   [self setMapView:nil];
   _currentVC = nil;
 }
@@ -188,13 +113,6 @@ CYMapViewController *_currentVC;
 
 #pragma mark - CYTabBar
 
-- (void)toggleBeaconHUD {
-  if (self.beaconHUD.yOrigin < self.view.height) {
-    [self.beaconHUD hide];
-  } else {
-    [self.beaconHUD showPartial];
-  }
-}
 
 + (CYMapViewController *)currentVC
 {

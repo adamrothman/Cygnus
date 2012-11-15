@@ -39,6 +39,7 @@ static NSString *const CYUserMapsKey      = @"maps";
 
 // beacon
 @property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, strong) CYMap *activeMap;
 @property (nonatomic) CYBeaconRange range;
 @property (nonatomic) CYBeaconStatus status;
 
