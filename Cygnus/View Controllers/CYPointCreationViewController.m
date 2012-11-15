@@ -29,7 +29,7 @@
 
 + (QRootElement *)rootElement
 {
-  return nil;
+  return [[QRootElement alloc] initWithJSONFile:@"pointCreationDefaultScheme"];
 }
 
 @end

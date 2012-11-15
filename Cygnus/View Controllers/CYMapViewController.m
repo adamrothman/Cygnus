@@ -24,8 +24,6 @@ CYMapViewController *_currentVC;
 #define UPDATE_FREQUENCY                3*60
 
 @interface CYMapViewController () <CYMapEditorDelegate>
-
-@property (weak, nonatomic)       IBOutlet CYMapView *mapView;
 @property (strong, nonatomic)     CYPointCreationViewController *pointCreationVC;
 @end
 
@@ -35,8 +33,10 @@ CYMapViewController *_currentVC;
 
 - (void)userDidDropPoint:(id<MKAnnotation>)newPointAnnotation
 {
+  //get schema from map
   QRootElement *root = [CYPointCreationViewController rootElement];
   self.pointCreationVC = (CYPointCreationViewController *)[QuickDialogController controllerForRoot:root];
+  
   [self presentSemiViewController:self.pointCreationVC withOptions:@{
   KNSemiModalOptionKeys.pushParentBack    : @(YES),
   KNSemiModalOptionKeys.animationDuration : @(0.3),
