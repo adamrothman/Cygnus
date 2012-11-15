@@ -1,0 +1,13 @@
+{
+    "grouped": true,
+    "title": "PointCreationDefaultScheme",
+    "controllerName": "CYPointCreationViewController",
+    "sections": [
+        { "title":"Event data", "bind":"title:sectionTitle", "elements": [
+                { "type":"QEntryElement", "key":"title", "placeholder":"Title"},
+                { "type":"QMultilineElement", "key":"summary", "title":"Description"    }
+            ]
+        },
+        { "title":"User defined at map creation"}
+    ]
+}

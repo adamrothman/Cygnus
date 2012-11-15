@@ -7,10 +7,11 @@
 //
 
 #import "CYMapViewController.h"
-#import "CYMap.h"
-
+#import "CYPointCreationViewController.h"
+#import "UIViewController+KNSemiModal.h"
+#import "CYMap+Additions.h"
+#import "CYUser+Additions.h"
 #import "CYUI.h"
-#import "CYBeaconHUD.h"
 #import "CYMapView.h"
 #import "AwesomeMenuItem.h"
 
@@ -22,36 +23,55 @@ CYMapViewController *_currentVC;
 #define HALF_HOUR_IN_SECONDS            60*30
 #define UPDATE_FREQUENCY                3*60
 
-@interface CYMapViewController ()
-
-@property (weak, nonatomic) IBOutlet CYMapView *mapView;
-@property (nonatomic, copy)     CYMapsResultBlock updateBlock;
-
+@interface CYMapViewController () <CYMapEditorDelegate>
+@property (strong, nonatomic)     CYPointCreationViewController *pointCreationVC;
 @end
 
 @implementation CYMapViewController
 
-@synthesize mapView;//, menu;
+#pragma mark - CYMapEditorDelegate
+
+- (void)userDidDropPoint:(id<MKAnnotation>)newPointAnnotation
+{
+  //get schema from map
+  QRootElement *root = [CYPointCreationViewController rootElement];
+  self.pointCreationVC = (CYPointCreationViewController *)[QuickDialogController controllerForRoot:root];
+  
+  [self presentSemiViewController:self.pointCreationVC withOptions:@{
+  KNSemiModalOptionKeys.pushParentBack    : @(YES),
+  KNSemiModalOptionKeys.animationDuration : @(0.3),
+  KNSemiModalOptionKeys.shadowOpacity     : @(0.3),
+  }];
+}
 
 #pragma mark - Actions, Gestures, Notification Handlers
-
-- (void)userUnfollowedMap:(NSNotification *)notification
-{
-  CYMap *map = [notification.userInfo objectForKey:@"map"];
-  [self.mapView removePointsForMap:map];
-}
 
 #pragma mark - VC Lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   _currentVC = self;
+  self.mapView.editorDelegate = self;
+  
+  // You can optionally listen to notifications
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(semiModalPresented:)
+                                               name:kSemiModalDidShowNotification
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(semiModalDismissed:)
+                                               name:kSemiModalDidHideNotification
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(semiModalResized:)
+                                               name:kSemiModalWasResizedNotification
+                                             object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  [self.mapView updatePointsForMap:[CYUser currentUser].activeMap animated:NO];
+  [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
   if (!self.mapView.userDidInteract) [self.mapView zoomToFitAnnotationsAnimated:YES]; // basically on first load zoom otherwise leave map alone.
 }
 
@@ -71,23 +91,27 @@ CYMapViewController *_currentVC;
 - (void)viewDidUnload
 {
   [super viewDidUnload];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   [self setMapView:nil];
   _currentVC = nil;
 }
 
-#pragma mark - MKMapViewDelegate
+#pragma mark - Optional notifications
 
-- (void)mapView:(MKMapView *)mapView didChangeUserTrackingMode:(MKUserTrackingMode)mode animated:(BOOL)animated {
-  switch (mode) {
-    case MKUserTrackingModeNone:
-      NSLog(@"Map view changed userTrackingMode to MKUserTrackingModeNone");
-      break;
-    case MKUserTrackingModeFollow:
-      NSLog(@"Map view changed userTrackingMode to MKUserTrackingModeFollow");
-      break;
-    case MKUserTrackingModeFollowWithHeading:
-      NSLog(@"Map view changed userTrackingMode to MKUserTrackingModeFollowWithHeading");
-      break;
+- (void) semiModalResized:(NSNotification *) notification {
+  if(notification.object == self){
+    NSLog(@"The view controller presented was been resized");
+  }
+}
+
+- (void)semiModalPresented:(NSNotification *) notification {
+  if (notification.object == self) {
+    NSLog(@"This view controller just shown a view with semi modal annimation");
+  }
+}
+- (void)semiModalDismissed:(NSNotification *) notification {
+  if (notification.object == self) {
+    NSLog(@"A view controller was dismissed with semi modal annimation");
   }
 }
 

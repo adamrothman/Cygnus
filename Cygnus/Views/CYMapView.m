@@ -8,6 +8,7 @@
 
 #import "CYMapView.h"
 #import "CYUser.h"
+#import "CYPoint.h"
 
 @interface CYMapView () <MKMapViewDelegate>
 
@@ -19,8 +20,19 @@
 @implementation CYMapView
 
 
+#pragma mark - User Interaction
 
-
+- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
+{
+  if (gestureRecognizer.state != UIGestureRecognizerStateBegan || !self.canEdit) return;
+  CGPoint touchPoint = [gestureRecognizer locationInView:self];
+  CLLocationCoordinate2D touchMapCoordinate = [self convertPoint:touchPoint toCoordinateFromView:self];
+  self.userPointAnnotation = [[MKPointAnnotation alloc] init];
+  self.userPointAnnotation.coordinate = touchMapCoordinate;
+  [self addAnnotation:self.userPointAnnotation];
+  [self.editorDelegate userDidDropPoint:self.userPointAnnotation];
+  [self zoomToFitAnnotation:self.userPointAnnotation animated:YES];
+}
 
 #pragma mark - MKMapViewDelegate
 
@@ -32,7 +44,6 @@
     if (isnan(region.center.latitude) || !CLLocationCoordinate2DIsValid(userLocation.coordinate)) return;
     [mapView setRegion:region animated:NO];
   }
-  [CYUser currentUser].location = userLocation.location;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -41,22 +52,20 @@
   MKPinAnnotationView *pinView = nil;
   static NSString*defaultPin=@"default-pin";
   pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:defaultPin];
-  if (annotation == self.beaconAnnotation) {
+  if (annotation == self.beaconAnnotation || self.userPointAnnotation) {
     pinView.pinColor = MKPinAnnotationColorGreen;
     pinView.canShowCallout = NO;
-    pinView.draggable = YES;
-
   } else { //Map point annotation
     pinView.pinColor = MKPinAnnotationColorRed;
     pinView.canShowCallout = YES;
     pinView.animatesDrop = NO;
-    
+
 //    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //    [rightButton addTarget:self
 //                    action:@selector(showDetails:)
 //          forControlEvents:UIControlEventTouchUpInside];
 //    pinView.rightCalloutAccessoryView = rightButton;
-    
+
 //    UIImageView *sfIconView = [[UIImageView alloc] init];
 //    pinView.leftCalloutAccessoryView = sfIconView;
 
@@ -77,19 +86,18 @@
 
 - (void)updatePointsForMap:(CYMap *)map animated:(BOOL)animated
 {
-  NSArray *mapPoints = [map.points allObjects];
+  NSArray *mapPoints = map.points.array;
   if (!mapPoints) return;
   [self addAnnotations:mapPoints];
   [self removeAnnotations:self.mapAnnotations[map.objectID]];
   [self.mapAnnotations setObject:mapPoints forKey:map.objectID];
-  [self zoomToFitAnnotationsAnimated:animated];
 }
 
 - (void)removePointsForMap:(CYMap *)map
 {
   [self removeAnnotations:self.mapAnnotations[map.objectID]];
   [self.mapAnnotations removeObjectForKey:map.objectID];
-  [self zoomToFitAnnotationsAnimated:NO];  
+  [self zoomToFitAnnotationsAnimated:NO];
 }
 
 - (void)setUp
@@ -98,7 +106,7 @@
   _userDidInteract = NO;
   _canEdit = YES;
   self.delegate = self;
-  
+
   self.mapAnnotations = [NSMutableDictionary dictionaryWithCapacity:5];
   UILongPressGestureRecognizer *lpr = [[UILongPressGestureRecognizer alloc]
                                        initWithTarget:self action:@selector(handleLongPress:)];

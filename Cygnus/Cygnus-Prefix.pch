@@ -13,13 +13,13 @@
   #import <AdSupport/AdSupport.h>
   #import <AudioToolbox/AudioToolbox.h>
   #import <CFNetwork/CFNetwork.h>
+  #import <CoreData/CoreData.h>
   #import <CoreGraphics/CoreGraphics.h>
   #import <CoreLocation/CoreLocation.h>
   #import <CoreText/CoreText.h>
   #import <Foundation/Foundation.h>
   #import <MapKit/MapKit.h>
   #import <MobileCoreServices/MobileCoreServices.h>
-  #import <Parse/Parse.h>
   #import <QuartzCore/QuartzCore.h>
   #import <Security/Security.h>
   #import <Social/Social.h>
@@ -27,10 +27,14 @@
   #import <SystemConfiguration/SystemConfiguration.h>
   #import <UIKit/UIKit.h>
 
+  #import "AFNetworking.h"
+  #import <Parse/Parse.h>
+  #import <QuickDialog/QuickDialog.h>
+
+  #import "NSManagedObjectContext+SimpleSave.h"
   #import "NSObject+PerformBlock.h"
-  #import "AFNetworking.h" //for imageview category
-  #import "CYBlocks.h"
-  #import "CYNotifications.h"
+
+  #import "CYConstants.h"
 #endif
 
 
