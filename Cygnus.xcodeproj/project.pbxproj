@@ -10,6 +10,8 @@
 		4E5419531654BAF300E495D1 /* CYPointDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5419521654BAF300E495D1 /* CYPointDetailViewController.m */; };
 		4E54195E1654C4A600E495D1 /* CYMapCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E54195D1654C4A500E495D1 /* CYMapCreationViewController.m */; };
 		4E541AA31654CBFA00E495D1 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E541AA01654CBCF00E495D1 /* libQuickDialog.a */; };
+		4E541AA71654EA9400E495D1 /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E541AA61654EA9400E495D1 /* UIViewController+KNSemiModal.m */; };
+		4E541AA81654EABA00E495D1 /* UIViewController+KNSemiModal.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E541AA51654EA9400E495D1 /* UIViewController+KNSemiModal.h */; };
 		4E6DFF7D1643EA5F00AB180C /* CYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */; };
 		4E6DFF9B1643F3A600AB180C /* NSAttributedString+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E6DFFA11643FC1100AB180C /* CYConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */; };
@@ -165,6 +167,8 @@
 		4E54195C1654C4A500E495D1 /* CYMapCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYMapCreationViewController.h; path = "View Controllers/CYMapCreationViewController.h"; sourceTree = "<group>"; };
 		4E54195D1654C4A500E495D1 /* CYMapCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYMapCreationViewController.m; path = "View Controllers/CYMapCreationViewController.m"; sourceTree = "<group>"; };
 		4E541A941654CBCE00E495D1 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = Cygnus/Libraries/QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
+		4E541AA51654EA9400E495D1 /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
+		4E541AA61654EA9400E495D1 /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
 		4E6DFF7B1643EA5F00AB180C /* CYTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYTabBarViewController.h; path = "View Controllers/CYTabBarViewController.h"; sourceTree = "<group>"; };
 		4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYTabBarViewController.m; path = "View Controllers/CYTabBarViewController.m"; sourceTree = "<group>"; };
 		4E6DFF991643F3A600AB180C /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
@@ -341,6 +345,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		4E541AA41654EA9400E495D1 /* KNSemiModalViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4E541AA51654EA9400E495D1 /* UIViewController+KNSemiModal.h */,
+				4E541AA61654EA9400E495D1 /* UIViewController+KNSemiModal.m */,
+			);
+			name = KNSemiModalViewController;
+			path = Cygnus/Libraries/KNSemiModalViewController;
+			sourceTree = "<group>";
+		};
 		4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +486,7 @@
 		66558A8116361CE200C7BB8B /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				4E541AA41654EA9400E495D1 /* KNSemiModalViewController */,
 				4E541A941654CBCE00E495D1 /* QuickDialog.xcodeproj */,
 				4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */,
 				66558A9D16361EBC00C7BB8B /* AFNetworking */,
@@ -763,6 +778,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E541AA81654EABA00E495D1 /* UIViewController+KNSemiModal.h in Sources */,
 				662782561633EEC200F1D0E7 /* main.m in Sources */,
 				6627825A1633EEC200F1D0E7 /* CYAppDelegate.m in Sources */,
 				66558AB116361EBC00C7BB8B /* AFHTTPClient.m in Sources */,
@@ -802,6 +818,7 @@
 				4E9B9C02164D3ADE00A6A010 /* CYMapDetailViewController.m in Sources */,
 				4E5419531654BAF300E495D1 /* CYPointDetailViewController.m in Sources */,
 				4E54195E1654C4A600E495D1 /* CYMapCreationViewController.m in Sources */,
+				4E541AA71654EA9400E495D1 /* UIViewController+KNSemiModal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
