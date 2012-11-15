@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CYMapCreationViewController : UIViewController
+@interface CYMapCreationViewController : QuickDialogController
 
 @end

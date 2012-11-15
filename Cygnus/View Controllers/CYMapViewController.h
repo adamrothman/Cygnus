@@ -12,8 +12,6 @@
 @class CYMapView;
 
 @interface CYMapViewController : UIViewController <MKMapViewDelegate, AwesomeMenuDelegate>
-
-- (void)toggleBeaconHUD;
 + (CYMapViewController *)currentVC;
 
 @end

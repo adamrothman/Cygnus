@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4E5419531654BAF300E495D1 /* CYPointDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5419521654BAF300E495D1 /* CYPointDetailViewController.m */; };
 		4E54195E1654C4A600E495D1 /* CYMapCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E54195D1654C4A500E495D1 /* CYMapCreationViewController.m */; };
+		4E541AA31654CBFA00E495D1 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E541AA01654CBCF00E495D1 /* libQuickDialog.a */; };
 		4E6DFF7D1643EA5F00AB180C /* CYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */; };
 		4E6DFF9B1643F3A600AB180C /* NSAttributedString+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E6DFFA11643FC1100AB180C /* CYConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */; };
@@ -100,6 +101,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4E541A9D1654CBCF00E495D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E541A941654CBCE00E495D1 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D80B0E3313E052DF00FA85CA;
+			remoteInfo = QuickDialogExample;
+		};
+		4E541A9F1654CBCF00E495D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E541A941654CBCE00E495D1 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2C542393145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
+		4E541AA11654CBE900E495D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E541A941654CBCE00E495D1 /* QuickDialog.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C542392145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
 		66558A9716361D4700C7BB8B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
@@ -142,6 +164,7 @@
 		4E5419521654BAF300E495D1 /* CYPointDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYPointDetailViewController.m; path = "View Controllers/CYPointDetailViewController.m"; sourceTree = "<group>"; };
 		4E54195C1654C4A500E495D1 /* CYMapCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYMapCreationViewController.h; path = "View Controllers/CYMapCreationViewController.h"; sourceTree = "<group>"; };
 		4E54195D1654C4A500E495D1 /* CYMapCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYMapCreationViewController.m; path = "View Controllers/CYMapCreationViewController.m"; sourceTree = "<group>"; };
+		4E541A941654CBCE00E495D1 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = Cygnus/Libraries/QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		4E6DFF7B1643EA5F00AB180C /* CYTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYTabBarViewController.h; path = "View Controllers/CYTabBarViewController.h"; sourceTree = "<group>"; };
 		4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYTabBarViewController.m; path = "View Controllers/CYTabBarViewController.m"; sourceTree = "<group>"; };
 		4E6DFF991643F3A600AB180C /* NSAttributedString+Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Attributes.h"; sourceTree = "<group>"; };
@@ -282,6 +305,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E541AA31654CBFA00E495D1 /* libQuickDialog.a in Frameworks */,
 				66C29A59164CEA9400DC8DBA /* CoreText.framework in Frameworks */,
 				66A1B331163888AC00B9DCEC /* SystemConfiguration.framework in Frameworks */,
 				66558ABE163634BE00C7BB8B /* libSSToolkit.a in Frameworks */,
@@ -308,6 +332,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E541A951654CBCE00E495D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4E541A9E1654CBCF00E495D1 /* QuickDialogExample.app */,
+				4E541AA01654CBCF00E495D1 /* libQuickDialog.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +472,7 @@
 		66558A8116361CE200C7BB8B /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				4E541A941654CBCE00E495D1 /* QuickDialog.xcodeproj */,
 				4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */,
 				66558A9D16361EBC00C7BB8B /* AFNetworking */,
 				66A1B3661638AC8100B9DCEC /* ARKit */,
@@ -599,6 +633,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4E541AA21654CBE900E495D1 /* PBXTargetDependency */,
 				66558ABB163634AC00C7BB8B /* PBXTargetDependency */,
 				66558ABD163634AC00C7BB8B /* PBXTargetDependency */,
 			);
@@ -629,6 +664,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 4E541A951654CBCE00E495D1 /* Products */;
+					ProjectRef = 4E541A941654CBCE00E495D1 /* QuickDialog.xcodeproj */;
+				},
+				{
 					ProductGroup = 66558A8E16361D4700C7BB8B /* Products */;
 					ProjectRef = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
 				},
@@ -641,6 +680,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		4E541A9E1654CBCF00E495D1 /* QuickDialogExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = QuickDialogExample.app;
+			remoteRef = 4E541A9D1654CBCF00E495D1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4E541AA01654CBCF00E495D1 /* libQuickDialog.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libQuickDialog.a;
+			remoteRef = 4E541A9F1654CBCF00E495D1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		66558A9816361D4700C7BB8B /* libSSToolkit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -755,6 +808,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4E541AA21654CBE900E495D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = QuickDialog;
+			targetProxy = 4E541AA11654CBE900E495D1 /* PBXContainerItemProxy */;
+		};
 		66558ABB163634AC00C7BB8B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SSToolkit;
@@ -840,6 +898,7 @@
 		6627826A1633EEC200F1D0E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/Cygnus/Frameworks/**",
@@ -855,6 +914,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -862,6 +922,7 @@
 		6627826B1633EEC200F1D0E7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"/Cygnus/Frameworks/**",
@@ -877,6 +938,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -31,6 +31,8 @@
   #import "AFNetworking.h" //for imageview category
   #import "CYBlocks.h"
   #import "CYNotifications.h"
+  #import <QuickDialog/QuickDialog.h>
+
 #endif
 
 
