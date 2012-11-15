@@ -8,7 +8,7 @@
 
 @interface CYObject : NSObject
 
-@property (nonatomic, strong) PFObject *backingObject;
+@property (atomic, strong) PFObject *backingObject;
 @property (nonatomic) PFCachePolicy cachePolicy;
 
 @property (nonatomic, readonly) NSString *objectID;

@@ -18,7 +18,12 @@
 
 @implementation CYMapView
 
+
+
+
+
 #pragma mark - MKMapViewDelegate
+
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
   MKCoordinateSpan span = MKCoordinateSpanMake(ONE_MILE_RADIUS, ONE_MILE_RADIUS);
@@ -27,7 +32,6 @@
     if (isnan(region.center.latitude) || !CLLocationCoordinate2DIsValid(userLocation.coordinate)) return;
     [mapView setRegion:region animated:NO];
   }
-  
   [CYUser currentUser].location = userLocation.location;
 }
 
@@ -90,9 +94,9 @@
 
 - (void)setUp
 {
-//  self.showsUserLocation = YES;
+  self.showsUserLocation = YES;
   _userDidInteract = NO;
-  _canEdit = NO;
+  _canEdit = YES;
   self.delegate = self;
   
   self.mapAnnotations = [NSMutableDictionary dictionaryWithCapacity:5];

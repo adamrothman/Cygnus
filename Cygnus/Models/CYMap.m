@@ -23,8 +23,8 @@ static NSString *const CYMapGroupKey      = @"group";
 @property (nonatomic, strong) NSMutableSet *_points;
 @property (nonatomic, strong) NSMutableSet *_owners;
 
-@property (nonatomic, strong) PFQuery *pointsQuery;
-@property (nonatomic, strong) PFQuery *ownersQuery;
+@property (atomic, strong) PFQuery *pointsQuery;
+@property (atomic, strong) PFQuery *ownersQuery;
 
 @end
 
