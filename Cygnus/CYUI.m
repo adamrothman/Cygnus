@@ -14,15 +14,15 @@
 static const CGFloat offset = 10.0;
 static const CGFloat curve = 1.3;
 + (UIBezierPath*)bezierPathWithCurvedShadowForRect:(CGRect)rect {
-	
+
 	UIBezierPath *path = [UIBezierPath bezierPath];
-	
+
 	CGPoint topLeft		 = rect.origin;
 	CGPoint bottomLeft	 = CGPointMake(0.0, CGRectGetHeight(rect) + offset);
 	CGPoint bottomMiddle = CGPointMake(CGRectGetWidth(rect)/2, CGRectGetHeight(rect) - curve);
 	CGPoint bottomRight	 = CGPointMake(CGRectGetWidth(rect), CGRectGetHeight(rect) + offset);
 	CGPoint topRight	 = CGPointMake(CGRectGetWidth(rect), 0.0);
-	
+
 	[path moveToPoint:topLeft];
 	[path addLineToPoint:bottomLeft];
 	[path addQuadCurveToPoint:bottomRight controlPoint:bottomMiddle];
@@ -40,7 +40,7 @@ static const CGFloat curve = 1.3;
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
       CGFloat height = [[UIScreen mainScreen] bounds].size.height * [[UIScreen mainScreen] scale];
       return height == 1136;
-      
+
     } else {
       return NO;
     }
@@ -55,19 +55,19 @@ static const CGFloat curve = 1.3;
   {
     return @"th";
   }
-  
+
   n = n % 10;
-  
+
   switch (n) {
     case 1:
       return @"st";
-      
+
     case 2:
       return @"nd";
-      
+
     case 3:
       return @"rd";
-      
+
     default:
       return @"th";
   }
@@ -77,17 +77,17 @@ static const CGFloat curve = 1.3;
 {
   // Create a graphics image context
   UIGraphicsBeginImageContext(newSize);
-  
+
   // Tell the old image to draw in this new context, with the desired
   // new size
   [sourceImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-  
+
   // Get the new image from the context
   UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-  
+
   // End the context
   UIGraphicsEndImageContext();
-  
+
   // Return the new image.
   return newImage;
 }
