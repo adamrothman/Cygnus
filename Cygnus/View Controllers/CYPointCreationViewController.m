@@ -46,16 +46,16 @@
     [self.descriptionTextField becomeFirstResponder];
     return;
   }
-  
+
   [self releaseFirstResponders];
-  
+
   //do all the things.
   CYPoint *localPoint = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([CYPoint class]) inManagedObjectContext:[CYAppDelegate appDelegate].managedObjectContext];
   localPoint.name = self.titleTextField.text;
   localPoint.summary = self.descriptionTextField.text;
   localPoint.latitude = @(self.userPointAnnotation.coordinate.latitude);
   localPoint.longitude = @(self.userPointAnnotation.coordinate.longitude);
-    
+
   PFObject *point = [PFObject objectWithClassName:PointClassName];
   [point setObject:localPoint.name forKey:PointNameKey];
   [point setObject:localPoint.summary forKey:PointSummaryKey];
@@ -66,8 +66,7 @@
   localPoint.unique = point.objectId;
 
   [[CYUser user].activeMap addPointsObject:localPoint];
-   [self.delegate userDidAddPoint:localPoint];
-
+  [self.delegate userDidAddPoint:localPoint];
 }
 
 - (IBAction)addImageSelected:(id)sender {
@@ -77,7 +76,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
   self.titleTextField.delegate = self;
   self.descriptionTextField.delegate = self;
 	// Do any additional setup after loading the view.
@@ -87,13 +86,13 @@
 {
   [super viewDidAppear:animated];
   [self.titleTextField becomeFirstResponder];
-  
+
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 + (QRootElement *)rootElement

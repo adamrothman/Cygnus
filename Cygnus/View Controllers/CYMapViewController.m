@@ -13,6 +13,7 @@
 #import "CYUser+Additions.h"
 #import "CYUI.h"
 #import "CYMapView.h"
+#import "MKMapView+ARKit.h"
 #import "AwesomeMenuItem.h"
 
 CYMapViewController *_currentVC;
@@ -86,7 +87,7 @@ CYMapViewController *_currentVC;
   [super viewWillAppear:animated];
   [self.mapView removeAnnotations:self.mapView.annotations];
   [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
-  [self.mapView zoomToFitAnnotationsWithoutUserAnimated:NO];
+  [self.mapView zoomToFitAnnotationsWithUser:NO animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -103,6 +103,8 @@
 		66558AB916361EBC00C7BB8B /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AB016361EBC00C7BB8B /* UIImageView+AFNetworking.m */; };
 		66558ABE163634BE00C7BB8B /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66558A9816361D4700C7BB8B /* libSSToolkit.a */; };
 		66558ABF163634DA00C7BB8B /* SSToolkitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66558A9C16361D4700C7BB8B /* SSToolkitResources.bundle */; };
+		6696F6121655B90E0092BDB3 /* 86-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6696F6111655B90E0092BDB3 /* 86-camera@2x.png */; };
+		6696F6221655BCF90092BDB3 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6696F61F1655BCAF0092BDB3 /* libQuickDialog.a */; };
 		669C1FA4163DF8FD001F1C18 /* CYObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1FA3163DF8FD001F1C18 /* CYObject.m */; };
 		66A1B331163888AC00B9DCEC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A1B330163888AC00B9DCEC /* SystemConfiguration.framework */; };
 		66A1B34316388E7200B9DCEC /* CYMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B34216388E7200B9DCEC /* CYMapViewController.m */; };
@@ -157,6 +159,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = B2C507E9151BA64400E94614;
 			remoteInfo = SSToolkitResources;
+		};
+		6696F61C1655BCAF0092BDB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D80B0E3313E052DF00FA85CA;
+			remoteInfo = QuickDialogExample;
+		};
+		6696F61E1655BCAF0092BDB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2C542393145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
+		6696F6201655BCED0092BDB3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C542392145ADEBD0026A152;
+			remoteInfo = QuickDialog;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -291,6 +314,8 @@
 		66558AAE16361EBC00C7BB8B /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		66558AAF16361EBC00C7BB8B /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		66558AB016361EBC00C7BB8B /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		6696F6111655B90E0092BDB3 /* 86-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera@2x.png"; sourceTree = "<group>"; };
+		6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = Cygnus/Libraries/QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		669C1FA2163DF8FD001F1C18 /* CYObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYObject.h; path = Models/CYObject.h; sourceTree = "<group>"; };
 		669C1FA3163DF8FD001F1C18 /* CYObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYObject.m; path = Models/CYObject.m; sourceTree = "<group>"; };
 		66A1B330163888AC00B9DCEC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -330,6 +355,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6696F6221655BCF90092BDB3 /* libQuickDialog.a in Frameworks */,
 				66F2B29B1654B1B30043DD15 /* CoreData.framework in Frameworks */,
 				66C29A59164CEA9400DC8DBA /* CoreText.framework in Frameworks */,
 				66A1B331163888AC00B9DCEC /* SystemConfiguration.framework in Frameworks */,
@@ -517,6 +543,7 @@
 		66558A8116361CE200C7BB8B /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */,
 				4E541B3116554E7100E495D1 /* KNSemiModalViewController */,
 				4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */,
 				66558A9D16361EBC00C7BB8B /* AFNetworking */,
@@ -562,6 +589,15 @@
 			);
 			name = AFNetworking;
 			path = Cygnus/Libraries/AFNetworking/AFNetworking;
+			sourceTree = "<group>";
+		};
+		6696F6141655BCAF0092BDB3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6696F61D1655BCAF0092BDB3 /* QuickDialogExample.app */,
+				6696F61F1655BCAF0092BDB3 /* libQuickDialog.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		669C1F8E163DC702001F1C18 /* Models */ = {
@@ -625,6 +661,7 @@
 				4E541B16165548EE00E495D1 /* polaroid@2x.png */,
 				4E541B17165548EE00E495D1 /* tap_to_add_photo.png */,
 				4E541B461655507B00E495D1 /* 86-camera.png */,
+				6696F6111655B90E0092BDB3 /* 86-camera@2x.png */,
 			);
 			name = Resources;
 			path = Cygnus/Resources;
@@ -714,6 +751,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6696F6211655BCED0092BDB3 /* PBXTargetDependency */,
 				66558ABB163634AC00C7BB8B /* PBXTargetDependency */,
 				66558ABD163634AC00C7BB8B /* PBXTargetDependency */,
 			);
@@ -743,6 +781,10 @@
 			productRefGroup = 662782461633EEC200F1D0E7 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 6696F6141655BCAF0092BDB3 /* Products */;
+					ProjectRef = 6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */;
+				},
 				{
 					ProductGroup = 66558A8E16361D4700C7BB8B /* Products */;
 					ProjectRef = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
@@ -775,6 +817,20 @@
 			fileType = wrapper.cfbundle;
 			path = SSToolkitResources.bundle;
 			remoteRef = 66558A9B16361D4700C7BB8B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6696F61D1655BCAF0092BDB3 /* QuickDialogExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = QuickDialogExample.app;
+			remoteRef = 6696F61C1655BCAF0092BDB3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6696F61F1655BCAF0092BDB3 /* libQuickDialog.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libQuickDialog.a;
+			remoteRef = 6696F61E1655BCAF0092BDB3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -832,6 +888,7 @@
 				4EC259AE165581B500825436 /* Adamas-Regular.otf in Resources */,
 				4EC259AF165581B500825436 /* CODE Bold.otf in Resources */,
 				4EC259B0165581B500825436 /* CODE Light.otf in Resources */,
+				6696F6121655B90E0092BDB3 /* 86-camera@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,6 +958,11 @@
 			isa = PBXTargetDependency;
 			name = SSToolkitResources;
 			targetProxy = 66558ABC163634AC00C7BB8B /* PBXContainerItemProxy */;
+		};
+		6696F6211655BCED0092BDB3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = QuickDialog;
+			targetProxy = 6696F6201655BCED0092BDB3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -977,7 +1039,7 @@
 		6627826A1633EEC200F1D0E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Quantified Labs, Inc.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Quantified Labs, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1005,7 +1067,7 @@
 		6627826B1633EEC200F1D0E7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Quantified Labs, Inc.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Quantified Labs, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (

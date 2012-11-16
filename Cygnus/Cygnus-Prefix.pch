@@ -29,6 +29,7 @@
 
   #import "AFNetworking.h"
   #import <Parse/Parse.h>
+  #import <QuickDialog/QuickDialog.h>
 
   #import "NSManagedObjectContext+SimpleSave.h"
   #import "NSObject+PerformBlock.h"

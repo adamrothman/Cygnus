@@ -97,7 +97,7 @@
 {
   [self removeAnnotations:self.mapAnnotations[map.objectID]];
   [self.mapAnnotations removeObjectForKey:map.objectID];
-  [self zoomToFitAnnotationsAnimated:NO];
+  [self zoomToFitAnnotationsWithUser:NO animated:NO];
 }
 
 - (void)setUp
