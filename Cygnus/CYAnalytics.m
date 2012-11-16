@@ -16,11 +16,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 +(void)startTrackingEvents
 {
-  Mixpanel *sharedInstance = [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN_B];
+  Mixpanel *sharedInstance = [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN_A];
   sharedInstance.flushOnBackground = YES;
   sharedInstance.showNetworkActivityIndicator = NO;
   NSSetUncaughtExceptionHandler(uncaughtExceptionHandler);
-  [Flurry startSession:FLURRY_API_KEY_B];
+  [Flurry startSession:FLURRY_API_KEY_A];
   [Flurry setSessionReportsOnPauseEnabled:YES];
 }
 

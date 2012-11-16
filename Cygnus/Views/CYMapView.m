@@ -30,7 +30,6 @@
   self.userPointAnnotation.coordinate = touchMapCoordinate;
   [self addAnnotation:self.userPointAnnotation];
   [self.editorDelegate userDidDropPin:self.userPointAnnotation];
-  [self zoomToFitAnnotation:self.userPointAnnotation animated:YES];
 }
 
 #pragma mark - MKMapViewDelegate
