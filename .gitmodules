@@ -16,3 +16,6 @@
 [submodule "Cygnus/Libraries/Mixpanel"]
 	path = Cygnus/Libraries/Mixpanel
 	url = git://github.com/mixpanel/mixpanel-iphone.git
+[submodule "Cygnus/Libraries/KNSemiModalViewController"]
+	path = Cygnus/Libraries/KNSemiModalViewController
+	url = git://github.com/kentnguyen/KNSemiModalViewController.git
