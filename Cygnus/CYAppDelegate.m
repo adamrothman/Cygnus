@@ -19,16 +19,29 @@
   return [UIApplication sharedApplication].delegate;
 }
 
+- (void)setAppearances {
+  [[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
+  [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav-bar-background.png"] forBarMetrics:UIBarMetricsDefault];
+  [[UISearchBar appearance] setTintColor:[UIColor blackColor]];
+  [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tab-bar-background.png"]];
+  [[UITabBar appearance] setSelectionIndicatorImage:[[UIImage alloc] init]];
+  [[UITableViewCell appearance] setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.8]];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contextDidSave:) name:NSManagedObjectContextDidSaveNotification object:nil];
 
-  // load Core Data if it isn't already
-  [self managedObjectContext];
-  [CYMap fetchMaps];
   [Parse setApplicationId:@"eZV1a910JvXmP1UrTsMy4cH4QZhLpjLoElLL1GIz"
                 clientKey:@"e3fP5YlVRNIqev4CoH53d22JAeXEqiCWJBSpygJk"];
-  
+
+  // kick Core Data in the shins
+  [self managedObjectContext];
+  [CYMap fetchMapsWithSuccess:nil];
+
   [CYAnalytics startTrackingEvents];
+
+  [self setAppearances];
+
   return YES;
 }
 
