@@ -40,8 +40,7 @@
 
   [self.view endEditing:YES];
 
-  // do all the things
-  CYPoint *newPoint = [CYPoint pointWithName:self.titleTextField.text summary:self.descriptionTextField.text imageURLString:@"" location:self.userPointAnnotation.coordinate map:[CYUser user].activeMap context:[CYAppDelegate mainContext] save:NO];
+  CYPoint *newPoint = [CYPoint pointWithName:self.titleTextField.text summary:self.descriptionTextField.text imageURLString:@"" location:self.userPointAnnotation.coordinate map:[CYUser user].activeMap context:[CYAppDelegate mainContext] save:YES];
   [self.delegate userDidAddPoint:newPoint];
 }
 

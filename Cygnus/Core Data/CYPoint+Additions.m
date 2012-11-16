@@ -67,22 +67,20 @@
     return nil;
   }
 
-  CYPoint *point = [CYPoint pointWithObject:object context:context save:save];
+  CYPoint *point = [CYPoint pointWithObject:object context:context save:NO];
   [map addPointsObject:point];
+  if (save) [context saveWithSuccess:nil];
+
   return point;
 }
 
 - (void)saveToParseWithSuccess:(void (^)())block {
   PFObject *point = [PFObject objectWithoutDataWithClassName:PointClassName objectId:self.unique];
-
-  if (self.name) [point setObject:self.name forKey:PointNameKey];
-  if (self.summary) [point setObject:self.summary forKey:PointSummaryKey];
-  if (self.imageURLString) [point setObject:self.imageURLString forKey:PointImageURLStringKey];
-  if (self.latitude && self.longitude) {
-    PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue];
-    [point setObject:geoPoint forKey:PointLocationKey];
-  }
-
+  [point setObject:self.name forKey:PointNameKey];
+  [point setObject:self.summary forKey:PointSummaryKey];
+  [point setObject:self.imageURLString forKey:PointImageURLStringKey];
+  [point setObject:[PFGeoPoint geoPointWithLatitude:self.latitude.doubleValue longitude:self.longitude.doubleValue] forKey:PointLocationKey];
+  [point setObject:[PFObject objectWithoutDataWithClassName:MapClassName objectId:self.map.unique] forKey:PointMapKey];
   [point saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
     if (succeeded) {
       if (block) block();

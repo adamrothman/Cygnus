@@ -109,10 +109,8 @@
 
 - (void)saveToParseWithSuccess:(void (^)())block {
   PFObject *map = [PFObject objectWithoutDataWithClassName:MapClassName objectId:self.unique];
-
-  if (self.name) [map setObject:self.name forKey:MapNameKey];
-  if (self.summary) [map setObject:self.summary forKey:MapSummaryKey];
-
+  [map setObject:self.name forKey:MapNameKey];
+  [map setObject:self.summary forKey:MapSummaryKey];
   [map saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
     if (succeeded) {
       if (block) block();
