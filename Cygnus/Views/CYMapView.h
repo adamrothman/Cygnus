@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
-#import <MapKit/MapKit.h>
 #import "MKMapView+ARKit.h"
 #import "CYMap.h"
 #import "CYPoint.h"
@@ -20,11 +19,10 @@
 
 @interface CYMapView : MKMapView
 
-@property (weak, nonatomic)           id<CYMapEditorDelegate>editorDelegate;
-@property (strong, nonatomic)         id<MKAnnotation> userPointAnnotation;
-@property (nonatomic)                 BOOL userDidInteract;
-@property (nonatomic)                 BOOL canEdit;
-
+@property (weak, nonatomic) id<CYMapEditorDelegate>editorDelegate;
+@property (strong, nonatomic) id<MKAnnotation> userPointAnnotation;
+@property (nonatomic) BOOL userDidInteract;
+@property (nonatomic) BOOL canEdit;
 
 - (void)updateBeacon:(CLLocationCoordinate2D)beaconCoordinate;
 - (void)updatePointsForMap:(CYMap *)map animated:(BOOL)animated;

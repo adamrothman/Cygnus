@@ -11,13 +11,18 @@
 @implementation NSManagedObjectContext (SimpleSave)
 
 - (void)saveWithSuccess:(void(^)())block {
-  if (!self.hasChanges) return;
+  if (!self.hasChanges) {
+    if (block) block();
+    return;
+  }
 
   NSError *error = nil;
   if ([self save:&error]) {
     if (block) block();
   } else {
-    NSLog(@"Error saving context %@: %@ %@", self, error, error.userInfo);
+    NSDictionary *userInfo = @{NSUnderlyingErrorKey : error};
+    NSString *reason = [NSString stringWithFormat:@"Error saving context %@", self];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:userInfo];
   }
 }
 

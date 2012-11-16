@@ -341,7 +341,7 @@
                                             <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="103-map.png" id="DYg-K0-cKL">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="103-map.png" highlightedImage="103-map-white.png" id="DYg-K0-cKL">
                                             <rect key="frame" x="10" y="11" width="26" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
@@ -355,13 +355,10 @@
                             <outlet property="delegate" destination="OFF-Dr-fjo" id="N2F-lJ-Wkr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="EoW-Eu-gaS">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="n9x-lT-4ER">
-                            <connections>
-                                <action selector="refresh:" destination="OFF-Dr-fjo" id="hYR-tn-G8Q"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="EoW-Eu-gaS"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Kff-fc-5G0">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <segue destination="pJr-gB-5ra" kind="push" identifier="CYMapDetailViewController_Segue" id="YsD-qy-DAV"/>
                     </connections>
@@ -528,6 +525,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="103-map-white.png" width="26" height="21"/>
         <image name="103-map.png" width="26" height="21"/>
         <image name="20-gear-2.png" width="26" height="28"/>
         <image name="86-camera.png" width="24" height="18"/>
@@ -537,7 +535,6 @@
         <class className="CYConsoleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CYConsoleViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addMapSelected:"/>
                 <relationship kind="outlet" name="headerLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="mapsAddButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="mapsTableView" candidateClass="UITableView"/>
@@ -546,7 +543,6 @@
         <class className="CYMapDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapDetailViewController.h"/>
             <relationships>
-                <relationship kind="action" name="followButtonSelected:"/>
                 <relationship kind="outlet" name="followButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="followLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="headerContainer" candidateClass="UIView"/>
@@ -569,7 +565,7 @@
         <class className="CYMapsTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapsTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="refresh:"/>
+                <relationship kind="action" name="refresh:" candidateClass="UIRefreshControl"/>
             </relationships>
         </class>
         <class className="CYPointDetailViewController" superclassName="UIViewController">
@@ -584,6 +580,9 @@
         </class>
         <class className="CYTabBarViewController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CYTabBarViewController.h"/>
+        </class>
+        <class className="UIRefreshControl" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
