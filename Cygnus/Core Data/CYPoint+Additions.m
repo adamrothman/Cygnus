@@ -7,13 +7,12 @@
 //
 
 #import "CYPoint+Additions.h"
-#import "CYAppDelegate.h"
 
 @implementation CYPoint (Additions)
 
 #pragma mark - Creation
 
-+ (CYPoint *)pointWithObject:(PFObject *)object inContext:(NSManagedObjectContext *)context save:(BOOL)save {
++ (CYPoint *)pointWithObject:(PFObject *)object context:(NSManagedObjectContext *)context save:(BOOL)save {
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
   request.entity = [NSEntityDescription entityForName:NSStringFromClass(self.class) inManagedObjectContext:context];
   request.predicate = [NSPredicate predicateWithFormat:@"unique = %@", object.objectId];
@@ -38,8 +37,8 @@
     point.summary = [object objectForKey:PointSummaryKey];
     point.imageURLString = [object objectForKey:PointImageURLStringKey];
     PFGeoPoint *geoPoint = [object objectForKey:PointLocationKey];
-    point.latitude = [NSNumber numberWithDouble:geoPoint.latitude];
-    point.longitude = [NSNumber numberWithDouble:geoPoint.longitude];
+    point.latitude = @(geoPoint.latitude);
+    point.longitude = @(geoPoint.longitude);
   } else if ([point.updatedAt compare:object.updatedAt] == NSOrderedAscending) {
     // we have a matching object, just update appropriate fields fields
     point.updatedAt = object.updatedAt;
@@ -47,26 +46,29 @@
     point.summary = [object objectForKey:PointSummaryKey];
     point.imageURLString = [object objectForKey:PointImageURLStringKey];
     PFGeoPoint *geoPoint = [object objectForKey:PointLocationKey];
-    point.latitude = [NSNumber numberWithDouble:geoPoint.latitude];
-    point.longitude = [NSNumber numberWithDouble:geoPoint.longitude];
+    point.latitude = @(geoPoint.latitude);
+    point.longitude = @(geoPoint.longitude);
   }
   if (save) [context saveWithSuccess:nil];
 
   return point;
 }
 
-+ (CYPoint *)pointInContext:(NSManagedObjectContext *)context save:(BOOL)save {
-  PFObject *parsePoint = [PFObject objectWithClassName:PointClassName];
++ (CYPoint *)pointWithName:(NSString *)name summary:(NSString *)summary imageURLString:(NSString *)imageURLString location:(CLLocationCoordinate2D)location map:(CYMap *)map context:(NSManagedObjectContext *)context save:(BOOL)save {
+  PFObject *object = [PFObject objectWithClassName:PointClassName];
+  [object setObject:name forKey:PointNameKey];
+  [object setObject:summary forKey:PointSummaryKey];
+  [object setObject:imageURLString forKey:PointImageURLStringKey];
+  [object setObject:[PFGeoPoint geoPointWithLatitude:location.latitude longitude:location.longitude] forKey:PointLocationKey];
+  [object setObject:[PFObject objectWithoutDataWithClassName:MapClassName objectId:map.unique] forKey:PointMapKey];
   NSError *error = nil;
-  if (![parsePoint save:&error]) {
+  if (![object save:&error]) {
     NSLog(@"Error getting unique ID for point from Parse: %@ %@", error.localizedDescription, error.userInfo);
     return nil;
   }
 
-  CYPoint *point = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self.class) inManagedObjectContext:context];
-  point.unique = parsePoint.objectId;
-  if (save) [context saveWithSuccess:nil];
-
+  CYPoint *point = [CYPoint pointWithObject:object context:context save:save];
+  [map addPointsObject:point];
   return point;
 }
 

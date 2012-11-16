@@ -34,7 +34,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [[NSNotificationCenter defaultCenter] addObserver:self.refreshControl selector:@selector(endRefreshing) name:NSManagedObjectContextDidSaveNotification object:self.context];
+  [[NSNotificationCenter defaultCenter] addObserver:self.refreshControl selector:@selector(endRefreshing) name:NSManagedObjectContextDidSaveNotification object:[CYAppDelegate mainContext]];
 
   [self setUpFetchedResultsController];
   [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
@@ -51,16 +51,12 @@
 
 #pragma mark - Fetch and search setup
 
-- (NSManagedObjectContext *)context {
-  return [CYAppDelegate appDelegate].managedObjectContext;
-}
-
 - (void)setUpFetchedResultsController {
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  request.entity = [NSEntityDescription entityForName:NSStringFromClass([CYMap class]) inManagedObjectContext:self.context];
+  request.entity = [NSEntityDescription entityForName:NSStringFromClass([CYMap class]) inManagedObjectContext:[CYAppDelegate mainContext]];
   request.fetchBatchSize = 50;
   request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
-  self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
+  self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:[CYAppDelegate mainContext] sectionNameKeyPath:nil cacheName:nil];
   self.fetchedResultsController.delegate = self;
   NSError *error = nil;
   if (![self.fetchedResultsController performFetch:&error]) {
@@ -151,12 +147,12 @@
 
 - (void)filterMapsForSearch:(NSString *)searchString {
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  request.entity = [NSEntityDescription entityForName:NSStringFromClass([CYMap class]) inManagedObjectContext:self.context];
+  request.entity = [NSEntityDescription entityForName:NSStringFromClass([CYMap class]) inManagedObjectContext:[CYAppDelegate mainContext]];
   request.predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@ or summary contains[cd] %@", searchString, searchString];
   request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
 
   NSError *error = nil;
-  NSArray *fetchedObjects = [self.context executeFetchRequest:request error:&error];
+  NSArray *fetchedObjects = [[CYAppDelegate mainContext] executeFetchRequest:request error:&error];
   if (error) {
     NSDictionary *userInfo = @{NSUnderlyingErrorKey : error};
     NSString *reason = [NSString stringWithFormat:@"Couldn't filter maps for string %@.", searchString];

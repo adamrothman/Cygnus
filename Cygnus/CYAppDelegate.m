@@ -19,6 +19,10 @@
   return [UIApplication sharedApplication].delegate;
 }
 
++ (NSManagedObjectContext *)mainContext {
+  return [CYAppDelegate appDelegate].managedObjectContext;
+}
+
 - (void)setAppearances {
   [[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
   [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav-bar-background.png"] forBarMetrics:UIBarMetricsDefault];

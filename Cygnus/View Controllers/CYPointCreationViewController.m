@@ -40,28 +40,13 @@
 
   [self.view endEditing:YES];
 
-  //do all the things.
-  CYPoint *localPoint = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([CYPoint class]) inManagedObjectContext:[CYAppDelegate appDelegate].managedObjectContext];
-  localPoint.name = self.titleTextField.text;
-  localPoint.summary = self.descriptionTextField.text;
-  localPoint.latitude = @(self.userPointAnnotation.coordinate.latitude);
-  localPoint.longitude = @(self.userPointAnnotation.coordinate.longitude);
-
-  PFObject *point = [PFObject objectWithClassName:PointClassName];
-  [point setObject:localPoint.name forKey:PointNameKey];
-  [point setObject:localPoint.summary forKey:PointSummaryKey];
-  PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:self.userPointAnnotation.coordinate.latitude longitude:self.userPointAnnotation.coordinate.longitude];
-  [point setObject:geoPoint forKey:PointLocationKey];
-  [point setObject:[PFObject objectWithoutDataWithClassName:MapClassName objectId:[CYUser user].activeMap.unique] forKey:@"map"];
-  [point saveInBackgroundWithBlock:NULL];
-  localPoint.unique = point.objectId;
-
-  [[CYUser user].activeMap addPointsObject:localPoint];
-  [self.delegate userDidAddPoint:localPoint];
+  // do all the things
+  CYPoint *newPoint = [CYPoint pointWithName:self.titleTextField.text summary:self.descriptionTextField.text imageURLString:@"" location:self.userPointAnnotation.coordinate map:[CYUser user].activeMap context:[CYAppDelegate mainContext] save:NO];
+  [self.delegate userDidAddPoint:newPoint];
 }
 
 - (IBAction)addImageSelected:(id)sender {
-  //do nothing for now
+  // do nothing for now
 }
 
 - (void)viewDidLoad {
