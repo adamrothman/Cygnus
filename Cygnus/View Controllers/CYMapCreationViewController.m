@@ -23,9 +23,8 @@ CYMapCreationViewController *_currentVC;
   [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (void)viewDidLoad {
+  [super viewDidLoad];
   _currentVC = self;
 	// Do any additional setup after loading the view.
 }
@@ -35,14 +34,7 @@ CYMapCreationViewController *_currentVC;
   _currentVC = nil;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-+ (QRootElement *)rootElement
-{
++ (QRootElement *)rootElement {
   QRootElement *root = [[QRootElement alloc] init];
   root.title = @"Create";
   root.controllerName = @"CYMapCreationViewController";
@@ -68,13 +60,10 @@ CYMapCreationViewController *_currentVC;
   createButton.onSelected = ^{
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [root fetchValueIntoObject:dict];
-    
-    CYMap *newMap = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([CYMap class]) inManagedObjectContext:[CYAppDelegate appDelegate].managedObjectContext];
-    newMap.name = dict[@"title"];
-    newMap.summary = dict[@"summary"];
-    [newMap saveToParseWithSuccess:^{
-      [[CYAppDelegate appDelegate].managedObjectContext saveWithSuccess:nil];
-      [[CYUser user] addMapsObject:newMap];
+
+    CYMap *newMap = [CYMap mapWithName:dict[@"title"] summary:dict[@"summary"] context:[CYAppDelegate mainContext] save:NO];
+    [[CYUser user] addMapsObject:newMap];
+    [[CYAppDelegate mainContext] saveWithSuccess:^{
       [_currentVC.navigationController popToRootViewControllerAnimated:YES];
       [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATED withParameters:nil];
     }];
@@ -89,19 +78,19 @@ CYMapCreationViewController *_currentVC;
     //Add new CYMap object to current user's maps (ie auto follow it)
 
     //dismiss CYMapCreationViewController
-    
+
   };
   [createSection addElement:createButton];
 
   [root addSection:titleSection];
   [root addSection:descriptionSection];
-//  [root addSection:schemaSection];
-//  [root addSection:demoPinSection];
+  //  [root addSection:schemaSection];
+  //  [root addSection:demoPinSection];
   [root addSection:createSection];
-  
-  return root;
 
+  return root;
 }
+
 @end
 
 //  QSection *schemaSection = [[QSection alloc] initWithTitle:@"Map item requirements (demo)"];

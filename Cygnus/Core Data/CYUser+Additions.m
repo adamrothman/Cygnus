@@ -12,24 +12,23 @@
 @implementation CYUser (Additions)
 
 + (CYUser *)user {
-  NSManagedObjectContext *mainContext = [CYAppDelegate appDelegate].managedObjectContext;
-
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  request.entity = [NSEntityDescription entityForName:NSStringFromClass(self.class) inManagedObjectContext:mainContext];
+  request.entity = [NSEntityDescription entityForName:NSStringFromClass(self.class) inManagedObjectContext:[CYAppDelegate mainContext]];
   request.fetchLimit = 1;
 
   NSError *error = nil;
-  NSArray *fetchedObjects = [mainContext executeFetchRequest:request error:&error];
+  NSArray *fetchedObjects = [[CYAppDelegate mainContext] executeFetchRequest:request error:&error];
   if (error) {
-    NSLog(@"Error: %@ %@", error.localizedDescription, error.userInfo);
-    abort();
+    NSDictionary *userInfo = @{NSUnderlyingErrorKey : error};
+    NSString *reason = [NSString stringWithFormat:@"Error fetching user object"];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:userInfo];
   }
 
   CYUser *user = fetchedObjects.lastObject;
   if (!user) {
-    user = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self.class) inManagedObjectContext:mainContext];
-    [mainContext saveWithSuccess:nil];
-    user.unique = [NSString generateUUID];
+    user = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self.class) inManagedObjectContext:[CYAppDelegate mainContext]];
+    [[CYAppDelegate mainContext] saveWithSuccess:nil];
+    user.unique = [UIDevice currentDevice].identifierForVendor.UUIDString;
     [CYAnalytics identityUser:user.unique];
   }
 

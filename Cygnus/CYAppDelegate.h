@@ -15,5 +15,6 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (CYAppDelegate *)appDelegate;
++ (NSManagedObjectContext *)mainContext;
 
 @end

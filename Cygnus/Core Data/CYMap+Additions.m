@@ -29,7 +29,7 @@
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
     context.persistentStoreCoordinator = [CYAppDelegate appDelegate].persistentStoreCoordinator;
     for (PFObject *map in maps) {
-      [CYMap mapWithObject:map inContext:context save:NO];
+      [CYMap mapWithObject:map context:context save:NO];
     }
 
     [context saveWithSuccess:^{
@@ -52,13 +52,13 @@
   }
 
   for (PFObject *point in points) {
-    [CYPoint pointWithObject:point inContext:context save:NO].map = self;
+    [CYPoint pointWithObject:point context:context save:NO].map = self;
   }
 }
 
 #pragma mark - Creation
 
-+ (CYMap *)mapWithObject:(PFObject *)object inContext:(NSManagedObjectContext *)context save:(BOOL)save {
++ (CYMap *)mapWithObject:(PFObject *)object context:(NSManagedObjectContext *)context save:(BOOL)save {
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
   request.entity = [NSEntityDescription entityForName:NSStringFromClass(self.class) inManagedObjectContext:context];
   request.predicate = [NSPredicate predicateWithFormat:@"unique = %@ OR name = %@", object.objectId, [object valueForKey:@"name"]];
@@ -94,19 +94,17 @@
   return map;
 }
 
-+ (CYMap *)mapInContext:(NSManagedObjectContext *)context save:(BOOL)save {
-  PFObject *parseMap = [PFObject objectWithClassName:MapClassName];
++ (CYMap *)mapWithName:(NSString *)name summary:(NSString *)summary context:(NSManagedObjectContext *)context save:(BOOL)save {
+  PFObject *object = [PFObject objectWithClassName:MapClassName];
+  [object setObject:name forKey:MapNameKey];
+  [object setObject:summary forKey:MapSummaryKey];
   NSError *error = nil;
-  if (![parseMap save:&error]) {
+  if (![object save:&error]) {
     NSLog(@"Error getting unique ID for map from Parse: %@ %@", error.localizedDescription, error.userInfo);
     return nil;
   }
 
-  CYMap *map = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self.class) inManagedObjectContext:context];
-  map.unique = parseMap.objectId;
-  if (save) [context saveWithSuccess:nil];
-
-  return map;
+  return [CYMap mapWithObject:object context:context save:save];
 }
 
 - (void)saveToParseWithSuccess:(void (^)())block {
@@ -128,6 +126,13 @@
   [[PFObject objectWithoutDataWithClassName:MapClassName objectId:self.unique] deleteEventually];
   [self.managedObjectContext deleteObject:self];
   if (save) [self.managedObjectContext saveWithSuccess:nil];
+}
+
+// workaround for http://stackoverflow.com/questions/7385439/exception-thrown-in-nsorderedset-generated-accessors
+- (void)addPointsObject:(CYPoint *)point {
+  NSMutableOrderedSet* tmp = [NSMutableOrderedSet orderedSetWithOrderedSet:self.points];
+  [tmp addObject:point];
+  self.points = tmp;
 }
 
 @end
