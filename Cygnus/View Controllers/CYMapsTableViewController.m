@@ -11,7 +11,7 @@
 #import "CYMap+Additions.h"
 #import "CYAppDelegate.h"
 
-@interface CYMapsTableViewController () <UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
+@interface CYMapsTableViewController ()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
@@ -23,22 +23,33 @@
 
 @implementation CYMapsTableViewController
 
-@synthesize fetchedResultsController;
-
-@synthesize searchBar;
-@synthesize searchDisplayController;
-@synthesize searchResults;
-- (IBAction)refresh:(id)sender {
-  [CYMap fetchMaps];
-}
+@synthesize searchDisplayController=__searchDisplayController;
 
 - (id)initWithStyle:(UITableViewStyle)style {
-  self = [super initWithStyle:style];
-  if (self) {
+  if ((self = [super initWithStyle:style])) {
     // Custom initialization
   }
   return self;
 }
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  [[NSNotificationCenter defaultCenter] addObserver:self.refreshControl selector:@selector(endRefreshing) name:NSManagedObjectContextDidSaveNotification object:self.context];
+
+  [self setUpFetchedResultsController];
+  [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+  [self setUpSearchBar];
+  self.searchResults = [NSMutableArray array];
+
+  self.navigationItem.title = @"Search Maps";
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_SEARCH_VISIT withParameters:nil];
+}
+
+#pragma mark - Fetch and search setup
 
 - (NSManagedObjectContext *)context {
   return [CYAppDelegate appDelegate].managedObjectContext;
@@ -60,8 +71,6 @@
 - (void)setUpSearchBar {
   self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
   self.tableView.tableHeaderView = self.searchBar;
-  CGPoint offset = CGPointMake(0, self.searchBar.frame.size.height);
-  self.tableView.contentOffset = offset;
 
   self.searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
   self.searchDisplayController.searchResultsDataSource = self;
@@ -69,30 +78,24 @@
   self.searchDisplayController.delegate = self;
 }
 
+#pragma mark - Storyboard
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-
-//  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(objectsDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:[CYAppDelegate appDelegate].managedObjectContext];
-  
-  [self setUpFetchedResultsController];
-
-  [self setUpSearchBar];
-  self.searchResults = [NSMutableArray array];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([segue.identifier isEqualToString:@"CYMapDetailViewController_Segue"]) {
+    CYMapDetailViewController *vc = (CYMapDetailViewController *)segue.destinationViewController;
+    vc.map = (CYMap*)sender;
+  }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-  [super viewDidAppear:animated];
-  [CYAnalytics logEvent:CYANALYTICS_EVENT_SEARCH_VISIT withParameters:nil];
+- (IBAction)refresh:(UIRefreshControl *)sender {
+  NSLog(@"starting refresh");
+  [CYMap fetchMapsWithSuccess:^{
+    dispatch_async(dispatch_get_main_queue(), ^{
+      NSLog(@"ending refresh");
+      [self.refreshControl endRefreshing];
+    });
+  }];
 }
-
-- (void)viewDidDisappear:(BOOL)animated {
-  [super viewDidDisappear:animated];
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
 
 #pragma mark - UITableViewDataSource
 
@@ -169,64 +172,42 @@
   return YES;
 }
 
-#pragma mark - Segue
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-  if ([segue.identifier isEqualToString:@"CYMapDetailViewController_Segue"]) {
-    CYMapDetailViewController *vc = (CYMapDetailViewController *)segue.destinationViewController;
-    vc.map = (CYMap*)sender;
-  }
-}
+#pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
   // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
   [self.tableView beginUpdates];
 }
 
-
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-  
   UITableView *tableView = self.tableView;
-  
   switch(type) {
-      
     case NSFetchedResultsChangeInsert:
       [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
       break;
-      
     case NSFetchedResultsChangeDelete:
       [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
       break;
-      
     case NSFetchedResultsChangeUpdate:
       [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
       break;
-      
     case NSFetchedResultsChangeMove:
-      [tableView deleteRowsAtIndexPaths:[NSArray
-                                         arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-      [tableView insertRowsAtIndexPaths:[NSArray
-                                         arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
       break;
   }
 }
 
-
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-  
   switch(type) {
-      
     case NSFetchedResultsChangeInsert:
       [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
       break;
-      
     case NSFetchedResultsChangeDelete:
       [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
       break;
   }
 }
-
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
   // The fetch controller has sent all current change notifications, so tell the table view to process all updates.

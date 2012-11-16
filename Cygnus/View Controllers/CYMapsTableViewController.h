@@ -6,6 +6,6 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
-@interface CYMapsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CYMapsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
 
 @end

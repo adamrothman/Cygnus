@@ -13,7 +13,6 @@
 #import "CYUser+Additions.h"
 #import "CYUI.h"
 #import "CYMapView.h"
-#import "MKMapView+ARKit.h"
 #import "AwesomeMenuItem.h"
 
 CYMapViewController *_currentVC;
@@ -66,6 +65,7 @@ CYMapViewController *_currentVC;
   self.mapView.canEdit = YES;
   
   // You can optionally listen to notifications
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(semiModalPresented:)
                                                name:kSemiModalDidShowNotification
@@ -84,20 +84,12 @@ CYMapViewController *_currentVC;
   [super viewWillAppear:animated];
   [self.mapView removeAnnotations:self.mapView.annotations];
   [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
-  [self.mapView zoomToFitAnnotationsWithoutUserAnimated:YES];
+  [self.mapView zoomToFitAnnotationsWithUser:NO animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_VISIT withParameters:nil];
-
-}
-
-- (void)viewDidUnload {
-  [super viewDidUnload];
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [self setMapView:nil];
-  _currentVC = nil;
 }
 
 #pragma mark - Optional notifications
@@ -148,17 +140,6 @@ CYMapViewController *_currentVC;
 }
 
 @end
-//
-//PFQuery *mapQuery = [PFQuery queryWithClassName:@"Map"];
-//[mapQuery whereKey:@"objectId" equalTo:@"Y5gEmr6b3d"];
-//CYMap __block *map = [CYMap mapWithObject:[mapQuery getObjectWithId:@"Y5gEmr6b3d"]];
-//PFQuery *pointQuery = [PFQuery queryWithClassName:@"Point"];
-//[pointQuery whereKey:@"map" matchesQuery:mapQuery];
-//[pointQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//  for (PFObject *object in objects) {
-//    [map addPoint:[CYPoint pointWithObject:object]];
-//  }
-//}];
 
 
 
