@@ -35,6 +35,7 @@
   #import "NSObject+PerformBlock.h"
 
   #import "CYAppDelegate.h"
+  #import "CYAnalytics.h"
   #import "CYConstants.h"
 #endif
 

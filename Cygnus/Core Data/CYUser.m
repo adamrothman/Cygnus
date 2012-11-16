@@ -12,6 +12,7 @@
 
 @implementation CYUser
 
+@dynamic unique;
 @dynamic activeMap;
 @dynamic maps;
 

@@ -142,6 +142,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_DETAIL_VISIT withParameters:nil];
 
 }
 

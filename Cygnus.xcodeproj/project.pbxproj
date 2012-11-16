@@ -11,7 +11,6 @@
 		4E54195E1654C4A600E495D1 /* CYMapCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E54195D1654C4A500E495D1 /* CYMapCreationViewController.m */; };
 		4E541AAB1654EB0400E495D1 /* CYPointCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E541AAA1654EB0300E495D1 /* CYPointCreationViewController.m */; };
 		4E541ADE16550F9F00E495D1 /* pointCreationDefaultScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E541ADD16550F9F00E495D1 /* pointCreationDefaultScheme.json */; };
-		4E541B0516551DE300E495D1 /* CYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E541B0416551DE200E495D1 /* CYUser.m */; };
 		4E541B071655466100E495D1 /* CYPointCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B061655466100E495D1 /* CYPointCreationViewController.xib */; };
 		4E541B18165548EE00E495D1 /* hud-check.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B13165548EE00E495D1 /* hud-check.png */; };
 		4E541B19165548EE00E495D1 /* hud-check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B14165548EE00E495D1 /* hud-check@2x.png */; };
@@ -29,6 +28,18 @@
 		4E6DFF7D1643EA5F00AB180C /* CYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF7C1643EA5F00AB180C /* CYTabBarViewController.m */; };
 		4E6DFF9B1643F3A600AB180C /* NSAttributedString+Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E6DFFA11643FC1100AB180C /* CYConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */; };
+		4E8DF92F1655CF8200A113C9 /* CYAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DF92E1655CF8200A113C9 /* CYAnalytics.m */; };
+		4E8DF9311655D07B00A113C9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E8DF9301655D07B00A113C9 /* CoreTelephony.framework */; };
+		4E8DF9E11655D14D00A113C9 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4E8DF99E1655D14D00A113C9 /* .gitignore */; };
+		4E8DF9FB1655D14D00A113C9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4E8DF9CD1655D14D00A113C9 /* LICENSE */; };
+		4E8DF9FC1655D14D00A113C9 /* MPCJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DF9D21655D14D00A113C9 /* MPCJSONDataSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E8DF9FD1655D14D00A113C9 /* MPCJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DF9D41655D14D00A113C9 /* MPCJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E8DF9FE1655D14D00A113C9 /* MPCSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DF9D61655D14D00A113C9 /* MPCSerializedJSONData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E8DF9FF1655D14D00A113C9 /* NSData+MPBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DF9D91655D14D00A113C9 /* NSData+MPBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E8DFA001655D14D00A113C9 /* Mixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DF9DB1655D14D00A113C9 /* Mixpanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4E8DFA011655D14D00A113C9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E8DF9DC1655D14D00A113C9 /* README.md */; };
+		4E8DFA0B1655D1DE00A113C9 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E8DFA0A1655D1DE00A113C9 /* libFlurry.a */; };
+		4E8DFA1F1655DF2100A113C9 /* CYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DFA1E1655DF2100A113C9 /* CYUser.m */; };
 		4E9B9C02164D3ADE00A6A010 /* CYMapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B9C01164D3ADE00A6A010 /* CYMapDetailViewController.m */; };
 		4EC259AD165581B500825436 /* accent.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EC259A9165581B500825436 /* accent.ttf */; };
 		4EC259AE165581B500825436 /* Adamas-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EC259AA165581B500825436 /* Adamas-Regular.otf */; };
@@ -191,8 +202,6 @@
 		4E541AA91654EB0300E495D1 /* CYPointCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYPointCreationViewController.h; path = "View Controllers/CYPointCreationViewController.h"; sourceTree = "<group>"; };
 		4E541AAA1654EB0300E495D1 /* CYPointCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYPointCreationViewController.m; path = "View Controllers/CYPointCreationViewController.m"; sourceTree = "<group>"; };
 		4E541ADD16550F9F00E495D1 /* pointCreationDefaultScheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = pointCreationDefaultScheme.json; path = Models/pointCreationDefaultScheme.json; sourceTree = "<group>"; };
-		4E541B0316551DE200E495D1 /* CYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYUser.h; sourceTree = "<group>"; };
-		4E541B0416551DE200E495D1 /* CYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYUser.m; sourceTree = "<group>"; };
 		4E541B061655466100E495D1 /* CYPointCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CYPointCreationViewController.xib; path = "View Controllers/CYPointCreationViewController.xib"; sourceTree = "<group>"; };
 		4E541B13165548EE00E495D1 /* hud-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud-check.png"; sourceTree = "<group>"; };
 		4E541B14165548EE00E495D1 /* hud-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud-check@2x.png"; sourceTree = "<group>"; };
@@ -214,6 +223,26 @@
 		4E6DFF9A1643F3A600AB180C /* NSAttributedString+Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Attributes.m"; sourceTree = "<group>"; };
 		4E6DFF9F1643FC1000AB180C /* CYConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYConsoleViewController.h; path = "View Controllers/CYConsoleViewController.h"; sourceTree = "<group>"; };
 		4E6DFFA01643FC1100AB180C /* CYConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYConsoleViewController.m; path = "View Controllers/CYConsoleViewController.m"; sourceTree = "<group>"; };
+		4E8DF92D1655CF8200A113C9 /* CYAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYAnalytics.h; sourceTree = "<group>"; };
+		4E8DF92E1655CF8200A113C9 /* CYAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYAnalytics.m; sourceTree = "<group>"; };
+		4E8DF9301655D07B00A113C9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		4E8DF99E1655D14D00A113C9 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		4E8DF9CD1655D14D00A113C9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		4E8DF9D11655D14D00A113C9 /* MPCJSONDataSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCJSONDataSerializer.h; sourceTree = "<group>"; };
+		4E8DF9D21655D14D00A113C9 /* MPCJSONDataSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCJSONDataSerializer.m; sourceTree = "<group>"; };
+		4E8DF9D31655D14D00A113C9 /* MPCJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCJSONSerializer.h; sourceTree = "<group>"; };
+		4E8DF9D41655D14D00A113C9 /* MPCJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCJSONSerializer.m; sourceTree = "<group>"; };
+		4E8DF9D51655D14D00A113C9 /* MPCSerializedJSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCSerializedJSONData.h; sourceTree = "<group>"; };
+		4E8DF9D61655D14D00A113C9 /* MPCSerializedJSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCSerializedJSONData.m; sourceTree = "<group>"; };
+		4E8DF9D81655D14D00A113C9 /* NSData+MPBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MPBase64.h"; sourceTree = "<group>"; };
+		4E8DF9D91655D14D00A113C9 /* NSData+MPBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MPBase64.m"; sourceTree = "<group>"; };
+		4E8DF9DA1655D14D00A113C9 /* Mixpanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mixpanel.h; sourceTree = "<group>"; };
+		4E8DF9DB1655D14D00A113C9 /* Mixpanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mixpanel.m; sourceTree = "<group>"; };
+		4E8DF9DC1655D14D00A113C9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		4E8DFA091655D1DE00A113C9 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		4E8DFA0A1655D1DE00A113C9 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
+		4E8DFA1D1655DF2100A113C9 /* CYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYUser.h; sourceTree = "<group>"; };
+		4E8DFA1E1655DF2100A113C9 /* CYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYUser.m; sourceTree = "<group>"; };
 		4E9B9C00164D3ADD00A6A010 /* CYMapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYMapDetailViewController.h; path = "View Controllers/CYMapDetailViewController.h"; sourceTree = "<group>"; };
 		4E9B9C01164D3ADE00A6A010 /* CYMapDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = CYMapDetailViewController.m; path = "View Controllers/CYMapDetailViewController.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4EC259A9165581B500825436 /* accent.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = accent.ttf; sourceTree = "<group>"; };
@@ -356,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6696F6221655BCF90092BDB3 /* libQuickDialog.a in Frameworks */,
+				4E8DF9311655D07B00A113C9 /* CoreTelephony.framework in Frameworks */,
 				66F2B29B1654B1B30043DD15 /* CoreData.framework in Frameworks */,
 				66C29A59164CEA9400DC8DBA /* CoreText.framework in Frameworks */,
 				66A1B331163888AC00B9DCEC /* SystemConfiguration.framework in Frameworks */,
@@ -377,6 +407,7 @@
 				6627824C1633EEC200F1D0E7 /* Foundation.framework in Frameworks */,
 				6627824E1633EEC200F1D0E7 /* CoreGraphics.framework in Frameworks */,
 				6644E253163F338000537778 /* Parse.framework in Frameworks */,
+				4E8DFA0B1655D1DE00A113C9 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +422,69 @@
 			);
 			name = KNSemiModalViewController;
 			path = Cygnus/Libraries/KNSemiModalViewController;
+			sourceTree = "<group>";
+		};
+		4E8DF99D1655D14D00A113C9 /* Mixpanel */ = {
+			isa = PBXGroup;
+			children = (
+				4E8DF99E1655D14D00A113C9 /* .gitignore */,
+				4E8DF9CD1655D14D00A113C9 /* LICENSE */,
+				4E8DF9CE1655D14D00A113C9 /* Mixpanel */,
+				4E8DF9DC1655D14D00A113C9 /* README.md */,
+			);
+			name = Mixpanel;
+			path = Cygnus/Libraries/Mixpanel;
+			sourceTree = "<group>";
+		};
+		4E8DF9CE1655D14D00A113C9 /* Mixpanel */ = {
+			isa = PBXGroup;
+			children = (
+				4E8DF9CF1655D14D00A113C9 /* Library */,
+				4E8DF9DA1655D14D00A113C9 /* Mixpanel.h */,
+				4E8DF9DB1655D14D00A113C9 /* Mixpanel.m */,
+			);
+			path = Mixpanel;
+			sourceTree = "<group>";
+		};
+		4E8DF9CF1655D14D00A113C9 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				4E8DF9D01655D14D00A113C9 /* JSON */,
+				4E8DF9D71655D14D00A113C9 /* NSData_Base64 */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		4E8DF9D01655D14D00A113C9 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				4E8DF9D11655D14D00A113C9 /* MPCJSONDataSerializer.h */,
+				4E8DF9D21655D14D00A113C9 /* MPCJSONDataSerializer.m */,
+				4E8DF9D31655D14D00A113C9 /* MPCJSONSerializer.h */,
+				4E8DF9D41655D14D00A113C9 /* MPCJSONSerializer.m */,
+				4E8DF9D51655D14D00A113C9 /* MPCSerializedJSONData.h */,
+				4E8DF9D61655D14D00A113C9 /* MPCSerializedJSONData.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		4E8DF9D71655D14D00A113C9 /* NSData_Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				4E8DF9D81655D14D00A113C9 /* NSData+MPBase64.h */,
+				4E8DF9D91655D14D00A113C9 /* NSData+MPBase64.m */,
+			);
+			path = NSData_Base64;
+			sourceTree = "<group>";
+		};
+		4E8DFA081655D1DE00A113C9 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				4E8DFA091655D1DE00A113C9 /* Flurry.h */,
+				4E8DFA0A1655D1DE00A113C9 /* libFlurry.a */,
+			);
+			name = Flurry;
+			path = Cygnus/Libraries/Flurry;
 			sourceTree = "<group>";
 		};
 		4EC259A8165581B500825436 /* Fonts */ = {
@@ -464,6 +558,7 @@
 		6627823A1633EEC200F1D0E7 = {
 			isa = PBXGroup;
 			children = (
+				4E8DF9301655D07B00A113C9 /* CoreTelephony.framework */,
 				4E541B5A16557ADF00E495D1 /* app_icon@2x.png */,
 				4E541B5816557ADC00E495D1 /* app_icon.png */,
 				6627824F1633EEC200F1D0E7 /* Cygnus */,
@@ -512,6 +607,8 @@
 		6627824F1633EEC200F1D0E7 /* Cygnus */ = {
 			isa = PBXGroup;
 			children = (
+				4E8DF92D1655CF8200A113C9 /* CYAnalytics.h */,
+				4E8DF92E1655CF8200A113C9 /* CYAnalytics.m */,
 				662782581633EEC200F1D0E7 /* CYAppDelegate.h */,
 				662782591633EEC200F1D0E7 /* CYAppDelegate.m */,
 				66F2B2D41654D7D90043DD15 /* CYConstants.h */,
@@ -544,6 +641,8 @@
 			isa = PBXGroup;
 			children = (
 				6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */,
+				4E8DFA081655D1DE00A113C9 /* Flurry */,
+				4E8DF99D1655D14D00A113C9 /* Mixpanel */,
 				4E541B3116554E7100E495D1 /* KNSemiModalViewController */,
 				4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */,
 				66558A9D16361EBC00C7BB8B /* AFNetworking */,
@@ -711,8 +810,8 @@
 				66F2B2E41654DA5E0043DD15 /* CYPoint.m */,
 				66F2B2E91654DAD20043DD15 /* CYPoint+Additions.h */,
 				66F2B2EA1654DAD20043DD15 /* CYPoint+Additions.m */,
-				4E541B0316551DE200E495D1 /* CYUser.h */,
-				4E541B0416551DE200E495D1 /* CYUser.m */,
+				4E8DFA1D1655DF2100A113C9 /* CYUser.h */,
+				4E8DFA1E1655DF2100A113C9 /* CYUser.m */,
 				66F2B2FD1654F0660043DD15 /* CYUser+Additions.h */,
 				66F2B2FE1654F0660043DD15 /* CYUser+Additions.m */,
 			);
@@ -889,6 +988,9 @@
 				4EC259AF165581B500825436 /* CODE Bold.otf in Resources */,
 				4EC259B0165581B500825436 /* CODE Light.otf in Resources */,
 				6696F6121655B90E0092BDB3 /* 86-camera@2x.png in Resources */,
+				4E8DF9E11655D14D00A113C9 /* .gitignore in Resources */,
+				4E8DF9FB1655D14D00A113C9 /* LICENSE in Resources */,
+				4E8DFA011655D14D00A113C9 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,8 +1043,14 @@
 				66F2B2F91654E2230043DD15 /* CYMapsTableViewController.m in Sources */,
 				66F2B2FF1654F0660043DD15 /* CYUser+Additions.m in Sources */,
 				4E541AAB1654EB0400E495D1 /* CYPointCreationViewController.m in Sources */,
-				4E541B0516551DE300E495D1 /* CYUser.m in Sources */,
 				4E541B3416554E7100E495D1 /* UIViewController+KNSemiModal.m in Sources */,
+				4E8DF92F1655CF8200A113C9 /* CYAnalytics.m in Sources */,
+				4E8DF9FC1655D14D00A113C9 /* MPCJSONDataSerializer.m in Sources */,
+				4E8DF9FD1655D14D00A113C9 /* MPCJSONSerializer.m in Sources */,
+				4E8DF9FE1655D14D00A113C9 /* MPCSerializedJSONData.m in Sources */,
+				4E8DF9FF1655D14D00A113C9 /* NSData+MPBase64.m in Sources */,
+				4E8DFA001655D14D00A113C9 /* Mixpanel.m in Sources */,
+				4E8DFA1F1655DF2100A113C9 /* CYUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1052,6 +1160,10 @@
 				GCC_PREFIX_HEADER = "Cygnus/Cygnus-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/Cygnus/Libraries/**";
 				INFOPLIST_FILE = "Cygnus/Cygnus-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Cygnus/Libraries/Flurry\"",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -1080,6 +1192,10 @@
 				GCC_PREFIX_HEADER = "Cygnus/Cygnus-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/Cygnus/Libraries/**";
 				INFOPLIST_FILE = "Cygnus/Cygnus-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Cygnus/Libraries/Flurry\"",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",

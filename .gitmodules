@@ -13,3 +13,6 @@
 [submodule "Cygnus/Libraries/QuickDialog"]
 	path = Cygnus/Libraries/QuickDialog
 	url = git://github.com/escoz/QuickDialog.git
+[submodule "Cygnus/Libraries/Mixpanel"]
+	path = Cygnus/Libraries/Mixpanel
+	url = git://github.com/mixpanel/mixpanel-iphone.git

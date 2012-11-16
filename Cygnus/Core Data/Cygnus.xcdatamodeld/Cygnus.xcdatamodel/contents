@@ -20,12 +20,13 @@
         <relationship name="map" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CYMap" inverseName="points" inverseEntity="CYMap" syncable="YES"/>
     </entity>
     <entity name="CYUser" representedClassName="CYUser" syncable="YES">
+        <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="activeMap" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CYMap" syncable="YES"/>
         <relationship name="maps" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CYMap" syncable="YES"/>
     </entity>
     <elements>
         <element name="CYMap" positionX="160" positionY="192" width="128" height="135"/>
         <element name="CYPoint" positionX="385" positionY="438" width="128" height="165"/>
-        <element name="CYUser" positionX="574" positionY="-48" width="128" height="75"/>
+        <element name="CYUser" positionX="574" positionY="-48" width="128" height="90"/>
     </elements>
 </model>

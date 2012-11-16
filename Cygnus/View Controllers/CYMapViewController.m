@@ -37,7 +37,7 @@ CYMapViewController *_currentVC;
 {
   [self dismissSemiModalView];
   [self.mapView addAnnotation:point];
-
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_ADDED_POINT withParameters:nil];
 }
 
 - (void)userDidDropPin:(id<MKAnnotation>)userPointAnnotation
@@ -52,9 +52,7 @@ CYMapViewController *_currentVC;
    KNSemiModalOptionKeys.pushParentBack    : @(NO),
    KNSemiModalOptionKeys.animationDuration : @(0.3),
    }];
-  
-
- 
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_DROPPED_POINT withParameters:nil];
 }
 
 #pragma mark - Actions, Gestures, Notification Handlers
@@ -92,6 +90,8 @@ CYMapViewController *_currentVC;
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_VISIT withParameters:nil];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated

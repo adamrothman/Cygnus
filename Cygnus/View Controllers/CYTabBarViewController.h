@@ -11,4 +11,5 @@
 @interface CYTabBarViewController : UITabBarController
 
 + (CYTabBarViewController *)currentVC;
+
 @end
