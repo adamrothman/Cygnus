@@ -33,17 +33,15 @@ CYMapViewController *_currentVC;
 
 #pragma mark - CYMapEditorDelegate
 
-- (void)userDidAddPoint:(CYPoint *)point
-{
+- (void)userDidAddPoint:(CYPoint *)point {
   [self dismissSemiModalView];
   [self.mapView addAnnotation:point];
   [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_ADDED_POINT withParameters:nil];
 }
 
-- (void)userDidDropPin:(id<MKAnnotation>)userPointAnnotation
-{
-  //get schema from map
-//  QRootElement *root = [CYPointCreationViewController rootElement];
+- (void)userDidDropPin:(id<MKAnnotation>)userPointAnnotation {
+  // get schema from map
+  // QRootElement *root = [CYPointCreationViewController rootElement];
   self.userPointAnnotation = userPointAnnotation;
   self.pointCreationVC = [[CYPointCreationViewController alloc] initWithNibName:@"CYPointCreationViewController" bundle:nil];
   self.pointCreationVC.userPointAnnotation = self.userPointAnnotation;
@@ -53,6 +51,10 @@ CYMapViewController *_currentVC;
    KNSemiModalOptionKeys.animationDuration : @(0.3),
    }];
   [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_DROPPED_POINT withParameters:nil];
+    KNSemiModalOptionKeys.pushParentBack    : @NO,
+    KNSemiModalOptionKeys.animationDuration : @0.25,
+  }];
+  [self.pointCreationVC.titleTextField becomeFirstResponder];
 }
 
 #pragma mark - Actions, Gestures, Notification Handlers
@@ -80,8 +82,7 @@ CYMapViewController *_currentVC;
                                              object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self.mapView removeAnnotations:self.mapView.annotations];
   [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
@@ -94,17 +95,7 @@ CYMapViewController *_currentVC;
 
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-  [super viewDidDisappear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-}
-
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
   [super viewDidUnload];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   [self setMapView:nil];
@@ -113,28 +104,30 @@ CYMapViewController *_currentVC;
 
 #pragma mark - Optional notifications
 
-- (void) semiModalResized:(NSNotification *) notification {
+- (void)semiModalResized:(NSNotification *)notification {
   if(notification.object == self){
     NSLog(@"The view controller presented was been resized");
   }
 }
 
-- (void)semiModalPresented:(NSNotification *) notification {
+- (void)semiModalPresented:(NSNotification *)notification {
   if (notification.object == self) {
     NSLog(@"This view controller just shown a view with semi modal annimation");
   }
 }
-- (void)semiModalDismissed:(NSNotification *) notification {
+
+- (void)semiModalDismissed:(NSNotification *)notification {
   if (notification.object == self) {
     [self.mapView removeAnnotation:self.userPointAnnotation];
     self.userPointAnnotation = nil;
+    [self.pointCreationVC.view endEditing:YES];
   }
 }
 
-#pragma mark - AwesomeMenuDelegate  
+#pragma mark - AwesomeMenuDelegate
 
 - (void)menu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx {
-//  NSLog(@"Selected index %d", idx);
+  //  NSLog(@"Selected index %d", idx);
   switch (idx) {
     case 0:
       [self.mapView zoomToFitUserAnimated:YES];
@@ -144,7 +137,6 @@ CYMapViewController *_currentVC;
       break;
     case 2:
       NSLog(@"Option3");
-
       break;
     case 3:
       break;
@@ -153,9 +145,7 @@ CYMapViewController *_currentVC;
 
 #pragma mark - CYTabBar
 
-
-+ (CYMapViewController *)currentVC
-{
++ (CYMapViewController *)currentVC {
   return _currentVC;
 }
 

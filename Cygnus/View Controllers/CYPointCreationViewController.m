@@ -17,26 +17,17 @@
 
 @implementation CYPointCreationViewController
 
-
 #pragma mark - UITextFieldDelegate
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
   if (textField == self.titleTextField) {
     [self.descriptionTextField becomeFirstResponder];
     return YES;
   } else {
-    [self releaseFirstResponders];
+    [self.view endEditing:YES];
     return YES;
   }
 }
-
-- (void)releaseFirstResponders
-{
-  [self.titleTextField resignFirstResponder];
-  [self.descriptionTextField resignFirstResponder];
-}
-
 
 - (IBAction)addPointSelected:(id)sender {
   if (![self.titleTextField.text length]) {
@@ -47,7 +38,7 @@
     return;
   }
 
-  [self releaseFirstResponders];
+  [self.view endEditing:YES];
 
   //do all the things.
   CYPoint *localPoint = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([CYPoint class]) inManagedObjectContext:[CYAppDelegate appDelegate].managedObjectContext];
@@ -73,30 +64,26 @@
   //do nothing for now
 }
 
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
+  self.titleTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  self.titleTextField.layer.borderWidth = 1.f;
+  self.titleTextField.layer.cornerRadius = 4.f;
   self.titleTextField.delegate = self;
+
+  self.descriptionTextField.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  self.descriptionTextField.layer.borderWidth = 1.f;
+  self.descriptionTextField.layer.cornerRadius = 4.f;
   self.descriptionTextField.delegate = self;
 	// Do any additional setup after loading the view.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self.titleTextField becomeFirstResponder];
-
 }
 
-- (void)didReceiveMemoryWarning
-{
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
-
-+ (QRootElement *)rootElement
-{
++ (QRootElement *)rootElement {
   return [[QRootElement alloc] initWithJSONFile:@"pointCreationDefaultScheme"];
 }
 

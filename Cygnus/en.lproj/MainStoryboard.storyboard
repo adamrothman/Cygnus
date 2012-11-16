@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="yKy-cT-MmP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="yKy-cT-MmP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -287,7 +287,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="descriptoin" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wkm-bD-Js2">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wkm-bD-Js2">
                                 <rect key="frame" x="20" y="208" width="280" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -370,99 +370,6 @@
             </objects>
             <point key="canvasLocation" x="-238" y="1168"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="FQX-IX-pd7">
-            <objects>
-                <tabBarController definesPresentationContext="YES" id="gBm-G4-mGy" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="4gq-de-uVp">
-                        <rect key="frame" x="129" y="330" width="163" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="vQ2-o4-wMM" kind="relationship" relationship="viewControllers" id="j1S-MO-lLt"/>
-                        <segue destination="FIw-BB-15x" kind="relationship" relationship="viewControllers" id="F9v-PW-W9m"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UfD-gH-u3C" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2275" y="-1929"/>
-        </scene>
-        <!--Maps Table View Controller - Search-->
-        <scene sceneID="GQx-q3-2cj">
-            <objects>
-                <tableViewController id="vQ2-o4-wMM" customClass="CYMapsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="HBc-6q-YN0">
-                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MapTableViewCell" textLabel="xB7-dw-xFV" detailTextLabel="XMO-O8-hdp" imageView="Zy0-nZ-Qcc" style="IBUITableViewCellStyleSubtitle" id="dW6-DJ-nyC">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xB7-dw-xFV">
-                                            <rect key="frame" x="46" y="2" width="38" height="22"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XMO-O8-hdp">
-                                            <rect key="frame" x="46" y="24" width="47" height="18"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="103-map.png" id="Zy0-nZ-Qcc">
-                                            <rect key="frame" x="10" y="11" width="26" height="21"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="vQ2-o4-wMM" id="tc1-aX-SNf"/>
-                            <outlet property="delegate" destination="vQ2-o4-wMM" id="LL7-2p-6CT"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Search" image="06-magnify.png" id="lEs-YE-sLJ"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zkv-JP-Gos" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1809" y="-2320"/>
-        </scene>
-        <!--Map View Controller - Map-->
-        <scene sceneID="s1o-Ce-q4a">
-            <objects>
-                <viewController id="FIw-BB-15x" customClass="CYMapViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="v07-Va-Zpo">
-                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="6Bi-Zp-YS9" customClass="CYMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="499"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="103-map.png" id="gNR-u9-5t6"/>
-                    <connections>
-                        <outlet property="mapView" destination="6Bi-Zp-YS9" id="SoC-Vx-PAU"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A3I-El-tAC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1809" y="-1656"/>
-        </scene>
         <!--Log In View Controller-->
         <scene sceneID="RIF-eU-gIB">
             <objects>
@@ -539,7 +446,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hc5-b1-hEW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1238" y="-208"/>
+            <point key="canvasLocation" x="-1252" y="-208"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="faC-kG-KX0">
@@ -621,7 +528,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="06-magnify.png" width="24" height="24"/>
         <image name="103-map.png" width="26" height="21"/>
         <image name="20-gear-2.png" width="26" height="28"/>
         <image name="86-camera.png" width="24" height="18"/>

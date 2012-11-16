@@ -9,17 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "CYMap+Additions.m"
 #import "CYMapView.h"
+#import "ARTextField.h"
 
 @interface CYPointCreationViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
+@property (weak, nonatomic) IBOutlet ARTextField *titleTextField;
+@property (weak, nonatomic) IBOutlet ARTextField *descriptionTextField;
 @property (weak, nonatomic) IBOutlet UIButton *imageButton;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 
-@property (strong, nonatomic)     id<MKAnnotation> userPointAnnotation;
-@property (weak, nonatomic)       id<CYMapEditorDelegate>delegate;
+@property (strong, nonatomic) id<MKAnnotation> userPointAnnotation;
+@property (weak, nonatomic) id<CYMapEditorDelegate> delegate;
 
 
 @end

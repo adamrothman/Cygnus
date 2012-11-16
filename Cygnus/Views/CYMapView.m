@@ -22,8 +22,7 @@
 
 #pragma mark - User Interaction
 
-- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer
-{
+- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer {
   if (gestureRecognizer.state != UIGestureRecognizerStateBegan || !self.canEdit || ![CYUser user].activeMap) return;
   CGPoint touchPoint = [gestureRecognizer locationInView:self];
   CLLocationCoordinate2D touchMapCoordinate = [self convertPoint:touchPoint toCoordinateFromView:self];
@@ -36,8 +35,7 @@
 
 #pragma mark - MKMapViewDelegate
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
-{
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
   MKCoordinateSpan span = MKCoordinateSpanMake(ONE_MILE_RADIUS, ONE_MILE_RADIUS);
   MKCoordinateRegion region = MKCoordinateRegionMake(userLocation.coordinate, span);
   if (![CYUser user].activeMap) {
@@ -46,8 +44,7 @@
   }
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
-{
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
   if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
   MKPinAnnotationView *pinView = nil;
   static NSString*defaultPin=@"default-pin";
@@ -74,8 +71,7 @@
 }
 
 
-- (void)updateBeacon:(CLLocationCoordinate2D)beaconCoordinate
-{
+- (void)updateBeacon:(CLLocationCoordinate2D)beaconCoordinate {
   MKPointAnnotation *annot = [[MKPointAnnotation alloc] init];
   annot.coordinate = beaconCoordinate;
   if (self.beaconAnnotation) [self removeAnnotation:self.beaconAnnotation];
@@ -84,8 +80,7 @@
   //assumes that the beacon is being stored on User.
 }
 
-- (void)updatePointsForMap:(CYMap *)map animated:(BOOL)animated
-{
+- (void)updatePointsForMap:(CYMap *)map animated:(BOOL)animated {
   [self removeAnnotations:self.mapAnnotations[map.objectID]];
   if (!map.points) return;
   self.mapAnnotations[map.objectID] = map.points.array;
@@ -93,15 +88,13 @@
 
 }
 
-- (void)removePointsForMap:(CYMap *)map
-{
+- (void)removePointsForMap:(CYMap *)map {
   [self removeAnnotations:self.mapAnnotations[map.objectID]];
   [self.mapAnnotations removeObjectForKey:map.objectID];
   [self zoomToFitAnnotationsWithUser:NO animated:NO];
 }
 
-- (void)setUp
-{
+- (void)setUp {
   self.showsUserLocation = YES;
   _userDidInteract = YES;
   _canEdit = NO;
@@ -116,14 +109,12 @@
 }
 
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
   [super awakeFromNib];
   [self setUp];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
     [self setUp];
@@ -131,24 +122,20 @@
   return self;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesBegan:touches withEvent:event];
   self.userDidInteract = YES;
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesCancelled:touches withEvent:event];
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesEnded:touches withEvent:event];
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   [super touchesMoved:touches withEvent:event];
 }
 
