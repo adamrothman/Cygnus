@@ -19,15 +19,6 @@
 
 #pragma mark - Accessors
 
-- (void)setPoint:(CYPoint *)point
-{
-  _point = point;
-
-
-  
-
-}
-
 #pragma mark - VC Life cycle
 
 - (void)viewDidLoad
@@ -48,7 +39,12 @@
   self.summaryLabel.text = self.point.summary;
   [self.summaryLabel sizeToFit];
   self.headerContainer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_POINT_DETAIL_VISIT withParameters:nil];
 }
 
 - (void)didReceiveMemoryWarning

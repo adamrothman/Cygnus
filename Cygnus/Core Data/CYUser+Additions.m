@@ -7,7 +7,7 @@
 //
 
 #import "CYUser+Additions.h"
-#import "CYAppDelegate.h"
+#import "NSString+UUID.h"
 
 @implementation CYUser (Additions)
 
@@ -29,6 +29,8 @@
   if (!user) {
     user = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self.class) inManagedObjectContext:mainContext];
     [mainContext saveWithSuccess:nil];
+    user.unique = [NSString generateUUID];
+    [CYAnalytics identityUser:user.unique];
   }
 
   return user;

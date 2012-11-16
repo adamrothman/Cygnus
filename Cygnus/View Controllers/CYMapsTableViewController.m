@@ -81,6 +81,11 @@
   self.searchResults = [NSMutableArray array];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_SEARCH_VISIT withParameters:nil];
+}
 
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];

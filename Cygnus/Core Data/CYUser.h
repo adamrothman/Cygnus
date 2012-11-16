@@ -13,6 +13,7 @@
 
 @interface CYUser : NSManagedObject
 
+@property (nonatomic, retain) NSString * unique;
 @property (nonatomic, retain) CYMap *activeMap;
 @property (nonatomic, retain) NSOrderedSet *maps;
 @end

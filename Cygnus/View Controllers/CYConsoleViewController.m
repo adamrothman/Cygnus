@@ -44,6 +44,7 @@
         } else if ([choice isEqualToString:SEARCH]) {
           [self.tabBarController setSelectedIndex:2];
         } else if ([choice isEqualToString:CREATE_NEW]) {
+          [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATE_SELECTED withParameters:nil];
           QRootElement *root = [CYMapCreationViewController rootElement];
           CYMapCreationViewController *myDialogController = (CYMapCreationViewController *)[QuickDialogController controllerForRoot:root];
           myDialogController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -55,6 +56,7 @@
 #pragma mark - Actions, Gestures, Notification Handlers
 
 - (IBAction)addMapSelected:(id)sender {
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_ADD_SELECTED withParameters:nil];
     [self.mapActionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
@@ -83,6 +85,7 @@
     return @"Following";
   }
 }
+
 
 #define MAP_CELL                @"CYMapTableViewCell"
 
@@ -161,6 +164,12 @@
   [super viewWillAppear:animated];
   self.maps = [CYUser user].maps;
   [self.mapsTableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_CONSOLE_VISIT withParameters:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

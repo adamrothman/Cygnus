@@ -30,6 +30,7 @@
   #import "AFNetworking.h"
   #import <Parse/Parse.h>
   #import <QuickDialog/QuickDialog.h>
+  #import "CYAnalytics.h"
   #import "CYAppDelegate.h"
   #import "NSManagedObjectContext+SimpleSave.h"
   #import "NSObject+PerformBlock.h"
