@@ -85,13 +85,11 @@
   if (!map.points) return;
   self.mapAnnotations[map.objectID] = map.points.array;
   [self addAnnotations:map.points.array];
-
 }
 
 - (void)removePointsForMap:(CYMap *)map {
   [self removeAnnotations:self.mapAnnotations[map.objectID]];
   [self.mapAnnotations removeObjectForKey:map.objectID];
-  [self zoomToFitAnnotationsWithUser:NO animated:NO];
 }
 
 - (void)setUp {

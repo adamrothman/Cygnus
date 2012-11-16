@@ -50,7 +50,7 @@
 
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
     context.persistentStoreCoordinator = [CYAppDelegate appDelegate].persistentStoreCoordinator;
-    for (PFObject *map in maps) {      
+    for (PFObject *map in maps) {
       CYMap *localMap = [CYMap mapWithObject:map inContext:context save:NO];
       PFQuery *mapQuery = [PFQuery queryWithClassName:MapClassName];
       [mapQuery whereKey:@"objectId" equalTo:localMap.unique];
@@ -78,7 +78,7 @@
 + (CYMap *)mapWithObject:(PFObject *)object inContext:(NSManagedObjectContext *)context save:(BOOL)save {
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
   request.entity = [NSEntityDescription entityForName:NSStringFromClass(self.class) inManagedObjectContext:context];
-  request.predicate = [NSPredicate predicateWithFormat:@"unique = %@", object.objectId];
+  request.predicate = [NSPredicate predicateWithFormat:@"unique = %@ OR name = %@", object.objectId, [object valueForKey:@"name"]];
   request.fetchLimit = 1;
 
   NSError *error = nil;

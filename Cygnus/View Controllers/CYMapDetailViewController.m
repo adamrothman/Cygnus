@@ -106,7 +106,7 @@
   self.mapView.scrollEnabled = NO;
   self.mapView.zoomEnabled = NO;
   [self.mapView updatePointsForMap:self.map animated:NO];
-  [self.mapView zoomToFitAnnotationsWithUser:NO animated:NO];
+  [self.mapView zoomToFitAnnotationsWithoutUserAnimated:NO];
   
   self.headerContainer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
   self.nameLabel.text = [NSString stringWithFormat:@"%@ (%d)", self.map.name, self.map.points.count];

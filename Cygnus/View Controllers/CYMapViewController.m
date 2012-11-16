@@ -51,9 +51,7 @@ CYMapViewController *_currentVC;
    KNSemiModalOptionKeys.animationDuration : @(0.3),
    }];
   [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_DROPPED_POINT withParameters:nil];
-    KNSemiModalOptionKeys.pushParentBack    : @NO,
-    KNSemiModalOptionKeys.animationDuration : @0.25,
-  }];
+
   [self.pointCreationVC.titleTextField becomeFirstResponder];
 }
 
@@ -86,7 +84,7 @@ CYMapViewController *_currentVC;
   [super viewWillAppear:animated];
   [self.mapView removeAnnotations:self.mapView.annotations];
   [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
-  [self.mapView zoomToFitAnnotationsWithUser:NO animated:NO];
+  [self.mapView zoomToFitAnnotationsWithoutUserAnimated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

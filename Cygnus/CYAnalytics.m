@@ -16,7 +16,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 +(void)startTrackingEvents
 {
-  Mixpanel *sharedInstance = [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN_A];
+  Mixpanel *sharedInstance = [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN_B];
   sharedInstance.flushOnBackground = YES;
   sharedInstance.showNetworkActivityIndicator = NO;
   NSSetUncaughtExceptionHandler(uncaughtExceptionHandler);

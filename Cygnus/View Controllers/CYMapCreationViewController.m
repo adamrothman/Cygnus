@@ -74,12 +74,11 @@ CYMapCreationViewController *_currentVC;
     newMap.summary = dict[@"summary"];
     [newMap saveToParseWithSuccess:^{
       [[CYAppDelegate appDelegate].managedObjectContext saveWithSuccess:nil];
+      [[CYUser user] addMapsObject:newMap];
+      [_currentVC.navigationController popToRootViewControllerAnimated:YES];
+      [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATED withParameters:nil];
     }];
-    [[CYUser user] addMapsObject:newMap];
-    [_currentVC.navigationController popToRootViewControllerAnimated:YES];
-    [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATED withParameters:nil];
 
-    
     //Create new CYMap object from values
     //  (store item requirements in nstring property
     //   which can be read to JSON and parsed by the JSON dialogue builder)

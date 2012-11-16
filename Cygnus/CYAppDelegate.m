@@ -27,7 +27,8 @@
   [CYMap fetchMaps];
   [Parse setApplicationId:@"eZV1a910JvXmP1UrTsMy4cH4QZhLpjLoElLL1GIz"
                 clientKey:@"e3fP5YlVRNIqev4CoH53d22JAeXEqiCWJBSpygJk"];
-
+  
+  [CYAnalytics startTrackingEvents];
   return YES;
 }
 
