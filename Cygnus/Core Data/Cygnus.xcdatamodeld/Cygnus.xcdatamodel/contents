@@ -22,11 +22,10 @@
     <entity name="CYUser" representedClassName="CYUser" syncable="YES">
         <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="activeMap" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CYMap" syncable="YES"/>
-        <relationship name="maps" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CYMap" syncable="YES"/>
     </entity>
     <elements>
         <element name="CYMap" positionX="99" positionY="144" width="128" height="135"/>
         <element name="CYPoint" positionX="513" positionY="303" width="128" height="165"/>
-        <element name="CYUser" positionX="502" positionY="9" width="128" height="90"/>
+        <element name="CYUser" positionX="502" positionY="9" width="128" height="75"/>
     </elements>
 </model>

@@ -61,8 +61,7 @@ CYMapCreationViewController *_currentVC;
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [root fetchValueIntoObject:dict];
 
-    CYMap *newMap = [CYMap mapWithName:dict[@"title"] summary:dict[@"summary"] context:[CYAppDelegate mainContext] save:NO];
-    [[CYUser user] addMapsObject:newMap];
+    [CYMap mapWithName:dict[@"title"] summary:dict[@"summary"] context:[CYAppDelegate mainContext] save:NO];
     [[CYAppDelegate mainContext] saveWithSuccess:^{
       [_currentVC.navigationController popToRootViewControllerAnimated:YES];
       [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATED withParameters:nil];
@@ -78,7 +77,6 @@ CYMapCreationViewController *_currentVC;
     //Add new CYMap object to current user's maps (ie auto follow it)
 
     //dismiss CYMapCreationViewController
-
   };
   [createSection addElement:createButton];
 

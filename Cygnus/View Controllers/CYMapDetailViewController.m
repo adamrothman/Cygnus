@@ -35,26 +35,25 @@
 
 #pragma mark - Actions, Gestures, Notification Handlers
 
-- (IBAction)followButtonSelected:(id)sender {
-  if ([[CYUser user].maps containsObject:self.map]) {
-    [[CYUser user] removeMapsObject:self.map];
-    if ([CYUser user].activeMap == self.map) [CYUser user].activeMap = nil;
-    self.followLabel.text = @"Follow";
-    [UIView animateWithDuration:0.22 animations:^{
-      self.followButton.transform = CGAffineTransformIdentity;
-    }];
-
-  } else {
-    [[CYUser user] addMapsObject:self.map];
-    if ([CYUser user].activeMap == nil) [CYUser user].activeMap = self.map;
-
-    self.followLabel.text = @"Following";
-    [UIView animateWithDuration:0.22 animations:^{
-      self.followButton.transform = CGAffineTransformMakeRotation(M_PI/4);
-    }];
-
-  }
-}
+//- (IBAction)followButtonSelected:(id)sender {
+//  if ([[CYUser user].maps containsObject:self.map]) {
+//    [[CYUser user] removeMapsObject:self.map];
+//    if ([CYUser user].activeMap == self.map) [CYUser user].activeMap = nil;
+//    self.followLabel.text = @"Follow";
+//    [UIView animateWithDuration:0.22 animations:^{
+//      self.followButton.transform = CGAffineTransformIdentity;
+//    }];
+//
+//  } else {
+//    [[CYUser user] addMapsObject:self.map];
+//    if ([CYUser user].activeMap == nil) [CYUser user].activeMap = self.map;
+//
+//    self.followLabel.text = @"Following";
+//    [UIView animateWithDuration:0.22 animations:^{
+//      self.followButton.transform = CGAffineTransformMakeRotation(M_PI/4);
+//    }];
+//  }
+//}
 
 #pragma mark - UITableViewDataSource
 
@@ -76,10 +75,10 @@
   NSString *identifier = POINT_CELL;
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
   if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-  
+
   CYPoint *point = (CYPoint *)self.map.points[indexPath.row];
   cell.textLabel.text = point.name;
-  
+
   CLLocation *temp = [[CLLocation alloc] initWithCoordinate:point.coordinate altitude:0 horizontalAccuracy:0 verticalAccuracy:0 timestamp:nil];
   float distance = [temp distanceFromLocation:self.mapView.userLocation.location];
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f", distance/1000];
@@ -107,7 +106,7 @@
   self.mapView.zoomEnabled = NO;
   [self.mapView updatePointsForMap:self.map animated:NO];
   [self.mapView zoomToFitAnnotationsWithUser:NO animated:NO];
-  
+
   self.headerContainer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
   self.nameLabel.text = [NSString stringWithFormat:@"%@ (%d)", self.map.name, self.map.points.count];
   NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -118,24 +117,24 @@
   [self.lastUpdatedLabel sizeToFit];
   [self.lastUpdatedValueLabel sizeToFit];
 
-  
   [self.nameLabel setFont:[UIFont fontWithName:@"CODE Bold" size:17]];
   [self.nameLabel sizeToFit];
   self.followButton.transform = CGAffineTransformIdentity;
 
+  self.navigationItem.title = self.map.name;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  if ([[CYUser user].maps containsObject:self.map]) {
-    self.followLabel.text = @"Following";
-    self.followButton.transform = CGAffineTransformMakeRotation(M_PI/4);
-  } else {
-    self.followLabel.text = @"Follow";
-    self.followButton.transform = CGAffineTransformIdentity;
-  }
-  
+//  if ([[CYUser user].maps containsObject:self.map]) {
+//    self.followLabel.text = @"Following";
+//    self.followButton.transform = CGAffineTransformMakeRotation(M_PI/4);
+//  } else {
+//    self.followLabel.text = @"Follow";
+//    self.followButton.transform = CGAffineTransformIdentity;
+//  }
+
   [self.tableView reloadData];
 }
 

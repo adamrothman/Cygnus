@@ -8,4 +8,6 @@
 
 @interface CYMapsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
 
+- (IBAction)addMap:(UIBarButtonItem *)sender;
+
 @end

@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "CYMap+Additions.m"
+#import "CYMap+Additions.h"
 #import "CYMapView.h"
 #import "ARTextField.h"
 

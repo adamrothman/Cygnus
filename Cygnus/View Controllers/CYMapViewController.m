@@ -11,6 +11,7 @@
 #import "UIViewController+KNSemiModal.h"
 #import "CYMap+Additions.h"
 #import "CYUser+Additions.h"
+#import "CYPoint+Additions.h"
 #import "CYUI.h"
 #import "CYMapView.h"
 #import "AwesomeMenuItem.h"
@@ -24,11 +25,129 @@ CYMapViewController *_currentVC;
 #define UPDATE_FREQUENCY                3*60
 
 @interface CYMapViewController () <CYMapEditorDelegate>
-@property (strong, nonatomic)     CYPointCreationViewController *pointCreationVC;
-@property (strong, nonatomic)     id<MKAnnotation> userPointAnnotation;
+
+@property (strong, nonatomic) CYPointCreationViewController *pointCreationVC;
+@property (nonatomic, strong) id<MKAnnotation> userPointAnnotation;
+
 @end
 
 @implementation CYMapViewController
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  _currentVC = self;
+
+  // You can optionally listen to notifications
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(semiModalPresented:)
+                                               name:kSemiModalDidShowNotification
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(semiModalDismissed:)
+                                               name:kSemiModalDidHideNotification
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(semiModalResized:)
+                                               name:kSemiModalWasResizedNotification
+                                             object:nil];
+
+  self.mapView.delegate = self;
+
+  UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+  longPress.cancelsTouchesInView = NO;
+  [self.mapView addGestureRecognizer:longPress];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  self.navigationController.navigationBar.hidden = YES;
+  [self.mapView removeAnnotations:self.mapView.annotations];
+  [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
+  [self.mapView zoomToFitAnnotationsWithUser:NO animated:YES];
+  self.activeMapLabel.text = [CYUser user].activeMap ? [NSString stringWithFormat:@"Displaying %@", [CYUser user].activeMap.name] : @"No active map";
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_VISIT withParameters:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  self.navigationController.navigationBar.hidden = NO;
+}
+
+#pragma mark - UI
+
+- (void)longPress:(UILongPressGestureRecognizer *)recognizer {
+  if (recognizer.state != UIGestureRecognizerStateBegan || ![CYUser user].activeMap) return;
+
+  CLLocationCoordinate2D coordinate = [self.mapView convertPoint:[recognizer locationInView:self.mapView] toCoordinateFromView:self.mapView];
+  self.userPointAnnotation = [[MKPointAnnotation alloc] init];
+  self.userPointAnnotation.coordinate = coordinate;
+  [self.mapView addAnnotation:self.userPointAnnotation];
+  [self userDidDropPin:self.userPointAnnotation];
+}
+
+#pragma mark - Optional notifications
+
+- (void)semiModalResized:(NSNotification *)notification {
+  if(notification.object == self){
+    NSLog(@"The view controller presented was been resized");
+  }
+}
+
+- (void)semiModalPresented:(NSNotification *)notification {
+  if (notification.object == self) {
+    NSLog(@"This view controller just shown a view with semi modal annimation");
+  }
+}
+
+- (void)semiModalDismissed:(NSNotification *)notification {
+  if (notification.object == self) {
+    [self.mapView removeAnnotation:self.userPointAnnotation];
+    self.userPointAnnotation = nil;
+    [self.pointCreationVC.view endEditing:YES];
+  }
+}
+
+#pragma mark - MKMapViewDelegate
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+  MKCoordinateSpan span = MKCoordinateSpanMake(ONE_MILE_RADIUS, ONE_MILE_RADIUS);
+  MKCoordinateRegion region = MKCoordinateRegionMake(userLocation.coordinate, span);
+  if (![CYUser user].activeMap) {
+    if (isnan(region.center.latitude) || !CLLocationCoordinate2DIsValid(userLocation.coordinate)) return;
+    [mapView setRegion:region animated:NO];
+  }
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+  if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
+  MKPinAnnotationView *pinView = nil;
+  static NSString *defaultPin=@"default-pin";
+  pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:defaultPin];
+  if (annotation == self.userPointAnnotation) {
+    pinView.pinColor = MKPinAnnotationColorGreen;
+    pinView.canShowCallout = NO;
+  } else { //Map point annotation
+    pinView.pinColor = MKPinAnnotationColorRed;
+    pinView.canShowCallout = YES;
+    pinView.animatesDrop = NO;
+
+    //    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    //    [rightButton addTarget:self
+    //                    action:@selector(showDetails:)
+    //          forControlEvents:UIControlEventTouchUpInside];
+    //    pinView.rightCalloutAccessoryView = rightButton;
+
+    //    UIImageView *sfIconView = [[UIImageView alloc] init];
+    //    pinView.leftCalloutAccessoryView = sfIconView;
+
+  }
+  return pinView;
+}
 
 #pragma mark - CYMapEditorDelegate
 
@@ -52,66 +171,6 @@ CYMapViewController *_currentVC;
   [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_DROPPED_POINT withParameters:nil];
 
   [self.pointCreationVC.titleTextField becomeFirstResponder];
-}
-
-#pragma mark - Actions, Gestures, Notification Handlers
-
-#pragma mark - VC Lifecycle
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  _currentVC = self;
-  self.mapView.editorDelegate = self;
-  self.mapView.canEdit = YES;
-  
-  // You can optionally listen to notifications
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(semiModalPresented:)
-                                               name:kSemiModalDidShowNotification
-                                             object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(semiModalDismissed:)
-                                               name:kSemiModalDidHideNotification
-                                             object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(semiModalResized:)
-                                               name:kSemiModalWasResizedNotification
-                                             object:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  [self.mapView removeAnnotations:self.mapView.annotations];
-  [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
-  [self.mapView zoomToFitAnnotationsWithUser:NO animated:YES];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_VISIT withParameters:nil];
-}
-
-#pragma mark - Optional notifications
-
-- (void)semiModalResized:(NSNotification *)notification {
-  if(notification.object == self){
-    NSLog(@"The view controller presented was been resized");
-  }
-}
-
-- (void)semiModalPresented:(NSNotification *)notification {
-  if (notification.object == self) {
-    NSLog(@"This view controller just shown a view with semi modal annimation");
-  }
-}
-
-- (void)semiModalDismissed:(NSNotification *)notification {
-  if (notification.object == self) {
-    [self.mapView removeAnnotation:self.userPointAnnotation];
-    self.userPointAnnotation = nil;
-    [self.pointCreationVC.view endEditing:YES];
-  }
 }
 
 #pragma mark - AwesomeMenuDelegate
@@ -140,8 +199,6 @@ CYMapViewController *_currentVC;
 }
 
 @end
-
-
 
 //  UIImage *background = [UIImage imageNamed:@"bg-menuitem.png"];
 //	UIImage *backgroundHighlighted = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];

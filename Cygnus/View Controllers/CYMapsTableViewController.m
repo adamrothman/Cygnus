@@ -10,6 +10,9 @@
 #import "CYMapDetailViewController.h"
 #import "CYMap+Additions.h"
 #import "CYAppDelegate.h"
+#import "CYMapsTableViewCell.h"
+#import "CYUser+Additions.h"
+#import "CYMapCreationViewController.h"
 
 @interface CYMapsTableViewController ()
 
@@ -19,10 +22,13 @@
 @property (nonatomic, strong) UISearchDisplayController *searchDisplayController;
 @property (nonatomic, strong) NSMutableArray *searchResults;
 
+@property (nonatomic, weak) CYMapsTableViewCell *activeMapCell;
+
 @end
 
 @implementation CYMapsTableViewController
 
+// need to do this to avoid collision with UIViewController property
 @synthesize searchDisplayController=__searchDisplayController;
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -41,7 +47,9 @@
   [self setUpSearchBar];
   self.searchResults = [NSMutableArray array];
 
-  self.navigationItem.title = @"Search Maps";
+  // add a swipe recognizer to change follow state
+  UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+  [self.tableView addGestureRecognizer:longPress];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -74,7 +82,7 @@
   self.searchDisplayController.delegate = self;
 }
 
-#pragma mark - Storyboard
+#pragma mark - UI
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([segue.identifier isEqualToString:@"CYMapDetailViewController_Segue"]) {
@@ -84,13 +92,45 @@
 }
 
 - (IBAction)refresh:(UIRefreshControl *)sender {
-  NSLog(@"starting refresh");
   [CYMap fetchMapsWithSuccess:^{
     dispatch_async(dispatch_get_main_queue(), ^{
-      NSLog(@"ending refresh");
       [self.refreshControl endRefreshing];
     });
   }];
+}
+
+- (IBAction)addMap:(UIBarButtonItem *)sender {
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATE_SELECTED withParameters:nil];
+  QRootElement *root = [CYMapCreationViewController rootElement];
+  CYMapCreationViewController *creationViewController = (CYMapCreationViewController *)[QuickDialogController controllerForRoot:root];
+  creationViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+  [self.navigationController pushViewController:creationViewController animated:YES];
+}
+
+- (void)longPress:(UILongPressGestureRecognizer *)recognizer {
+  if (recognizer.state != UIGestureRecognizerStateRecognized) return;
+
+  NSLog(@"long press");
+
+  NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:[recognizer locationInView:self.tableView]];
+  CYMapsTableViewCell *cell = (CYMapsTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+
+  if ([CYUser user].activeMap != cell.map) {
+    // restore the old one
+    self.activeMapCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    // make the new one active
+    [CYUser user].activeMap = cell.map;
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    self.activeMapCell = cell;
+    NSLog(@"%@ becoming active", cell.map.name);
+  } else {
+    // clear active state
+    [CYUser user].activeMap = nil;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.activeMapCell = nil;
+    NSLog(@"%@ becoming inactive", cell.map.name);
+  }
 }
 
 #pragma mark - UITableViewDataSource
@@ -108,32 +148,18 @@
   }
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-  CYMap *map = nil;
-  map = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  cell.textLabel.text = map.name;
-  cell.detailTextLabel.text = map.summary;
-  [cell.textLabel setFont:[UIFont fontWithName:@"CODE Light" size:17]];
-  [cell.detailTextLabel setFont:[UIFont fontWithName:@"CODE Bold" size:9]];
-
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *identifier = @"MapTableViewCell";
-  UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-  [cell.imageView cancelImageRequestOperation];
+  static NSString *identifier = @"MapsTableViewCell";
+  CYMapsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+  // [cell.imageView cancelImageRequestOperation];
   CYMap *map = nil;
   if (tableView == self.tableView) {
-    [self configureCell:cell atIndexPath:indexPath];
-    return cell;
+    map = [self.fetchedResultsController objectAtIndexPath:indexPath];
   } else {
     map = self.searchResults[indexPath.row];
-    cell.textLabel.text = map.name;
-    cell.detailTextLabel.text = map.summary;
-    [cell.textLabel setFont:[UIFont fontWithName:@"CODE Light" size:17]];
-    [cell.detailTextLabel setFont:[UIFont fontWithName:@"CODE Bold" size:9]];
-    return cell;
   }
+  cell.map = map;
+  return cell;
 }
 
 #pragma mark - UITableViewDelegate
@@ -179,13 +205,13 @@
   UITableView *tableView = self.tableView;
   switch(type) {
     case NSFetchedResultsChangeInsert:
-      [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
       break;
     case NSFetchedResultsChangeDelete:
-      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
       break;
     case NSFetchedResultsChangeUpdate:
-      [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+      ((CYMapsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).map = [self.fetchedResultsController objectAtIndexPath:indexPath];
       break;
     case NSFetchedResultsChangeMove:
       [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];

@@ -37,39 +37,37 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet == self.mapActionSheet) {
-        NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
-        if (buttonIndex == [actionSheet destructiveButtonIndex]) {
-            // do horrible things
-        } else if ([choice isEqualToString:SEARCH]) {
-          [self.tabBarController setSelectedIndex:2];
-        } else if ([choice isEqualToString:CREATE_NEW]) {
-          [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATE_SELECTED withParameters:nil];
-          QRootElement *root = [CYMapCreationViewController rootElement];
-          CYMapCreationViewController *myDialogController = (CYMapCreationViewController *)[QuickDialogController controllerForRoot:root];
-          myDialogController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-          [self.navigationController pushViewController:myDialogController animated:YES];
-        }
+  if (actionSheet == self.mapActionSheet) {
+    NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if (buttonIndex == [actionSheet destructiveButtonIndex]) {
+      // do horrible things
+    } else if ([choice isEqualToString:SEARCH]) {
+      [self.tabBarController setSelectedIndex:2];
+    } else if ([choice isEqualToString:CREATE_NEW]) {
+      [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATE_SELECTED withParameters:nil];
+      QRootElement *root = [CYMapCreationViewController rootElement];
+      CYMapCreationViewController *myDialogController = (CYMapCreationViewController *)[QuickDialogController controllerForRoot:root];
+      myDialogController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+      [self.navigationController pushViewController:myDialogController animated:YES];
     }
+  }
 }
 
 #pragma mark - Actions, Gestures, Notification Handlers
 
 - (IBAction)addMapSelected:(id)sender {
   [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_ADD_SELECTED withParameters:nil];
-    [self.mapActionSheet showFromTabBar:self.tabBarController.tabBar];
+  [self.mapActionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 2;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   if (!section) {
     return ([CYUser user].activeMap)? 1 : 0;
   } else {
@@ -77,8 +75,7 @@
   }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
   if (!section) {
     return @"Active";
   } else {
@@ -89,9 +86,8 @@
 
 #define MAP_CELL                @"CYMapTableViewCell"
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  NSString *identifier;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  static NSString *identifier;
   if (tableView == self.mapsTableView)    identifier = MAP_CELL;
 
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -105,8 +101,8 @@
   }
   cell.textLabel.text = map.name;
   [cell.textLabel setFont:[UIFont fontWithName:@"CODE Light" size:17]];
-//  float hoursSinceEdit = - ([map.updatedAt timeIntervalSinceNow] / (60.0*60));
-//  cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f hr", hoursSinceEdit];
+  //  float hoursSinceEdit = - ([map.updatedAt timeIntervalSinceNow] / (60.0*60));
+  //  cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f hr", hoursSinceEdit];
   return cell;
 }
 
@@ -116,14 +112,14 @@
 {
   if (!indexPath.section) {
     [CYUser user].activeMap = nil;
-//    int index = [self.maps indexOfObject:[CYUser user].activeMap];
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:1]];
-//    cell.accessoryType = UITableViewCellAccessoryNone;
+    //    int index = [self.maps indexOfObject:[CYUser user].activeMap];
+    //    UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:1]];
+    //    cell.accessoryType = UITableViewCellAccessoryNone;
   } else {
     CYMap *newActiveMap = self.maps[indexPath.row];
     [CYUser user].activeMap = newActiveMap;
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    //    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    //    cell.accessoryType = UITableViewCellAccessoryCheckmark;
   }
 
   [self.mapsTableView reloadSections:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -137,13 +133,12 @@
 
 #pragma mark - VC Lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
   self.mapsTableView.dataSource = self;
   self.mapsTableView.delegate = self;
   self.mapActionSheet = [[UIActionSheet alloc] initWithTitle:@"Maps" delegate:self cancelButtonTitle:CANCEL destructiveButtonTitle:nil otherButtonTitles:CREATE_NEW, SEARCH, nil];
-  
+
   [self.headerLabel setFont:[UIFont fontWithName:@"CODE Bold" size:22]];
 
 }
@@ -158,39 +153,23 @@
 //  [self.mapsTableView reloadData];
 //}
 
-- (void)viewWillAppear:(BOOL)animated
-{
-  [self.navigationController setNavigationBarHidden:YES animated:animated];
+- (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  self.maps = [CYUser user].maps;
+  //self.maps = [CYUser user].maps;
   [self.mapsTableView reloadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [CYAnalytics logEvent:CYANALYTICS_EVENT_CONSOLE_VISIT withParameters:nil];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-  [self.navigationController setNavigationBarHidden:NO animated:animated];
-  [super viewWillDisappear:animated];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewDidUnload{
-    [super viewDidUnload];
-    [self setMapActionSheet:nil];
+  [super viewDidUnload];
+  [self setMapActionSheet:nil];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([segue.identifier isEqualToString:@"CYMapDetailViewController_Segue"]) {
     CYMapDetailViewController *vc = (CYMapDetailViewController *)segue.destinationViewController;
     vc.map = (CYMap*)sender;

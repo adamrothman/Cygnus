@@ -30,7 +30,6 @@
 		4E8DF9FF1655D14D00A113C9 /* NSData+MPBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DF9D91655D14D00A113C9 /* NSData+MPBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E8DFA001655D14D00A113C9 /* Mixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DF9DB1655D14D00A113C9 /* Mixpanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4E8DFA0B1655D1DE00A113C9 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E8DFA0A1655D1DE00A113C9 /* libFlurry.a */; };
-		4E8DFA1F1655DF2100A113C9 /* CYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8DFA1E1655DF2100A113C9 /* CYUser.m */; };
 		4EC259AD165581B500825436 /* accent.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EC259A9165581B500825436 /* accent.ttf */; };
 		4EC259AE165581B500825436 /* Adamas-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EC259AA165581B500825436 /* Adamas-Regular.otf */; };
 		4EC259AF165581B500825436 /* CODE Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4EC259AB165581B500825436 /* CODE Bold.otf */; };
@@ -118,7 +117,10 @@
 		666CEDCE165654C400D0179B /* 103-map-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 666CEDCC165654C400D0179B /* 103-map-white.png */; };
 		666CEDCF165654C400D0179B /* 103-map-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 666CEDCD165654C400D0179B /* 103-map-white@2x.png */; };
 		6696F6121655B90E0092BDB3 /* 86-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6696F6111655B90E0092BDB3 /* 86-camera@2x.png */; };
-		669C1FA4163DF8FD001F1C18 /* CYObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 669C1FA3163DF8FD001F1C18 /* CYObject.m */; };
+		669903FE1658A9D600A8CD79 /* CYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 669903FD1658A9D600A8CD79 /* CYUser.m */; };
+		669904011658AD6300A8CD79 /* 73-radar.png in Resources */ = {isa = PBXBuildFile; fileRef = 669903FF1658AD6300A8CD79 /* 73-radar.png */; };
+		669904021658AD6300A8CD79 /* 73-radar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 669904001658AD6300A8CD79 /* 73-radar@2x.png */; };
+		66995E161656F67E005BC35C /* CYMapsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66995E151656F67E005BC35C /* CYMapsTableViewCell.m */; };
 		66A1B331163888AC00B9DCEC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A1B330163888AC00B9DCEC /* SystemConfiguration.framework */; };
 		66A1B3721638AC8100B9DCEC /* MKMapView+ARKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36A1638AC8100B9DCEC /* MKMapView+ARKit.m */; };
 		66A1B3741638AC8100B9DCEC /* ARTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36E1638AC8100B9DCEC /* ARTextField.m */; };
@@ -227,8 +229,6 @@
 		4E8DF9DB1655D14D00A113C9 /* Mixpanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mixpanel.m; sourceTree = "<group>"; };
 		4E8DFA091655D1DE00A113C9 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		4E8DFA0A1655D1DE00A113C9 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
-		4E8DFA1D1655DF2100A113C9 /* CYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYUser.h; sourceTree = "<group>"; };
-		4E8DFA1E1655DF2100A113C9 /* CYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYUser.m; sourceTree = "<group>"; };
 		4EC259A9165581B500825436 /* accent.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = accent.ttf; sourceTree = "<group>"; };
 		4EC259AA165581B500825436 /* Adamas-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Adamas-Regular.otf"; sourceTree = "<group>"; };
 		4EC259AB165581B500825436 /* CODE Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CODE Bold.otf"; sourceTree = "<group>"; };
@@ -350,8 +350,12 @@
 		666CEDCD165654C400D0179B /* 103-map-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map-white@2x.png"; sourceTree = "<group>"; };
 		6696F6111655B90E0092BDB3 /* 86-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera@2x.png"; sourceTree = "<group>"; };
 		6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
-		669C1FA2163DF8FD001F1C18 /* CYObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYObject.h; sourceTree = "<group>"; };
-		669C1FA3163DF8FD001F1C18 /* CYObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYObject.m; sourceTree = "<group>"; };
+		669903FC1658A9D600A8CD79 /* CYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYUser.h; sourceTree = "<group>"; };
+		669903FD1658A9D600A8CD79 /* CYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYUser.m; sourceTree = "<group>"; };
+		669903FF1658AD6300A8CD79 /* 73-radar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "73-radar.png"; sourceTree = "<group>"; };
+		669904001658AD6300A8CD79 /* 73-radar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "73-radar@2x.png"; sourceTree = "<group>"; };
+		66995E141656F67E005BC35C /* CYMapsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMapsTableViewCell.h; sourceTree = "<group>"; };
+		66995E151656F67E005BC35C /* CYMapsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMapsTableViewCell.m; sourceTree = "<group>"; };
 		66A1B330163888AC00B9DCEC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		66A1B3691638AC8100B9DCEC /* MKMapView+ARKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ARKit.h"; sourceTree = "<group>"; };
 		66A1B36A1638AC8100B9DCEC /* MKMapView+ARKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ARKit.m"; sourceTree = "<group>"; };
@@ -607,7 +611,7 @@
 				66F2B24A1654A8620043DD15 /* Core Data */,
 				66F2B2A21654B4FB0043DD15 /* Views */,
 				66A1B30C16387F7B00B9DCEC /* View Controllers */,
-				669C1F8E163DC702001F1C18 /* Models */,
+				669C1F8E163DC702001F1C18 /* Schemas */,
 				662782501633EEC200F1D0E7 /* Supporting Files */,
 			);
 			path = Cygnus;
@@ -687,14 +691,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		669C1F8E163DC702001F1C18 /* Models */ = {
+		669C1F8E163DC702001F1C18 /* Schemas */ = {
 			isa = PBXGroup;
 			children = (
-				669C1FA2163DF8FD001F1C18 /* CYObject.h */,
-				669C1FA3163DF8FD001F1C18 /* CYObject.m */,
 				4E541ADD16550F9F00E495D1 /* pointCreationDefaultScheme.json */,
 			);
-			path = Models;
+			path = Schemas;
 			sourceTree = "<group>";
 		};
 		66A1B30C16387F7B00B9DCEC /* View Controllers */ = {
@@ -733,6 +735,8 @@
 				4EEEE45A164CDCB300D3357B /* 08-pin-white@2x.png */,
 				4EEEE45B164CDCB300D3357B /* 20-gear-2.png */,
 				4EEEE45C164CDCB300D3357B /* 20-gear-2@2x.png */,
+				669903FF1658AD6300A8CD79 /* 73-radar.png */,
+				669904001658AD6300A8CD79 /* 73-radar@2x.png */,
 				4E541B461655507B00E495D1 /* 86-camera.png */,
 				6696F6111655B90E0092BDB3 /* 86-camera@2x.png */,
 				4EEEE45D164CDCB300D3357B /* 103-map.png */,
@@ -801,8 +805,8 @@
 				66F2B2E41654DA5E0043DD15 /* CYPoint.m */,
 				66F2B2E91654DAD20043DD15 /* CYPoint+Additions.h */,
 				66F2B2EA1654DAD20043DD15 /* CYPoint+Additions.m */,
-				4E8DFA1D1655DF2100A113C9 /* CYUser.h */,
-				4E8DFA1E1655DF2100A113C9 /* CYUser.m */,
+				669903FC1658A9D600A8CD79 /* CYUser.h */,
+				669903FD1658A9D600A8CD79 /* CYUser.m */,
 				66F2B2FD1654F0660043DD15 /* CYUser+Additions.h */,
 				66F2B2FE1654F0660043DD15 /* CYUser+Additions.m */,
 			);
@@ -814,6 +818,8 @@
 			children = (
 				4EEEE462164CDCB300D3357B /* CYMapView.h */,
 				4EEEE463164CDCB300D3357B /* CYMapView.m */,
+				66995E141656F67E005BC35C /* CYMapsTableViewCell.h */,
+				66995E151656F67E005BC35C /* CYMapsTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -982,6 +988,8 @@
 				666CEDCB1656545800D0179B /* nav-bar-background@2x.png in Resources */,
 				666CEDCE165654C400D0179B /* 103-map-white.png in Resources */,
 				666CEDCF165654C400D0179B /* 103-map-white@2x.png in Resources */,
+				669904011658AD6300A8CD79 /* 73-radar.png in Resources */,
+				669904021658AD6300A8CD79 /* 73-radar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,7 +1016,6 @@
 				66A1B3751638AC8100B9DCEC /* ARTextView.m in Sources */,
 				661088C8163AAD4D000D1DA2 /* AwesomeMenu.m in Sources */,
 				661088C9163AAD4D000D1DA2 /* AwesomeMenuItem.m in Sources */,
-				669C1FA4163DF8FD001F1C18 /* CYObject.m in Sources */,
 				4EEB9626163DF84900D67785 /* NSArray+Accessing.m in Sources */,
 				4EEB9627163DF84900D67785 /* NSObject+PerformBlock.m in Sources */,
 				4EEB9628163DF84900D67785 /* NSString+UUID.m in Sources */,
@@ -1033,7 +1040,6 @@
 				4E8DF9FE1655D14D00A113C9 /* MPCSerializedJSONData.m in Sources */,
 				4E8DF9FF1655D14D00A113C9 /* NSData+MPBase64.m in Sources */,
 				4E8DFA001655D14D00A113C9 /* Mixpanel.m in Sources */,
-				4E8DFA1F1655DF2100A113C9 /* CYUser.m in Sources */,
 				666CEDB71656504B00D0179B /* CYConsoleViewController.m in Sources */,
 				666CEDB81656504B00D0179B /* CYMapCreationViewController.m in Sources */,
 				666CEDB91656504B00D0179B /* CYMapDetailViewController.m in Sources */,
@@ -1042,6 +1048,8 @@
 				666CEDBC1656504B00D0179B /* CYPointCreationViewController.m in Sources */,
 				666CEDBE1656504B00D0179B /* CYPointDetailViewController.m in Sources */,
 				666CEDBF1656504B00D0179B /* CYTabBarViewController.m in Sources */,
+				66995E161656F67E005BC35C /* CYMapsTableViewCell.m in Sources */,
+				669903FE1658A9D600A8CD79 /* CYUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
