@@ -31,6 +31,8 @@
 @property (nonatomic) CGRect offscreenFrame;
 @property (nonatomic) BOOL framesSet;
 
+- (void)setUp;
+
 - (void)summonAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion;
 - (void)dismissAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion;
 

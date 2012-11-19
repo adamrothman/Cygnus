@@ -12,7 +12,7 @@
 #import "CYAppDelegate.h"
 #import "CYMapsTableViewCell.h"
 #import "CYUser+Additions.h"
-#import "CYMapCreationViewController.h"
+#import "CYMapCreationTableViewController.h"
 
 @interface CYMapsTableViewController ()
 
@@ -30,13 +30,6 @@
 
 // need to do this to avoid collision with UIViewController property
 @synthesize searchDisplayController=__searchDisplayController;
-
-- (id)initWithStyle:(UITableViewStyle)style {
-  if ((self = [super initWithStyle:style])) {
-    // Custom initialization
-  }
-  return self;
-}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -86,8 +79,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([segue.identifier isEqualToString:@"CYMapDetailViewController_Segue"]) {
-    CYMapDetailViewController *vc = (CYMapDetailViewController *)segue.destinationViewController;
-    vc.map = (CYMap*)sender;
+    CYMapDetailViewController *destination = segue.destinationViewController;
+    destination.map = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
+  } else if ([segue.identifier isEqualToString:@"CYMapCreationTableViewController_Segue"]) {
+    [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATE_SELECTED withParameters:nil];
   }
 }
 
@@ -97,14 +92,6 @@
       [self.refreshControl endRefreshing];
     });
   }];
-}
-
-- (IBAction)addMap:(UIBarButtonItem *)sender {
-  [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATE_SELECTED withParameters:nil];
-  QRootElement *root = [CYMapCreationViewController rootElement];
-  CYMapCreationViewController *creationViewController = (CYMapCreationViewController *)[QuickDialogController controllerForRoot:root];
-  creationViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-  [self.navigationController pushViewController:creationViewController animated:YES];
 }
 
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer {
@@ -130,6 +117,19 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.activeMapCell = nil;
     NSLog(@"%@ becoming inactive", cell.map.name);
+  }
+  [[CYAppDelegate mainContext] saveWithSuccess:nil];
+}
+
+- (IBAction)mapCreationDidCancel:(UIStoryboardSegue *)segue {
+  NSLog(@"Canceled map creation");
+}
+
+- (IBAction)mapCreationDidSave:(UIStoryboardSegue *)segue {
+  CYMapCreationTableViewController *source = segue.sourceViewController;
+  if (source.nameTextField.text.length && source.summaryTextView.text.length) {
+    [CYMap mapWithName:source.nameTextField.text summary:source.summaryTextView.text context:[CYAppDelegate mainContext] save:YES];
+    [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATED withParameters:nil];
   }
 }
 
@@ -159,14 +159,8 @@
     map = self.searchResults[indexPath.row];
   }
   cell.map = map;
+  if (map == [CYUser user].activeMap) self.activeMapCell = cell;
   return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  CYMap *map = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  [self performSegueWithIdentifier:@"CYMapDetailViewController_Segue" sender:map];
 }
 
 #pragma mark - UISearchDisplayDelegate

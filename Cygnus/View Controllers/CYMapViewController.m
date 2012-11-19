@@ -7,16 +7,12 @@
 //
 
 #import "CYMapViewController.h"
-#import "CYPointCreationViewController.h"
-#import "UIViewController+KNSemiModal.h"
 #import "CYMap+Additions.h"
 #import "CYUser+Additions.h"
 #import "CYPoint+Additions.h"
 #import "CYUI.h"
 #import "CYMapView.h"
 #import "AwesomeMenuItem.h"
-
-CYMapViewController *_currentVC;
 
 #define THRESHOLD_DISTANCE               70
 #define ONE_MILE_IN_METERS              1609.34
@@ -36,9 +32,9 @@ CYMapViewController *_currentVC;
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  _currentVC = self;
-
+  [self.pointCreationView setUp];
   self.pointCreationView.delegate = self;
+
   [self setUpAwesomeMenu];
 
   UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
@@ -171,6 +167,19 @@ CYMapViewController *_currentVC;
   [view dismissAnimated:YES completion:nil];
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  [self.pointCreationView.summaryTextView becomeFirstResponder];
+  return YES;
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView {
+  [textView setNeedsDisplay];
+}
+
 #pragma mark - AwesomeMenuDelegate
 
 - (void)menu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx {
@@ -191,12 +200,6 @@ CYMapViewController *_currentVC;
       NSLog(@"Awesome menu button 3");
       break;
   }
-}
-
-#pragma mark - CYTabBar
-
-+ (CYMapViewController *)currentVC {
-  return _currentVC;
 }
 
 @end

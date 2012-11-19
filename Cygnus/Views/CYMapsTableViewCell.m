@@ -7,6 +7,7 @@
 //
 
 #import "CYMapsTableViewCell.h"
+#import "CYUser+Additions.h"
 
 @implementation CYMapsTableViewCell
 
@@ -31,6 +32,7 @@
   if (_map) {
     self.textLabel.text = _map.name;
     self.detailTextLabel.text = _map.summary;
+    self.accessoryType = _map == [CYUser user].activeMap ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryDisclosureIndicator;
   }
 }
 

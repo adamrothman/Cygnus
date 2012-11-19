@@ -13,7 +13,6 @@
 		4E541B1A165548EE00E495D1 /* polaroid.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B15165548EE00E495D1 /* polaroid.png */; };
 		4E541B1B165548EE00E495D1 /* polaroid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B16165548EE00E495D1 /* polaroid@2x.png */; };
 		4E541B1C165548EE00E495D1 /* tap_to_add_photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B17165548EE00E495D1 /* tap_to_add_photo.png */; };
-		4E541B3416554E7100E495D1 /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E541B3316554E7100E495D1 /* UIViewController+KNSemiModal.m */; };
 		4E541B471655507B00E495D1 /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B461655507B00E495D1 /* 86-camera.png */; };
 		4E541B5916557ADD00E495D1 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B5816557ADC00E495D1 /* app_icon.png */; };
 		4E541B5B16557AE000E495D1 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B5A16557ADF00E495D1 /* app_icon@2x.png */; };
@@ -77,6 +76,7 @@
 		662782891633EF9200F1D0E7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6627827D1633EF9200F1D0E7 /* StoreKit.framework */; };
 		662782901633F0F400F1D0E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6627828F1633F0F400F1D0E7 /* MapKit.framework */; };
 		662782921633F10100F1D0E7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 662782911633F10100F1D0E7 /* CoreLocation.framework */; };
+		662BEC84165AC8400076D70F /* CYMapCreationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 662BEC83165AC8400076D70F /* CYMapCreationTableViewController.m */; };
 		6644E253163F338000537778 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6644E252163F338000537778 /* Parse.framework */; };
 		66558AB116361EBC00C7BB8B /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558A9F16361EBC00C7BB8B /* AFHTTPClient.m */; };
 		66558AB216361EBC00C7BB8B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66558AA116361EBC00C7BB8B /* AFHTTPRequestOperation.m */; };
@@ -101,13 +101,9 @@
 		666CED7B16564CD300D0179B /* icon-plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 666CED6D16564CD300D0179B /* icon-plus@2x.png */; };
 		666CED7C16564CD300D0179B /* icon-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 666CED6E16564CD300D0179B /* icon-star.png */; };
 		666CED7D16564CD300D0179B /* icon-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 666CED6F16564CD300D0179B /* icon-star@2x.png */; };
-		666CEDB71656504B00D0179B /* CYConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDA61656504B00D0179B /* CYConsoleViewController.m */; };
-		666CEDB81656504B00D0179B /* CYMapCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDA81656504B00D0179B /* CYMapCreationViewController.m */; };
 		666CEDB91656504B00D0179B /* CYMapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDAA1656504B00D0179B /* CYMapDetailViewController.m */; };
 		666CEDBA1656504B00D0179B /* CYMapsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDAC1656504B00D0179B /* CYMapsTableViewController.m */; };
 		666CEDBB1656504B00D0179B /* CYMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDAE1656504B00D0179B /* CYMapViewController.m */; };
-		666CEDBC1656504B00D0179B /* CYPointCreationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDB01656504B00D0179B /* CYPointCreationViewController.m */; };
-		666CEDBD1656504B00D0179B /* CYPointCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 666CEDB11656504B00D0179B /* CYPointCreationViewController.xib */; };
 		666CEDBE1656504B00D0179B /* CYPointDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDB31656504B00D0179B /* CYPointDetailViewController.m */; };
 		666CEDBF1656504B00D0179B /* CYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDB51656504B00D0179B /* CYTabBarViewController.m */; };
 		666CEDC1165652DB00D0179B /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 666CED5D16564CB700D0179B /* libSSToolkit.a */; };
@@ -124,7 +120,6 @@
 		66A1B3721638AC8100B9DCEC /* MKMapView+ARKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36A1638AC8100B9DCEC /* MKMapView+ARKit.m */; };
 		66A1B3741638AC8100B9DCEC /* ARTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36E1638AC8100B9DCEC /* ARTextField.m */; };
 		66A1B3751638AC8100B9DCEC /* ARTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B3701638AC8100B9DCEC /* ARTextView.m */; };
-		66AC6143165A413300D8D901 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AC6140165A411200D8D901 /* libQuickDialog.a */; };
 		66C29A59164CEA9400DC8DBA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C29A58164CEA9400DC8DBA /* CoreText.framework */; };
 		66F2B2491654A8550043DD15 /* Cygnus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2471654A8550043DD15 /* Cygnus.xcdatamodeld */; };
 		66F2B29B1654B1B30043DD15 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F2B29A1654B1B30043DD15 /* CoreData.framework */; };
@@ -174,27 +169,6 @@
 			remoteGlobalIDString = B2C507E9151BA64400E94614;
 			remoteInfo = SSToolkitResources;
 		};
-		66AC613D165A411200D8D901 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D80B0E3313E052DF00FA85CA;
-			remoteInfo = QuickDialogExample;
-		};
-		66AC613F165A411200D8D901 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2C542393145ADEBD0026A152;
-			remoteInfo = QuickDialog;
-		};
-		66AC6141165A412D00D8D901 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 2C542392145ADEBD0026A152;
-			remoteInfo = QuickDialog;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -204,8 +178,6 @@
 		4E541B15165548EE00E495D1 /* polaroid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = polaroid.png; sourceTree = "<group>"; };
 		4E541B16165548EE00E495D1 /* polaroid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "polaroid@2x.png"; sourceTree = "<group>"; };
 		4E541B17165548EE00E495D1 /* tap_to_add_photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tap_to_add_photo.png; sourceTree = "<group>"; };
-		4E541B3216554E7100E495D1 /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
-		4E541B3316554E7100E495D1 /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
 		4E541B461655507B00E495D1 /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
 		4E541B5816557ADC00E495D1 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
 		4E541B5A16557ADF00E495D1 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@2x.png"; sourceTree = "<group>"; };
@@ -293,6 +265,8 @@
 		6627827D1633EF9200F1D0E7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6627828F1633F0F400F1D0E7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		662782911633F10100F1D0E7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		662BEC82165AC8400076D70F /* CYMapCreationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMapCreationTableViewController.h; sourceTree = "<group>"; };
+		662BEC83165AC8400076D70F /* CYMapCreationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMapCreationTableViewController.m; sourceTree = "<group>"; };
 		6644E252163F338000537778 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSToolkit.xcodeproj; path = SSToolkit/SSToolkit.xcodeproj; sourceTree = "<group>"; };
 		66558A9E16361EBC00C7BB8B /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -328,19 +302,12 @@
 		666CED6D16564CD300D0179B /* icon-plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-plus@2x.png"; sourceTree = "<group>"; };
 		666CED6E16564CD300D0179B /* icon-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star.png"; sourceTree = "<group>"; };
 		666CED6F16564CD300D0179B /* icon-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-star@2x.png"; sourceTree = "<group>"; };
-		666CEDA51656504B00D0179B /* CYConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYConsoleViewController.h; sourceTree = "<group>"; };
-		666CEDA61656504B00D0179B /* CYConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYConsoleViewController.m; sourceTree = "<group>"; };
-		666CEDA71656504B00D0179B /* CYMapCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMapCreationViewController.h; sourceTree = "<group>"; };
-		666CEDA81656504B00D0179B /* CYMapCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMapCreationViewController.m; sourceTree = "<group>"; };
 		666CEDA91656504B00D0179B /* CYMapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMapDetailViewController.h; sourceTree = "<group>"; };
 		666CEDAA1656504B00D0179B /* CYMapDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMapDetailViewController.m; sourceTree = "<group>"; };
 		666CEDAB1656504B00D0179B /* CYMapsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMapsTableViewController.h; sourceTree = "<group>"; };
 		666CEDAC1656504B00D0179B /* CYMapsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMapsTableViewController.m; sourceTree = "<group>"; };
 		666CEDAD1656504B00D0179B /* CYMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMapViewController.h; sourceTree = "<group>"; };
 		666CEDAE1656504B00D0179B /* CYMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMapViewController.m; sourceTree = "<group>"; };
-		666CEDAF1656504B00D0179B /* CYPointCreationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPointCreationViewController.h; sourceTree = "<group>"; };
-		666CEDB01656504B00D0179B /* CYPointCreationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPointCreationViewController.m; sourceTree = "<group>"; };
-		666CEDB11656504B00D0179B /* CYPointCreationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CYPointCreationViewController.xib; sourceTree = "<group>"; };
 		666CEDB21656504B00D0179B /* CYPointDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPointDetailViewController.h; sourceTree = "<group>"; };
 		666CEDB31656504B00D0179B /* CYPointDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPointDetailViewController.m; sourceTree = "<group>"; };
 		666CEDB41656504B00D0179B /* CYTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYTabBarViewController.h; sourceTree = "<group>"; };
@@ -363,7 +330,6 @@
 		66A1B36E1638AC8100B9DCEC /* ARTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTextField.m; sourceTree = "<group>"; };
 		66A1B36F1638AC8100B9DCEC /* ARTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTextView.h; sourceTree = "<group>"; };
 		66A1B3701638AC8100B9DCEC /* ARTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTextView.m; sourceTree = "<group>"; };
-		66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		66C29A58164CEA9400DC8DBA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		66F2B2481654A8550043DD15 /* Cygnus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cygnus.xcdatamodel; sourceTree = "<group>"; };
 		66F2B29A1654B1B30043DD15 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -390,7 +356,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66AC6143165A413300D8D901 /* libQuickDialog.a in Frameworks */,
 				666CEDC1165652DB00D0179B /* libSSToolkit.a in Frameworks */,
 				4E8DF9311655D07B00A113C9 /* CoreTelephony.framework in Frameworks */,
 				66F2B29B1654B1B30043DD15 /* CoreData.framework in Frameworks */,
@@ -420,16 +385,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E541B3116554E7100E495D1 /* KNSemiModalViewController */ = {
-			isa = PBXGroup;
-			children = (
-				4E541B3216554E7100E495D1 /* UIViewController+KNSemiModal.h */,
-				4E541B3316554E7100E495D1 /* UIViewController+KNSemiModal.m */,
-			);
-			name = KNSemiModalViewController;
-			path = KNSemiModalViewController/Source;
-			sourceTree = "<group>";
-		};
 		4E8DF9CE1655D14D00A113C9 /* Mixpanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,10 +593,8 @@
 				66A1B3661638AC8100B9DCEC /* ARKit */,
 				661088C3163AAD0B000D1DA2 /* AwesomeMenu */,
 				4E8DFA081655D1DE00A113C9 /* Flurry */,
-				4E541B3116554E7100E495D1 /* KNSemiModalViewController */,
 				4E8DF9CE1655D14D00A113C9 /* Mixpanel */,
 				4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */,
-				66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */,
 				66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */,
 			);
 			name = Libraries;
@@ -696,19 +649,14 @@
 		66A1B30C16387F7B00B9DCEC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				666CEDA51656504B00D0179B /* CYConsoleViewController.h */,
-				666CEDA61656504B00D0179B /* CYConsoleViewController.m */,
-				666CEDA71656504B00D0179B /* CYMapCreationViewController.h */,
-				666CEDA81656504B00D0179B /* CYMapCreationViewController.m */,
+				662BEC82165AC8400076D70F /* CYMapCreationTableViewController.h */,
+				662BEC83165AC8400076D70F /* CYMapCreationTableViewController.m */,
 				666CEDA91656504B00D0179B /* CYMapDetailViewController.h */,
 				666CEDAA1656504B00D0179B /* CYMapDetailViewController.m */,
 				666CEDAB1656504B00D0179B /* CYMapsTableViewController.h */,
 				666CEDAC1656504B00D0179B /* CYMapsTableViewController.m */,
 				666CEDAD1656504B00D0179B /* CYMapViewController.h */,
 				666CEDAE1656504B00D0179B /* CYMapViewController.m */,
-				666CEDAF1656504B00D0179B /* CYPointCreationViewController.h */,
-				666CEDB01656504B00D0179B /* CYPointCreationViewController.m */,
-				666CEDB11656504B00D0179B /* CYPointCreationViewController.xib */,
 				666CEDB21656504B00D0179B /* CYPointDetailViewController.h */,
 				666CEDB31656504B00D0179B /* CYPointDetailViewController.m */,
 				666CEDB41656504B00D0179B /* CYTabBarViewController.h */,
@@ -787,15 +735,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		66AC6135165A411200D8D901 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				66AC613E165A411200D8D901 /* QuickDialogExample.app */,
-				66AC6140165A411200D8D901 /* libQuickDialog.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		66F2B24A1654A8620043DD15 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -852,7 +791,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				66AC6142165A412D00D8D901 /* PBXTargetDependency */,
 				666CEDC71656532A00D0179B /* PBXTargetDependency */,
 				666CEDC5165652E300D0179B /* PBXTargetDependency */,
 			);
@@ -882,10 +820,6 @@
 			productRefGroup = 662782461633EEC200F1D0E7 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 66AC6135165A411200D8D901 /* Products */;
-					ProjectRef = 66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */;
-				},
 				{
 					ProductGroup = 666CED5716564CB700D0179B /* Products */;
 					ProjectRef = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
@@ -918,20 +852,6 @@
 			fileType = wrapper.cfbundle;
 			path = SSToolkitResources.bundle;
 			remoteRef = 666CED6016564CB700D0179B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66AC613E165A411200D8D901 /* QuickDialogExample.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = QuickDialogExample.app;
-			remoteRef = 66AC613D165A411200D8D901 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		66AC6140165A411200D8D901 /* libQuickDialog.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libQuickDialog.a;
-			remoteRef = 66AC613F165A411200D8D901 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -988,7 +908,6 @@
 				666CED7B16564CD300D0179B /* icon-plus@2x.png in Resources */,
 				666CED7C16564CD300D0179B /* icon-star.png in Resources */,
 				666CED7D16564CD300D0179B /* icon-star@2x.png in Resources */,
-				666CEDBD1656504B00D0179B /* CYPointCreationViewController.xib in Resources */,
 				666CEDCA1656545800D0179B /* nav-bar-background.png in Resources */,
 				666CEDCB1656545800D0179B /* nav-bar-background@2x.png in Resources */,
 				666CEDCE165654C400D0179B /* 103-map-white.png in Resources */,
@@ -1038,24 +957,21 @@
 				66F2B2E81654DA8B0043DD15 /* CYMap+Additions.m in Sources */,
 				66F2B2EB1654DAD20043DD15 /* CYPoint+Additions.m in Sources */,
 				66F2B2FF1654F0660043DD15 /* CYUser+Additions.m in Sources */,
-				4E541B3416554E7100E495D1 /* UIViewController+KNSemiModal.m in Sources */,
 				4E8DF92F1655CF8200A113C9 /* CYAnalytics.m in Sources */,
 				4E8DF9FC1655D14D00A113C9 /* MPCJSONDataSerializer.m in Sources */,
 				4E8DF9FD1655D14D00A113C9 /* MPCJSONSerializer.m in Sources */,
 				4E8DF9FE1655D14D00A113C9 /* MPCSerializedJSONData.m in Sources */,
 				4E8DF9FF1655D14D00A113C9 /* NSData+MPBase64.m in Sources */,
 				4E8DFA001655D14D00A113C9 /* Mixpanel.m in Sources */,
-				666CEDB71656504B00D0179B /* CYConsoleViewController.m in Sources */,
-				666CEDB81656504B00D0179B /* CYMapCreationViewController.m in Sources */,
 				666CEDB91656504B00D0179B /* CYMapDetailViewController.m in Sources */,
 				666CEDBA1656504B00D0179B /* CYMapsTableViewController.m in Sources */,
 				666CEDBB1656504B00D0179B /* CYMapViewController.m in Sources */,
-				666CEDBC1656504B00D0179B /* CYPointCreationViewController.m in Sources */,
 				666CEDBE1656504B00D0179B /* CYPointDetailViewController.m in Sources */,
 				666CEDBF1656504B00D0179B /* CYTabBarViewController.m in Sources */,
 				66995E161656F67E005BC35C /* CYMapsTableViewCell.m in Sources */,
 				669903FE1658A9D600A8CD79 /* CYUser.m in Sources */,
 				66F8776616599AB2007B4E53 /* CYPointCreationView.m in Sources */,
+				662BEC84165AC8400076D70F /* CYMapCreationTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1071,11 +987,6 @@
 			isa = PBXTargetDependency;
 			name = SSToolkitResources;
 			targetProxy = 666CEDC61656532A00D0179B /* PBXContainerItemProxy */;
-		};
-		66AC6142165A412D00D8D901 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = QuickDialog;
-			targetProxy = 66AC6141165A412D00D8D901 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

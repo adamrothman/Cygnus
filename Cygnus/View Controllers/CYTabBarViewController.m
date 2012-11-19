@@ -7,40 +7,12 @@
 //
 
 #import "CYTabBarViewController.h"
-#import "CYMapViewController.h"
-#import "CYUI.h"
-
-CYTabBarViewController *_currentVC = nil;
-
-@interface CYTabBarViewController ()
-
-@end
 
 @implementation CYTabBarViewController
 
-- (void)setSelectedViewController:(UIViewController *)selectedViewController {
-//  if (self.selectedViewController == selectedViewController && self.viewControllers[1] == selectedViewController) //do something cool on double tap on mapVC
-  [super setSelectedViewController:selectedViewController];
-}
-
-- (void)setSelectedIndex:(NSUInteger)selectedIndex {
-//  if (self.selectedIndex == 1 && selectedIndex == 1) //do something cool on double tap on mapVC
-  [super setSelectedIndex:selectedIndex];
-}
-
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [self setSelectedIndex:2];
-  
-  _currentVC = self;
+  self.selectedIndex = 1;
 }
 
-- (void)viewDidUnload {
-  [super viewDidUnload];
-  _currentVC = nil;
-}
-
-+ (CYTabBarViewController *)currentVC {
-  return _currentVC;
-}
 @end

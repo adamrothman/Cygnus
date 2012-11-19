@@ -4,63 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--Console View Controller - Maps-->
-        <scene sceneID="X6O-pc-tvF">
-            <objects>
-                <viewController id="nRm-oE-Rbz" customClass="CYConsoleViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6gC-5J-s5A">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CYMapTableViewCell" textLabel="O5r-cx-XOb" detailTextLabel="GfQ-yF-jjd" imageView="IiH-JK-QNj" style="IBUITableViewCellStyleValue1" id="Zhu-0k-M0L">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Fountain Hop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O5r-cx-XOb">
-                                            <rect key="frame" x="46" y="11" width="110" height="21"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GfQ-yF-jjd">
-                                            <rect key="frame" x="233" y="11" width="44" height="21"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="103-map.png" id="IiH-JK-QNj">
-                                            <rect key="frame" x="10" y="11" width="26" height="21"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Maps" id="CIu-KH-fT0">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="zee-ws-6fl">
-                            <connections>
-                                <action selector="addMapSelected:" destination="nRm-oE-Rbz" id="Wf7-Qg-JPO"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="mapsTableView" destination="6gC-5J-s5A" id="6kG-tI-vfu"/>
-                        <segue destination="pJr-gB-5ra" kind="push" identifier="CYMapDetailViewController_Segue" id="2nn-81-w7B"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wXH-GE-OFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-238" y="-220"/>
-        </scene>
         <!--Map View Controller-->
         <scene sceneID="7ov-j1-sRK">
             <objects>
@@ -88,6 +31,9 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="l6a-62-OqY" id="U3e-qf-ZrX"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qko-SA-D9E">
                                         <constraints>
@@ -111,6 +57,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="l6a-62-OqY" id="tn0-Uy-NRt"/>
+                                        </connections>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsb-BC-zBT">
                                         <constraints>
@@ -176,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bb2-Yj-GS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-238" y="475"/>
+            <point key="canvasLocation" x="-242" y="128"/>
         </scene>
         <!--Map Detail View Controller-->
         <scene sceneID="ksm-Wb-VBB">
@@ -328,7 +277,110 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csl-IM-QsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="472" y="-64"/>
+            <point key="canvasLocation" x="295" y="1171"/>
+        </scene>
+        <!--Map Creation Table View Controller-->
+        <scene sceneID="VzF-w4-KD5">
+            <objects>
+                <tableViewController id="IBU-hm-owb" customClass="CYMapCreationTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Lgp-YC-nYr">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="UEs-jG-nFL">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Create a Map" id="ajV-05-NuG">
+                                    <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Uw8-YU-zCn">
+                                        <connections>
+                                            <segue destination="BlU-Vg-MNJ" kind="unwind" unwindAction="mapCreationDidCancel:" id="Erd-WY-BJv"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem key="rightBarButtonItem" systemItem="save" id="zC6-h5-EKp">
+                                        <connections>
+                                            <segue destination="BlU-Vg-MNJ" kind="unwind" unwindAction="mapCreationDidSave:" id="WVx-Nr-ige"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                        <sections>
+                            <tableViewSection id="pbD-Pm-BkT">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Whf-i1-CBF">
+                                        <rect key="frame" x="0.0" y="54" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Map name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mkJ-oe-WAY" customClass="ARTextField">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="260" id="G2M-vg-qsC"/>
+                                                        <constraint firstAttribute="height" constant="43" id="Y0A-kO-p4x"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="IBU-hm-owb" id="2Cx-MR-YMf"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="mkJ-oe-WAY" firstAttribute="centerX" secondItem="Whf-i1-CBF" secondAttribute="centerX" type="default" id="Emh-uf-iaG"/>
+                                            <constraint firstItem="mkJ-oe-WAY" firstAttribute="top" secondItem="Whf-i1-CBF" secondAttribute="top" constant="1" id="T9H-Nx-CnJ"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="Ofq-IK-UMy">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="98" id="IkC-bf-RWO">
+                                        <rect key="frame" x="0.0" y="120" width="320" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="97"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGh-U5-Su2" customClass="ARTextView">
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="97" id="eS9-6H-VuL"/>
+                                                        <constraint firstAttribute="width" constant="260" id="mJq-fm-JuN"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="IBU-hm-owb" id="mgz-PX-VmY"/>
+                                                    </connections>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="XGh-U5-Su2" firstAttribute="top" secondItem="IkC-bf-RWO" secondAttribute="top" constant="1" id="Atr-am-jtB"/>
+                                            <constraint firstItem="XGh-U5-Su2" firstAttribute="centerX" secondItem="IkC-bf-RWO" secondAttribute="centerX" type="default" id="aYA-Tv-qu4"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="IBU-hm-owb" id="OXA-XP-nas"/>
+                            <outlet property="delegate" destination="IBU-hm-owb" id="Sqz-k9-tti"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="nameTextField" destination="mkJ-oe-WAY" id="n0W-AV-pnm"/>
+                        <outlet property="summaryTextView" destination="XGh-U5-Su2" id="er9-hJ-4Xx"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8lx-Uq-wAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="295" y="471"/>
         </scene>
         <!--Point Detail View Controller-->
         <scene sceneID="fYv-AH-Exy">
@@ -424,7 +476,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="po1-Q4-51U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="-64"/>
+            <point key="canvasLocation" x="859" y="447"/>
         </scene>
         <!--Maps Table View Controller - Maps-->
         <scene sceneID="VYg-8V-X6v">
@@ -463,6 +515,9 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="pJr-gB-5ra" kind="push" identifier="CYMapDetailViewController_Segue" id="Vbg-xY-cib"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -473,20 +528,18 @@
                     <navigationItem key="navigationItem" title="Maps" id="EoW-Eu-gaS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qiS-Bt-T5I">
                             <connections>
-                                <action selector="addMap:" destination="OFF-Dr-fjo" id="HHf-Fw-uAc"/>
+                                <segue destination="IBU-hm-owb" kind="modal" identifier="CYMapCreationTableViewController_Segue" id="5bl-hu-Fsv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Kff-fc-5G0">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
-                    <connections>
-                        <segue destination="pJr-gB-5ra" kind="push" identifier="CYMapDetailViewController_Segue" id="YsD-qy-DAV"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ob-Zu-QmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="BlU-Vg-MNJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-238" y="1168"/>
+            <point key="canvasLocation" x="-242" y="821"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="RIF-eU-gIB">
@@ -632,7 +685,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Cj-cP-tED" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-733" y="1168"/>
+            <point key="canvasLocation" x="-737" y="821"/>
         </scene>
         <!--Navigation Controller - Around Me-->
         <scene sceneID="ccO-b7-c4d">
@@ -651,42 +704,101 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xsy-Gc-Reu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-731" y="475"/>
-        </scene>
-        <!--Navigation Controller - Console-->
-        <scene sceneID="sh6-nF-CH7">
-            <objects>
-                <navigationController id="f45-eJ-IJj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Console" image="20-gear-2.png" id="msZ-Pr-MV7"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DS8-9o-TT3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="nRm-oE-Rbz" kind="relationship" relationship="rootViewController" id="Cct-OH-3IP"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="usK-ID-Sb8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-733" y="-208"/>
+            <point key="canvasLocation" x="-735" y="128"/>
         </scene>
     </scenes>
     <resources>
         <image name="103-map-white.png" width="26" height="21"/>
         <image name="103-map.png" width="26" height="21"/>
-        <image name="20-gear-2.png" width="26" height="28"/>
         <image name="73-radar.png" width="27" height="27"/>
         <image name="86-camera.png" width="24" height="18"/>
         <image name="polaroid.png" width="212" height="252"/>
     </resources>
+    <classes>
+        <class className="ARTextField" superclassName="UITextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ARTextField.h"/>
+        </class>
+        <class className="ARTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ARTextView.h"/>
+        </class>
+        <class className="CYMapCreationTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapCreationTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameTextField" candidateClass="ARTextField"/>
+                <relationship kind="outlet" name="summaryTextView" candidateClass="ARTextView"/>
+            </relationships>
+        </class>
+        <class className="CYMapDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="followButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="followLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="headerContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="lastUpdatedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lastUpdatedValueLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mapView" candidateClass="CYMapView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="CYMapView" superclassName="MKMapView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapView.h"/>
+        </class>
+        <class className="CYMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="activeMapLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mapView" candidateClass="CYMapView"/>
+                <relationship kind="outlet" name="pointCreationView" candidateClass="CYPointCreationView"/>
+            </relationships>
+        </class>
+        <class className="CYMapsTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapsTableViewCell.h"/>
+        </class>
+        <class className="CYMapsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapsTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="mapCreationDidCancel:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="mapCreationDidSave:" candidateClass="UIStoryboardSegue"/>
+            </relationships>
+        </class>
+        <class className="CYPointCreationView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYPointCreationView.h"/>
+            <relationships>
+                <relationship kind="action" name="cancel:" candidateClass="UIButton"/>
+                <relationship kind="action" name="save:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="ARTextField"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="summaryTextView" candidateClass="ARTextView"/>
+            </relationships>
+        </class>
+        <class className="CYPointDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYPointDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="distanceValueLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="headerContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="pointImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="pointNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="summaryLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CYTabBarViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYTabBarViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UIRefreshControl" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="YsD-qy-DAV"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 @interface CYMapsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
 
-- (IBAction)addMap:(UIBarButtonItem *)sender;
+- (IBAction)mapCreationDidCancel:(UIStoryboardSegue *)segue;
+- (IBAction)mapCreationDidSave:(UIStoryboardSegue *)segue;
 
 @end
