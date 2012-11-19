@@ -110,7 +110,6 @@
 		666CEDBD1656504B00D0179B /* CYPointCreationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 666CEDB11656504B00D0179B /* CYPointCreationViewController.xib */; };
 		666CEDBE1656504B00D0179B /* CYPointDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDB31656504B00D0179B /* CYPointDetailViewController.m */; };
 		666CEDBF1656504B00D0179B /* CYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDB51656504B00D0179B /* CYTabBarViewController.m */; };
-		666CEDC0165652DB00D0179B /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 666CED5216564C3400D0179B /* libQuickDialog.a */; };
 		666CEDC1165652DB00D0179B /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 666CED5D16564CB700D0179B /* libSSToolkit.a */; };
 		666CEDCA1656545800D0179B /* nav-bar-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 666CEDC81656545800D0179B /* nav-bar-background.png */; };
 		666CEDCB1656545800D0179B /* nav-bar-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 666CEDC91656545800D0179B /* nav-bar-background@2x.png */; };
@@ -125,6 +124,7 @@
 		66A1B3721638AC8100B9DCEC /* MKMapView+ARKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36A1638AC8100B9DCEC /* MKMapView+ARKit.m */; };
 		66A1B3741638AC8100B9DCEC /* ARTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B36E1638AC8100B9DCEC /* ARTextField.m */; };
 		66A1B3751638AC8100B9DCEC /* ARTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B3701638AC8100B9DCEC /* ARTextView.m */; };
+		66AC6143165A413300D8D901 /* libQuickDialog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AC6140165A411200D8D901 /* libQuickDialog.a */; };
 		66C29A59164CEA9400DC8DBA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C29A58164CEA9400DC8DBA /* CoreText.framework */; };
 		66F2B2491654A8550043DD15 /* Cygnus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2471654A8550043DD15 /* Cygnus.xcdatamodeld */; };
 		66F2B29B1654B1B30043DD15 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F2B29A1654B1B30043DD15 /* CoreData.framework */; };
@@ -135,23 +135,10 @@
 		66F2B2E81654DA8B0043DD15 /* CYMap+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2E71654DA8B0043DD15 /* CYMap+Additions.m */; };
 		66F2B2EB1654DAD20043DD15 /* CYPoint+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2EA1654DAD20043DD15 /* CYPoint+Additions.m */; };
 		66F2B2FF1654F0660043DD15 /* CYUser+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2FE1654F0660043DD15 /* CYUser+Additions.m */; };
+		66F8776616599AB2007B4E53 /* CYPointCreationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8776516599AB2007B4E53 /* CYPointCreationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		666CED4F16564C3400D0179B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D80B0E3313E052DF00FA85CA;
-			remoteInfo = QuickDialogExample;
-		};
-		666CED5116564C3400D0179B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2C542393145ADEBD0026A152;
-			remoteInfo = QuickDialog;
-		};
 		666CED5C16564CB700D0179B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
@@ -173,13 +160,6 @@
 			remoteGlobalIDString = B2C507EA151BA64400E94614;
 			remoteInfo = SSToolkitResources;
 		};
-		666CEDC2165652E300D0179B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 2C542392145ADEBD0026A152;
-			remoteInfo = QuickDialog;
-		};
 		666CEDC4165652E300D0179B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */;
@@ -193,6 +173,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = B2C507E9151BA64400E94614;
 			remoteInfo = SSToolkitResources;
+		};
+		66AC613D165A411200D8D901 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D80B0E3313E052DF00FA85CA;
+			remoteInfo = QuickDialogExample;
+		};
+		66AC613F165A411200D8D901 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2C542393145ADEBD0026A152;
+			remoteInfo = QuickDialog;
+		};
+		66AC6141165A412D00D8D901 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C542392145ADEBD0026A152;
+			remoteInfo = QuickDialog;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -349,7 +350,6 @@
 		666CEDCC165654C400D0179B /* 103-map-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map-white.png"; sourceTree = "<group>"; };
 		666CEDCD165654C400D0179B /* 103-map-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map-white@2x.png"; sourceTree = "<group>"; };
 		6696F6111655B90E0092BDB3 /* 86-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera@2x.png"; sourceTree = "<group>"; };
-		6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		669903FC1658A9D600A8CD79 /* CYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYUser.h; sourceTree = "<group>"; };
 		669903FD1658A9D600A8CD79 /* CYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYUser.m; sourceTree = "<group>"; };
 		669903FF1658AD6300A8CD79 /* 73-radar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "73-radar.png"; sourceTree = "<group>"; };
@@ -363,6 +363,7 @@
 		66A1B36E1638AC8100B9DCEC /* ARTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTextField.m; sourceTree = "<group>"; };
 		66A1B36F1638AC8100B9DCEC /* ARTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTextView.h; sourceTree = "<group>"; };
 		66A1B3701638AC8100B9DCEC /* ARTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTextView.m; sourceTree = "<group>"; };
+		66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickDialog.xcodeproj; path = QuickDialog/QuickDialog.xcodeproj; sourceTree = "<group>"; };
 		66C29A58164CEA9400DC8DBA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		66F2B2481654A8550043DD15 /* Cygnus.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cygnus.xcdatamodel; sourceTree = "<group>"; };
 		66F2B29A1654B1B30043DD15 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -380,6 +381,8 @@
 		66F2B2EA1654DAD20043DD15 /* CYPoint+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CYPoint+Additions.m"; sourceTree = "<group>"; };
 		66F2B2FD1654F0660043DD15 /* CYUser+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CYUser+Additions.h"; sourceTree = "<group>"; };
 		66F2B2FE1654F0660043DD15 /* CYUser+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CYUser+Additions.m"; sourceTree = "<group>"; };
+		66F8776416599AB2007B4E53 /* CYPointCreationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPointCreationView.h; sourceTree = "<group>"; };
+		66F8776516599AB2007B4E53 /* CYPointCreationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPointCreationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,7 +390,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				666CEDC0165652DB00D0179B /* libQuickDialog.a in Frameworks */,
+				66AC6143165A413300D8D901 /* libQuickDialog.a in Frameworks */,
 				666CEDC1165652DB00D0179B /* libSSToolkit.a in Frameworks */,
 				4E8DF9311655D07B00A113C9 /* CoreTelephony.framework in Frameworks */,
 				66F2B29B1654B1B30043DD15 /* CoreData.framework in Frameworks */,
@@ -633,12 +636,12 @@
 			children = (
 				66558A9D16361EBC00C7BB8B /* AFNetworking */,
 				66A1B3661638AC8100B9DCEC /* ARKit */,
+				661088C3163AAD0B000D1DA2 /* AwesomeMenu */,
 				4E8DFA081655D1DE00A113C9 /* Flurry */,
 				4E541B3116554E7100E495D1 /* KNSemiModalViewController */,
 				4E8DF9CE1655D14D00A113C9 /* Mixpanel */,
-				6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */,
 				4EEB9617163DF84900D67785 /* Objective-C-Categories-and-Macros */,
-				661088C3163AAD0B000D1DA2 /* AwesomeMenu */,
+				66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */,
 				66558A8D16361D4700C7BB8B /* SSToolkit.xcodeproj */,
 			);
 			name = Libraries;
@@ -670,15 +673,6 @@
 			);
 			name = AFNetworking;
 			path = AFNetworking/AFNetworking;
-			sourceTree = "<group>";
-		};
-		666CED4B16564C3400D0179B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				666CED5016564C3400D0179B /* QuickDialogExample.app */,
-				666CED5216564C3400D0179B /* libQuickDialog.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		666CED5716564CB700D0179B /* Products */ = {
@@ -793,6 +787,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		66AC6135165A411200D8D901 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66AC613E165A411200D8D901 /* QuickDialogExample.app */,
+				66AC6140165A411200D8D901 /* libQuickDialog.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		66F2B24A1654A8620043DD15 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -820,6 +823,8 @@
 				4EEEE463164CDCB300D3357B /* CYMapView.m */,
 				66995E141656F67E005BC35C /* CYMapsTableViewCell.h */,
 				66995E151656F67E005BC35C /* CYMapsTableViewCell.m */,
+				66F8776416599AB2007B4E53 /* CYPointCreationView.h */,
+				66F8776516599AB2007B4E53 /* CYPointCreationView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -847,8 +852,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				66AC6142165A412D00D8D901 /* PBXTargetDependency */,
 				666CEDC71656532A00D0179B /* PBXTargetDependency */,
-				666CEDC3165652E300D0179B /* PBXTargetDependency */,
 				666CEDC5165652E300D0179B /* PBXTargetDependency */,
 			);
 			name = Cygnus;
@@ -878,8 +883,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 666CED4B16564C3400D0179B /* Products */;
-					ProjectRef = 6696F6131655BCAF0092BDB3 /* QuickDialog.xcodeproj */;
+					ProductGroup = 66AC6135165A411200D8D901 /* Products */;
+					ProjectRef = 66AC6134165A411200D8D901 /* QuickDialog.xcodeproj */;
 				},
 				{
 					ProductGroup = 666CED5716564CB700D0179B /* Products */;
@@ -894,20 +899,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		666CED5016564C3400D0179B /* QuickDialogExample.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = QuickDialogExample.app;
-			remoteRef = 666CED4F16564C3400D0179B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		666CED5216564C3400D0179B /* libQuickDialog.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libQuickDialog.a;
-			remoteRef = 666CED5116564C3400D0179B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		666CED5D16564CB700D0179B /* libSSToolkit.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -927,6 +918,20 @@
 			fileType = wrapper.cfbundle;
 			path = SSToolkitResources.bundle;
 			remoteRef = 666CED6016564CB700D0179B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		66AC613E165A411200D8D901 /* QuickDialogExample.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = QuickDialogExample.app;
+			remoteRef = 66AC613D165A411200D8D901 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		66AC6140165A411200D8D901 /* libQuickDialog.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libQuickDialog.a;
+			remoteRef = 66AC613F165A411200D8D901 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1050,17 +1055,13 @@
 				666CEDBF1656504B00D0179B /* CYTabBarViewController.m in Sources */,
 				66995E161656F67E005BC35C /* CYMapsTableViewCell.m in Sources */,
 				669903FE1658A9D600A8CD79 /* CYUser.m in Sources */,
+				66F8776616599AB2007B4E53 /* CYPointCreationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		666CEDC3165652E300D0179B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = QuickDialog;
-			targetProxy = 666CEDC2165652E300D0179B /* PBXContainerItemProxy */;
-		};
 		666CEDC5165652E300D0179B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SSToolkit;
@@ -1070,6 +1071,11 @@
 			isa = PBXTargetDependency;
 			name = SSToolkitResources;
 			targetProxy = 666CEDC61656532A00D0179B /* PBXContainerItemProxy */;
+		};
+		66AC6142165A412D00D8D901 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = QuickDialog;
+			targetProxy = 66AC6141165A412D00D8D901 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1151,13 +1157,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Quantified Labs, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"/Cygnus/Frameworks/**",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/Cygnus/Frameworks\"",
+					"\"$(SRCROOT)/Cygnus/Frameworks\"/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cygnus/Cygnus-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/Cygnus/Libraries/**";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Cygnus/Libraries\"/**";
 				INFOPLIST_FILE = "Cygnus/Cygnus-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1170,7 +1174,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0E86C8E7-449A-4EB8-904F-DABF9C84E72A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E86C8E7-449A-4EB8-904F-DABF9C84E72A";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}\"/**";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1183,13 +1187,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Quantified Labs, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"/Cygnus/Frameworks/**",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/Cygnus/Frameworks\"",
+					"\"$(SRCROOT)/Cygnus/Frameworks\"/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cygnus/Cygnus-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/Cygnus/Libraries/**";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Cygnus/Libraries\"/**";
 				INFOPLIST_FILE = "Cygnus/Cygnus-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1202,7 +1204,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0E86C8E7-449A-4EB8-904F-DABF9C84E72A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E86C8E7-449A-4EB8-904F-DABF9C84E72A";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}\"/**";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

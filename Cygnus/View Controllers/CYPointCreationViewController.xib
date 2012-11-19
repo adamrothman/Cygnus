@@ -43,6 +43,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 16}, {29, 29}}</string>
 						<reference key="NSSuperview" ref="248010890"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="139857127"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -77,6 +78,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{66, 14}, {234, 31}}</string>
 						<reference key="NSSuperview" ref="248010890"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="977528367"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -113,6 +115,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{66, 55}, {234, 30}}</string>
 						<reference key="NSSuperview" ref="248010890"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="661917961"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -140,6 +143,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{15, 50}, {38, 40}}</string>
 						<reference key="NSSuperview" ref="248010890"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="183204852"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="IBUIContentMode">1</int>
@@ -151,6 +155,7 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{22, 61}, {24, 18}}</string>
 						<reference key="NSSuperview" ref="248010890"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="760466058"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -175,7 +180,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 104}, {320, 216}}</string>
 						<reference key="NSSuperview" ref="248010890"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -186,6 +191,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 320}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="10112582"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
@@ -875,6 +881,20 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">CYPointCreationViewController</string>
 					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="addImageSelected:">id</string>
+						<string key="addPointSelected:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="addImageSelected:">
+							<string key="name">addImageSelected:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="addPointSelected:">
+							<string key="name">addPointSelected:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="addButton">UIButton</string>
 						<string key="descriptionTextField">ARTextField</string>

@@ -8,12 +8,14 @@
 
 #import "AwesomeMenu.h"
 #import "CYMapView.h"
+#import "CYPointCreationView.h"
 
-@interface CYMapViewController : UIViewController <MKMapViewDelegate, AwesomeMenuDelegate>
+@interface CYMapViewController : UIViewController <MKMapViewDelegate, CYPointCreationDelegate, AwesomeMenuDelegate>
 
 @property (nonatomic, weak) IBOutlet CYMapView *mapView;
 @property (nonatomic, weak) IBOutlet UILabel *activeMapLabel;
-//@property (nonatomic, strong) AwesomeMenu *menu;
+@property (nonatomic, weak) IBOutlet CYPointCreationView *pointCreationView;
+@property (nonatomic, strong) AwesomeMenu *menu;
 
 + (CYMapViewController *)currentVC;
 

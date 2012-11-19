@@ -69,21 +69,100 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="URG-of-fA3" customClass="CYMapView"/>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gET-RG-7x7">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="URG-of-fA3" customClass="CYMapView">
+                                <connections>
+                                    <outlet property="delegate" destination="l6a-62-OqY" id="FCy-hV-d4z"/>
+                                </connections>
+                            </mapView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Displaying some map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gET-RG-7x7">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV5-YB-EyG" customClass="CYPointCreationView">
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wzx-Gy-F3u" customClass="ARTextField">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="AOy-xb-A2X"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qko-SA-D9E">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="23" id="H5Y-cq-XYp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancel:" destination="gV5-YB-EyG" eventType="touchUpInside" id="kUg-Pe-icH"/>
+                                        </connections>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcE-d6-fyu" customClass="ARTextView">
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsb-BC-zBT">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="23" id="05X-SB-0m0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="save:" destination="gV5-YB-EyG" eventType="touchUpInside" id="vqB-gO-7hT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="qko-SA-D9E" firstAttribute="top" secondItem="vsb-BC-zBT" secondAttribute="top" type="default" id="4oP-o3-djG"/>
+                                    <constraint firstItem="vsb-BC-zBT" firstAttribute="top" secondItem="gV5-YB-EyG" secondAttribute="top" constant="23" id="83g-YV-BEa"/>
+                                    <constraint firstItem="RcE-d6-fyu" firstAttribute="leading" secondItem="gV5-YB-EyG" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="AmN-fQ-KyJ"/>
+                                    <constraint firstItem="RcE-d6-fyu" firstAttribute="top" secondItem="wzx-Gy-F3u" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="GxA-io-LII"/>
+                                    <constraint firstItem="wzx-Gy-F3u" firstAttribute="top" secondItem="gV5-YB-EyG" secondAttribute="top" constant="20" symbolic="YES" type="default" id="JSa-J0-2AW"/>
+                                    <constraint firstAttribute="trailing" secondItem="qko-SA-D9E" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="JeN-gT-qvQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="RcE-d6-fyu" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Nl1-cq-pRA"/>
+                                    <constraint firstItem="wzx-Gy-F3u" firstAttribute="leading" secondItem="gV5-YB-EyG" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Uf3-1L-zxg"/>
+                                    <constraint firstItem="qko-SA-D9E" firstAttribute="leading" secondItem="vsb-BC-zBT" secondAttribute="trailing" constant="20" type="user" id="Xuw-pk-Ddu"/>
+                                    <constraint firstItem="vsb-BC-zBT" firstAttribute="leading" secondItem="wzx-Gy-F3u" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="rLL-0o-vlk"/>
+                                    <constraint firstAttribute="bottom" secondItem="RcE-d6-fyu" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="x64-1J-un1"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="cancelButton" destination="qko-SA-D9E" id="Jws-h9-xVt"/>
+                                    <outlet property="nameTextField" destination="wzx-Gy-F3u" id="FYF-Nm-Rx0"/>
+                                    <outlet property="saveButton" destination="vsb-BC-zBT" id="tWf-bV-FpC"/>
+                                    <outlet property="summaryTextView" destination="RcE-d6-fyu" id="E7v-hg-hld"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="URG-of-fA3" firstAttribute="trailing" secondItem="7dQ-YI-8bK" secondAttribute="trailing" type="default" id="04S-rf-qhp"/>
+                            <constraint firstItem="gV5-YB-EyG" firstAttribute="top" secondItem="gET-RG-7x7" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="2XD-dc-qdF"/>
                             <constraint firstItem="URG-of-fA3" firstAttribute="bottom" secondItem="7dQ-YI-8bK" secondAttribute="bottom" type="default" id="4RZ-15-tg6"/>
+                            <constraint firstAttribute="trailing" secondItem="gV5-YB-EyG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Aqx-c9-bfv"/>
                             <constraint firstItem="gET-RG-7x7" firstAttribute="top" secondItem="7dQ-YI-8bK" secondAttribute="top" constant="20" symbolic="YES" type="default" id="DHA-FY-geX"/>
                             <constraint firstItem="gET-RG-7x7" firstAttribute="leading" secondItem="7dQ-YI-8bK" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Riy-qu-1te"/>
                             <constraint firstItem="URG-of-fA3" firstAttribute="leading" secondItem="7dQ-YI-8bK" secondAttribute="leading" type="default" id="WSo-VF-T5P"/>
+                            <constraint firstItem="gV5-YB-EyG" firstAttribute="leading" secondItem="7dQ-YI-8bK" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aLf-7P-O64"/>
                             <constraint firstAttribute="trailing" secondItem="gET-RG-7x7" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="dCk-Hd-ais"/>
+                            <constraint firstAttribute="bottom" secondItem="gV5-YB-EyG" secondAttribute="bottom" constant="300" id="g8T-jW-3p2"/>
                             <constraint firstItem="URG-of-fA3" firstAttribute="top" secondItem="7dQ-YI-8bK" secondAttribute="top" type="default" id="v5a-B0-3uw"/>
                         </constraints>
                     </view>
@@ -92,6 +171,7 @@
                     <connections>
                         <outlet property="activeMapLabel" destination="gET-RG-7x7" id="3Cp-6W-2SS"/>
                         <outlet property="mapView" destination="URG-of-fA3" id="0Jx-1r-FuA"/>
+                        <outlet property="pointCreationView" destination="gV5-YB-EyG" id="ISp-ui-bRd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bb2-Yj-GS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -601,67 +681,6 @@
         <image name="86-camera.png" width="24" height="18"/>
         <image name="polaroid.png" width="212" height="252"/>
     </resources>
-    <classes>
-        <class className="CYConsoleViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYConsoleViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="headerLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mapsAddButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="mapsTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="CYMapDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="followButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="followLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="headerContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="lastUpdatedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lastUpdatedValueLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mapView" candidateClass="CYMapView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="CYMapView" superclassName="MKMapView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapView.h"/>
-        </class>
-        <class className="CYMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="activeMapLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mapView" candidateClass="CYMapView"/>
-            </relationships>
-        </class>
-        <class className="CYMapsTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapsTableViewCell.h"/>
-        </class>
-        <class className="CYMapsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapsTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addMap:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="CYPointDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYPointDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="distanceValueLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="headerContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="pointImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="pointNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="summaryLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CYTabBarViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYTabBarViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="UIRefreshControl" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

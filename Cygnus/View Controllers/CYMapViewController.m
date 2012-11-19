@@ -24,10 +24,10 @@ CYMapViewController *_currentVC;
 #define HALF_HOUR_IN_SECONDS            60*30
 #define UPDATE_FREQUENCY                3*60
 
-@interface CYMapViewController () <CYMapEditorDelegate>
+@interface CYMapViewController ()
 
-@property (strong, nonatomic) CYPointCreationViewController *pointCreationVC;
 @property (nonatomic, strong) id<MKAnnotation> userPointAnnotation;
+@property (nonatomic) BOOL hasPerformedInitialZoom;
 
 @end
 
@@ -35,24 +35,11 @@ CYMapViewController *_currentVC;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
   _currentVC = self;
 
-  // You can optionally listen to notifications
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(semiModalPresented:)
-                                               name:kSemiModalDidShowNotification
-                                             object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(semiModalDismissed:)
-                                               name:kSemiModalDidHideNotification
-                                             object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(semiModalResized:)
-                                               name:kSemiModalWasResizedNotification
-                                             object:nil];
-
-  self.mapView.delegate = self;
+  self.pointCreationView.delegate = self;
+  [self setUpAwesomeMenu];
 
   UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
   longPress.cancelsTouchesInView = NO;
@@ -65,17 +52,50 @@ CYMapViewController *_currentVC;
   [self.mapView removeAnnotations:self.mapView.annotations];
   [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
   [self.mapView zoomToFitAnnotationsWithUser:NO animated:YES];
+
   self.activeMapLabel.text = [CYUser user].activeMap ? [NSString stringWithFormat:@"Displaying %@", [CYUser user].activeMap.name] : @"No active map";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_VISIT withParameters:nil];
+
+  if (!self.pointCreationView.framesSet) {
+    self.pointCreationView.onscreenFrame = self.pointCreationView.frame;
+    NSLog(@"%@", NSStringFromCGRect(self.pointCreationView.onscreenFrame));
+    self.pointCreationView.offscreenFrame = CGRectMake(self.pointCreationView.frame.origin.x, -(self.pointCreationView.frame.size.height + 10), self.pointCreationView.frame.size.width, self.pointCreationView.frame.size.height);
+    NSLog(@"%@", NSStringFromCGRect(self.pointCreationView.offscreenFrame));
+    self.pointCreationView.framesSet = YES;
+  }
+  [self.pointCreationView dismissAnimated:NO completion:nil];
+
+  self.menu.startPoint = CGPointMake(self.mapView.bounds.size.width - 32, self.mapView.bounds.size.height - 32);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   self.navigationController.navigationBar.hidden = NO;
+}
+
+- (void)setUpAwesomeMenu {
+  UIImage *background = [UIImage imageNamed:@"bg-menuitem.png"];
+	UIImage *backgroundHighlighted = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
+  UIImage *eye = [UIImage imageNamed:@"04-eye-white.png"];
+  UIImage *pin = [UIImage imageNamed:@"08-pin-white.png"];
+  UIImage *star = [UIImage imageNamed:@"icon-star.png"];
+
+  NSArray *menus = @[
+    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:eye highlightedContentImage:nil],
+    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:pin highlightedContentImage:nil],
+    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil],
+    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil]
+  ];
+
+  self.menu = [[AwesomeMenu alloc] initWithFrame:self.view.bounds menus:menus];
+  self.menu.menuWholeAngle = M_PI_2;
+  self.menu.rotateAngle = -M_PI_2;
+  self.menu.delegate = self;
+  [self.view addSubview:self.menu];
 }
 
 #pragma mark - UI
@@ -87,39 +107,19 @@ CYMapViewController *_currentVC;
   self.userPointAnnotation = [[MKPointAnnotation alloc] init];
   self.userPointAnnotation.coordinate = coordinate;
   [self.mapView addAnnotation:self.userPointAnnotation];
-  [self userDidDropPin:self.userPointAnnotation];
-}
+  [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_DROPPED_POINT withParameters:nil];
 
-#pragma mark - Optional notifications
-
-- (void)semiModalResized:(NSNotification *)notification {
-  if(notification.object == self){
-    NSLog(@"The view controller presented was been resized");
-  }
-}
-
-- (void)semiModalPresented:(NSNotification *)notification {
-  if (notification.object == self) {
-    NSLog(@"This view controller just shown a view with semi modal annimation");
-  }
-}
-
-- (void)semiModalDismissed:(NSNotification *)notification {
-  if (notification.object == self) {
-    [self.mapView removeAnnotation:self.userPointAnnotation];
-    self.userPointAnnotation = nil;
-    [self.pointCreationVC.view endEditing:YES];
-  }
+  [self.pointCreationView summonAnimated:YES completion:^(BOOL finished) {
+    if (finished) [self.pointCreationView.nameTextField becomeFirstResponder];
+  }];
 }
 
 #pragma mark - MKMapViewDelegate
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-  MKCoordinateSpan span = MKCoordinateSpanMake(ONE_MILE_RADIUS, ONE_MILE_RADIUS);
-  MKCoordinateRegion region = MKCoordinateRegionMake(userLocation.coordinate, span);
-  if (![CYUser user].activeMap) {
-    if (isnan(region.center.latitude) || !CLLocationCoordinate2DIsValid(userLocation.coordinate)) return;
-    [mapView setRegion:region animated:NO];
+  if (!self.hasPerformedInitialZoom) {
+    [mapView zoomToFitUserAnimated:YES];
+    self.hasPerformedInitialZoom = YES;
   }
 }
 
@@ -149,28 +149,26 @@ CYMapViewController *_currentVC;
   return pinView;
 }
 
-#pragma mark - CYMapEditorDelegate
+#pragma mark - CYPointCreationDelegate
 
-- (void)userDidAddPoint:(CYPoint *)point {
-  [self dismissSemiModalView];
+- (void)pointCreationView:(CYPointCreationView *)view didSave:(UIButton *)sender {
+  CYPoint *point = [CYPoint pointWithName:view.nameTextField.text summary:view.summaryTextView.text imageURLString:@"" location:self.userPointAnnotation.coordinate map:[CYUser user].activeMap context:[CYAppDelegate mainContext] save:YES];
   [self.mapView addAnnotation:point];
   [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_ADDED_POINT withParameters:nil];
+
+  [self.mapView removeAnnotation:self.userPointAnnotation];
+  self.userPointAnnotation = nil;
+  [self.pointCreationView endEditing:NO];
+
+  [view dismissAnimated:YES completion:nil];
 }
 
-- (void)userDidDropPin:(id<MKAnnotation>)userPointAnnotation {
-  // get schema from map
-  // QRootElement *root = [CYPointCreationViewController rootElement];
-  self.userPointAnnotation = userPointAnnotation;
-  self.pointCreationVC = [[CYPointCreationViewController alloc] initWithNibName:@"CYPointCreationViewController" bundle:nil];
-  self.pointCreationVC.userPointAnnotation = self.userPointAnnotation;
-  self.pointCreationVC.delegate = self;
-  [self presentSemiViewController:self.pointCreationVC withOptions:@{
-   KNSemiModalOptionKeys.pushParentBack    : @(NO),
-   KNSemiModalOptionKeys.animationDuration : @(0.3),
-   }];
-  [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_DROPPED_POINT withParameters:nil];
+- (void)pointCreationView:(CYPointCreationView *)view didCancel:(UIButton *)sender {
+  [self.mapView removeAnnotation:self.userPointAnnotation];
+  self.userPointAnnotation = nil;
+  [self.pointCreationView endEditing:NO];
 
-  [self.pointCreationVC.titleTextField becomeFirstResponder];
+  [view dismissAnimated:YES completion:nil];
 }
 
 #pragma mark - AwesomeMenuDelegate
@@ -179,15 +177,18 @@ CYMapViewController *_currentVC;
   //  NSLog(@"Selected index %d", idx);
   switch (idx) {
     case 0:
+      NSLog(@"Awesome menu button 0");
       [self.mapView zoomToFitUserAnimated:YES];
       break;
     case 1:
-      NSLog(@"Option2");
+      NSLog(@"Awesome menu button 1");
+      [self.mapView zoomToFitAnnotationsWithUser:NO animated:YES];
       break;
     case 2:
-      NSLog(@"Option3");
+      NSLog(@"Awesome menu button 2");
       break;
     case 3:
+      NSLog(@"Awesome menu button 3");
       break;
   }
 }
@@ -199,25 +200,3 @@ CYMapViewController *_currentVC;
 }
 
 @end
-
-//  UIImage *background = [UIImage imageNamed:@"bg-menuitem.png"];
-//	UIImage *backgroundHighlighted = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
-//  UIImage *eye = [UIImage imageNamed:@"04-eye-white.png"];
-//  UIImage *pin = [UIImage imageNamed:@"08-pin-white.png"];
-//  UIImage *star = [UIImage imageNamed:@"icon-star.png"];
-
-//  NSArray *menus = @[
-//    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:eye highlightedContentImage:nil],
-//    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:pin highlightedContentImage:nil],
-//    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil],
-//    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil]
-//  ];
-//  self.menu = [[AwesomeMenu alloc] initWithFrame:self.map.bounds menus:menus];
-//  self.menu.delegate = self;
-//  self.menu.menuWholeAngle = M_PI_2;
-//  self.menu.rotateAngle = -M_PI_2;
-//  [self.map addSubview:self.menu];
-
-//  self.menu.startPoint = CGPointMake(self.map.bounds.size.width - 32, self.map.bounds.size.height - 32);
-// this isn't useful until the user has actually been located, so
-// do it after a second (this is highly scientific)

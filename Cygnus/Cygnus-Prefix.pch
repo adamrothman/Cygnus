@@ -34,8 +34,8 @@
   #import "NSManagedObjectContext+SimpleSave.h"
   #import "NSObject+PerformBlock.h"
 
-  #import "CYAppDelegate.h"
   #import "CYAnalytics.h"
+  #import "CYAppDelegate.h"
   #import "CYConstants.h"
 #endif
 
