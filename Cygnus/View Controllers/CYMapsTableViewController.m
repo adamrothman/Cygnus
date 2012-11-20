@@ -55,8 +55,8 @@
 - (void)setUpFetchedResultsController {
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
   request.entity = [NSEntityDescription entityForName:NSStringFromClass([CYMap class]) inManagedObjectContext:[CYAppDelegate mainContext]];
-  request.fetchBatchSize = 50;
   request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+  request.fetchBatchSize = 50;
   self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:[CYAppDelegate mainContext] sectionNameKeyPath:nil cacheName:nil];
   self.fetchedResultsController.delegate = self;
   NSError *error = nil;
@@ -102,18 +102,18 @@
   NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:[recognizer locationInView:self.tableView]];
   CYMapsTableViewCell *cell = (CYMapsTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
 
-  if ([CYUser user].activeMap != cell.map) {
+  if ([CYUser activeMap] != cell.map) {
     // restore the old one
     self.activeMapCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     // make the new one active
-    [CYUser user].activeMap = cell.map;
+    [CYUser setActiveMap:cell.map];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     self.activeMapCell = cell;
     NSLog(@"%@ becoming active", cell.map.name);
   } else {
     // clear active state
-    [CYUser user].activeMap = nil;
+    [CYUser setActiveMap:nil];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.activeMapCell = nil;
     NSLog(@"%@ becoming inactive", cell.map.name);
@@ -141,7 +141,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   if (tableView == self.tableView) {
-    id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections[section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections[section];
     return sectionInfo.numberOfObjects;
   } else {
     return self.searchResults.count;
@@ -159,23 +159,23 @@
     map = self.searchResults[indexPath.row];
   }
   cell.map = map;
-  if (map == [CYUser user].activeMap) self.activeMapCell = cell;
+  if (map == [CYUser activeMap]) self.activeMapCell = cell;
   return cell;
 }
 
 #pragma mark - UISearchDisplayDelegate
 
-- (void)filterMapsForSearch:(NSString *)searchString {
+- (void)filterMapsForQuery:(NSString *)query {
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
   request.entity = [NSEntityDescription entityForName:NSStringFromClass([CYMap class]) inManagedObjectContext:[CYAppDelegate mainContext]];
-  request.predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@ or summary contains[cd] %@", searchString, searchString];
+  request.predicate = [NSPredicate predicateWithFormat:@"name contains[cd] %@ or summary contains[cd] %@", query, query];
   request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
 
   NSError *error = nil;
   NSArray *fetchedObjects = [[CYAppDelegate mainContext] executeFetchRequest:request error:&error];
   if (error) {
     NSDictionary *userInfo = @{NSUnderlyingErrorKey : error};
-    NSString *reason = [NSString stringWithFormat:@"Couldn't filter maps for string %@.", searchString];
+    NSString *reason = [NSString stringWithFormat:@"Couldn't filter maps for query %@.", query];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:userInfo];
   }
 
@@ -184,7 +184,7 @@
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-  [self filterMapsForSearch:searchString];
+  [self filterMapsForQuery:searchString];
   return YES;
 }
 
@@ -196,20 +196,19 @@
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-  UITableView *tableView = self.tableView;
   switch(type) {
     case NSFetchedResultsChangeInsert:
-      [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
       break;
     case NSFetchedResultsChangeDelete:
-      [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
       break;
     case NSFetchedResultsChangeUpdate:
-      ((CYMapsTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).map = [self.fetchedResultsController objectAtIndexPath:indexPath];
+      ((CYMapsTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath]).map = [self.fetchedResultsController objectAtIndexPath:indexPath];
       break;
     case NSFetchedResultsChangeMove:
-      [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-      [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
       break;
   }
 }

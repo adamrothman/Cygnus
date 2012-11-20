@@ -7,9 +7,11 @@
 //
 
 #import "CYUser.h"
+#import "CYMap+Additions.h"
 
 @interface CYUser (Additions)
 
-+ (CYUser *)user;
++ (CYMap *)activeMap;
++ (void)setActiveMap:(CYMap *)map;
 
 @end

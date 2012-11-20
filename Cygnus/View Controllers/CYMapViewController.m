@@ -13,12 +13,15 @@
 #import "CYUI.h"
 #import "CYMapView.h"
 #import "AwesomeMenuItem.h"
+#import "CYPointDetailViewController.h"
 
-#define THRESHOLD_DISTANCE               70
+#define THRESHOLD_DISTANCE              70
 #define ONE_MILE_IN_METERS              1609.34
 #define SIGNIFICANT_LOCATION_CHANGE     ONE_MILE_IN_METERS/4
 #define HALF_HOUR_IN_SECONDS            60*30
 #define UPDATE_FREQUENCY                3*60
+
+#define ANIMATION_DURATION              0.5
 
 @interface CYMapViewController ()
 
@@ -34,6 +37,8 @@
 
   [self.pointCreationView setUp];
   self.pointCreationView.delegate = self;
+  UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+  [self.pointCreationView addGestureRecognizer:pan];
 
   [self setUpAwesomeMenu];
 
@@ -45,11 +50,7 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   self.navigationController.navigationBar.hidden = YES;
-  [self.mapView removeAnnotations:self.mapView.annotations];
-  [self.mapView updatePointsForMap:[CYUser user].activeMap animated:NO];
-  [self.mapView zoomToFitAnnotationsWithUser:NO animated:YES];
-
-  self.activeMapLabel.text = [CYUser user].activeMap ? [NSString stringWithFormat:@"Displaying %@", [CYUser user].activeMap.name] : @"No active map";
+  self.mapView.map = [CYUser activeMap];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -63,9 +64,11 @@
     NSLog(@"%@", NSStringFromCGRect(self.pointCreationView.offscreenFrame));
     self.pointCreationView.framesSet = YES;
   }
-  [self.pointCreationView dismissAnimated:NO completion:nil];
+  [self.pointCreationView dismissWithDuration:0 completion:nil];
 
   self.menu.startPoint = CGPointMake(self.mapView.bounds.size.width - 32, self.mapView.bounds.size.height - 32);
+
+  [self.mapView zoomToFitAnnotationsWithUser:NO animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -81,10 +84,10 @@
   UIImage *star = [UIImage imageNamed:@"icon-star.png"];
 
   NSArray *menus = @[
-    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:eye highlightedContentImage:nil],
-    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:pin highlightedContentImage:nil],
-    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil],
-    [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil]
+  [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:eye highlightedContentImage:nil],
+  [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:pin highlightedContentImage:nil],
+  [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil],
+  [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil]
   ];
 
   self.menu = [[AwesomeMenu alloc] initWithFrame:self.view.bounds menus:menus];
@@ -97,7 +100,7 @@
 #pragma mark - UI
 
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer {
-  if (recognizer.state != UIGestureRecognizerStateBegan || ![CYUser user].activeMap) return;
+  if (recognizer.state != UIGestureRecognizerStateBegan || ![CYUser activeMap]) return;
 
   CLLocationCoordinate2D coordinate = [self.mapView convertPoint:[recognizer locationInView:self.mapView] toCoordinateFromView:self.mapView];
   self.userPointAnnotation = [[MKPointAnnotation alloc] init];
@@ -105,9 +108,28 @@
   [self.mapView addAnnotation:self.userPointAnnotation];
   [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_DROPPED_POINT withParameters:nil];
 
-  [self.pointCreationView summonAnimated:YES completion:^(BOOL finished) {
+  [self.pointCreationView summonWithDuration:ANIMATION_DURATION completion:^(BOOL finished) {
     if (finished) [self.pointCreationView.nameTextField becomeFirstResponder];
   }];
+}
+
+- (void)pan:(UIPanGestureRecognizer *)recognizer {
+  if (recognizer.state == UIGestureRecognizerStateChanged) {
+    CGRect frame = self.pointCreationView.frame;
+    frame.origin.y += [recognizer translationInView:self.view].y;
+    self.pointCreationView.frame = frame;
+    [recognizer setTranslation:CGPointZero inView:self.view];
+  } else if (recognizer.state == UIGestureRecognizerStateEnded) {
+    if (self.pointCreationView.frame.origin.y <= 0.f) {
+      [self.mapView removeAnnotation:self.userPointAnnotation];
+      self.userPointAnnotation = nil;
+      [self.pointCreationView endEditing:NO];
+      [self.pointCreationView dismissWithDuration:ANIMATION_DURATION completion:nil];
+    } else {
+      [self.pointCreationView summonWithDuration:0.2 completion:nil];
+    }
+    [recognizer setTranslation:CGPointZero inView:self.view];
+  }
 }
 
 #pragma mark - MKMapViewDelegate
@@ -121,34 +143,35 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
   if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
-  MKPinAnnotationView *pinView = nil;
-  static NSString *defaultPin=@"default-pin";
-  pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:defaultPin];
+  static NSString *identifier = @"default-pin";
+  MKPinAnnotationView *view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
   if (annotation == self.userPointAnnotation) {
-    pinView.pinColor = MKPinAnnotationColorGreen;
-    pinView.canShowCallout = NO;
+    view.pinColor = MKPinAnnotationColorGreen;
+    view.canShowCallout = NO;
   } else { //Map point annotation
-    pinView.pinColor = MKPinAnnotationColorRed;
-    pinView.canShowCallout = YES;
-    pinView.animatesDrop = NO;
-
-    //    UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    //    [rightButton addTarget:self
-    //                    action:@selector(showDetails:)
-    //          forControlEvents:UIControlEventTouchUpInside];
-    //    pinView.rightCalloutAccessoryView = rightButton;
-
-    //    UIImageView *sfIconView = [[UIImageView alloc] init];
-    //    pinView.leftCalloutAccessoryView = sfIconView;
-
+    view.pinColor = MKPinAnnotationColorRed;
+    view.canShowCallout = YES;
+    view.animatesDrop = NO;
+    view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
   }
-  return pinView;
+  return view;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+  // todo(adam): perform segue instead of this
+  CYPoint *point = view.annotation;
+  NSLog(@"callout accessory tapped for %@", point.name);
+  CYPointDetailViewController *detail = [[CYPointDetailViewController alloc] init];
+  detail.point = point;
+  [self.navigationController pushViewController:detail animated:YES];
 }
 
 #pragma mark - CYPointCreationDelegate
 
 - (void)pointCreationView:(CYPointCreationView *)view didSave:(UIButton *)sender {
-  CYPoint *point = [CYPoint pointWithName:view.nameTextField.text summary:view.summaryTextView.text imageURLString:@"" location:self.userPointAnnotation.coordinate map:[CYUser user].activeMap context:[CYAppDelegate mainContext] save:YES];
+  if (!(view.nameTextField.text.length && view.summaryTextView.text.length)) return;
+
+  CYPoint *point = [CYPoint pointWithName:view.nameTextField.text summary:view.summaryTextView.text imageURLString:@"" location:self.userPointAnnotation.coordinate map:[CYUser activeMap] context:[CYAppDelegate mainContext] save:YES];
   [self.mapView addAnnotation:point];
   [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_ADDED_POINT withParameters:nil];
 
@@ -156,15 +179,7 @@
   self.userPointAnnotation = nil;
   [self.pointCreationView endEditing:NO];
 
-  [view dismissAnimated:YES completion:nil];
-}
-
-- (void)pointCreationView:(CYPointCreationView *)view didCancel:(UIButton *)sender {
-  [self.mapView removeAnnotation:self.userPointAnnotation];
-  self.userPointAnnotation = nil;
-  [self.pointCreationView endEditing:NO];
-
-  [view dismissAnimated:YES completion:nil];
+  [view dismissWithDuration:ANIMATION_DURATION completion:nil];
 }
 
 #pragma mark - UITextFieldDelegate

@@ -12,13 +12,8 @@
 
 #define ONE_MILE_RADIUS 0.0144927536
 
-@protocol CYMapEditorDelegate <NSObject>
-- (void)userDidAddPoint:(CYPoint *)point;
-@end
-
 @interface CYMapView : MKMapView
 
-- (void)updatePointsForMap:(CYMap *)map animated:(BOOL)animated;
-- (void)removePointsForMap:(CYMap *)map;
+@property (nonatomic, strong) CYMap *map;
 
 @end

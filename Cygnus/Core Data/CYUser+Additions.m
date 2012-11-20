@@ -35,4 +35,12 @@
   return user;
 }
 
++ (CYMap *)activeMap {
+  return [CYUser user].activeMap;
+}
+
++ (void)setActiveMap:(CYMap *)map {
+  [CYUser user].activeMap = map;
+}
+
 @end

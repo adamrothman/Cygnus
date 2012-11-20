@@ -6,12 +6,15 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CYMap+Additions.h"
+#import "CYMapView.h"
 
-@class CYMap;
+@interface CYMapDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
-@interface CYMapDetailViewController : UIViewController
+@property (nonatomic, strong) CYMap *map;
 
-@property (strong, nonatomic)     CYMap *map;
+@property (nonatomic, weak) IBOutlet CYMapView *mapView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
 
 @end

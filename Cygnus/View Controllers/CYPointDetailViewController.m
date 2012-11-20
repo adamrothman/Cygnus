@@ -9,48 +9,25 @@
 #import "CYPointDetailViewController.h"
 #import "CYUser+Additions.h"
 
-@interface CYPointDetailViewController ()
-@property (weak, nonatomic) IBOutlet UIView *headerContainer;
-
-@end
-
 @implementation CYPointDetailViewController
 
-
-#pragma mark - Accessors
-
-#pragma mark - VC Life cycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-  [self.pointImageView cancelImageRequestOperation];
-  [self.pointImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.point.imageURLString]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-    [UIView transitionWithView:self.pointImageView
-                      duration:0.22
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations:^{
-                      [self.pointImageView setImage:image];
-                    } completion:NULL];
-  } failure:NULL];
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  [self.imageView cancelImageRequestOperation];
+  [self.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.point.imageURLString]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+    [UIView transitionWithView:self.imageView duration:0.22 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+      self.imageView.image = image;
+    } completion:nil];
+  } failure:nil];
   
-  self.pointNameLabel.text = _point.name;
-  self.distanceValueLabel.text = self.distanceString;
-  self.summaryLabel.text = self.point.summary;
-  [self.summaryLabel sizeToFit];
-  self.headerContainer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
+  self.nameLabel.text = self.point.name;
+  self.distanceLabel.text = @"distance";
+  self.summaryTextView.text = self.point.summary;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [CYAnalytics logEvent:CYANALYTICS_EVENT_POINT_DETAIL_VISIT withParameters:nil];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

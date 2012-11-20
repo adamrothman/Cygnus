@@ -11,36 +11,17 @@
 
 @implementation CYMapsTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-  if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
-    // replace imageview with a button so we can change its image
-    UIButton *button = [[UIButton alloc] initWithFrame:self.imageView.frame];
-    [self.imageView removeFromSuperview];
-    [self.contentView addSubview:button];
-
-    // set fonts
-    self.textLabel.font = [UIFont fontWithName:@"CODE Light" size:17];
-    self.detailTextLabel.font = [UIFont fontWithName:@"CODE Bold" size:9];
-  }
-  return self;
-}
-
 #pragma mark - Properties
 
 - (void)setMap:(CYMap *)map {
   _map = map;
   if (_map) {
+    self.textLabel.font = [UIFont fontWithName:@"CODE Light" size:17];
     self.textLabel.text = _map.name;
+    self.detailTextLabel.font = [UIFont fontWithName:@"CODE Bold" size:9];
     self.detailTextLabel.text = _map.summary;
-    self.accessoryType = _map == [CYUser user].activeMap ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryDisclosureIndicator;
+    self.accessoryType = _map == [CYUser activeMap] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryDisclosureIndicator;
   }
-}
-
-#pragma mark - Interactions
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-  [super setSelected:selected animated:animated];
-  // Configure the view for the selected state
 }
 
 @end

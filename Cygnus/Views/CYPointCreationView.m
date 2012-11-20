@@ -10,7 +10,7 @@
 
 @interface CYPointCreationView ()
 
-@property (nonatomic) NSTimeInterval animationDuration;
+@property (nonatomic) UIViewAnimationOptions animationOptions;
 
 @end
 
@@ -24,25 +24,23 @@
   self.layer.shadowOffset = CGSizeMake(0.f, 2.5f);
   self.contentMode = UIViewContentModeScaleToFill;
 
-  self.animationDuration = 0.5;
+  self.animationOptions = UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState;
 
   self.summaryTextView.placeholder = @"Summary";
 }
 
-- (void)summonAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion {
+- (void)summonWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion {
   if (!self.framesSet) return;
-  NSTimeInterval duration = animated ? self.animationDuration : 0;
-  [UIView animateWithDuration:duration delay:0 options:0 animations:^{
+  [UIView animateWithDuration:duration delay:0 options:self.animationOptions animations:^{
     self.frame = self.onscreenFrame;
   } completion:^(BOOL finished) {
     if (completion) completion(finished);
   }];
 }
 
-- (void)dismissAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completion {
+- (void)dismissWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion {
   if (!self.framesSet) return;
-  NSTimeInterval duration = animated ? self.animationDuration : 0;
-  [UIView animateWithDuration:duration delay:0 options:0 animations:^{
+  [UIView animateWithDuration:duration delay:0 options:self.animationOptions animations:^{
     self.frame = self.offscreenFrame;
   } completion:^(BOOL finished) {
     if (completion) completion(finished);
@@ -51,10 +49,6 @@
 
 - (IBAction)save:(UIButton *)sender {
   [self.delegate pointCreationView:self didSave:sender];
-}
-
-- (IBAction)cancel:(UIButton *)sender {
-  [self.delegate pointCreationView:self didCancel:sender];
 }
 
 @end

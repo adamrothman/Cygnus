@@ -6,14 +6,16 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "CYPoint.h"
+#import "CYPoint+Additions.h"
 
 @interface CYPointDetailViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIImageView *pointImageView;
-@property (weak, nonatomic) IBOutlet UILabel *pointNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *distanceValueLabel;
-@property (strong, nonatomic)       NSString *distanceString;
-@property (weak, nonatomic) IBOutlet UILabel *summaryLabel;
-@property (strong, nonatomic)       CYPoint *point;
+
+@property (nonatomic, strong) CYPoint *point;
+
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *distanceLabel;
+@property (nonatomic, weak) IBOutlet UITextView *summaryTextView;
+
 @end
