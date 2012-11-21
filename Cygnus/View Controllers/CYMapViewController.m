@@ -21,7 +21,7 @@
 #define HALF_HOUR_IN_SECONDS            60*30
 #define UPDATE_FREQUENCY                3*60
 
-#define ANIMATION_DURATION              0.5
+#define ANIMATION_DURATION              0.25
 
 @interface CYMapViewController ()
 
@@ -34,6 +34,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  self.navigationItem.title = @"Around Me";
 
   [self.pointCreationView setUp];
   self.pointCreationView.delegate = self;
@@ -49,13 +51,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  self.navigationController.navigationBar.hidden = YES;
   self.mapView.map = [CYUser activeMap];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_VISIT withParameters:nil];
+  [CYAnalytics logEvent:CYAnalyticsEventMapVisited withParameters:nil];
 
   if (!self.pointCreationView.framesSet) {
     self.pointCreationView.onscreenFrame = self.pointCreationView.frame;
@@ -69,11 +70,6 @@
   self.menu.startPoint = CGPointMake(self.mapView.bounds.size.width - 32, self.mapView.bounds.size.height - 32);
 
   [self.mapView zoomToFitAnnotationsWithUser:NO animated:YES];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-  [super viewWillDisappear:animated];
-  self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)setUpAwesomeMenu {
@@ -99,6 +95,19 @@
 
 #pragma mark - UI
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([segue.identifier isEqualToString:@"CYPointDetailViewController_Segue"]) {
+    UINavigationController *destination = segue.destinationViewController;
+    CYPointDetailViewController *pointDetailViewController = (CYPointDetailViewController *)destination.topViewController;
+    CYPoint *point = ((MKAnnotationView *)sender).annotation;
+    pointDetailViewController.point = point;
+  }
+}
+
+- (IBAction)pointDetailDone:(UIStoryboardSegue *)segue {
+  // pass
+}
+
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer {
   if (recognizer.state != UIGestureRecognizerStateBegan || ![CYUser activeMap]) return;
 
@@ -106,10 +115,11 @@
   self.userPointAnnotation = [[MKPointAnnotation alloc] init];
   self.userPointAnnotation.coordinate = coordinate;
   [self.mapView addAnnotation:self.userPointAnnotation];
-  [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_DROPPED_POINT withParameters:nil];
+  [CYAnalytics logEvent:CYAnalyticsEventPointDropped withParameters:nil];
 
+  [self.pointCreationView.nameTextField becomeFirstResponder];
   [self.pointCreationView summonWithDuration:ANIMATION_DURATION completion:^(BOOL finished) {
-    if (finished) [self.pointCreationView.nameTextField becomeFirstResponder];
+    [self.mapView zoomToFitAnnotation:self.userPointAnnotation animated:YES];
   }];
 }
 
@@ -118,6 +128,7 @@
     CGRect frame = self.pointCreationView.frame;
     frame.origin.y += [recognizer translationInView:self.view].y;
     self.pointCreationView.frame = frame;
+
     [recognizer setTranslation:CGPointZero inView:self.view];
   } else if (recognizer.state == UIGestureRecognizerStateEnded) {
     if (self.pointCreationView.frame.origin.y <= 0.f) {
@@ -126,7 +137,7 @@
       [self.pointCreationView endEditing:NO];
       [self.pointCreationView dismissWithDuration:ANIMATION_DURATION completion:nil];
     } else {
-      [self.pointCreationView summonWithDuration:0.2 completion:nil];
+      [self.pointCreationView summonWithDuration:ANIMATION_DURATION completion:nil];
     }
     [recognizer setTranslation:CGPointZero inView:self.view];
   }
@@ -159,11 +170,8 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
   // todo(adam): perform segue instead of this
-  CYPoint *point = view.annotation;
-  NSLog(@"callout accessory tapped for %@", point.name);
-  CYPointDetailViewController *detail = [[CYPointDetailViewController alloc] init];
-  detail.point = point;
-  [self.navigationController pushViewController:detail animated:YES];
+  NSLog(@"callout accessory tapped for %@", ((CYPoint *)view.annotation).name);
+  [self performSegueWithIdentifier:@"CYPointDetailViewController_Segue" sender:view];
 }
 
 #pragma mark - CYPointCreationDelegate
@@ -173,7 +181,7 @@
 
   CYPoint *point = [CYPoint pointWithName:view.nameTextField.text summary:view.summaryTextView.text imageURLString:@"" location:self.userPointAnnotation.coordinate map:[CYUser activeMap] context:[CYAppDelegate mainContext] save:YES];
   [self.mapView addAnnotation:point];
-  [CYAnalytics logEvent:CYANALYTICS_EVENT_USER_ADDED_POINT withParameters:nil];
+  [CYAnalytics logEvent:CYAnalyticsEventPointCreated withParameters:nil];
 
   [self.mapView removeAnnotation:self.userPointAnnotation];
   self.userPointAnnotation = nil;

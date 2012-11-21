@@ -47,7 +47,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [CYAnalytics logEvent:CYANALYTICS_EVENT_SEARCH_VISIT withParameters:nil];
+  [CYAnalytics logEvent:CYAnalyticsEventMapsVisited withParameters:nil];
 }
 
 #pragma mark - Fetch and search setup
@@ -82,7 +82,7 @@
     CYMapDetailViewController *destination = segue.destinationViewController;
     destination.map = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
   } else if ([segue.identifier isEqualToString:@"CYMapCreationTableViewController_Segue"]) {
-    [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATE_SELECTED withParameters:nil];
+    [CYAnalytics logEvent:CYAnalyticsEventMapCreateSelected withParameters:nil];
   }
 }
 
@@ -121,15 +121,11 @@
   [[CYAppDelegate mainContext] saveWithSuccess:nil];
 }
 
-- (IBAction)mapCreationDidCancel:(UIStoryboardSegue *)segue {
-  NSLog(@"Canceled map creation");
-}
-
 - (IBAction)mapCreationDidSave:(UIStoryboardSegue *)segue {
   CYMapCreationTableViewController *source = segue.sourceViewController;
   if (source.nameTextField.text.length && source.summaryTextView.text.length) {
     [CYMap mapWithName:source.nameTextField.text summary:source.summaryTextView.text context:[CYAppDelegate mainContext] save:YES];
-    [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_CREATED withParameters:nil];
+    [CYAnalytics logEvent:CYAnalyticsEventMapCreated withParameters:nil];
   }
 }
 

@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
+        <!--Map View Controller - Around Me-->
         <scene sceneID="7ov-j1-sRK">
             <objects>
-                <viewController storyboardIdentifier="CYMapViewController" wantsFullScreenLayout="YES" id="l6a-62-OqY" customClass="CYMapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CYMapViewController" id="l6a-62-OqY" customClass="CYMapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7dQ-YI-8bK">
                         <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -30,16 +30,6 @@
                                             <outlet property="delegate" destination="l6a-62-OqY" id="U3e-qf-ZrX"/>
                                         </connections>
                                     </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcE-d6-fyu" customClass="ARTextView">
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="l6a-62-OqY" id="tn0-Uy-NRt"/>
-                                        </connections>
-                                    </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsb-BC-zBT">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="23" id="rRh-7d-T1s"/>
@@ -56,6 +46,16 @@
                                             <action selector="save:" destination="gV5-YB-EyG" eventType="touchUpInside" id="vqB-gO-7hT"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcE-d6-fyu" customClass="ARTextView">
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="l6a-62-OqY" id="tn0-Uy-NRt"/>
+                                        </connections>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -80,24 +80,24 @@
                             <constraint firstItem="URG-of-fA3" firstAttribute="trailing" secondItem="7dQ-YI-8bK" secondAttribute="trailing" type="default" id="04S-rf-qhp"/>
                             <constraint firstItem="URG-of-fA3" firstAttribute="bottom" secondItem="7dQ-YI-8bK" secondAttribute="bottom" type="default" id="4RZ-15-tg6"/>
                             <constraint firstAttribute="trailing" secondItem="gV5-YB-EyG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Aqx-c9-bfv"/>
-                            <constraint firstItem="gV5-YB-EyG" firstAttribute="top" secondItem="7dQ-YI-8bK" secondAttribute="top" constant="49" id="B7E-Mu-I8e"/>
+                            <constraint firstAttribute="bottom" secondItem="gV5-YB-EyG" secondAttribute="bottom" constant="329" id="BUp-LZ-wQK"/>
+                            <constraint firstItem="gV5-YB-EyG" firstAttribute="top" secondItem="7dQ-YI-8bK" secondAttribute="top" constant="20" symbolic="YES" type="default" id="G9X-X5-Vdn"/>
                             <constraint firstItem="URG-of-fA3" firstAttribute="leading" secondItem="7dQ-YI-8bK" secondAttribute="leading" type="default" id="WSo-VF-T5P"/>
                             <constraint firstItem="gV5-YB-EyG" firstAttribute="leading" secondItem="7dQ-YI-8bK" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aLf-7P-O64"/>
-                            <constraint firstAttribute="bottom" secondItem="gV5-YB-EyG" secondAttribute="bottom" constant="300" id="g8T-jW-3p2"/>
                             <constraint firstItem="URG-of-fA3" firstAttribute="top" secondItem="7dQ-YI-8bK" secondAttribute="top" type="default" id="v5a-B0-3uw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hc8-r0-Eyu"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <tabBarItem key="tabBarItem" title="Around Me" image="73-radar.png" id="vnV-Rj-sOU"/>
                     <connections>
                         <outlet property="mapView" destination="URG-of-fA3" id="0Jx-1r-FuA"/>
                         <outlet property="pointCreationView" destination="gV5-YB-EyG" id="ISp-ui-bRd"/>
-                        <segue destination="zN3-uL-dhY" kind="push" identifier="CYPointDetailViewController_Segue" id="mtb-9e-qBI"/>
+                        <segue destination="ihc-AA-jhO" kind="modal" identifier="CYPointDetailViewController_Segue" id="XdY-DQ-buC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bb2-Yj-GS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gyL-0q-TXk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-242" y="128"/>
+            <point key="canvasLocation" x="-737" y="128"/>
         </scene>
         <!--Map Detail View Controller-->
         <scene sceneID="ksm-Wb-VBB">
@@ -170,19 +170,19 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csl-IM-QsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="275" y="1171"/>
+            <point key="canvasLocation" x="287" y="1527"/>
         </scene>
         <!--Point Detail View Controller-->
         <scene sceneID="QzA-e9-v0b">
             <objects>
                 <viewController id="zN3-uL-dhY" customClass="CYPointDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kne-5L-F7O">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iem-fv-IVU">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="225" id="p5O-Bf-rit"/>
+                                    <constraint firstAttribute="height" constant="150" id="KuG-Hj-ZbQ"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjQ-XB-9ht">
@@ -199,21 +199,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbJ-2e-UmN">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8z-Yx-LkU">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="H8s-zq-PrJ"/>
+                                </constraints>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VbJ-2e-UmN" firstAttribute="leading" secondItem="kne-5L-F7O" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="2gG-Xi-ztF"/>
-                            <constraint firstAttribute="trailing" secondItem="VbJ-2e-UmN" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="HHc-ch-8V4"/>
+                            <constraint firstItem="M8z-Yx-LkU" firstAttribute="trailing" secondItem="kne-5L-F7O" secondAttribute="trailing" type="default" id="2y6-xa-cO8"/>
+                            <constraint firstItem="M8z-Yx-LkU" firstAttribute="leading" secondItem="kne-5L-F7O" secondAttribute="leading" type="default" id="5NX-bX-hoB"/>
                             <constraint firstAttribute="bottom" secondItem="kTc-Fs-cvT" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Jih-4V-X21"/>
                             <constraint firstItem="sjQ-XB-9ht" firstAttribute="leading" secondItem="kne-5L-F7O" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Kga-6w-QKI"/>
-                            <constraint firstItem="sjQ-XB-9ht" firstAttribute="top" secondItem="VbJ-2e-UmN" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NQ7-U0-04Z"/>
+                            <constraint firstItem="Iem-fv-IVU" firstAttribute="top" secondItem="kne-5L-F7O" secondAttribute="top" type="default" id="PaW-N8-DS4"/>
+                            <constraint firstItem="M8z-Yx-LkU" firstAttribute="top" secondItem="Iem-fv-IVU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Q7j-pA-0Gc"/>
                             <constraint firstAttribute="trailing" secondItem="kTc-Fs-cvT" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Vc9-DN-Ina"/>
-                            <constraint firstItem="Iem-fv-IVU" firstAttribute="top" secondItem="kne-5L-F7O" secondAttribute="top" type="user" id="bWb-Eq-jAg"/>
                             <constraint firstItem="kTc-Fs-cvT" firstAttribute="leading" secondItem="kne-5L-F7O" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="fUS-2r-EE2"/>
                             <constraint firstItem="kTc-Fs-cvT" firstAttribute="top" secondItem="sjQ-XB-9ht" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="gRr-3c-agc"/>
                             <constraint firstAttribute="trailing" secondItem="sjQ-XB-9ht" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="qZr-bv-J0R"/>
@@ -221,18 +221,38 @@
                             <constraint firstItem="Iem-fv-IVU" firstAttribute="trailing" secondItem="kne-5L-F7O" secondAttribute="trailing" type="default" id="xrD-sR-SuD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="fea-Ga-Ict"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationItem key="navigationItem" id="fea-Ga-Ict">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="5X0-2b-Ldt">
+                            <connections>
+                                <segue destination="gyL-0q-TXk" kind="unwind" unwindAction="pointDetailDone:" id="JdZ-cQ-e31"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="distanceLabel" destination="sjQ-XB-9ht" id="eO4-6W-UNA"/>
                         <outlet property="imageView" destination="Iem-fv-IVU" id="oUQ-H3-DXV"/>
-                        <outlet property="nameLabel" destination="VbJ-2e-UmN" id="QCe-H7-YNJ"/>
+                        <outlet property="mapView" destination="M8z-Yx-LkU" id="D1S-KD-1EA"/>
                         <outlet property="summaryTextView" destination="kTc-Fs-cvT" id="2UF-ca-eZE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0eB-WG-1fD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="806" y="128"/>
+            <point key="canvasLocation" x="287" y="128"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="D5J-9x-Ued">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="ihc-AA-jhO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="joO-pG-zI8">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zN3-uL-dhY" kind="relationship" relationship="rootViewController" id="f7o-2S-Csi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iaB-Qp-jmz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-242" y="128"/>
         </scene>
         <!--Map Creation Table View Controller-->
         <scene sceneID="VzF-w4-KD5">
@@ -335,7 +355,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8lx-Uq-wAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="275" y="471"/>
+            <point key="canvasLocation" x="287" y="821"/>
         </scene>
         <!--Point Detail View Controller-->
         <scene sceneID="fYv-AH-Exy">
@@ -615,8 +635,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYn-es-eX3" kind="relationship" relationship="viewControllers" id="XFg-R3-nVj"/>
-                        <segue destination="QSG-0w-u8b" kind="relationship" relationship="viewControllers" id="j4W-mu-Dco"/>
+                        <segue destination="l6a-62-OqY" kind="relationship" relationship="viewControllers" id="Xbx-k6-r5g"/>
+                        <segue destination="QSG-0w-u8b" kind="relationship" relationship="viewControllers" id="9F2-CJ-nh6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hhv-X8-m4K" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -641,25 +661,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Cj-cP-tED" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-737" y="821"/>
-        </scene>
-        <!--Navigation Controller - Around Me-->
-        <scene sceneID="ccO-b7-c4d">
-            <objects>
-                <navigationController id="BYn-es-eX3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Around Me" image="73-radar.png" id="NBo-zk-Ebf"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="d2d-vy-2lQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="l6a-62-OqY" kind="relationship" relationship="rootViewController" id="fwC-em-1Yz"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xsy-Gc-Reu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-735" y="128"/>
         </scene>
     </scenes>
     <resources>
@@ -696,6 +697,7 @@
         <class className="CYMapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapViewController.h"/>
             <relationships>
+                <relationship kind="action" name="pointDetailDone:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="outlet" name="mapView" candidateClass="CYMapView"/>
                 <relationship kind="outlet" name="pointCreationView" candidateClass="CYPointCreationView"/>
             </relationships>
@@ -706,7 +708,6 @@
         <class className="CYMapsTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapsTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="mapCreationDidCancel:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="action" name="mapCreationDidSave:" candidateClass="UIStoryboardSegue"/>
                 <relationship kind="action" name="refresh:" candidateClass="UIRefreshControl"/>
             </relationships>
@@ -724,7 +725,7 @@
             <relationships>
                 <relationship kind="outlet" name="distanceLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="summaryTextView" candidateClass="UITextView"/>
             </relationships>
         </class>
@@ -747,6 +748,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mtb-9e-qBI"/>
+        <segue reference="f7o-2S-Csi"/>
     </inferredMetricsTieBreakers>
 </document>

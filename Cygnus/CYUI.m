@@ -10,17 +10,16 @@
 
 @implementation CYUI
 
-
-static const CGFloat offset = 10.0;
-static const CGFloat curve = 1.3;
 + (UIBezierPath*)bezierPathWithCurvedShadowForRect:(CGRect)rect {
+  static const CGFloat offset = 10.0;
+  static const CGFloat curve = 1.3;
 
 	UIBezierPath *path = [UIBezierPath bezierPath];
 
-	CGPoint topLeft		 = rect.origin;
+	CGPoint topLeft = rect.origin;
 	CGPoint bottomLeft	 = CGPointMake(0.0, CGRectGetHeight(rect) + offset);
 	CGPoint bottomMiddle = CGPointMake(CGRectGetWidth(rect)/2, CGRectGetHeight(rect) - curve);
-	CGPoint bottomRight	 = CGPointMake(CGRectGetWidth(rect), CGRectGetHeight(rect) + offset);
+	CGPoint bottomRight	= CGPointMake(CGRectGetWidth(rect), CGRectGetHeight(rect) + offset);
 	CGPoint topRight	 = CGPointMake(CGRectGetWidth(rect), 0.0);
 
 	[path moveToPoint:topLeft];
@@ -29,66 +28,32 @@ static const CGFloat curve = 1.3;
 	[path addLineToPoint:topRight];
 	[path addLineToPoint:topLeft];
 	[path closePath];
+
 	return path;
 }
 
-
-
-+ (BOOL)isiPhone5
-{
-  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-      CGFloat height = [[UIScreen mainScreen] bounds].size.height * [[UIScreen mainScreen] scale];
-      return height == 1136;
-
-    } else {
-      return NO;
-    }
-  } else {
-    return NO;
-  }
-}
-
-+ (NSString *)ordinalSuffixFromNumber:(NSUInteger)n
-{
-  if (n == 11 || n == 12 || n == 13)
-  {
++ (NSString *)ordinalSuffixFromNumber:(NSUInteger)n {
+  if (n == 11 || n == 12 || n == 13) {
     return @"th";
   }
 
-  n = n % 10;
-
-  switch (n) {
+  switch (n % 10) {
     case 1:
       return @"st";
-
     case 2:
       return @"nd";
-
     case 3:
       return @"rd";
-
     default:
       return @"th";
   }
 }
 
-+ (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSize:(CGSize)newSize;
-{
-  // Create a graphics image context
-  UIGraphicsBeginImageContext(newSize);
-
-  // Tell the old image to draw in this new context, with the desired
-  // new size
-  [sourceImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-
-  // Get the new image from the context
-  UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-
-  // End the context
++ (UIImage *)image:(UIImage*)image scaledToSize:(CGSize)size {
+  UIGraphicsBeginImageContext(size);
+  [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+  UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
-
-  // Return the new image.
   return newImage;
 }
 

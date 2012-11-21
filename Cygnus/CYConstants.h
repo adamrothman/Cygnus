@@ -18,8 +18,3 @@ extern NSString *const PointSummaryKey;
 extern NSString *const PointImageURLStringKey;
 extern NSString *const PointLocationKey;
 extern NSString *const PointMapKey;
-
-// Notifications
-extern NSString *const CYUserDidLogOutNotification;
-extern NSString *const CYUserUnfollowedMapNotification;
-extern NSString *const CYSignificantLocationChangeNotification;

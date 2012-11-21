@@ -9,34 +9,35 @@
 #import "Mixpanel.h"
 #import "Flurry.h"
 
-#define FLURRY_API_KEY_A                                            @"T3854KRVTWBS2QJGT8YJ"
-#define MIXPANEL_TOKEN_A                                            @"92d317371b012072c4781e490b64a0d7"
-#define FLURRY_API_KEY_B                                            @"554CRWWSDDZ7J3GJDNN6"
-#define MIXPANEL_TOKEN_B                                            @"d5298691ab4b8f70de629f4a156f0f1d"
+extern NSString *const FlurryAPIKeyA;
+extern NSString *const FlurryAPIKeyB;
 
-#define MIXPANEL_USER_PROPERTY_EMAIL                                @"$email"
-#define MIXPANEL_USER_PROPERTY_FIRST_NAME                           @"$first_name"
-#define MIXPANEL_USER_PROPERTY_USERNAME                             @"$username"
-#define MIXPANEL_USER_PROPERTY_IOS_DEVICES                          @"$ios_devices"
+extern NSString *const MixpanelTokenA;
+extern NSString *const MixpanelTokenB;
 
-#define CYANALYTICS_CRASH_EVENT                                     @"CRASH!"
-#define CYANALYTICS_EVENT_APP_ACTIVE                                @"Application launch"
-#define CYANALYTICS_EVENT_APP_INACTIVE                              @"Application closed"
+extern NSString *const MixpanelUserPropertyEmail;
+extern NSString *const MixpanelUserPropertyFirstName;
+extern NSString *const MixpanelUserPropertyUsername;
+extern NSString *const MixpanelUserPropertyiOSDevices;
 
-#define CYANALYTICS_EVENT_CONSOLE_VISIT                             @"Console visit"
-#define CYANALYTICS_EVENT_MAP_VISIT                                 @"Map visit"
-#define CYANALYTICS_EVENT_MAP_ADD_SELECTED                          @"Map add selected"
-#define CYANALYTICS_EVENT_MAP_CREATE_SELECTED                       @"Map create selected"
-#define CYANALYTICS_EVENT_MAP_CREATED                               @"Map created"
+extern NSString *const CYAnalyticsEventCrash;
+extern NSString *const CYAnalyticsEventAppActive;
+extern NSString *const CYAnalyticsEventAppInactive;
 
-#define CYANALYTICS_EVENT_MAP_DETAIL_VISIT                          @"Map detail visit"
-#define CYANALYTICS_EVENT_POINT_DETAIL_VISIT                        @"Point detail visit"
-#define CYANALYTICS_EVENT_CAMERA_VISIT                              @"Camera visit"
+extern NSString *const CYAnalyticsEventMapVisited;
+extern NSString *const CYAnalyticsEventPointDropped;
+extern NSString *const CYAnalyticsEventPointCreated;
 
-#define CYANALYTICS_EVENT_USER_DROPPED_POINT                        @"User dropped point"
-#define CYANALYTICS_EVENT_USER_ADDED_POINT                          @"User added point"
+extern NSString *const CYAnalyticsEventMapsVisited;
+extern NSString *const CYAnalyticsEventMapCreateSelected;
+extern NSString *const CYAnalyticsEventMapCreated;
 
-#define CYANALYTICS_EVENT_SEARCH_VISIT                              @"Search visit"
+extern NSString *const CYAnalyticsEventMapDetailVisited;
+extern NSString *const CYAnalyticsEventPointDetailVisited;
+
+extern NSString *const CYAnalyticsEventCameraVisited;
+
+#define CYANALYTICS_EVENT_SEARCH_VISIT
 
 @interface CYAnalytics : NSObject
 

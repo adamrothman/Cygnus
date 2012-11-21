@@ -8,7 +8,6 @@
 
 @interface CYMapsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
 
-- (IBAction)mapCreationDidCancel:(UIStoryboardSegue *)segue;
 - (IBAction)mapCreationDidSave:(UIStoryboardSegue *)segue;
 
 @end

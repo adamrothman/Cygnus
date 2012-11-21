@@ -16,4 +16,6 @@
 @property (nonatomic, weak) IBOutlet CYPointCreationView *pointCreationView;
 @property (nonatomic, strong) AwesomeMenu *menu;
 
+- (IBAction)pointDetailDone:(UIStoryboardSegue *)segue;
+
 @end

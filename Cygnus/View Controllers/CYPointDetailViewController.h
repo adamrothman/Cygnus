@@ -13,8 +13,8 @@
 @property (nonatomic, strong) CYPoint *point;
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet MKMapView *mapView;
 
-@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *distanceLabel;
 @property (nonatomic, weak) IBOutlet UITextView *summaryTextView;
 

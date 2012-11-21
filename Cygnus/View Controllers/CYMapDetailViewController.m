@@ -61,14 +61,14 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self.mapView zoomToFitAnnotationsWithUser:NO animated:NO];
-  [CYAnalytics logEvent:CYANALYTICS_EVENT_MAP_DETAIL_VISIT withParameters:nil];
+  [CYAnalytics logEvent:CYAnalyticsEventMapDetailVisited withParameters:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([segue.identifier isEqualToString:@"CYPointDetailViewController_Segue"]) {
-    CYPoint *point = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
     CYPointDetailViewController *destination = segue.destinationViewController;
-    destination.point = point;
+    destination.navigationItem.rightBarButtonItem = nil;
+    destination.point = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
     destination.distanceLabel.text = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow].detailTextLabel.text;
   }
 }

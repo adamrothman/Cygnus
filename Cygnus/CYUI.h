@@ -6,16 +6,12 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
-#import <SSToolkit/SSCategories.h>
-#import "UIView+Layout.h"
-#import "UIImage+ImageFromDiskNamed.h"
-#import "NSAttributedString+Attributes.h"
-
 @interface CYUI : NSObject
 
++ (UIBezierPath *)bezierPathWithCurvedShadowForRect:(CGRect)rect;
+
 + (NSString *)ordinalSuffixFromNumber:(NSUInteger)n;
-+ (BOOL)isiPhone5;
-+ (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSize:(CGSize)newSize;
-+ (UIBezierPath*)bezierPathWithCurvedShadowForRect:(CGRect)rect;
+
++ (UIImage *)image:(UIImage*)image scaledToSize:(CGSize)size;
 
 @end

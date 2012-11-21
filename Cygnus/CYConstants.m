@@ -20,8 +20,3 @@ NSString *const PointSummaryKey = @"summary";
 NSString *const PointImageURLStringKey = @"image_url";
 NSString *const PointLocationKey = @"location";
 NSString *const PointMapKey = @"map";
-
-// Notifications
-NSString *const CYUserDidLogOutNotification = @"cy_user_did_log_out";
-NSString *const CYUserUnfollowedMapNotification = @"cy_user_unfollowed_map";
-NSString *const CYSignificantLocationChangeNotification = @"cy_significant_location_change";

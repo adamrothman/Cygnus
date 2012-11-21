@@ -33,6 +33,7 @@
   if (!self.framesSet) return;
   [UIView animateWithDuration:duration delay:0 options:self.animationOptions animations:^{
     self.frame = self.onscreenFrame;
+    self.alpha = 1.f;
   } completion:^(BOOL finished) {
     if (completion) completion(finished);
   }];
@@ -42,6 +43,7 @@
   if (!self.framesSet) return;
   [UIView animateWithDuration:duration delay:0 options:self.animationOptions animations:^{
     self.frame = self.offscreenFrame;
+    self.alpha = 0.f;
   } completion:^(BOOL finished) {
     if (completion) completion(finished);
   }];
