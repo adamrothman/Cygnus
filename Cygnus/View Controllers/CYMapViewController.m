@@ -153,24 +153,25 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-  if ([annotation isKindOfClass:[MKUserLocation class]]) return nil;
-  static NSString *identifier = @"default-pin";
-  MKPinAnnotationView *view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+  if (annotation == mapView.userLocation) return nil;
+
+  static NSString *identifier = @"CYMapViewControllerPin";
+  MKPinAnnotationView *view = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+  if (!view) view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+
   if (annotation == self.userPointAnnotation) {
     view.pinColor = MKPinAnnotationColorGreen;
     view.canShowCallout = NO;
-  } else { //Map point annotation
-    view.pinColor = MKPinAnnotationColorRed;
-    view.canShowCallout = YES;
+  } else {
     view.animatesDrop = NO;
+    view.canShowCallout = YES;
     view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
   }
+
   return view;
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-  // todo(adam): perform segue instead of this
-  NSLog(@"callout accessory tapped for %@", ((CYPoint *)view.annotation).name);
   [self performSegueWithIdentifier:@"CYPointDetailViewController_Segue" sender:view];
 }
 

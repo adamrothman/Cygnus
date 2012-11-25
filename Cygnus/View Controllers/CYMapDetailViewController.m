@@ -15,10 +15,6 @@
 #import "CYUI.h"
 #import "CYMapView.h"
 
-#define POINT_CELL              @"CYPointTableViewCell"
-#define MAP_CELL                @"CYMapTableViewCell"
-#define GROUP_CELL              @"CYGroupTableViewCell"
-
 @interface CYMapDetailViewController ()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -33,6 +29,7 @@
   [super viewDidLoad];
 
   self.navigationItem.title = self.map.name;
+  self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStyleBordered target:nil action:nil];
 
   self.mapView.map = self.map;
 
@@ -68,8 +65,14 @@
   if ([segue.identifier isEqualToString:@"CYPointDetailViewController_Segue"]) {
     CYPointDetailViewController *destination = segue.destinationViewController;
     destination.navigationItem.rightBarButtonItem = nil;
-    destination.point = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
-    destination.distanceLabel.text = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow].detailTextLabel.text;
+    CYPoint *point = nil;
+    if ([sender isKindOfClass:[MKAnnotationView class]]) {
+      point = ((MKAnnotationView *)sender).annotation;
+    } else {
+      point = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
+      destination.distanceLabel.text = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow].detailTextLabel.text;
+    }
+    destination.point = point;
   }
 }
 
@@ -89,6 +92,26 @@
   }
 }
 
+#pragma mark - MKMapViewDelegate
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+  if (annotation == mapView.userLocation) return nil;
+
+  static NSString *identifier = @"CYMapDetailViewControllerPin";
+  MKPinAnnotationView *view = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+  if (!view) view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+
+  view.animatesDrop = NO;
+  view.canShowCallout = YES;
+  view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+
+  return view;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+  [self performSegueWithIdentifier:@"CYPointDetailViewController_Segue" sender:view];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -101,17 +124,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSString *identifier = POINT_CELL;
+  static NSString *identifier = @"CYMapDetailViewControllerCell";
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
   CYPoint *point = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+  [cell.textLabel setFont:[UIFont fontWithName:@"CODE Light" size:17]];
   cell.textLabel.text = point.name;
 
-  CLLocation *temp = [[CLLocation alloc] initWithCoordinate:point.coordinate altitude:0 horizontalAccuracy:0 verticalAccuracy:0 timestamp:nil];
-  float distance = [temp distanceFromLocation:self.mapView.userLocation.location];
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f", distance/1000];
-  [cell.textLabel setFont:[UIFont fontWithName:@"CODE Light" size:17]];
-  [cell.detailTextLabel setFont:[UIFont fontWithName:@"accent" size:9]];
   return cell;
 }
 

@@ -13,7 +13,18 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  self.navigationItem.title = self.point.name;
+
+  self.imageView.layer.cornerRadius = 4.f;
+  self.imageView.clipsToBounds = YES;
   [self.imageView cancelImageRequestOperation];
+
+  self.mapView.layer.cornerRadius = 4.f;
+
+//  self.layer.borderWidth = 1.f;
+//  self.layer.shadowOpacity = 0.5f;
+//  self.layer.shadowOffset = CGSizeMake(0.f, 2.5f);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -26,25 +37,36 @@
     } completion:nil];
   } failure:nil];
 
-  [self.mapView addAnnotation:_point];
+  [self.mapView addAnnotation:self.point];
+
+  CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:self.point.coordinate.latitude longitude:self.point.coordinate.longitude];
+  self.distanceLabel.text = [NSString stringWithFormat:@"%.0f m", [self.mapView.userLocation.location distanceFromLocation:pointLocation]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [CYAnalytics logEvent:CYAnalyticsEventPointDetailVisited withParameters:nil];
-  // todo(adam) this zooms too far here
-  [self.mapView zoomToFitAnnotationsWithUser:NO animated:NO];
+  [self.mapView zoomToFitAnnotationsWithUser:YES animated:NO];
 }
 
-#pragma mark - Properties
+#pragma mark - MKMapViewDelegate
 
-- (void)setPoint:(CYPoint *)point {
-  _point = point;
-  if (_point) {
-    self.navigationItem.title = _point.name;
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+  if (annotation == mapView.userLocation) return nil;
 
-    self.summaryTextView.text = _point.summary;
-  }
+  static NSString *identifier = @"CYPointDetailViewControllerPin";
+  MKPinAnnotationView *view = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+  if (!view) view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+
+  view.animatesDrop = NO;
+  view.canShowCallout = NO;
+
+  return view;
+}
+
+// prevent displaying current location callout
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+  if (view.annotation == mapView.userLocation) [mapView deselectAnnotation:view.annotation animated:NO];
 }
 
 @end

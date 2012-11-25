@@ -107,15 +107,18 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qga-A9-GRZ" customClass="CYMapView">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qga-A9-GRZ" customClass="CYMapView">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" type="user" id="mI9-Qe-vSv"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="pJr-gB-5ra" id="pnl-Zy-lmS"/>
+                                </connections>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="37S-cI-trk">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CYPointTableViewCell" textLabel="2wh-tY-dDN" detailTextLabel="yb0-yf-0V8" style="IBUITableViewCellStyleValue1" id="ICf-hd-YSz">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CYMapDetailViewControllerCell" textLabel="2wh-tY-dDN" style="IBUITableViewCellStyleDefault" id="ICf-hd-YSz">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -123,17 +126,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2wh-tY-dDN">
-                                                    <rect key="frame" x="10" y="11" width="35" height="21"/>
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yb0-yf-0V8">
-                                                    <rect key="frame" x="246" y="11" width="44" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
@@ -177,12 +173,13 @@
             <objects>
                 <viewController id="zN3-uL-dhY" customClass="CYPointDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kne-5L-F7O">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iem-fv-IVU">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="KuG-Hj-ZbQ"/>
+                                    <constraint firstAttribute="width" constant="300" id="gna-M6-N8g"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjQ-XB-9ht">
@@ -199,26 +196,28 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8z-Yx-LkU">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M8z-Yx-LkU">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="H8s-zq-PrJ"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="zN3-uL-dhY" id="3ot-5B-wHX"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="M8z-Yx-LkU" firstAttribute="trailing" secondItem="kne-5L-F7O" secondAttribute="trailing" type="default" id="2y6-xa-cO8"/>
-                            <constraint firstItem="M8z-Yx-LkU" firstAttribute="leading" secondItem="kne-5L-F7O" secondAttribute="leading" type="default" id="5NX-bX-hoB"/>
+                            <constraint firstItem="Iem-fv-IVU" firstAttribute="top" secondItem="kne-5L-F7O" secondAttribute="top" constant="10" id="Frv-aQ-UGD"/>
                             <constraint firstAttribute="bottom" secondItem="kTc-Fs-cvT" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Jih-4V-X21"/>
                             <constraint firstItem="sjQ-XB-9ht" firstAttribute="leading" secondItem="kne-5L-F7O" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Kga-6w-QKI"/>
-                            <constraint firstItem="Iem-fv-IVU" firstAttribute="top" secondItem="kne-5L-F7O" secondAttribute="top" type="default" id="PaW-N8-DS4"/>
-                            <constraint firstItem="M8z-Yx-LkU" firstAttribute="top" secondItem="Iem-fv-IVU" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Q7j-pA-0Gc"/>
+                            <constraint firstItem="M8z-Yx-LkU" firstAttribute="top" secondItem="Iem-fv-IVU" secondAttribute="bottom" constant="11" type="user" id="V4V-ZU-7MK"/>
                             <constraint firstAttribute="trailing" secondItem="kTc-Fs-cvT" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Vc9-DN-Ina"/>
+                            <constraint firstItem="sjQ-XB-9ht" firstAttribute="centerX" secondItem="M8z-Yx-LkU" secondAttribute="centerX" type="default" id="VeF-0q-sIW"/>
                             <constraint firstItem="kTc-Fs-cvT" firstAttribute="leading" secondItem="kne-5L-F7O" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="fUS-2r-EE2"/>
+                            <constraint firstItem="Iem-fv-IVU" firstAttribute="leading" secondItem="M8z-Yx-LkU" secondAttribute="leading" type="default" id="gKD-KI-IY9"/>
                             <constraint firstItem="kTc-Fs-cvT" firstAttribute="top" secondItem="sjQ-XB-9ht" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="gRr-3c-agc"/>
                             <constraint firstAttribute="trailing" secondItem="sjQ-XB-9ht" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="qZr-bv-J0R"/>
-                            <constraint firstItem="Iem-fv-IVU" firstAttribute="leading" secondItem="kne-5L-F7O" secondAttribute="leading" type="default" id="sAp-rV-Z92"/>
-                            <constraint firstItem="Iem-fv-IVU" firstAttribute="trailing" secondItem="kne-5L-F7O" secondAttribute="trailing" type="default" id="xrD-sR-SuD"/>
+                            <constraint firstItem="M8z-Yx-LkU" firstAttribute="trailing" secondItem="Iem-fv-IVU" secondAttribute="trailing" type="default" id="w7R-ho-zYJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fea-Ga-Ict">
@@ -670,84 +669,12 @@
         <image name="86-camera.png" width="24" height="18"/>
         <image name="polaroid.png" width="212" height="252"/>
     </resources>
-    <classes>
-        <class className="ARTextField" superclassName="UITextField">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ARTextField.h"/>
-        </class>
-        <class className="ARTextView" superclassName="UITextView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ARTextView.h"/>
-        </class>
-        <class className="CYMapCreationTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapCreationTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameTextField" candidateClass="ARTextField"/>
-                <relationship kind="outlet" name="summaryTextView" candidateClass="ARTextView"/>
-            </relationships>
-        </class>
-        <class className="CYMapDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="CYMapView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="CYMapView" superclassName="MKMapView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapView.h"/>
-        </class>
-        <class className="CYMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pointDetailDone:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="outlet" name="mapView" candidateClass="CYMapView"/>
-                <relationship kind="outlet" name="pointCreationView" candidateClass="CYPointCreationView"/>
-            </relationships>
-        </class>
-        <class className="CYMapsTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapsTableViewCell.h"/>
-        </class>
-        <class className="CYMapsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapsTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="mapCreationDidSave:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="refresh:" candidateClass="UIRefreshControl"/>
-            </relationships>
-        </class>
-        <class className="CYPointCreationView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYPointCreationView.h"/>
-            <relationships>
-                <relationship kind="action" name="save:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="nameTextField" candidateClass="ARTextField"/>
-                <relationship kind="outlet" name="summaryTextView" candidateClass="ARTextView"/>
-            </relationships>
-        </class>
-        <class className="CYPointDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYPointDetailViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="distanceLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="summaryTextView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="CYTabBarViewController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYTabBarViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="UIRefreshControl" superclassName="UIControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
-        </class>
-        <class className="UIStoryboardSegue" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="f7o-2S-Csi"/>
+        <segue reference="Kea-R3-Xm3"/>
     </inferredMetricsTieBreakers>
 </document>

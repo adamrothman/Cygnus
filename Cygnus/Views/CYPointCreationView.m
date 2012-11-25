@@ -22,7 +22,7 @@
   self.layer.cornerRadius = 8.f;
   self.layer.shadowOpacity = 0.5f;
   self.layer.shadowOffset = CGSizeMake(0.f, 2.5f);
-  self.contentMode = UIViewContentModeScaleToFill;
+  //self.contentMode = UIViewContentModeScaleToFill;
 
   self.animationOptions = UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState;
 

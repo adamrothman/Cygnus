@@ -9,7 +9,7 @@
 #import "CYMap+Additions.h"
 #import "CYMapView.h"
 
-@interface CYMapDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@interface CYMapDetailViewController : UIViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) CYMap *map;
 
