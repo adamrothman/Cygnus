@@ -36,6 +36,7 @@ extern NSString *const CYAnalyticsEventMapDetailVisited;
 extern NSString *const CYAnalyticsEventPointDetailVisited;
 
 extern NSString *const CYAnalyticsEventCameraVisited;
+extern NSString *const CYAnalyticsEventPhotoUploaded;
 
 #define CYANALYTICS_EVENT_SEARCH_VISIT
 

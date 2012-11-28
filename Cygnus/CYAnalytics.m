@@ -35,6 +35,7 @@ NSString *const CYAnalyticsEventMapDetailVisited = @"Map detail visit";
 NSString *const CYAnalyticsEventPointDetailVisited = @"Point detail visit";
 
 NSString *const CYAnalyticsEventCameraVisited = @"Camera visit";
+NSString *const CYAnalyticsEventPhotoUploaded = @"Photo uploaded";
 
 void uncaughtExceptionHandler(NSException *exception) {
   [CYAnalytics logError:CYAnalyticsEventCrash message:nil exception:exception];
@@ -43,7 +44,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 @implementation CYAnalytics
 
 + (void)startTrackingEvents {
-  Mixpanel *sharedInstance = [Mixpanel sharedInstanceWithToken:MixpanelTokenA];
+  Mixpanel *sharedInstance = [Mixpanel sharedInstanceWithToken:MixpanelTokenB];
   sharedInstance.flushOnBackground = YES;
   sharedInstance.showNetworkActivityIndicator = NO;
   NSSetUncaughtExceptionHandler(uncaughtExceptionHandler);

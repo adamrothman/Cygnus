@@ -16,7 +16,7 @@
 #import "CYMapView.h"
 
 @interface CYMapDetailViewController ()
-
+@property (weak, nonatomic) IBOutlet UIView *mapContainerView;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
@@ -27,12 +27,23 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
-  self.navigationItem.title = self.map.name;
+  int height = self.navigationController.navigationBar.frame.size.height;
+  int width = self.navigationController.navigationBar.frame.size.width;
+  UILabel *navLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+  navLabel.text = self.map.name;
+  navLabel.backgroundColor = [UIColor clearColor];
+  navLabel.textColor = [UIColor whiteColor];
+  navLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+  navLabel.font = [UIFont fontWithName:@"Code Light" size:22];
+  navLabel.textAlignment = UITextAlignmentCenter;
+  self.navigationItem.titleView = navLabel;
+  [navLabel sizeToFit];
+  [navLabel alignHorizontally:UIViewHorizontalAlignmentCenter];
   self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStyleBordered target:nil action:nil];
 
   self.mapView.map = self.map;
-
+  [self.mapView zoomToFitAnnotationsWithUser:NO animated:NO];
+  self.mapContainerView.layer.cornerRadius = 3.0f;
   [self setUpFetchedResultsController];
 
   //  self.headerContainer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
@@ -52,12 +63,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  [self.mapView zoomToFitAnnotationsWithUser:NO animated:NO];
   [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self.mapView zoomToFitAnnotationsWithUser:NO animated:NO];
   [CYAnalytics logEvent:CYAnalyticsEventMapDetailVisited withParameters:nil];
 }
 
@@ -70,7 +81,6 @@
       point = ((MKAnnotationView *)sender).annotation;
     } else {
       point = [self.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
-      destination.distanceLabel.text = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow].detailTextLabel.text;
     }
     destination.point = point;
   }
@@ -98,18 +108,23 @@
   if (annotation == mapView.userLocation) return nil;
 
   static NSString *identifier = @"CYMapDetailViewControllerPin";
-  MKPinAnnotationView *view = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-  if (!view) view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-
-  view.animatesDrop = NO;
+  MKAnnotationView *view = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+  if (!view) view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
   view.canShowCallout = YES;
-  view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-
+  [view setImage:[UIImage imageNamed:@"grayPin.png"]];\
+  view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeInfoLight];
   return view;
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
   [self performSegueWithIdentifier:@"CYPointDetailViewController_Segue" sender:view];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  [self performSegueWithIdentifier:@"CYPointDetailViewController_Segue" sender:indexPath];
 }
 
 #pragma mark - UITableViewDataSource
@@ -129,9 +144,8 @@
 
   CYPoint *point = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-  [cell.textLabel setFont:[UIFont fontWithName:@"CODE Light" size:17]];
+  cell.textLabel.font = [UIFont fontWithName:@"Fabrica" size:15];
   cell.textLabel.text = point.name;
-
   return cell;
 }
 

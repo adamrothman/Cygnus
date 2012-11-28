@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E4A41751666037200EBA3AD /* CYPointDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4A41741666037200EBA3AD /* CYPointDetailViewController.m */; };
+		4E4A41781666075100EBA3AD /* gray_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41761666075100EBA3AD /* gray_bg.png */; };
+		4E4A41791666075100EBA3AD /* gray_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41771666075100EBA3AD /* gray_bg@2x.png */; };
+		4E4A41831666123600EBA3AD /* title-label-gradient-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41821666123600EBA3AD /* title-label-gradient-bottom.png */; };
+		4E4A41BE1666323900EBA3AD /* bluePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41BC1666323800EBA3AD /* bluePin.png */; };
+		4E4A41BF1666323900EBA3AD /* bluePin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41BD1666323800EBA3AD /* bluePin@2x.png */; };
+		4E4A41C21666353F00EBA3AD /* grayPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41C01666353E00EBA3AD /* grayPin.png */; };
+		4E4A41C31666353F00EBA3AD /* grayPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41C11666353F00EBA3AD /* grayPin@2x.png */; };
+		4E4A41C61666361400EBA3AD /* greenPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41C41666361300EBA3AD /* greenPin.png */; };
+		4E4A41C71666361400EBA3AD /* greenPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41C51666361300EBA3AD /* greenPin@2x.png */; };
+		4E4A41C916663CB300EBA3AD /* Fabrica.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41C816663CB300EBA3AD /* Fabrica.otf */; };
+		4E4A41D4166643BE00EBA3AD /* done_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41D2166643BC00EBA3AD /* done_button.png */; };
+		4E4A41D5166643BE00EBA3AD /* done_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E4A41D3166643BD00EBA3AD /* done_button@2x.png */; };
 		4E541ADE16550F9F00E495D1 /* pointCreationDefaultScheme.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E541ADD16550F9F00E495D1 /* pointCreationDefaultScheme.json */; };
 		4E541B18165548EE00E495D1 /* hud-check.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B13165548EE00E495D1 /* hud-check.png */; };
 		4E541B19165548EE00E495D1 /* hud-check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E541B14165548EE00E495D1 /* hud-check@2x.png */; };
@@ -104,7 +117,6 @@
 		666CEDB91656504B00D0179B /* CYMapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDAA1656504B00D0179B /* CYMapDetailViewController.m */; };
 		666CEDBA1656504B00D0179B /* CYMapsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDAC1656504B00D0179B /* CYMapsTableViewController.m */; };
 		666CEDBB1656504B00D0179B /* CYMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDAE1656504B00D0179B /* CYMapViewController.m */; };
-		666CEDBE1656504B00D0179B /* CYPointDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDB31656504B00D0179B /* CYPointDetailViewController.m */; };
 		666CEDBF1656504B00D0179B /* CYTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 666CEDB51656504B00D0179B /* CYTabBarViewController.m */; };
 		666CEDC1165652DB00D0179B /* libSSToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 666CED5D16564CB700D0179B /* libSSToolkit.a */; };
 		666CEDCA1656545800D0179B /* nav-bar-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 666CEDC81656545800D0179B /* nav-bar-background.png */; };
@@ -131,6 +143,7 @@
 		66F2B2EB1654DAD20043DD15 /* CYPoint+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2EA1654DAD20043DD15 /* CYPoint+Additions.m */; };
 		66F2B2FF1654F0660043DD15 /* CYUser+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2B2FE1654F0660043DD15 /* CYUser+Additions.m */; };
 		66F8776616599AB2007B4E53 /* CYPointCreationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F8776516599AB2007B4E53 /* CYPointCreationView.m */; };
+		6D0414C69ECF48F88BD5A953 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13719CFDB4F64C45B3910321 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +185,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CC0130432C24CBAA0F8E857 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		13719CFDB4F64C45B3910321 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E4A41731666037200EBA3AD /* CYPointDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPointDetailViewController.h; sourceTree = "<group>"; };
+		4E4A41741666037200EBA3AD /* CYPointDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPointDetailViewController.m; sourceTree = "<group>"; };
+		4E4A41761666075100EBA3AD /* gray_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_bg.png; sourceTree = "<group>"; };
+		4E4A41771666075100EBA3AD /* gray_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_bg@2x.png"; sourceTree = "<group>"; };
+		4E4A41821666123600EBA3AD /* title-label-gradient-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title-label-gradient-bottom.png"; sourceTree = "<group>"; };
+		4E4A41BC1666323800EBA3AD /* bluePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluePin.png; sourceTree = "<group>"; };
+		4E4A41BD1666323800EBA3AD /* bluePin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bluePin@2x.png"; sourceTree = "<group>"; };
+		4E4A41C01666353E00EBA3AD /* grayPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayPin.png; sourceTree = "<group>"; };
+		4E4A41C11666353F00EBA3AD /* grayPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayPin@2x.png"; sourceTree = "<group>"; };
+		4E4A41C41666361300EBA3AD /* greenPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenPin.png; sourceTree = "<group>"; };
+		4E4A41C51666361300EBA3AD /* greenPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenPin@2x.png"; sourceTree = "<group>"; };
+		4E4A41C816663CB300EBA3AD /* Fabrica.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fabrica.otf; sourceTree = "<group>"; };
+		4E4A41D2166643BC00EBA3AD /* done_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done_button.png; sourceTree = "<group>"; };
+		4E4A41D3166643BD00EBA3AD /* done_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done_button@2x.png"; sourceTree = "<group>"; };
 		4E541ADD16550F9F00E495D1 /* pointCreationDefaultScheme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pointCreationDefaultScheme.json; sourceTree = "<group>"; };
 		4E541B13165548EE00E495D1 /* hud-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud-check.png"; sourceTree = "<group>"; };
 		4E541B14165548EE00E495D1 /* hud-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hud-check@2x.png"; sourceTree = "<group>"; };
@@ -308,8 +337,6 @@
 		666CEDAC1656504B00D0179B /* CYMapsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMapsTableViewController.m; sourceTree = "<group>"; };
 		666CEDAD1656504B00D0179B /* CYMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYMapViewController.h; sourceTree = "<group>"; };
 		666CEDAE1656504B00D0179B /* CYMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYMapViewController.m; sourceTree = "<group>"; };
-		666CEDB21656504B00D0179B /* CYPointDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPointDetailViewController.h; sourceTree = "<group>"; };
-		666CEDB31656504B00D0179B /* CYPointDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPointDetailViewController.m; sourceTree = "<group>"; };
 		666CEDB41656504B00D0179B /* CYTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYTabBarViewController.h; sourceTree = "<group>"; };
 		666CEDB51656504B00D0179B /* CYTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYTabBarViewController.m; sourceTree = "<group>"; };
 		666CEDC81656545800D0179B /* nav-bar-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-bar-background.png"; sourceTree = "<group>"; };
@@ -379,6 +406,7 @@
 				6627824E1633EEC200F1D0E7 /* CoreGraphics.framework in Frameworks */,
 				6644E253163F338000537778 /* Parse.framework in Frameworks */,
 				4E8DFA0B1655D1DE00A113C9 /* libFlurry.a in Frameworks */,
+				6D0414C69ECF48F88BD5A953 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +471,7 @@
 				4EC259AA165581B500825436 /* Adamas-Regular.otf */,
 				4EC259AB165581B500825436 /* CODE Bold.otf */,
 				4EC259AC165581B500825436 /* CODE Light.otf */,
+				4E4A41C816663CB300EBA3AD /* Fabrica.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -513,6 +542,7 @@
 				662782481633EEC200F1D0E7 /* Frameworks */,
 				66558A8116361CE200C7BB8B /* Libraries */,
 				662782461633EEC200F1D0E7 /* Products */,
+				0CC0130432C24CBAA0F8E857 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -548,6 +578,7 @@
 				6627827D1633EF9200F1D0E7 /* StoreKit.framework */,
 				66A1B330163888AC00B9DCEC /* SystemConfiguration.framework */,
 				662782491633EEC200F1D0E7 /* UIKit.framework */,
+				13719CFDB4F64C45B3910321 /* libPods.a */,
 			);
 			name = Frameworks;
 			path = Cygnus/Frameworks;
@@ -657,10 +688,10 @@
 				666CEDAC1656504B00D0179B /* CYMapsTableViewController.m */,
 				666CEDAD1656504B00D0179B /* CYMapViewController.h */,
 				666CEDAE1656504B00D0179B /* CYMapViewController.m */,
-				666CEDB21656504B00D0179B /* CYPointDetailViewController.h */,
-				666CEDB31656504B00D0179B /* CYPointDetailViewController.m */,
 				666CEDB41656504B00D0179B /* CYTabBarViewController.h */,
 				666CEDB51656504B00D0179B /* CYTabBarViewController.m */,
+				4E4A41731666037200EBA3AD /* CYPointDetailViewController.h */,
+				4E4A41741666037200EBA3AD /* CYPointDetailViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -669,6 +700,14 @@
 			isa = PBXGroup;
 			children = (
 				4EC259A8165581B500825436 /* Fonts */,
+				4E4A41D2166643BC00EBA3AD /* done_button.png */,
+				4E4A41D3166643BD00EBA3AD /* done_button@2x.png */,
+				4E4A41C41666361300EBA3AD /* greenPin.png */,
+				4E4A41C51666361300EBA3AD /* greenPin@2x.png */,
+				4E4A41C01666353E00EBA3AD /* grayPin.png */,
+				4E4A41C11666353F00EBA3AD /* grayPin@2x.png */,
+				4E4A41BC1666323800EBA3AD /* bluePin.png */,
+				4E4A41BD1666323800EBA3AD /* bluePin@2x.png */,
 				4EEEE455164CDCB300D3357B /* 04-eye-white.png */,
 				4EEEE456164CDCB300D3357B /* 04-eye-white@2x.png */,
 				4EEEE457164CDCB300D3357B /* 06-magnify.png */,
@@ -700,7 +739,10 @@
 				4E541B5D16557ED200E495D1 /* tab-bar-background@2x.png */,
 				4E541B6016557F0600E495D1 /* tab-selection-indicator.png */,
 				4E541B6116557F0600E495D1 /* tab-selection-indicator@2x.png */,
+				4E4A41821666123600EBA3AD /* title-label-gradient-bottom.png */,
 				4E541B17165548EE00E495D1 /* tap_to_add_photo.png */,
+				4E4A41761666075100EBA3AD /* gray_bg.png */,
+				4E4A41771666075100EBA3AD /* gray_bg@2x.png */,
 			);
 			name = Assets;
 			path = Cygnus/Assets;
@@ -787,6 +829,7 @@
 				662782411633EEC200F1D0E7 /* Sources */,
 				662782421633EEC200F1D0E7 /* Frameworks */,
 				662782431633EEC200F1D0E7 /* Resources */,
+				8E7E46CB1EA642D38C479262 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -914,10 +957,39 @@
 				666CEDCF165654C400D0179B /* 103-map-white@2x.png in Resources */,
 				669904011658AD6300A8CD79 /* 73-radar.png in Resources */,
 				669904021658AD6300A8CD79 /* 73-radar@2x.png in Resources */,
+				4E4A41781666075100EBA3AD /* gray_bg.png in Resources */,
+				4E4A41791666075100EBA3AD /* gray_bg@2x.png in Resources */,
+				4E4A41831666123600EBA3AD /* title-label-gradient-bottom.png in Resources */,
+				4E4A41BE1666323900EBA3AD /* bluePin.png in Resources */,
+				4E4A41BF1666323900EBA3AD /* bluePin@2x.png in Resources */,
+				4E4A41C21666353F00EBA3AD /* grayPin.png in Resources */,
+				4E4A41C31666353F00EBA3AD /* grayPin@2x.png in Resources */,
+				4E4A41C61666361400EBA3AD /* greenPin.png in Resources */,
+				4E4A41C71666361400EBA3AD /* greenPin@2x.png in Resources */,
+				4E4A41C916663CB300EBA3AD /* Fabrica.otf in Resources */,
+				4E4A41D4166643BE00EBA3AD /* done_button.png in Resources */,
+				4E4A41D5166643BE00EBA3AD /* done_button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8E7E46CB1EA642D38C479262 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		662782411633EEC200F1D0E7 /* Sources */ = {
@@ -966,12 +1038,12 @@
 				666CEDB91656504B00D0179B /* CYMapDetailViewController.m in Sources */,
 				666CEDBA1656504B00D0179B /* CYMapsTableViewController.m in Sources */,
 				666CEDBB1656504B00D0179B /* CYMapViewController.m in Sources */,
-				666CEDBE1656504B00D0179B /* CYPointDetailViewController.m in Sources */,
 				666CEDBF1656504B00D0179B /* CYTabBarViewController.m in Sources */,
 				66995E161656F67E005BC35C /* CYMapsTableViewCell.m in Sources */,
 				669903FE1658A9D600A8CD79 /* CYUser.m in Sources */,
 				66F8776616599AB2007B4E53 /* CYPointCreationView.m in Sources */,
 				662BEC84165AC8400076D70F /* CYMapCreationTableViewController.m in Sources */,
+				4E4A41751666037200EBA3AD /* CYPointDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1066,6 +1138,7 @@
 		};
 		6627826A1633EEC200F1D0E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CC0130432C24CBAA0F8E857 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1076,16 +1149,16 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cygnus/Cygnus-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Cygnus/Libraries\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Cygnus/Libraries\"/**",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "Cygnus/Cygnus-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Cygnus/Libraries/Flurry\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1096,6 +1169,7 @@
 		};
 		6627826B1633EEC200F1D0E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CC0130432C24CBAA0F8E857 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -1106,16 +1180,16 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cygnus/Cygnus-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Cygnus/Libraries\"/**";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/Cygnus/Libraries\"/**",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "Cygnus/Cygnus-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Cygnus/Libraries/Flurry\"",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

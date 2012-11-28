@@ -9,5 +9,4 @@
 @interface CYMapsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
 - (IBAction)mapCreationDidSave:(UIStoryboardSegue *)segue;
-
 @end

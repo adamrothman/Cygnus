@@ -7,13 +7,31 @@
 //
 
 #import "CYMapCreationTableViewController.h"
+#import "CYUI.h"
+
+@interface CYMapCreationTableViewController ()
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@end
 
 @implementation CYMapCreationTableViewController
 
+- (IBAction)cancelSelected:(id)sender {
+  [self dismissViewControllerAnimated:YES
+                           completion:NULL];
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
+  [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                           [UIFont fontWithName:@"Code Light" size:27.0f], UITextAttributeFont,
+                                           [UIColor whiteColor], UITextAttributeTextColor,
+                                           [UIColor colorWithWhite:0.0 alpha:0.5], UITextAttributeTextShadowColor,
+//                                           [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)], UITextAttributeTextShadowOffset,
+                                           nil]];
 
-  self.summaryTextView.placeholder = @"Map summary";
+
+  self.summaryTextView.placeholderText = @"Map summary";
+
 
   // Uncomment the following line to preserve selection between presentations.
   // self.clearsSelectionOnViewWillAppear = NO;
@@ -33,6 +51,13 @@
 
 - (void)textViewDidChange:(UITextView *)textView {
   [self.summaryTextView setNeedsDisplay];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [CYAnalytics logEvent:CYAnalyticsEventMapCreateSelected withParameters:nil];
 }
 
 @end

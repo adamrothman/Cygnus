@@ -13,6 +13,9 @@
 #import "CYMapsTableViewCell.h"
 #import "CYUser+Additions.h"
 #import "CYMapCreationTableViewController.h"
+#import "CYUI.h"
+
+static NSString *alertKey = @"CYMapsTableViewController alert shown";
 
 static NSString *alertKey = @"CYMapsTableViewController alert shown";
 
@@ -35,6 +38,19 @@ static NSString *alertKey = @"CYMapsTableViewController alert shown";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  int height = self.navigationController.navigationBar.frame.size.height;
+  int width = self.navigationController.navigationBar.frame.size.width;
+  UILabel *navLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+  navLabel.text = @"Maps";
+  navLabel.backgroundColor = [UIColor clearColor];
+  navLabel.textColor = [UIColor whiteColor];
+  navLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+  navLabel.font = [UIFont fontWithName:@"Code Light" size:27];
+  navLabel.textAlignment = UITextAlignmentCenter;
+  self.navigationItem.titleView = navLabel;
+  [navLabel sizeToFit];
+  [navLabel alignHorizontally:UIViewHorizontalAlignmentCenter];
+
   [[NSNotificationCenter defaultCenter] addObserver:self.refreshControl selector:@selector(endRefreshing) name:NSManagedObjectContextDidSaveNotification object:[CYAppDelegate mainContext]];
 
   [self setUpFetchedResultsController];

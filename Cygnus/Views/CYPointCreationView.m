@@ -7,6 +7,7 @@
 //
 
 #import "CYPointCreationView.h"
+#import "CYUI.h"
 
 @interface CYPointCreationView ()
 
@@ -22,11 +23,15 @@
   self.layer.cornerRadius = 8.f;
   self.layer.shadowOpacity = 0.5f;
   self.layer.shadowOffset = CGSizeMake(0.f, 2.5f);
+  self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageFromDiskNamed:@"gray_bg.png"]];
+
   //self.contentMode = UIViewContentModeScaleToFill;
-
+  self.nameTextField.font = [UIFont fontWithName:@"Fabrica" size:15];
+  self.summaryTextView.font = [UIFont fontWithName:@"Fabrica" size:15];
+  self.nameTextField.textColor = [UIColor colorWithWhite:0.14 alpha:1.0];
+  self.summaryTextView.textColor = [UIColor colorWithWhite:0.14 alpha:1.0];
   self.animationOptions = UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState;
-
-  self.summaryTextView.placeholder = @"Summary";
+  self.summaryTextView.placeholderText = @"Summary";
 }
 
 - (void)summonWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion {

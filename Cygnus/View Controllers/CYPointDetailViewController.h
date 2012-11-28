@@ -6,9 +6,12 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "CYPoint+Additions.h"
 
 @interface CYPointDetailViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UIImageView *pointImageView;
 
 @property (nonatomic, strong) CYPoint *point;
 
