@@ -35,7 +35,19 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.navigationItem.title = @"Around Me";
+  int height = self.navigationController.navigationBar.frame.size.height;
+  int width = self.navigationController.navigationBar.frame.size.width;
+  UILabel *navLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+  navLabel.text = @"CYGNUS";
+  navLabel.backgroundColor = [UIColor clearColor];
+  navLabel.textColor = [UIColor whiteColor];
+  navLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+  navLabel.font = [UIFont fontWithName:@"Code Light" size:27];
+  navLabel.textAlignment = UITextAlignmentCenter;
+  self.navigationItem.titleView = navLabel;
+  [navLabel sizeToFit];
+  [navLabel alignHorizontally:UIViewHorizontalAlignmentCenter];
+
 
   [self.pointCreationView setUp];
   self.pointCreationView.delegate = self;
@@ -51,7 +63,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+//  [[self navigationController] setNavigationBarHidden:YES animated:YES];
   self.mapView.map = [CYUser activeMap];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [super viewWillDisappear:animated];
+//  [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -98,7 +117,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([segue.identifier isEqualToString:@"CYPointDetailViewController_Segue"]) {
     UINavigationController *destination = segue.destinationViewController;
-    CYPointDetailViewController *pointDetailViewController = (CYPointDetailViewController *)destination.topViewController;
+    CYPointDetailViewController *pointDetailViewController = (CYPointDetailViewController *)destination;
     CYPoint *point = ((MKAnnotationView *)sender).annotation;
     pointDetailViewController.point = point;
   }
@@ -156,16 +175,17 @@
   if (annotation == mapView.userLocation) return nil;
 
   static NSString *identifier = @"CYMapViewControllerPin";
-  MKPinAnnotationView *view = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-  if (!view) view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+  MKAnnotationView *view = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+  if (!view) view = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
 
   if (annotation == self.userPointAnnotation) {
-    view.pinColor = MKPinAnnotationColorGreen;
+//    view.pinColor = MKPinAnnotationColorGreen;
+    [view setImage:[UIImage imageNamed:@"greenPin.png"]];
     view.canShowCallout = NO;
   } else {
-    view.animatesDrop = NO;
+    [view setImage:[UIImage imageNamed:@"grayPin.png"]];
     view.canShowCallout = YES;
-    view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeInfoLight];
   }
 
   return view;

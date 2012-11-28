@@ -1,0 +1,24 @@
+
+EXTERNAL SOURCES: 
+  DLCImagePickerController: 
+    :git: https://github.com/kharmabum/DLCImagePickerController.git
+
+PODS: 
+- DLCImagePickerController (0.0.1): 
+  - DLCImagePickerController/Core (= 0.0.1)
+  - DLCImagePickerController/FilterSamples (= 0.0.1)
+- DLCImagePickerController/Core (0.0.1): 
+  - GPUImage (HEAD)
+- DLCImagePickerController/FilterSamples (0.0.1)
+- GPUImage (HEAD based on 0.0.1)
+
+COCOAPODS: 0.16.0
+
+DEPENDENCIES: 
+- DLCImagePickerController (from `https://github.com/kharmabum/DLCImagePickerController.git')
+
+SPEC CHECKSUMS: 
+  GPUImage: fa1496bfbf6769638d2aa32cf00b27cd5a21c5e1
+  DLCImagePickerController/FilterSamples: f85af87c372a0dd08ce9f6143680f4213d81de99
+  DLCImagePickerController/Core: f85af87c372a0dd08ce9f6143680f4213d81de99
+  DLCImagePickerController: f85af87c372a0dd08ce9f6143680f4213d81de99
