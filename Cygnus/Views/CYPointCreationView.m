@@ -25,8 +25,7 @@
   //self.contentMode = UIViewContentModeScaleToFill;
 
   self.animationOptions = UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState;
-
-  self.summaryTextView.placeholder = @"Summary";
+  self.summaryTextView.placeholderText = @"Summary";
 }
 
 - (void)summonWithDuration:(NSTimeInterval)duration completion:(void (^)(BOOL finished))completion {
