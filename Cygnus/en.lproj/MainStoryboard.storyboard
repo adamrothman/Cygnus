@@ -708,7 +708,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapsTableViewController.h"/>
             <relationships>
                 <relationship kind="action" name="mapCreationDidSave:" candidateClass="UIStoryboardSegue"/>
-                <relationship kind="action" name="refresh:" candidateClass="UIRefreshControl"/>
             </relationships>
         </class>
         <class className="CYPointCreationView" superclassName="UIView">
