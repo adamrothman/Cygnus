@@ -56,7 +56,6 @@
   [item.layer setMasksToBounds:NO];
   [item.imageView cancelImageRequestOperation];
   item.imageView.image = nil;
-
   
 	NSInteger i = ([self numberOfSectionsInCollectionView:self.collectionView] * indexPath.section) + indexPath.row;
   if (i == 0) {
@@ -292,6 +291,14 @@
                       } completion:NULL];
     }
   }];
+
+  self.distanceLabel.layer.cornerRadius = 4.f;
+  self.distanceLabel.layer.borderColor = [UIColor blackColor].CGColor;
+  self.distanceLabel.layer.borderWidth = 1.f;
+
+  self.summaryTextView.layer.cornerRadius = 4.f;
+  self.summaryTextView.layer.borderColor = [UIColor blackColor].CGColor;
+  self.summaryTextView.layer.borderWidth = 1.f;
 }
 
 
@@ -314,12 +321,17 @@
                       [item.layer setMasksToBounds:NO];
                     } completion:NULL];
   }
+  [self.mapView zoomToFitAnnotationsWithUser:NO animated:NO];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+  CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:self.point.coordinate.latitude longitude:self.point.coordinate.longitude];
+  self.distanceLabel.text = [NSString stringWithFormat:@"%.0f m from you", [self.mapView.userLocation.location distanceFromLocation:pointLocation]];
+
+  self.summaryTextView.text = self.point.summary;
 }
 
 @end
