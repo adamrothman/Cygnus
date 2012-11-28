@@ -229,6 +229,14 @@
   self.navigationItem.titleView = navLabel;
   [navLabel sizeToFit];
   [navLabel alignHorizontally:UIViewHorizontalAlignmentCenter];
+  
+  [self.emptyImageLabel setFont:[UIFont fontWithName:@"CODE Bold" size:17]];
+  [self.emptyImageLabel sizeToFit];
+  [self.emptyImageLabel alignHorizontally:UIViewHorizontalAlignmentCenter];
+  self.emptyImageLabel.layer.shadowColor = [UIColor darkGrayColor].CGColor;
+  self.emptyImageLabel.layer.shadowOffset = CGSizeMake(1.0, 1.5);
+  self.emptyImageLabel.layer.shadowOpacity = 0.8f;
+  self.emptyImageLabel.layer.shadowRadius = 1.0f;
 
   self.images = [[NSMutableArray alloc] init];
   self.imageContainer.layer.cornerRadius = 3.0f;
@@ -248,17 +256,12 @@
                       animations:^{
                         [self.pointImageView setImage:image];
                       } completion:NULL];
-    } failure:NULL];
-  } else {
-    [self.emptyImageLabel setFont:[UIFont fontWithName:@"CODE Bold" size:17]];
-    [self.emptyImageLabel sizeToFit];
-    [self.emptyImageLabel alignHorizontally:UIViewHorizontalAlignmentCenter];
-    self.emptyImageLabel.layer.shadowColor = [UIColor darkGrayColor].CGColor;
-    self.emptyImageLabel.layer.shadowOffset = CGSizeMake(1.0, 1.5);
-    self.emptyImageLabel.layer.shadowOpacity = 0.8f;
-    self.emptyImageLabel.layer.shadowRadius = 1.0f;
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+      [activityIndicator hide];
+      [self.emptyImageLabel show];
+    }];
   }
-
+  
   self.pointImageView.layer.cornerRadius = 3.0f;
   self.pointImageView.height += 6;
   self.pointImageView.yOrigin -= 3;

@@ -17,8 +17,6 @@
 
 static NSString *alertKey = @"CYMapsTableViewController alert shown";
 
-static NSString *alertKey = @"CYMapsTableViewController alert shown";
-
 @interface CYMapsTableViewController ()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;

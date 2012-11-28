@@ -48,7 +48,7 @@ void uncaughtExceptionHandler(NSException *exception) {
   sharedInstance.flushOnBackground = YES;
   sharedInstance.showNetworkActivityIndicator = NO;
   NSSetUncaughtExceptionHandler(uncaughtExceptionHandler);
-  [Flurry startSession:FlurryAPIKeyA];
+  [Flurry startSession:FlurryAPIKeyB];
   [Flurry setSessionReportsOnPauseEnabled:YES];
 }
 

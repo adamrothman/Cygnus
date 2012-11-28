@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CYPoint+Additions.h"
+#import "CYMapView.h"
 
 @interface CYPointDetailViewController : UIViewController
 
@@ -16,7 +17,7 @@
 @property (nonatomic, strong) CYPoint *point;
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
-@property (nonatomic, weak) IBOutlet MKMapView *mapView;
+@property (nonatomic, weak) IBOutlet CYMapView *mapView;
 
 @property (nonatomic, weak) IBOutlet UILabel *distanceLabel;
 @property (nonatomic, weak) IBOutlet UITextView *summaryTextView;
