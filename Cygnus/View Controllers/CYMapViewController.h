@@ -10,7 +10,7 @@
 #import "CYMapView.h"
 #import "CYPointCreationView.h"
 
-@interface CYMapViewController : UIViewController <MKMapViewDelegate, CYPointCreationDelegate, UITextFieldDelegate, UITextViewDelegate, AwesomeMenuDelegate>
+@interface CYMapViewController : UIViewController <MKMapViewDelegate, CYPointCreationDelegate, UITextFieldDelegate, UITextViewDelegate, AwesomeMenuDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet CYMapView *mapView;
 @property (nonatomic, weak) IBOutlet CYPointCreationView *pointCreationView;

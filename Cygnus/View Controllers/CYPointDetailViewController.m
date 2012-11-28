@@ -85,9 +85,6 @@
   return test;
 }
 
-
-#pragma mark - SSCollectionViewDelegate
-
 - (CGSize)collectionView:(SSCollectionView *)aCollectionView itemSizeForSection:(NSUInteger)section {
 	return CGSizeMake(98.0f, 98.0f);
 }

@@ -23,6 +23,8 @@
 
 #define ANIMATION_DURATION              0.25
 
+static NSString *alertKey = @"CYMapViewController alert shown";
+
 @interface CYMapViewController ()
 
 @property (nonatomic, strong) id<MKAnnotation> userPointAnnotation;
@@ -35,9 +37,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  int height = self.navigationController.navigationBar.frame.size.height;
-  int width = self.navigationController.navigationBar.frame.size.width;
-  UILabel *navLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+  UILabel *navLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.navigationBar.frame.size.width, self.navigationController.navigationBar.frame.size.height)];
   navLabel.text = @"CYGNUS";
   navLabel.backgroundColor = [UIColor clearColor];
   navLabel.textColor = [UIColor whiteColor];
@@ -47,7 +47,6 @@
   self.navigationItem.titleView = navLabel;
   [navLabel sizeToFit];
   [navLabel alignHorizontally:UIViewHorizontalAlignmentCenter];
-
 
   [self.pointCreationView setUp];
   self.pointCreationView.delegate = self;
@@ -89,6 +88,11 @@
   self.menu.startPoint = CGPointMake(self.mapView.bounds.size.width - 32, self.mapView.bounds.size.height - 32);
 
   [self.mapView zoomToFitAnnotationsWithUser:NO animated:YES];
+
+  if (![[NSUserDefaults standardUserDefaults] boolForKey:alertKey]) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Atlas" message:@"Points for the active map are displayed here. To add a point, press and hold on the map in the desired location.\n\nYou can dismiss the input tray by swiping it offscreen." delegate:self cancelButtonTitle:@"Got it" otherButtonTitles:nil];
+    [alert show];
+  }
 }
 
 - (void)setUpAwesomeMenu {
@@ -102,7 +106,7 @@
   [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:eye highlightedContentImage:nil],
   [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:pin highlightedContentImage:nil],
   [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil],
-  [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil]
+//  [[AwesomeMenuItem alloc] initWithImage:background highlightedImage:backgroundHighlighted contentImage:star highlightedContentImage:nil]
   ];
 
   self.menu = [[AwesomeMenu alloc] initWithFrame:self.view.bounds menus:menus];
@@ -227,7 +231,6 @@
 #pragma mark - AwesomeMenuDelegate
 
 - (void)menu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx {
-  //  NSLog(@"Selected index %d", idx);
   switch (idx) {
     case 0:
       NSLog(@"Awesome menu button 0");
@@ -244,6 +247,13 @@
       NSLog(@"Awesome menu button 3");
       break;
   }
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:alertKey];
+  [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
