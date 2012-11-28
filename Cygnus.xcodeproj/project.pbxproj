@@ -1064,8 +1064,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Quantified Labs, Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Quantified Labs, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Juan-Carlos Foust (9FNYN6Z547)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Juan-Carlos Foust (9FNYN6Z547)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Cygnus/Frameworks\"/**",
@@ -1083,8 +1083,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0E86C8E7-449A-4EB8-904F-DABF9C84E72A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0E86C8E7-449A-4EB8-904F-DABF9C84E72A";
+				PROVISIONING_PROFILE = "9DDFE286-0EFA-46A1-831D-05C9FF15A9F7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DDFE286-0EFA-46A1-831D-05C9FF15A9F7";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};

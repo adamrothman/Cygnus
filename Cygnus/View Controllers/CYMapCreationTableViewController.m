@@ -13,7 +13,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.summaryTextView.placeholder = @"Map summary";
+  self.summaryTextView.placeholderText = @"Map summary";
 
   // Uncomment the following line to preserve selection between presentations.
   // self.clearsSelectionOnViewWillAppear = NO;
