@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Cygnus. All rights reserved.
 //
 
-@interface CYMapsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, NSFetchedResultsControllerDelegate>
+@interface CYMapsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 
 - (IBAction)mapCreationDidSave:(UIStoryboardSegue *)segue;
 

@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller - Around Me-->
+        <!--Map View Controller - Atlas-->
         <scene sceneID="7ov-j1-sRK">
             <objects>
                 <viewController storyboardIdentifier="CYMapViewController" id="l6a-62-OqY" customClass="CYMapViewController" sceneMemberID="viewController">
@@ -87,7 +87,7 @@
                             <constraint firstItem="URG-of-fA3" firstAttribute="top" secondItem="7dQ-YI-8bK" secondAttribute="top" type="default" id="v5a-B0-3uw"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Around Me" image="73-radar.png" id="vnV-Rj-sOU"/>
+                    <tabBarItem key="tabBarItem" title="Atlas" image="73-radar.png" id="vnV-Rj-sOU"/>
                     <connections>
                         <outlet property="mapView" destination="URG-of-fA3" id="0Jx-1r-FuA"/>
                         <outlet property="pointCreationView" destination="gV5-YB-EyG" id="ISp-ui-bRd"/>
@@ -669,6 +669,78 @@
         <image name="86-camera.png" width="24" height="18"/>
         <image name="polaroid.png" width="212" height="252"/>
     </resources>
+    <classes>
+        <class className="ARTextField" superclassName="UITextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ARTextField.h"/>
+        </class>
+        <class className="ARTextView" superclassName="UITextView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ARTextView.h"/>
+        </class>
+        <class className="CYMapCreationTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapCreationTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameTextField" candidateClass="ARTextField"/>
+                <relationship kind="outlet" name="summaryTextView" candidateClass="ARTextView"/>
+            </relationships>
+        </class>
+        <class className="CYMapDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="CYMapView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="CYMapView" superclassName="MKMapView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapView.h"/>
+        </class>
+        <class className="CYMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pointDetailDone:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="mapView" candidateClass="CYMapView"/>
+                <relationship kind="outlet" name="pointCreationView" candidateClass="CYPointCreationView"/>
+            </relationships>
+        </class>
+        <class className="CYMapsTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapsTableViewCell.h"/>
+        </class>
+        <class className="CYMapsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYMapsTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="mapCreationDidSave:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="refresh:" candidateClass="UIRefreshControl"/>
+            </relationships>
+        </class>
+        <class className="CYPointCreationView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYPointCreationView.h"/>
+            <relationships>
+                <relationship kind="action" name="save:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="ARTextField"/>
+                <relationship kind="outlet" name="summaryTextView" candidateClass="ARTextView"/>
+            </relationships>
+        </class>
+        <class className="CYPointDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYPointDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="distanceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="summaryTextView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="CYTabBarViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CYTabBarViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UIRefreshControl" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

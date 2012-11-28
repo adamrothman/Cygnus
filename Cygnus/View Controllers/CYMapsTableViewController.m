@@ -14,6 +14,8 @@
 #import "CYUser+Additions.h"
 #import "CYMapCreationTableViewController.h"
 
+static NSString *alertKey = @"CYMapsTableViewController alert shown";
+
 @interface CYMapsTableViewController ()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -48,6 +50,11 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [CYAnalytics logEvent:CYAnalyticsEventMapsVisited withParameters:nil];
+
+  if (![[NSUserDefaults standardUserDefaults] boolForKey:alertKey]) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Maps" message:@"To see details for a map, just tap it.\n\nTo make a map active so that its points are displayed in the Atlas, tap and hold its row. The active map is indicated by a check mark." delegate:self cancelButtonTitle:@"Got it" otherButtonTitles:nil];
+    [alert show];
+  }
 }
 
 #pragma mark - Fetch and search setup
@@ -96,8 +103,6 @@
 
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer {
   if (recognizer.state != UIGestureRecognizerStateRecognized) return;
-
-  NSLog(@"long press");
 
   NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:[recognizer locationInView:self.tableView]];
   CYMapsTableViewCell *cell = (CYMapsTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
@@ -223,6 +228,13 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
   // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
   [self.tableView endUpdates];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+  [[NSUserDefaults standardUserDefaults] setBool:YES forKey:alertKey];
+  [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

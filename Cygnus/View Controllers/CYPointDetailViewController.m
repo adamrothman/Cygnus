@@ -30,7 +30,6 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
-  NSLog(@"imageview in viewwillappear: %@", self.imageView);
   [self.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_point.imageURLString]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
     [UIView transitionWithView:self.imageView duration:0.22 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
       self.imageView.image = image;
