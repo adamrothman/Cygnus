@@ -71,7 +71,11 @@ static NSString *alertKey = @"CYMapViewController alert shown";
 
   self.menu.startPoint = CGPointMake(self.mapView.bounds.size.width - 32, self.mapView.bounds.size.height - 32);
 
-  [self.mapView zoomToFitAnnotationsWithUser:NO animated:YES];
+  if ([CYUser activeMap]) {
+    [self.mapView zoomToFitAnnotationsWithUser:NO animated:YES];
+  } else {
+    [self.mapView zoomToFitUserAnimated:YES];
+  }
 
   if (![[NSUserDefaults standardUserDefaults] boolForKey:alertKey]) {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Atlas" message:@"Points for the active map are displayed here. To add a point, press and hold on the map in the desired location.\n\nYou can dismiss the input tray by swiping it offscreen." delegate:self cancelButtonTitle:@"Got it" otherButtonTitles:nil];

@@ -22,9 +22,13 @@
 
   self.mapView.layer.cornerRadius = 4.f;
 
-//  self.layer.borderWidth = 1.f;
-//  self.layer.shadowOpacity = 0.5f;
-//  self.layer.shadowOffset = CGSizeMake(0.f, 2.5f);
+  self.distanceLabel.layer.cornerRadius = 4.f;
+  self.distanceLabel.layer.borderColor = [UIColor blackColor].CGColor;
+  self.distanceLabel.layer.borderWidth = 1.f;
+
+  self.summaryTextView.layer.cornerRadius = 4.f;
+  self.summaryTextView.layer.borderColor = [UIColor blackColor].CGColor;
+  self.summaryTextView.layer.borderWidth = 1.f;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,33 +43,15 @@
   [self.mapView addAnnotation:self.point];
 
   CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:self.point.coordinate.latitude longitude:self.point.coordinate.longitude];
-  self.distanceLabel.text = [NSString stringWithFormat:@"%.0f m", [self.mapView.userLocation.location distanceFromLocation:pointLocation]];
+  self.distanceLabel.text = [NSString stringWithFormat:@"%.0f m from you", [self.mapView.userLocation.location distanceFromLocation:pointLocation]];
+
+  self.summaryTextView.text = self.point.summary;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [CYAnalytics logEvent:CYAnalyticsEventPointDetailVisited withParameters:nil];
-  [self.mapView zoomToFitAnnotationsWithUser:YES animated:NO];
-}
-
-#pragma mark - MKMapViewDelegate
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-  if (annotation == mapView.userLocation) return nil;
-
-  static NSString *identifier = @"CYPointDetailViewControllerPin";
-  MKPinAnnotationView *view = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-  if (!view) view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-
-  view.animatesDrop = NO;
-  view.canShowCallout = NO;
-
-  return view;
-}
-
-// prevent displaying current location callout
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-  if (view.annotation == mapView.userLocation) [mapView deselectAnnotation:view.annotation animated:NO];
+  [self.mapView zoomToFitAnnotationsWithUser:NO animated:NO];
 }
 
 @end

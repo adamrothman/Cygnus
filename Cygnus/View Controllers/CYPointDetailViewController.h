@@ -8,7 +8,7 @@
 
 #import "CYPoint+Additions.h"
 
-@interface CYPointDetailViewController : UIViewController <MKMapViewDelegate>
+@interface CYPointDetailViewController : UIViewController
 
 @property (nonatomic, strong) CYPoint *point;
 
