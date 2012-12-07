@@ -14,6 +14,7 @@ NSString *const FlurryAPIKeyB = @"554CRWWSDDZ7J3GJDNN6";
 NSString *const MixpanelTokenA = @"92d317371b012072c4781e490b64a0d7";
 NSString *const MixpanelTokenB = @"d5298691ab4b8f70de629f4a156f0f1d";
 
+
 NSString *const MixpanelUserPropertyEmail = @"$email";
 NSString *const MixpanelUserPropertyFirstName = @"$first_name";
 NSString *const MixpanelUserPropertyUsername = @"$username";
